@@ -8,6 +8,13 @@ public class Student {
     private String email_student;
     private String phone_student;
 
+    public Student(String firstname_student, String lastname_student, String email, String phone_student) {
+        this.firstname_student = firstname_student;
+        this.lastname_student = lastname_student;
+        this.email_student = email;
+        this.phone_student = phone_student;
+    }
+
     public Student getStudent() {
         return student;
     }

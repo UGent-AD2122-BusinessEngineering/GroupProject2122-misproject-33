@@ -7,6 +7,14 @@ public class Landlord {
     private String email_landlord;
     private String phone_landlord;
 
+    public Landlord(Landlord landlord, String firstname_landlord, String lastname_landlord, String email_landlord, String phone_landlord) {
+        this.landlord = landlord;
+        this.firstname_landlord = firstname_landlord;
+        this.lastname_landlord = lastname_landlord;
+        this.email_landlord = email_landlord;
+        this.phone_landlord = phone_landlord;
+    }
+
     public Landlord getLandlord() {
         return landlord;
     }

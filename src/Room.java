@@ -10,6 +10,12 @@ public class Room {
     private enum energyLabel {A, B, C, D, E, F, G}
     private enum appliances {fridges_and_freezers, dishwashers, washing_machines, televisions, lamps}
 
+    public Room(Room room, String address, int area) {
+        this.room = room;
+        this.address = address;
+        this.area = area;
+    }
+
     public Room getRoom() {
         return room;
     }

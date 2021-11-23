@@ -6,4 +6,5 @@ public class EnergyConservation {
     //De verschillende apparaten zijn reeds gedefinieerd in de Room klasse (bepaald volgens de EU klassering van apparaten)
 
 
+
 }

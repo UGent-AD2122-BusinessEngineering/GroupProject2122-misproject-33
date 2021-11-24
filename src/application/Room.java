@@ -1,28 +1,21 @@
+package application;
+
 import java.util.Objects;
 
 public class Room {
-    private Room room;
+    //private Room room;
+    //ik begrijp die instantvariabele niet echt... heb hem ook weggedaan in de constructor en de rest
     private String address;
     private enum insulationType {Insulated, notInsulated}
     private int area;
     private enum characteristics {semi_detached, detached, terraced}
-    //zie https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign/about_en
-    private enum energyLabel {A, B, C, D, E, F, G}
-    private enum appliances {fridges_and_freezers, dishwashers, washing_machines, televisions, lamps}
-
+    //lijst met appliances in de kamer (arraylist van type Appliances ofzo)
     public Room(Room room, String address, int area) {
-        this.room = room;
         this.address = address;
         this.area = area;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+    //addAppliance methode
 
     public String getAddress() {
         return address;
@@ -46,12 +39,11 @@ public class Room {
         if (o == null || getClass() != o.getClass()) return false;
         Room room1 = (Room) o;
         return area == room1.area
-                && Objects.equals(room, room1.room)
                 && Objects.equals(address, room1.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(room, address, area);
+        return Objects.hash(address, area);
     }
 }

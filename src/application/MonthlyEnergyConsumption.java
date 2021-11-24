@@ -1,3 +1,5 @@
+package application;
+
 public class MonthlyEnergyConsumption {
 
     //To keep track of the monthly energy consumption, the landlords must register electricity, gas and water consumption.

@@ -1,3 +1,5 @@
+package application;
+
 public class AdditionException extends Exception {
     public AdditionException(Student student) {
         super("The student '" + student.toString() + "'" + " already exists!");

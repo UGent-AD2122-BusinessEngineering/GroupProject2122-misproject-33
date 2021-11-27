@@ -61,5 +61,10 @@ public class Address {
         return Objects.hash(country, city, ZIP, number, street, roomnumber);
     }
 
+    @Override
+    public String toString() {
+        return "Address: " + '\'' + "Country: " + getCountry() + '\'' + "City: " + getCity() + '\'' + "ZIP: " + getZIP() + '\''
+                + "House number: " + getNumber() + "Street: " + getStreet() + '\'' + "Roomnumber=" + getRoomnumber();
+    }
 }
 

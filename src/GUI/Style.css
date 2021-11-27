@@ -1,3 +1,4 @@
+/*TOOLBAR*/
 a:link, a:visited  {
 
   color: black;
@@ -16,6 +17,30 @@ color:white;
 font-size: 200%;
 font-family: Verdana;
 }
+
+
+/* ICONEN STYLING*/
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+/*Instagram*/
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
 
 #myVideo {
   width: 100vw;

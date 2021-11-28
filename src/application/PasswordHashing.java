@@ -3,6 +3,8 @@ package application;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
+//method to hash passwords safely
 public class PasswordHashing {
 
     public static String doHashing(String password) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Location {
 
-    private ArrayList<Student> students;
+    private ArrayList<Landlord> students;
     private String country;
     private String city;
     private int ZIP;
@@ -61,12 +61,12 @@ public class Location {
     }
 
     //student toevoegen aan kamer
-    public void addStudent(Student s) {
+    public void addStudent(Landlord s) {
         students.add(s);
     }
 
     //student verwijderen van kamer
-    public void removeStudent(Student s) {
+    public void removeStudent(Landlord s) {
         if (students.contains(s)) {
             students.remove(s);
         }

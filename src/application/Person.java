@@ -12,6 +12,7 @@ public class Person {
     public int telephonenumber;
     public int age;
     public LocalDate dateofbirth;
+    public enum Gender {MALE, FEMALE}
 
     public Person(String email, String firstname, String lastname, int idnumber, int telephonenumber, int age, LocalDate dateofbirth) {
         this.email = email;

@@ -1,23 +1,16 @@
-/*TOOLBAR*/
-a:link, a:visited  {
 
-  color: black;
-
-  padding: 10px 20px;
-  text-align: right;
-  text-decoration:none;
-
-  font-size:30px;
-  display: inline-block;
-
+/*VIDEO-ACHTERGROND*/
+#myVideo {
+  width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
 }
-
-a:hover{
-color:white;
-font-size: 200%;
-font-family: Verdana;
-}
-
 
 /* ICONEN STYLING*/
 .fa {
@@ -36,19 +29,6 @@ font-family: Verdana;
 .fa-instagram {
   background: #125688;
   color: white;
-}
-
-/*VIDEO-ACHTERGROND*/
-#myVideo {
-  width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
 }
 
 /*PROFILE CARDS*/
@@ -79,31 +59,66 @@ button {
   font-size: 18px;
 }
 
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-
-
 body {font-family: Arial, Helvetica, sans-serif;}
 
 
-.navbar a {
-  float: left;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
-  font-size:18px;
+.navbar {
+  height:12%;
+  display: flex;
+  align-items: center;
+}
+
+nav{
+    margin-left:10px;
 
 
 }
 
-.title{
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0px;
+}
+
+nav ul li a{
+    text-decoration: none;
     color: white;
-    font-size:25px;
+}
+
+.row{
+    display: flex;
+    height: 88%;
+    align-items: center;
+}
+
+.col{
+    flex-basis: 50%;
+}
+
+.Card{
+    color: white;
+    width:300px;
+    height:230px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    margin: 10px 10px 10px 10px;
+
+    background-position:center;
+    background-size: cover;
+
+}
+
+.card1{
+    background-image: url(AdobeStock_391482985-scaled.jpeg);
+}
+.card2{
+    background-image: url(openfridge.jpg);
+}
+.card3{
+    background-image: url(building.jpg);
+}
+.card4{
+    background-image: url(bill.jpg);
 }

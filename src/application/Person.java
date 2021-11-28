@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Person {
 
-    private String email;
-    private String firstname;
-    private String lastname;
-    private int idnumber;
-    private int telephonenumber;
-    private int age;
-    private LocalDate dateofbirth;
+    public String email;
+    public String firstname;
+    public String lastname;
+    public int idnumber;
+    public int telephonenumber;
+    public int age;
+    public LocalDate dateofbirth;
 
     public Person(String email, String firstname, String lastname, int idnumber, int telephonenumber, int age, LocalDate dateofbirth) {
         this.email = email;

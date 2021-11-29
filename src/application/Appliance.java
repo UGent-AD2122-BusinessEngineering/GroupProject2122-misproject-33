@@ -22,6 +22,13 @@ public class Appliance {
     private ArrayList<ArrayList<Boolean>> monthlyOperation = new ArrayList<ArrayList<Boolean>>(); //final monthly operation of the appliance
     private int time; //the amount of times the appliance may work in a month
 
+    //constructor
+    public Appliance(Location applianceOf,EnergyLabel energyLabel, ApplianceType applianceType) {
+        this.energyLabel = energyLabel;
+        this.applianceType = applianceType;
+        this.applianceOf = applianceOf;
+    }
+
     //getters
     public int getPower () {return power;} //returns power variable of the appliance
     public Location getApplianceOf () {return applianceOf;} //the location where the appliance is installed

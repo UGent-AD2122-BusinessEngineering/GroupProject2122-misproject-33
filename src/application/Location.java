@@ -6,15 +6,17 @@ import java.util.ArrayList;
 public class Location {
 
     private ArrayList<Landlord> students;
+    //wat is dit?
     private String country;
     private String city;
     private int ZIP;
+    //mss best niet in hoodletters... klopt dit dan nog?
     private int number;
     private String street;
     private int roomnumber;
+    private int area;
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
-    private int area;
     private enum characteristics {semi_detached, detached, terraced}
     //lijst met appliances in de kamer (arraylist van type Appliances ofzo)
     public Location(String country, String city, int ZIP, int number, String street, int roomnumber, int area) {

@@ -18,6 +18,7 @@ public class Location {
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
     private enum characteristics {semi_detached, detached, terraced}
+    private ArrayList<Appliance> appLiancesInLocation;
     //lijst met appliances in de kamer (arraylist van type Appliances ofzo)
     public Location(String country, String city, int ZIP, int number, String street, int roomnumber, int area) {
         this.area = area;
@@ -27,6 +28,7 @@ public class Location {
         this.number = number;
         this.street = street;
         this.roomnumber = roomnumber;
+        appLiancesInLocation = new ArrayList<Appliance>();
     }
 
     public String getCountry() {return country;}

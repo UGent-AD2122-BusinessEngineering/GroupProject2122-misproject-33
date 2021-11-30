@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class Location {
 
+    //volgens is het beter om toch met subklasse "room" of "dormroom" te werken,
+    // is denk ik duidelijker en makkelijker om mee te werken en in het echt gebeurt
+    // het wel vaker dat er verschillende kamers op hetzelfde adres zijn
+
     private ArrayList<Landlord> students;
     //wat is dit?
     private String country;

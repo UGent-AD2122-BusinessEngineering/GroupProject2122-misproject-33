@@ -10,11 +10,9 @@ public class Appliance {
     //instantievariabelen
     public GregorianCalendar date;
     public enum EnergyLabel {A, B, C, D, E, F, G}
-    public enum ApplianceType {Dishwasher, Fridge, Lights, WashingMachine, Television}
     //zie https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign/about_en
 
     private EnergyLabel energyLabel; //energy label of the appliance
-    private ApplianceType applianceType; //appliance name
     private Location applianceOf; //location that the appliance is installed at
     private int power; //power used by the appliance
     private ArrayList<ArrayList<Integer>> monthlyConsumption = new ArrayList<ArrayList<Integer>>(); //final monthly consumption of the appliance
@@ -23,9 +21,8 @@ public class Appliance {
     private int time; //the amount of times the appliance may work in a month
 
     //constructor
-    public Appliance(Location applianceOf,EnergyLabel energyLabel, ApplianceType applianceType) {
+    public Appliance(Location applianceOf,EnergyLabel energyLabel) {
         this.energyLabel = energyLabel;
-        this.applianceType = applianceType;
         this.applianceOf = applianceOf;
     }
 
@@ -33,7 +30,6 @@ public class Appliance {
     public int getPower () {return power;} //returns power variable of the appliance
     public Location getApplianceOf () {return applianceOf;} //the location where the appliance is installed
     public EnergyLabel getEnergyLabel() {return energyLabel;}
-    public ApplianceType getApplianceType() {return applianceType;}
     public ArrayList<ArrayList<Integer>> getMonthlyConsumption() {return monthlyConsumption;}
     public ArrayList<ArrayList<Boolean>> getMonthlyOperation() {return monthlyOperation;}
     public int getTime() {return time;}

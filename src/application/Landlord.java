@@ -43,7 +43,9 @@ public class Landlord extends Person {
         }
     }
 
-    //ik doe hier nog geen test voor eerste dag vd maand omdat me het beter lijkt dat te doen waar je de methode oproept
+    //1. ik doe hier nog geen test voor eerste dag vd maand omdat me het beter lijkt dat te doen waar je de methode oproept
+    //   ik heb hier wel tussen de instantievariabelen een "dagVdMaand" gezet dat ik getest heb en zeker werkt
+    //2. moeten we de energieconsumptie per maand per landlord of per kamer bijhouden ? (anders moet ik dat hier nog wat aanpassen)
     public void getMonthlyEnergyConsumption(){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What was the elektricity consumption (in kWh) this month?");
@@ -55,9 +57,6 @@ public class Landlord extends Person {
         System.out.println("Okay thank you!");
         //ik ben nie zeker ofdat dit wel hoeft
         MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, maandVhJaar);
-
-
-
     }
 
     //test

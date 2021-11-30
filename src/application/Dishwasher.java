@@ -37,8 +37,9 @@ public class Dishwasher extends Appliance {
             return true;
     }
     }
-
     //studenten die hun vaatwas al op 120° hadden staan of energysavingmode al aanstond worden dan wel niet opgemerkt
     //nog iets op vinden
+
+    //ik maak overal EnergyConservation object aan voor de db (ben niet zeker of dit nodig is maar kunnen we nog aanpassen
 
 }

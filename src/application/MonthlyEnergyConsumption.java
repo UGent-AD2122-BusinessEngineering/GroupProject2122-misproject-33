@@ -6,7 +6,8 @@ public class MonthlyEnergyConsumption {
     // alle twee in kWh
     private int water;
     // in m^3
-    private String month;
+    private int month;
 
-
+    public MonthlyEnergyConsumption(int electricity, int gas, int water, int maandVhJaar) {
+    }
 }

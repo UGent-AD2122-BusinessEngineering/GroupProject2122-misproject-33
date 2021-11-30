@@ -2,15 +2,18 @@ package application;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Landlord extends Person {
-
-    public Location dormRoom;
+    private Location dormRoom; // moet ook arraylist zijn denk ik maar ik weet niet hoe je het dan doet met die methodes
     private ArrayList<Student> contacts; //for adding contacts (in this case: the students) to the rooms)
+    private static int dagVdMaand = LocalDate.now().getDayOfMonth();
+    private static int maandVhJaar = LocalDate.now().getMonthValue();
 
     public Landlord(String email, String firstname, String lastname, int idnumber, int telephonenumber, int age, LocalDate dateofbirth) {
         super(email, firstname, lastname, idnumber, telephonenumber, age, dateofbirth);
         contacts = new ArrayList<Student>();
+
     }
 
 
@@ -38,6 +41,23 @@ public class Landlord extends Person {
                     break;
             }
         }
+    }
+
+    //ik doe hier nog geen test voor eerste dag vd maand omdat me het beter lijkt dat te doen waar je de methode oproept
+    public void getMonthlyEnergyConsumption(){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("What was the elektricity consumption (in kWh) this month?");
+        int electricity = keyboard.nextInt();
+        System.out.println("What was the gas consumption (in kWh) this month?");
+        int gas = keyboard.nextInt();
+        System.out.println("What was the water consumption (in m^3) this month?");
+        int water = keyboard.nextInt();
+        System.out.println("Okay thank you!");
+        //ik ben nie zeker ofdat dit wel hoeft
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, maandVhJaar);
+
+
+
     }
 
     //test

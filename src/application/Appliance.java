@@ -50,7 +50,7 @@ public class Appliance {
         }
     }
 
-    //first day of month (klopt wss niet)
+    /*first day of month (klopt wss niet)
     LocalDate getFirstDayOfMonth(GregorianCalendar c) {
         LocalDate date = c.toZonedDateTime().toLocalDate();
         return date.withDayOfMonth(1);
@@ -58,6 +58,9 @@ public class Appliance {
 
     GregorianCalendar calendar = GregorianCalendar.from(ZonedDateTime.now());
     LocalDate first = getFirstDayOfMonth(calendar);
+
+    ik heb één die zeker werkt bij landlord gezet
+     */
 
 
 

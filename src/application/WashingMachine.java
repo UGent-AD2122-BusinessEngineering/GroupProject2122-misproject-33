@@ -3,9 +3,11 @@ package application;
 //van nummer 2 kunnen we eventueel een tip maken
 
 public class WashingMachine extends Appliance {
-    private int averageTemp;
-    public WashingMachine(Location inWhichRoom, EnergyLabel energyLabel, int averageTemp) {
+    private double averageTemp;
+    private int hoeveelKeerperMaand;
+    public WashingMachine(Location inWhichRoom, EnergyLabel energyLabel, double averageTemp, int hoeveelKeerperMaand) {
         super(inWhichRoom, energyLabel);
         this.averageTemp = averageTemp;
+        this.hoeveelKeerperMaand = hoeveelKeerperMaand;
     }
 }

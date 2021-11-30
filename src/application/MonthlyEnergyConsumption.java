@@ -1,13 +1,17 @@
 package application;
 
 public class MonthlyEnergyConsumption {
-    private int electricity;
-    private int gas;
+    private double electricity;
+    private double gas;
     // alle twee in kWh
-    private int water;
+    private double water;
     // in m^3
-    private int month;
+    private double month;
 
-    public MonthlyEnergyConsumption(int electricity, int gas, int water, int maandVhJaar) {
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, double month) {
+        this.electricity = electricity;
+        this.gas = gas;
+        this.water = water;
+        this.month = month;
     }
 }

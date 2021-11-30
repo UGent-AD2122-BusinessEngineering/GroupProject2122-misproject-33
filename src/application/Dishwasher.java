@@ -3,12 +3,42 @@ package application;
 // nummer 4 kunnen we bij de tips zetten om energie te besparen
 
 public class Dishwasher extends Appliance {
-    int heat;
-    boolean energySavingMode;
+    private double heat;
+    private boolean energysavingmode;
+    private Student owner;
 
-    public Dishwasher(Location applianceOf, EnergyLabel energyLabel, int heat, boolean energySavingMode) {
+    public Dishwasher(Location applianceOf, EnergyLabel energyLabel, double heat, boolean energysavingmode, Student owner) {
         super(applianceOf, energyLabel);
         this.heat = heat;
-        this.energySavingMode = energySavingMode;
+        this.energysavingmode = energysavingmode;
+        this.owner = owner;
     }
+
+    public boolean lowerTheHeatTo12O(){
+        if (this.heat <= 120)
+            return false;
+        else{
+            this.heat = 120;
+            EnergyConservationActions eca = new EnergyConservationActions("dishwasher","lower the heat to 120 degrees");
+            owner.getPerformedEnergyConservationActions().add("lowered the heat of the dishwasher to 120 degrees");
+            return true;
+        }
+    }
+    //studenten die hun vaatwas al op 120° hadden staan of energysavingmode al aanstond worden dan wel niet opgemerkt
+    //moeten we mss nog iets op vinden
+
+    public boolean energysavingmodeAanzetten (){
+        if (energysavingmode == true)
+            return false;
+        else {
+            this.energysavingmode = true;
+            EnergyConservationActions eca = new EnergyConservationActions("dishwasher","energysavingsmode aanzetten");
+            owner.getPerformedEnergyConservationActions().add("energysavingmode on");
+            return true;
+    }
+    }
+
+    //studenten die hun vaatwas al op 120° hadden staan of energysavingmode al aanstond worden dan wel niet opgemerkt
+    //nog iets op vinden
+
 }

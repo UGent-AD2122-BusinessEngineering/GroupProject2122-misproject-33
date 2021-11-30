@@ -55,7 +55,7 @@ public class Landlord extends Person {
         System.out.println("What was the water consumption (in m^3) this month?");
         int water = keyboard.nextInt();
         System.out.println("Okay thank you!");
-        //ik ben nie zeker ofdat dit wel hoeft
+        //ik ben nie zeker ofdat dit wel hoeft...
         MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, maandVhJaar);
     }
 

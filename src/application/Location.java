@@ -2,28 +2,23 @@ package application;
 
 import java.util.Objects;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Location {
-
-    //volgens mij is het beter om toch met subklasse "room" of "dormroom" te werken,
-    // is denk ik duidelijker en makkelijker om mee te werken en in het echt gebeurt
-    // het wel vaker dat er verschillende kamers op hetzelfde adres zijn
-
-    private ArrayList<Landlord> students;
-    //wat is dit?
+    //array of arraylist maken met bewoner(s)
+    private Landlord eigenaar;
     private String country;
     private String city;
     private int ZIP;
-    //mss best niet in hoodletters... klopt dit dan nog?
     private int number;
     private String street;
+    private int housenumber;
     private int roomnumber;
     private int area;
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
-    private enum characteristics {semi_detached, detached, terraced}
-    private ArrayList<Appliance> appliancesInLocation;
-    //lijst met appliances in de kamer (arraylist van type Appliances ofzo)
+    private ArrayList<Appliances> appliancesInLocation;
+
     public Location(String country, String city, int ZIP, int number, String street, int roomnumber, int area) {
         this.area = area;
         this.country = country;
@@ -31,8 +26,8 @@ public class Location {
         this.ZIP = ZIP;
         this.number = number;
         this.street = street;
-        this.roomnumber = roomnumber;
-        appliancesInLocation = new ArrayList<Appliance>();
+        this.housenumber = roomnumber;
+        appliancesInLocation = new ArrayList<Appliances>();
     }
 
     public String getCountry() {return country;}
@@ -68,6 +63,33 @@ public class Location {
         }
     }
 
+    public void addAppliance(){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please mind your grammer for the following question.");
+        System.out.println("What is the type of the appliance (for example: dishwasher)?");
+        String applianceType = keyboard.nextLine();
+        System.out.println("What is the name of the supplier?");
+        String supplierName = keyboard.nextLine();
+        System.out.println("What is the EEI (energyeffeciencyindex)?");
+        int eei = keyboard.nextInt();
+        boolean temperatuursgebonden = true;
+        boolean oké = false;
+        while(oké = false) {
+            System.out.println("Is het temperatuursgebonden?");
+            String s1 = keyboard.nextLine();
+            if (s1.equalsIgnoreCase("ja"))
+                temperatuursgebonden = true;
+            if (s1.equalsIgnoreCase("nee"))
+                temperatuursgebonden = false;
+            else
+                System.out.println("Uw antwoord is niet wat we verwachten, antwoord ja of nee alstublieft");
+        }
+        Appliances appliance = new Appliances(applianceType, eei, supplierName, temperatuursgebonden);
+        appliancesInLocation.add(appliance);
+    }
+
+
+    /*
     //student toevoegen aan kamer
     public void addStudent(Landlord s) {
         students.add(s);
@@ -78,9 +100,7 @@ public class Location {
         if (students.contains(s)) {
             students.remove(s);
         }
-    }
-
-
+    }*/
 
     @Override
     public boolean equals(Object o) {

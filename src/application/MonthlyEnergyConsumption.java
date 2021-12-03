@@ -18,4 +18,6 @@ public class MonthlyEnergyConsumption {
         this.water = water;
         this.date = date;
     }
+
+
 }

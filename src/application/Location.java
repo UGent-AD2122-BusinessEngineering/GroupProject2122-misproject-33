@@ -107,6 +107,11 @@ public class Location {
         //communiceren met db (zie vb)
     }
 
+    public void getMonthlyEnergyConsumptions () {
+        //geeft AL terug
+        //communiceren met db (zie vb)
+    }
+
 
 
 

@@ -1,12 +1,15 @@
 package application;
 
-public class EnergyConservationActions {
-    private String name;
-    private String applianceName;
-    //kan hier evt ook nog owner toevoegen, hangt wat af van db denk ik
+import java.time.LocalDate;
 
-    public EnergyConservationActions(String applianceName, String name) {
-        this.applianceName = applianceName;
-        this.name = name;
+public class EnergyConservationActions {
+    private String beschrijving;
+    private Appliances appliance;
+    private LocalDate when;
+
+    public EnergyConservationActions(LocalDate when, Appliances appliance, String beschrijving) {
+        this.when = when;
+        this.appliance = appliance;
+        this.beschrijving = beschrijving;
     }
 }

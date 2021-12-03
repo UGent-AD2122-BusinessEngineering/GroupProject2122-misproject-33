@@ -1,6 +1,7 @@
 package application;
 
 public class MonthlyEnergyConsumption {
+    private Location location;
     private double electricity;
     private double gas;
     // alle twee in kWh
@@ -8,7 +9,8 @@ public class MonthlyEnergyConsumption {
     // in m^3
     private double month;
 
-    public MonthlyEnergyConsumption(double electricity, double gas, double water, double month) {
+    public MonthlyEnergyConsumption(Location location, double electricity, double gas, double water, double month) {
+        this.location = location;
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;

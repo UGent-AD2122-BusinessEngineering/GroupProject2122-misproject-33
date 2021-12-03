@@ -51,5 +51,4 @@ public class Appliances {
             operationDays.add(function);
         }
     }*/
-    //ik begrijp niet wat dit doet
 }

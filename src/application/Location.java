@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class Location {
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
     private ArrayList<Appliances> appliancesInLocation;
+
 
     public Location(String country, String city, int ZIP, int number, String street, int roomnumber, int area) {
         this.area = area;
@@ -63,9 +65,9 @@ public class Location {
         }
     }
 
-    public void addAppliance(){
+    /*public void addAppliance(){
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Please mind your grammer for the following question.");
+        System.out.println("Please mind your grammar for the following question.");
         System.out.println("What is the type of the appliance (for example: dishwasher)?");
         String applianceType = keyboard.nextLine();
         System.out.println("What is the name of the supplier?");
@@ -86,7 +88,26 @@ public class Location {
         }
         Appliances appliance = new Appliances(applianceType, eei, supplierName, temperatuursgebonden);
         appliancesInLocation.add(appliance);
+        //moet toegevoegd worden ad database
+    }*/
+
+    public void addAppliance (Appliances appliance) {
+        //communiceren met db (zie vb)
     }
+
+    public void changeAppliance (Appliances appliance) {
+        //communiceren met db (zie vb)
+    }
+
+    public void deleteAppliance (Appliances appliance) {
+        //communiceren met db (zie vb)
+    }
+
+    public void addMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
+        //communiceren met db (zie vb)
+    }
+
+
 
 
     /*

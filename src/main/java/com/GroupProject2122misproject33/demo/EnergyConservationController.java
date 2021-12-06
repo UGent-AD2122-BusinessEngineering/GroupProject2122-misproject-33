@@ -22,6 +22,10 @@ public class EnergyConservationController {
 	@GetMapping("/Conservation")
 	public boolean aboveRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
 		return new EnergyConservationActions().aboveRoomTemperature(Double.parseDouble(temperature));
+	}
 
+	@GetMapping("/Conservation")
+	public boolean lowRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
+		return new EnergyConservationActions().lowRoomTemperature(Double.parseDouble(temperature));
 	}
 }

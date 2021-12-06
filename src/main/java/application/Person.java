@@ -8,20 +8,17 @@ public class Person {
     public String email;
     public String firstname;
     public String lastname;
-    public int idnumber;
-    public int telephonenumber;
+    public int telephone_number;
     public int age;
-    public LocalDate dateofbirth;
-    public enum Gender {MALE, FEMALE}
+    public LocalDate date_of_birth;
 
-    public Person(String email, String firstname, String lastname, int idnumber, int telephonenumber, int age, LocalDate dateofbirth) {
+    public Person(String email, String firstname, String lastname, int telephone_number, int age, LocalDate date_of_birth) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.idnumber = idnumber;
-        this.telephonenumber = telephonenumber;
+        this.telephone_number = telephone_number;
         this.age = age;
-        this.dateofbirth = dateofbirth;
+        this.date_of_birth = date_of_birth;
     }
 
     public String getEmail() {return email;}
@@ -36,37 +33,32 @@ public class Person {
 
     public void setLastname(String lastname) {this.lastname = lastname;}
 
-    public int getIdnumber() {return idnumber;}
+    public int getTelephonenumber() {return telephone_number;}
 
-    public void setIdnumber(int idnumber) {this.idnumber = idnumber;}
-
-    public int getTelephonenumber() {return telephonenumber;}
-
-    public void setTelephonenumber(int telephonenumber) {this.telephonenumber = telephonenumber;}
+    public void setTelephonenumber(int telephonenumber) {this.telephone_number = telephonenumber;}
 
     public int getAge() {return age;}
 
     public void setAge(int age) {this.age = age;}
 
-    public LocalDate getDateofbirth() {return dateofbirth;}
+    public LocalDate getDateofbirth() {return date_of_birth;}
 
-    public void setDateofbirth(LocalDate dateofbirth) {this.dateofbirth = dateofbirth;}
+    public void setDateofbirth(LocalDate dateofbirth) {this.date_of_birth = dateofbirth;}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return idnumber == person.idnumber
-                && telephonenumber == person.telephonenumber
+        return telephone_number == person.telephone_number
                 && age == person.age && Objects.equals(email, person.email)
                 && Objects.equals(firstname, person.firstname)
                 && Objects.equals(lastname, person.lastname)
-                && Objects.equals(dateofbirth, person.dateofbirth);
+                && Objects.equals(date_of_birth, person.date_of_birth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, firstname, lastname, idnumber, telephonenumber, age, dateofbirth);
+        return Objects.hash(email, firstname, lastname, telephone_number, age, date_of_birth);
     }
 }

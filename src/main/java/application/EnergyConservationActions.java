@@ -25,7 +25,7 @@ public class EnergyConservationActions {
             temp = temperature;
             System.out.println("The room temperature is above 20°C, please lower to conserve energy.");
         }
-        return true;
+        return temp>20;
     }
 
     public boolean lowRoomTemperature(double temp) {

@@ -1,8 +1,3 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.GroupProject2122-misproject-33.demo' is invalid and this project uses 'com.GroupProject2122misproject33.demo' instead.
-
 # Getting Started
 
 ### Reference Documentation

@@ -7,8 +7,8 @@ public class Student extends Person {
     //private Landlord landlord;
     //private ArrayList <String> performedEnergyConservationActions;
 
-    public Student(String email, String firstname, String lastname, int telephone_number, int age, LocalDate dateofbirth) {
-        super(email, firstname, lastname, telephone_number, age, dateofbirth);
+    public Student(String email, String firstname, String lastname, String telephone_number, String dateofbirth) {
+        super(email, firstname, lastname, telephone_number, dateofbirth);
         //performedEnergyConservationActions = new ArrayList<>();
     }
 

@@ -53,13 +53,20 @@ public class StudentDAO {
                 last_name = srs.getString("last_name");
                 password = srs.getString("password");
                 telephone_number = srs.getString("telephone_number");
-                date_of_birth = srs.getString("date_of_birth");}
-            else { return null;
-                Student student = new Student(email, first_name, last_name, password, telephone_number, date_of_birth);
-                return student;}
+                date_of_birth = srs.getString("date_of_birth");
+            } else {
+                return null;
+            }
 
+            //@Simon @Mathias: Heb de fouten uit deze code gehaald en instantievariabelen aangepast aan Person/Student/Landlord klasse
+            //Check zelf best nog eens of het allemaal klopt. Groetjes Sander!
 
+            Student student = new Student(email, first_name, last_name, telephone_number, date_of_birth);
+            return student;
 
-            } catch (DBException | SQLException e) {
+        } catch (DBException | SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+}

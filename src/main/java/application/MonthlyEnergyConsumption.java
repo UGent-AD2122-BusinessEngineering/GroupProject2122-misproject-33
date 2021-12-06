@@ -1,23 +1,84 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class MonthlyEnergyConsumption {
-    private Location location;
     private double electricity;
     private double gas;
-    // alle twee in kWh
     private double water;
-    // in m^3
-    private LocalDate date;
+    private LocalDate month;
+    private int monthlyEnergyConsumptionId;
 
-    public MonthlyEnergyConsumption(Location location, double electricity, double gas, double water, LocalDate date) {
-        this.location = location;
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;
-        this.date = date;
+        this.month = month;
+        this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
+    public double getElectricity() {
+        return electricity;
+    }
 
+    public void setElectricity(double electricity) {
+        this.electricity = electricity;
+    }
+
+    public double getGas() {
+        return gas;
+    }
+
+    public void setGas(double gas) {
+        this.gas = gas;
+    }
+
+    public double getWater() {
+        return water;
+    }
+
+    public void setWater(double water) {
+        this.water = water;
+    }
+
+    public LocalDate getMonth() {
+        return month;
+    }
+
+    public void setMonth(LocalDate month) {
+        this.month = month;
+    }
+
+    public int getMonthlyEnergyConsumptionId() {
+        return monthlyEnergyConsumptionId;
+    }
+
+    public void setMonthlyEnergyConsumptionId(int monthlyEnergyConsumptionId) {
+        this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MonthlyEnergyConsumption that = (MonthlyEnergyConsumption) o;
+        return Double.compare(that.electricity, electricity) == 0 && Double.compare(that.gas, gas) == 0 && Double.compare(that.water, water) == 0 && monthlyEnergyConsumptionId == that.monthlyEnergyConsumptionId && Objects.equals(month, that.month);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(electricity, gas, water, month, monthlyEnergyConsumptionId);
+    }
+
+    @Override
+    public String toString() {
+        return "MonthlyEnergyConsumption{" +
+                "electricity=" + electricity +
+                ", gas=" + gas +
+                ", water=" + water +
+                ", month=" + month +
+                ", monthlyEnergyConsumptionId=" + monthlyEnergyConsumptionId +
+                '}';
+    }
 }

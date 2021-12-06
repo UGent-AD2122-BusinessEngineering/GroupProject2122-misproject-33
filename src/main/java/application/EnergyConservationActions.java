@@ -8,11 +8,11 @@ import java.util.Date;
 
 public class EnergyConservationActions {
     private String description;
-    private Appliances appliance;
+    private Appliance appliance;
     private LocalDateTime time;
     private double temperature;
 
-    public EnergyConservationActions(LocalDateTime time, Appliances appliance, String description, double temperature) {
+    public EnergyConservationActions(LocalDateTime time, Appliance appliance, String description, double temperature) {
         this.time = time;
         this.appliance = appliance;
         this.description = description;
@@ -33,7 +33,7 @@ public class EnergyConservationActions {
             temp = temperature;
             System.out.println("The room temperature is too low. Temperatures that are too low require a lot of energy to heat up the room again.");
         }
-        return true;
+        return temp<18;
     }
 
     //method for certain temperatures between certain hours

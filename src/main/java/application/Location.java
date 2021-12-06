@@ -3,31 +3,32 @@ package application;
 import java.util.Objects;
 import java.util.ArrayList;
 
-public class Location {
-    //array of arraylist maken met bewoner(s)
-    private Landlord eigenaar;
+public class Location extends Room {
+    private int locationId;
     private String country;
     private String city;
     private int ZIP;
     private int number;
     private String street;
-    private int housenumber;
-    private int roomnumber;
     private int area;
+    private String address;
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
-    private ArrayList<Appliances> appliancesInLocation;
+    private ArrayList<Appliance> appliancesInLocation;
 
 
-    public Location(String country, String city, int ZIP, int number, String street, int roomnumber, int area) {
+    public Location(int locationId, String country, String city, int ZIP, int number, String street, int area, String address) {
+        super();
+        this.locationId = locationId;
         this.area = area;
         this.country = country;
         this.city = city;
         this.ZIP = ZIP;
         this.number = number;
         this.street = street;
-        this.housenumber = roomnumber;
-        appliancesInLocation = new ArrayList<Appliances>();
+        this.address = address;
+
+        appliancesInLocation = new ArrayList<Appliance>();
     }
 
     public String getCountry() {return country;}
@@ -40,9 +41,9 @@ public class Location {
     public void setNumber(int number) {this.number = number;}
     public String getStreet() {return street;}
     public void setStreet(String street) {this.street = street;}
-    public int getRoomnumber() {return roomnumber;}
-    public void setRoomnumber(int roomnumber) {this.roomnumber = roomnumber;}
     public int getArea() {return area;}
+    public String getAddress() {return address;}
+    public void setAddress(String address) {this.address = address;}
 
     //Wettelijk gestelde minimumnormen voor studentenkamers:
     //https://stad.gent/nl/wonen-bouwen/huren-verhuren/studentenkamers-verhuren/minimumnormen-voor-studentenkamers
@@ -89,15 +90,15 @@ public class Location {
         //moet toegevoegd worden ad database
     }*/
 
-    public void addAppliance (Appliances appliance) {
+    public void addAppliance (Appliance appliance) {
         //communiceren met db (zie vb)
     }
 
-    public void changeAppliance (Appliances appliance) {
+    public void changeAppliance (Appliance appliance) {
         //communiceren met db (zie vb)
     }
 
-    public void deleteAppliance (Appliances appliance) {
+    public void deleteAppliance (Appliance appliance) {
         //communiceren met db (zie vb)
     }
 
@@ -109,8 +110,6 @@ public class Location {
         //geeft AL terug
         //communiceren met db (zie vb)
     }
-
-
 
 
     /*
@@ -130,22 +129,12 @@ public class Location {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Location location = (Location) o;
-        return number == location.number
-                && roomnumber == location.roomnumber
-                && area == location.area
-                && Objects.equals(country, location.country)
-                && Objects.equals(city, location.city)
-                && Objects.equals(ZIP, location.ZIP)
-                && Objects.equals(street, location.street);
+        return locationId == location.locationId && ZIP == location.ZIP && number == location.number && area == location.area && Objects.equals(country, location.country) && Objects.equals(city, location.city) && Objects.equals(street, location.street) && Objects.equals(address, location.address) && Objects.equals(appliancesInLocation, location.appliancesInLocation);
     }
 
-    public int hashCode() { return Objects.hash(super.hashCode(), country, city, ZIP, number, street, roomnumber, area);}
-
-    public String toString() {
-        return "Address: " + '\'' + "Country: " + getCountry() + '\'' + "City: " + getCity() + '\'' + "ZIP: " + getZIP() + '\''
-                + "House number: " + getNumber() + "Street: " + getStreet() + '\'' + "Roomnumber=" + getRoomnumber();
+    @Override
+    public int hashCode() {
+        return Objects.hash(locationId, country, city, ZIP, number, street, area, address, appliancesInLocation);
     }
-
 }

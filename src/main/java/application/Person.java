@@ -10,13 +10,15 @@ public class Person {
     public String lastname;
     public String telephone_number;
     public String date_of_birth;
+    public String password;
 
-    public Person(String email, String firstname, String lastname, String telephone_number, String date_of_birth) {
+    public Person(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone_number = telephone_number;
         this.date_of_birth = date_of_birth;
+        this.password = password;
     }
 
     public String getEmail() {return email;}
@@ -38,6 +40,14 @@ public class Person {
     public String getDateofbirth() {return date_of_birth;}
 
     public void setDateofbirth(String dateofbirth) {this.date_of_birth = dateofbirth;}
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {

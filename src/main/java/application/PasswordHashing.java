@@ -1,4 +1,4 @@
-package db;
+package application;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

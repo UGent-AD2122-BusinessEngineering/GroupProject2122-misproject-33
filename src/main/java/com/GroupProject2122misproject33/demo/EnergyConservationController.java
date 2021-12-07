@@ -19,13 +19,12 @@ public class EnergyConservationController {
 		return String.format("Hello %s!", name);
 	}
 
-	@GetMapping("/Conservation")
-	public boolean aboveRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
-		return new EnergyConservationActions().aboveRoomTemperature(Double.parseDouble(temperature));
+	@GetMapping("/EnergyConservation")
+	public String aboveRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
+		new EnergyConservationActions().aboveRoomTemperature(Double.parseDouble(temperature));
+
+		return "EnergyConservation";
 	}
 
-	@GetMapping("/Conservation")
-	public boolean lowRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
-		return new EnergyConservationActions().lowRoomTemperature(Double.parseDouble(temperature));
-	}
+
 }

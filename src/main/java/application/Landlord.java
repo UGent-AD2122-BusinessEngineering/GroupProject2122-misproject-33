@@ -1,5 +1,8 @@
 package application;
 
+import db.LandlordDAO;
+import db.StudentDAO;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -29,6 +32,11 @@ public class Landlord extends Person {
     //deleteStudent
     public void deleteStudent(Location location, Student student){
         //communiceren met db (zie vb)
+    }
+
+    //returns true if given (not yet encoded) password equals the password of the user with the given email address
+    public static boolean checkPassword(String email, String password) {
+        return(LandlordDAO.getLandlord(email).getPassword().equals(PasswordHashing.doHashing(password)));
     }
 
     /*public HashMap <Location, Student> getStudents(){

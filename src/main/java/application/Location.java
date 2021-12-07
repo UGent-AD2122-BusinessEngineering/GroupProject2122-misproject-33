@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 public class Location extends Room {
-    private int locationId;
     private String country;
     private String city;
     private int ZIP;
@@ -14,12 +13,11 @@ public class Location extends Room {
     private String address;
     private enum insulationType {Insulated, notInsulated}
     public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
-    private ArrayList<Appliance> appliancesInLocation;
+
 
 
     public Location(int locationId, String country, String city, int ZIP, int number, String street, int area, String address) {
         super();
-        this.locationId = locationId;
         this.area = area;
         this.country = country;
         this.city = city;
@@ -28,7 +26,6 @@ public class Location extends Room {
         this.street = street;
         this.address = address;
 
-        appliancesInLocation = new ArrayList<Appliance>();
     }
 
     public String getCountry() {return country;}
@@ -130,11 +127,11 @@ public class Location extends Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return locationId == location.locationId && ZIP == location.ZIP && number == location.number && area == location.area && Objects.equals(country, location.country) && Objects.equals(city, location.city) && Objects.equals(street, location.street) && Objects.equals(address, location.address) && Objects.equals(appliancesInLocation, location.appliancesInLocation);
+        return  ZIP == location.ZIP && number == location.number && area == location.area && Objects.equals(country, location.country) && Objects.equals(city, location.city) && Objects.equals(street, location.street) && Objects.equals(address, location.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(locationId, country, city, ZIP, number, street, area, address, appliancesInLocation);
+        return Objects.hash( country, city, ZIP, number, street, area, address);
     }
 }

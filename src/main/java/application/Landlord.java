@@ -1,13 +1,16 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Landlord extends Person {
     private static int dagVdMaand = LocalDate.now().getDayOfMonth();
     private static int maandVhJaar = LocalDate.now().getMonthValue();
+    private HashMap<Student, Room> contactsRoom;
 
     public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, telephone_number, date_of_birth);
+        contactsRoom = new HashMap<>(); //nog koppelen aan db
     }
 
     public static int getDagVdMaand() {

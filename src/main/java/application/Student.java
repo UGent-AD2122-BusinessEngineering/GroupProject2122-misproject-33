@@ -1,15 +1,16 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Student extends Person {
     private Location location;
     //private Landlord landlord;
-    //private ArrayList <String> performedEnergyConservationActions;
+    private ArrayList<EnergyConservationActions>energyConservationActions;
 
     public Student(String email, String firstname, String lastname, String telephone_number, String dateofbirth) {
         super(email, firstname, lastname, telephone_number, dateofbirth);
-        //performedEnergyConservationActions = new ArrayList<>();
+        energyConservationActions = new ArrayList<>();
     }
 
     public void addEnergyConservationAction (EnergyConservationActions energyConservationAction){

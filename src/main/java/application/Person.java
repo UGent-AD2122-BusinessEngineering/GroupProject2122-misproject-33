@@ -11,7 +11,7 @@ public class Person {
     public String date_of_birth;
     public String password;
 
-    public Person(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
+    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;

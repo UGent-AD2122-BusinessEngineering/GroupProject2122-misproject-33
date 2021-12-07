@@ -8,8 +8,8 @@ public class Student extends Person {
     //private Landlord landlord;
     private ArrayList<Action>energyConservationActions;
 
-    public Student(String email, String firstname, String lastname, String telephone_number, String dateofbirth) {
-        super(email, firstname, lastname, telephone_number, dateofbirth);
+    public Student(String email, String firstname, String lastname, String password, String telephone_number, String dateofbirth) {
+        super(email, firstname, lastname, password, telephone_number, dateofbirth);
         energyConservationActions = new ArrayList<>();
     }
 

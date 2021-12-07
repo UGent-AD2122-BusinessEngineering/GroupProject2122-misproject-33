@@ -1,6 +1,6 @@
 package com.GroupProject2122misproject33.demo;
 
-import application.EnergyConservationActions;
+import application.Action;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +21,7 @@ public class EnergyConservationController {
 
 	@GetMapping("/EnergyConservation")
 	public String aboveRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
-		new EnergyConservationActions().aboveRoomTemperature(Double.parseDouble(temperature));
-
+		new Action().aboveRoomTemperature(Double.parseDouble(temperature));
 		return "EnergyConservation";
 	}
 

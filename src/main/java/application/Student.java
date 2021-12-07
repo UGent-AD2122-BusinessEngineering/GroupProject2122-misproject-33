@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class Student extends Person {
     private Location location;
     //private Landlord landlord;
-    private ArrayList<EnergyConservationActions>energyConservationActions;
+    private ArrayList<Action>energyConservationActions;
 
     public Student(String email, String firstname, String lastname, String telephone_number, String dateofbirth) {
         super(email, firstname, lastname, telephone_number, dateofbirth);
         energyConservationActions = new ArrayList<>();
     }
 
-    public void addEnergyConservationAction (EnergyConservationActions energyConservationAction){
+    public void addEnergyConservationAction (Action energyConservationAction){
         //communiceren met db (zie vb)
     }
 

@@ -1,54 +1,89 @@
 package application;
 
-import java.util.Objects;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Action {
+    private String description;
+    private Appliance appliance;
+    private LocalDateTime time;
+    private double temperature;
+    private String action_id;
     private String name;
-    private String actionId;
 
-    public Action(String name, String actionId) {
+
+    public Action(LocalDateTime time, Appliance appliance, String description, double temperature, String action_id, String name) {
+        this.time = time;
+        this.appliance = appliance;
+        this.description = description;
+        this.temperature = temperature;
+        this.action_id = action_id;
         this.name = name;
-        this.actionId = actionId;
     }
 
+    //method for high room temperatures (suppose room temperature = 20°C)
+    public boolean aboveRoomTemperature(double temp) {
+        if (this.temperature > 20) {
+            temp = temperature;
+            System.out.println("The room temperature is above 20°C, please lower to conserve energy.");
+        }
+        return temp>20;
+    }
+
+    public boolean lowRoomTemperature(double temp) {
+        if(this.temperature < 18){
+            temp = temperature;
+            System.out.println("The room temperature is too low. Temperatures that are too low require a lot of energy to heat up the room again.");
+        }
+        return temp<18;
+    }
+
+    //method for certain temperatures between certain hours
     public Action() {
+        try {
+            String string1 = "08:00:00";
+            Date time1 = new SimpleDateFormat("HH:mm:ss").parse(string1);
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(time1);
+            calendar1.add(Calendar.DATE, 1);
 
+            String string2 = "00:00:00";
+            Date time2 = new SimpleDateFormat("HH:mm:ss").parse(string2);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTime(time2);
+            calendar2.add(Calendar.DATE, 1);
+
+            String someRandomTime = String.valueOf(LocalDateTime.now());
+            Date d = new SimpleDateFormat("HH:mm:ss").parse(someRandomTime);
+            Calendar calendar3 = Calendar.getInstance();
+            calendar3.setTime(d);
+            calendar3.add(Calendar.DATE, 1);
+
+            Date now = calendar3.getTime();
+
+            if (now.after(calendar1.getTime()) && now.before(calendar2.getTime())) {
+                //checks whether the current time is between 08:00:00 and 00:00:00.
+                if (temperature == 20) {
+                    this.temperature = temperature;
+                }
+                else System.out.println("Adjust the temperature to 20°C");
+            }
+
+            if (now.after(calendar2.getTime()) && now.before(calendar1.getTime())) {
+                //checks whether the current time is between 00:00:00 and 08:00:00.
+                if (temperature > 20) {
+                    System.out.println("The temperature is too high. Lower the temperature.");
+                }
+                else if (temperature < 18) {
+                    System.out.println("The temperature is too low. Higher the temperature.");
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getActionId() {
-        return actionId;
-    }
-
-    public void setActionId(String actionId) {
-        this.actionId = actionId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Action action = (Action) o;
-        return Objects.equals(name, action.name) && Objects.equals(actionId, action.actionId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, actionId);
-    }
-
-    @Override
-    public String toString() {
-        return "Action{" +
-                "name='" + name + '\'' +
-                ", actionId='" + actionId + '\'' +
-                '}';
-    }
 }

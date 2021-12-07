@@ -67,7 +67,7 @@ public class StudentDAO {
         }
     }
 
-        public static void save(Student s, int room_id)  {
+        public static void save(Student s, int room_id) {
             Connection con = null;
             try {
                 con = DBHandler.getConnection();
@@ -77,7 +77,7 @@ public class StudentDAO {
                         + "WHERE email = ? ";
 
                 PreparedStatement stmt = con.prepareStatement(sqlSelect);
-                stmt.setString(1,s.getEmail());
+                stmt.setString(1, s.getEmail());
                 ResultSet srs = stmt.executeQuery();
                 if (srs.next()) {
 
@@ -85,7 +85,7 @@ public class StudentDAO {
                     String sqlUpdate = "UPDATE student " +
                             "SET first_name = ? ," +
                             " last_name = ? , " +
-                            " password = ?, "+
+                            " password = ?, " +
                             " telephone_number = ?, " +
                             " date_of_birth = ?, " +
                             " Room_room_id = ?" +
@@ -93,11 +93,11 @@ public class StudentDAO {
                     PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                     stmt2.setString(7, s.getEmail());
                     stmt2.setString(1, s.getFirstname());
-                    stmt2.setString(2,s.getLastname());
+                    stmt2.setString(2, s.getLastname());
                     stmt2.setString(3, s.getPassword());
                     stmt2.setString(4, s.getTelephonenumber());
                     stmt2.setString(5, s.getDateofbirth());
-                    stmt2.setInt(6, room_id );
+                    stmt2.setInt(6, room_id);
                     stmt2.executeUpdate();
                 } else {
                     // INSERT
@@ -109,7 +109,7 @@ public class StudentDAO {
                     PreparedStatement insertStm = con.prepareStatement(sqlInsert);
                     insertStm.setString(1, s.getEmail());
                     insertStm.setString(2, s.getFirstname());
-                    insertStm.setString(3,s.getLastname());
+                    insertStm.setString(3, s.getLastname());
                     insertStm.setString(4, s.getPassword());
                     insertStm.setString(5, s.getTelephonenumber());
                     insertStm.setString(6, s.getDateofbirth());
@@ -122,11 +122,27 @@ public class StudentDAO {
             }
         }
 
+            public static void deleteStudent(Student s){
+                Connection con = null;
+                try {
+                    con = DBHandler.getConnection();
+                    String sql = "DELETE FROM student "
+                            + "WHERE email = ?";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.setString(1, s.getEmail());
+
+                    stmt.executeUpdate();
+                } catch (DBException dbe) {
+                    dbe.printStackTrace();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+
+                }
+            }
 
     public static void main(String[] args) {
         Student s = new Student("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
-        StudentDAO.save(s,2);
+        StudentDAO.deleteStudent(s);
     }
-
-
 }

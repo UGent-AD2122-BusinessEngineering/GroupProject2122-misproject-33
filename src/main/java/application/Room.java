@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Room extends Appliance {
     private String roomnumber;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
-    private ArrayList<EnergyConservationActions> energyConservationActions; //nog koppelen aan db
+    private ArrayList<Action> energyConservationActions; //nog koppelen aan db
     private ArrayList<Appliance> appliances; //nog koppelen aan db
     private ArrayList<Student> members;
 

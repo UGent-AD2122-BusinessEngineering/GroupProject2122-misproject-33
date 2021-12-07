@@ -9,27 +9,6 @@ import java.sql.SQLException;
 
 public class StudentDAO {
 
-    //returns true if given password equals the password of the user with the given email_adress
-    public static boolean checkPassword(String email, String password) {
-        Connection con = null;
-        try {
-            con = DBHandler.getConnection();
-            String sql = "SELECT password "
-                    + "FROM student "
-                    + "WHERE email = ?";
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, email);
-            ResultSet userPassword = statement.executeQuery();
-
-            if (userPassword.getString(1).equals(password)) return true;
-            else return false;
-        } catch (DBException | SQLException e) {
-            e.printStackTrace();
-            DBHandler.closeConnection(con);
-            return false;
-        }
-    }
-
     public static Student getStudent(String email) {
         Connection con = null;
         try {

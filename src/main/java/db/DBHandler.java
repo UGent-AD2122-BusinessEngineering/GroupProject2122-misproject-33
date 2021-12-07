@@ -24,7 +24,6 @@ public class DBHandler {
 
     private static Connection connection;
 
-
     public static Connection getConnection() throws DBException {
         if(connection != null)
             return connection;
@@ -32,21 +31,29 @@ public class DBHandler {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
-                String URL = "jdbc:mysql://pdbmbook.com:3306/db2021_33";
+                String URL2 = "jdbc:mysql://pdbmbook.com:3306/db2021_33";
 
-                connection = DriverManager.getConnection(URL, DB_NAME, DB_PASS);
+                connection = DriverManager.getConnection(URL2, DB_NAME, DB_PASS);
                 return connection;
-            } catch (Exception sqle) {
+            } catch (SQLException sqle) {
                 sqle.printStackTrace();
                 closeConnection(connection);
                 throw new DBException(sqle);
+            } catch (ClassNotFoundException cnfe) {
+                cnfe.printStackTrace();
+                closeConnection(connection);
+                throw new DBException(cnfe);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                closeConnection(connection);
+                throw new DBException(ex);
             }
     }
 
     public static void closeConnection(Connection con) {
         try {
-            if(con != null)
-                con.close();
+                if(con != null)
+                    con.close();
         } catch (SQLException sqle) {
             //do nothing
         }

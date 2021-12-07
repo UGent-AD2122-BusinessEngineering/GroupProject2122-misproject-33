@@ -30,7 +30,7 @@ public class StudentDAO {
         }
     }
 
-    public Student getStudent(String email) {
+    public static Student getStudent(String email) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -57,16 +57,16 @@ public class StudentDAO {
             } else {
                 return null;
             }
-
-            //@Simon @Mathias: Heb de fouten uit deze code gehaald en instantievariabelen aangepast aan Person/Student/Landlord klasse
-            //Check zelf best nog eens of het allemaal klopt. Groetjes Sander!
-
             Student student = new Student(email, first_name, last_name, telephone_number, date_of_birth);
             return student;
 
         } catch (DBException | SQLException e) {
             e.printStackTrace();
-        }
-        return null;
+            DBHandler.closeConnection(con);
+            return null; }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(StudentDAO.getStudent("mbtopper@gmail.com").getFirstname());
     }
 }

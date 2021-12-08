@@ -20,6 +20,10 @@ public class Person {
         this.password = password;
     }
 
+    public Person() {
+
+    }
+
     public String getEmail() {return email;}
 
     public void setEmail(String email) {this.email = email;}

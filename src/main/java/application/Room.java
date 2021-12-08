@@ -24,8 +24,6 @@ public class Room extends Appliance {
 
     }
 
-
-
     public String getRoomnumber() {
         return roomnumber;
     }

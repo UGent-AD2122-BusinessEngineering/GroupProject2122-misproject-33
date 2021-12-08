@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class LandlordDAO {
 
-    public static Landlord getLandlord(String email) {
+    public Landlord getLandlord(String email) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -46,7 +46,7 @@ public class LandlordDAO {
         }
     }
 
-    public static void save(Landlord l) {
+    public void save(Landlord l) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -103,7 +103,7 @@ public class LandlordDAO {
         }
     }
 
-    public static void deleteLandlord(Landlord l){
+    public void deleteLandlord(Landlord l){
 
         /*als landlord wordt verwijderd worden ook alle rooms in bezit verwijderd en ik zal nog es kijken voor die
         trigger te maken die eventueel een location verwijdert als er zich daar geen rooms meer bevinden
@@ -130,8 +130,9 @@ public class LandlordDAO {
     }
 
     public static void main(String[] args) {
+        LandlordDAO landlordDAO = new LandlordDAO();
         Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
-        //LandlordDAO.save(l);
-        LandlordDAO.deleteLandlord(l);
+        //landlordDAO.save(l);
+        landlordDAO.deleteLandlord(l);
     }
 }

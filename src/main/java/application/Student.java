@@ -23,7 +23,8 @@ public class Student extends Person {
 
     //returns true if given (not yet encoded) password equals the password of the user with the given email address
     public static boolean checkPassword(String email, String password) {
-        return(StudentDAO.getStudent(email).getPassword().equals(PasswordHashing.doHashing(password)));
+        StudentDAO studentDAO = new StudentDAO();
+        return(studentDAO.getStudent(email).getPassword().equals(PasswordHashing.doHashing(password)));
     }
 
     public void addEnergyConservationAction (Action energyConservationAction){

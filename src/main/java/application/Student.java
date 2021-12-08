@@ -13,14 +13,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Student extends Person {
+    private boolean aangemeld;
     private Location location;
     private ArrayList<Action> energyConservationActions;
     private ArrayList<Student> studentlist;
     private int room_id;
 
 
-    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
+        this.aangemeld = aangemeld;
         this.room_id = room_id;
         this.energyConservationActions = new ArrayList<>();
         this.studentlist = new ArrayList<Student>();
@@ -99,5 +101,7 @@ public class Student extends Person {
     /*public ArrayList<String> getPerformedEnergyConservationActions() {
         return performedEnergyConservationActions;
     }*/
+
+
 
 }

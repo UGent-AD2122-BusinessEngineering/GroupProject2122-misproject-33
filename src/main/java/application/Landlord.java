@@ -8,8 +8,8 @@ public class Landlord extends Person {
     private static int maandVhJaar = LocalDate.now().getMonthValue();
     private HashMap<Student, Room> contactsRoom;
 
-    public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
-        super(email, firstname, lastname, telephone_number, date_of_birth, password);
+    public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password, boolean aangemeld) {
+        super(email, firstname, lastname, telephone_number, date_of_birth, password, aangemeld);
         contactsRoom = new HashMap<>(); //nog koppelen aan db
     }
 

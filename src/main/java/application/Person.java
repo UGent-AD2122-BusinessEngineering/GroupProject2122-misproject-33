@@ -11,14 +11,16 @@ public class Person {
     public String telephone_number;
     public String date_of_birth;
     public String password;
+    private boolean aangemeld;
 
-    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone_number = telephone_number;
         this.date_of_birth = date_of_birth;
         this.password = password;
+        this.aangemeld = aangemeld;
     }
 
     public Person() {
@@ -70,7 +72,7 @@ public class Person {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
 
-    /*public void registreren (String password){
+    public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is
         boolean student = keyboard.nextBoolean();
@@ -96,8 +98,11 @@ public class Person {
                 else
                     flag = true;
             }
-            Student student1 = new Student(email, voornaam, familienaam, wachtwoord, telefoonnummer, geboortedatum, true);
+            System.out.println("Uw registratie is succesvol verlopen");
+            boolean aangemeld = true;
+            Student student1 = new Student(email, voornaam, familienaam, wachtwoord, telefoonnummer, geboortedatum, aangemeld);
         }
+
         if(!student){
             System.out.println("Wat is uw e-mailadres?");
             String email = keyboard.nextLine();
@@ -120,8 +125,15 @@ public class Person {
                 else
                     flag = true;
             }
-
-
+            System.out.println("Uw registratie is succesvol verlopen.");
+            boolean aangemeld = true;
+            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord, aangemeld);
+        }
     }
-}*/
+
+    public void afmelden (Person person){
+        person.aangemeld = false;
+    }
+
+    public void inloggen ()
 }

@@ -8,14 +8,14 @@ public class MonthlyEnergyConsumption {
     private double gas;
     private double water;
     private LocalDate month;
-    private int monthlyEnergyConsumptionId;
+    //private int monthlyEnergyConsumptionId;
 
-    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month/*, int monthlyEnergyConsumptionId*/) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;
         this.month = month;
-        this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
+        //this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
     public double getElectricity() {
@@ -50,25 +50,25 @@ public class MonthlyEnergyConsumption {
         this.month = month;
     }
 
-    public int getMonthlyEnergyConsumptionId() {
+    /*public int getMonthlyEnergyConsumptionId() {
         return monthlyEnergyConsumptionId;
     }
 
     public void setMonthlyEnergyConsumptionId(int monthlyEnergyConsumptionId) {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MonthlyEnergyConsumption that = (MonthlyEnergyConsumption) o;
-        return Double.compare(that.electricity, electricity) == 0 && Double.compare(that.gas, gas) == 0 && Double.compare(that.water, water) == 0 && monthlyEnergyConsumptionId == that.monthlyEnergyConsumptionId && Objects.equals(month, that.month);
+        return Double.compare(that.electricity, electricity) == 0 && Double.compare(that.gas, gas) == 0 && Double.compare(that.water, water) == 0 /*&& monthlyEnergyConsumptionId == that.monthlyEnergyConsumptionId */&& Objects.equals(month, that.month);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(electricity, gas, water, month, monthlyEnergyConsumptionId);
+        return Objects.hash(electricity, gas, water, month/*, monthlyEnergyConsumptionId*/);
     }
 
     @Override
@@ -77,8 +77,8 @@ public class MonthlyEnergyConsumption {
                 "electricity=" + electricity +
                 ", gas=" + gas +
                 ", water=" + water +
-                ", month=" + month +
-                ", monthlyEnergyConsumptionId=" + monthlyEnergyConsumptionId +
+                ", month=" + month /*+
+                ", monthlyEnergyConsumptionId=" + monthlyEnergyConsumptionId */+
                 '}';
     }
 }

@@ -30,6 +30,9 @@ public class Action {
         this.name = name;
     }
 
+    public Action(){
+
+    }
     //method for high room temperatures (suppose room temperature = 20°C)
     public boolean aboveRoomTemperature(double temp) {
         if (this.temperature > 20) {

@@ -2,27 +2,35 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+/*
+Mogelijke energy conservation acties die we kunnen implementeren
+- Ledlampen gebruiken
+- Temperatuur graad lager
+- Toestellen met energiezuiniger label
+- Zet beeldscherm volledig uit
+*/
 
 public class Action {
     private String description;
     private Appliance appliance;
     private LocalDateTime time;
     private double temperature;
-    private String action_id;
     private String name;
 
 
-    public Action(LocalDateTime time, Appliance appliance, String description, double temperature, String action_id, String name) {
+    public Action() {
         this.time = time;
         this.appliance = appliance;
         this.description = description;
         this.temperature = temperature;
-        this.action_id = action_id;
         this.name = name;
     }
+
 
     //method for high room temperatures (suppose room temperature = 20°C)
     public boolean aboveRoomTemperature(double temp) {
@@ -30,17 +38,41 @@ public class Action {
             temp = temperature;
             System.out.println("The room temperature is above 20°C, please lower to conserve energy.");
         }
-        return temp>20;
+        return temp > 20;
     }
 
     public boolean lowRoomTemperature(double temp) {
-        if(this.temperature < 18){
+        if (this.temperature < 18) {
             temp = temperature;
-            System.out.println("The room temperature is too low. Temperatures that are too low require a lot of energy to heat up the room again.");
+            System.out.println("The room temperature is too low. Cold rooms require a lot of energy to heat up again.");
         }
-        return temp<18;
+        return temp < 18;
     }
 
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        double[] temp = new double[6];
+        double total = 0;
+
+        for (int i = 0; i < temp.length; ) {
+            System.out.printf("Please enter your temperatures from last week ", i);
+            if (scan.hasNextFloat()) {
+                temp[i] = scan.nextFloat();
+                total = total + temp[i];
+                i++;
+            } else {
+                scan.next();
+            }
+        }
+        double average = total / temp.length;
+        java.util.Arrays.sort(temp);
+        System.out.println("Your lowest temperature = " + temp[0]);
+        System.out.println("Your highest temperature = " + temp[temp.length - 1]);
+        System.out.println("The average temperature of this week was " + average);
+    }
+}
+
+   /*
     //method for certain temperatures between certain hours
     public Action() {
         try {
@@ -85,5 +117,6 @@ public class Action {
             e.printStackTrace();
         }
     }
+    */
 
-}
+

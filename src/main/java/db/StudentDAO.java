@@ -57,7 +57,7 @@ public class StudentDAO {
             } else {
                 return null;
             }
-            Student student = new Student(email, first_name, last_name, telephone_number, date_of_birth);
+            Student student = new Student(email, first_name, last_name, telephone_number, date_of_birth, password);
             return student;
 
         } catch (DBException | SQLException e) {

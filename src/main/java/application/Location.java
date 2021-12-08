@@ -42,6 +42,7 @@ public class Location extends Room {
     public String getAddress() {return address;}
     public void setAddress(String address) {this.address = address;}
 
+    /*
     //Wettelijk gestelde minimumnormen voor studentenkamers:
     //https://stad.gent/nl/wonen-bouwen/huren-verhuren/studentenkamers-verhuren/minimumnormen-voor-studentenkamers
     public void setArea(int area, typeOfRoom room) {

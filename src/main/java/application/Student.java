@@ -15,12 +15,16 @@ import java.util.HashMap;
 public class Student extends Person {
     private Location location;
     private ArrayList<Action> energyConservationActions;
-    private ArrayList<Student> student;
+    private ArrayList<Student> studentlist;
+    private int room_id;
 
 
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
-        energyConservationActions = new ArrayList<>();
+        this.room_id = room_id;
+        this.energyConservationActions = new ArrayList<>();
+        this.studentlist = new ArrayList<Student>();
+        this.energyConservationActions = new ArrayList<Action>();
     }
 
     public Student() {
@@ -31,7 +35,7 @@ public class Student extends Person {
     public static boolean checkPassword(String email, String password) {
         StudentDAO studentDAO = new StudentDAO();
         if(studentDAO.getStudent(email).getPassword().equals(PasswordHashing.doHashing(password))) {
-            return (studentDAO.getStudent(email).getPassword().equals(PasswordHashing.doHashing(password)));
+            return true;
         }
         else return false;
     }
@@ -43,9 +47,14 @@ public class Student extends Person {
     }
 
     //add student with given object and room_id (db)
-    public void addStudent(Student student, int room_id){
+    public boolean addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.save(student, room_id);
+        if (studentlist == null || studentlist.contains(student)) {
+            return false;
+        }
+        studentlist.add(student);
+        return true;
     }
 
     //delete student
@@ -53,17 +62,24 @@ public class Student extends Person {
         System.out.println("Delete student " + student.getFirstname() + student.getLastname());
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.deleteStudent(student);
+        for(Student stu: student.getStudents(room_id)) {
+            if (stu.equals(student)) {
+                student.getStudents(room_id).remove(stu);
+                return;
+            }
+        }
+        return;
     }
 
     //prints students
     public void listUsers() {
-        if(student.isEmpty())
+        if(studentlist.isEmpty())
         {
             System.out.println("List is empty!");
         }
         else
         {
-            for (Student student : this.student)
+            for (Student student : this.studentlist)
             {
                 System.out.println("Student id: " + student.getFirstname() + student.getLastname());
                 StudentDAO studentDAO = new StudentDAO();

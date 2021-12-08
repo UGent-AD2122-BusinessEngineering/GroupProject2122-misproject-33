@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Appliance extends Action {
@@ -17,9 +18,11 @@ public class Appliance extends Action {
     private int annualEnergyConsumption;
     private String supplierName;
     private String name;
+    private ArrayList<String> appliances;
 
-    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name) {
+    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, ArrayList<String> appliances) {
         super();
+        this.appliances = new ArrayList<String>();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
@@ -65,6 +68,14 @@ public class Appliance extends Action {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<String> getAppliances() {
+        return appliances;
+    }
+
+    public void setAppliances(ArrayList<String> appliances) {
+        this.appliances = appliances;
     }
 
     @Override

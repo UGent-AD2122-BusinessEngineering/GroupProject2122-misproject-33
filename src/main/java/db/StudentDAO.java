@@ -46,6 +46,7 @@ public class StudentDAO {
         }
     }
 
+    //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
         public static void save(Student s, int room_id) {
             Connection con = null;
             try {
@@ -62,12 +63,12 @@ public class StudentDAO {
 
                     // UPDATE
                     String sqlUpdate = "UPDATE student " +
-                            "SET first_name = ? ," +
-                            " last_name = ? , " +
-                            " password = ?, " +
-                            " telephone_number = ?, " +
-                            " date_of_birth = ?, " +
-                            " Room_room_id = ?" +
+                            "SET first_name = ?, " +
+                            "last_name = ?, " +
+                            "password = ?, " +
+                            "telephone_number = ?, " +
+                            "date_of_birth = ?, " +
+                            "Room_room_id = ? " +
                             "WHERE email = ?";
                     PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                     stmt2.setString(7, s.getEmail());
@@ -121,7 +122,8 @@ public class StudentDAO {
             }
 
     public static void main(String[] args) {
-        Student s = new Student("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        Student s = new Student("s.delange@gmail.be", "simonAANGEPAST", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        //StudentDAO.save(s, 1);
         StudentDAO.deleteStudent(s);
     }
 }

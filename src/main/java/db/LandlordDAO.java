@@ -67,11 +67,11 @@ public class LandlordDAO {
 
 
                 String sqlUpdate = "UPDATE landlord " +
-                        "SET first_name = ? ," +
-                        " last_name = ? , " +
-                        " password = ?, " +
-                        " telephone_number = ?, " +
-                        " date_of_birth = ?, " +
+                        "SET first_name = ?, " +
+                        "last_name = ?, " +
+                        "password = ?, " +
+                        "telephone_number = ?, " +
+                        "date_of_birth = ? " +
                         "WHERE email = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                 stmt2.setString(1, l.getFirstname());
@@ -130,7 +130,7 @@ public class LandlordDAO {
     }
 
     public static void main(String[] args) {
-        Landlord l = new Landlord("s.delange@gmail.be", "simonAANGEPAST", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
         //LandlordDAO.save(l);
         LandlordDAO.deleteLandlord(l);
     }

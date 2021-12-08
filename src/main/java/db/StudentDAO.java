@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StudentDAO {
 
@@ -44,6 +45,45 @@ public class StudentDAO {
             DBHandler.closeConnection(con);
             return null;
         }
+    }
+
+    //returns ArrayList<Student> met alle studenten die in de gegeven kamer wonen
+    public ArrayList<Student> getStudents(int room_id) {
+        ArrayList<Student> students = new ArrayList<Student>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT email, first_name, last_name, password, telephone_number, date_of_birth "
+                    + "FROM student "
+                    + "WHERE Room_room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            ResultSet srs = stmt.executeQuery();
+            String email;
+            String first_name;
+            String last_name;
+            String password;
+            String telephone_number;
+            String date_of_birth;
+
+            while (srs.next()) {
+                email = srs.getString("email");
+                first_name = srs.getString("first_name");
+                last_name = srs.getString("last_name");
+                password = srs.getString("password");
+                telephone_number = srs.getString("telephone_number");
+                date_of_birth = srs.getString("date_of_birth");
+                Student student = new Student(email, first_name, last_name, password, telephone_number, date_of_birth);
+                students.add(student);
+            }
+            return students;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
     }
 
     //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
@@ -125,8 +165,13 @@ public class StudentDAO {
 
     public static void main(String[] args) {
         StudentDAO studentDAO = new StudentDAO();
-        Student s = new Student("s.delange@gmail.be", "simonAANGEPAST", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        //Student s = new Student("s.delange@gmail.be", "simonAANGEPAST", "delange", "IKBENDIK", "0479052422", "04.12.1985");
         //studentDAO.save(s, 1);
-        studentDAO.deleteStudent(s);
+        //studentDAO.deleteStudent(s);
+
+        /* ArrayList<Student> students = studentDAO.getStudents(1);
+        for(Student student : students) {
+            System.out.println(student.getTelephonenumber());
+        } */
     }
 }

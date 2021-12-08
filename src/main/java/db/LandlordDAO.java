@@ -46,6 +46,29 @@ public class LandlordDAO {
         }
     }
 
+    //returns email van de landlord van een bepaalde room, kan dan via getLandlord omgezet worden in Landlord object
+    public String getLandlordEmail(int room_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+
+            String sql = "SELECT Landlord_email "
+                    + "FROM room "
+                    + "WHERE room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            ResultSet srs = stmt.executeQuery();
+            if(srs.next()) {
+                return srs.getString("Landlord_email");
+            }
+            else return null; //room bestaat dus niet
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
+
     public void save(Landlord l) {
         Connection con = null;
         try {
@@ -131,8 +154,9 @@ public class LandlordDAO {
 
     public static void main(String[] args) {
         LandlordDAO landlordDAO = new LandlordDAO();
-        Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        //Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
         //landlordDAO.save(l);
-        landlordDAO.deleteLandlord(l);
+        //landlordDAO.deleteLandlord(l);
+        //System.out.println(landlordDAO.getLandlord(landlordDAO.getLandlordEmail(1)).getFirstname());
     }
 }

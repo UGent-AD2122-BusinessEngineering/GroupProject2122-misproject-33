@@ -70,7 +70,7 @@ public class Person {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
 
-    public void registreren (String password){
+    /*public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is
         boolean student = keyboard.nextBoolean();
@@ -96,8 +96,32 @@ public class Person {
                 else
                     flag = true;
             }
-            Student student1 = new Student(email, voornaam, familienaam, wachtwoord, telefoonnummer, geboortedatum, true);}
+            Student student1 = new Student(email, voornaam, familienaam, wachtwoord, telefoonnummer, geboortedatum, true);
+        }
+        if(!student){
+            System.out.println("Wat is uw e-mailadres?");
+            String email = keyboard.nextLine();
+            System.out.println("Wat is uw voornaam?");
+            String voornaam = keyboard.nextLine();
+            System.out.println("Wat is uw familienaam?");
+            String familienaam = keyboard.nextLine();
+            System.out.println("Wat is uw telefoonnummer?");
+            String telefoonnummer = keyboard.nextLine();
+            System.out.println("Wat is uw geboortedatum?");
+            String geboortedatum = keyboard.nextLine();
+            System.out.println("Geef uw wachtwoord in alstublieft");
+            String wachtwoord = keyboard.nextLine();
+            boolean flag = false;
+            while (!flag) {
+                System.out.println("Herhaal uw wachtwoord alstublieft");
+                String wachtoordherh = keyboard.nextLine();
+                if (!(wachtwoord.equals(wachtoordherh)))
+                    System.out.println("De twee wachtwoorden komen niet overeen.");
+                else
+                    flag = true;
+            }
 
 
     }
+}*/
 }

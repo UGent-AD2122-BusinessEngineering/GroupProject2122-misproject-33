@@ -22,15 +22,13 @@ public class Action {
     private double temperature;
     private String name;
 
-
-    public Action() {
-        this.time = time;
-        this.appliance = appliance;
+    public Action(String description, Appliance appliance, LocalDateTime time, double temperature, String name) {
         this.description = description;
+        this.appliance = appliance;
+        this.time = time;
         this.temperature = temperature;
         this.name = name;
     }
-
 
     //method for high room temperatures (suppose room temperature = 20°C)
     public boolean aboveRoomTemperature(double temp) {
@@ -49,11 +47,10 @@ public class Action {
         return temp < 18;
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    public double averageTemperature(double temperature) {
         double[] temp = new double[6];
         double total = 0;
-
+        Scanner scan = new Scanner(System.in);
         for (int i = 0; i < temp.length; ) {
             System.out.printf("Please enter your temperatures from last week ", i);
             if (scan.hasNextFloat()) {
@@ -69,7 +66,11 @@ public class Action {
         System.out.println("Your lowest temperature = " + temp[0]);
         System.out.println("Your highest temperature = " + temp[temp.length - 1]);
         System.out.println("The average temperature of this week was " + average);
+        return average;
     }
+
+
+
 }
 
    /*

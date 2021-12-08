@@ -5,8 +5,12 @@ import application.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @SpringBootApplication
 @RestController
@@ -25,6 +29,18 @@ public class StudentController {
         new Student().addStudent(student, roomnumber);
         return "toevoegenstudent";
     }
+
+    /*
+    @PostMapping("/toevoegenStudent")
+
+    public String studentToevoegenKamer(@ModelAttribute Student student, Model model, RedirectAttributes redirAttrs) {
+        University university = new University();
+        university.addStudent(student);
+        redirAttrs.addFlashAttribute("success", "Student werd toegevoegd");
+        model.addAttribute("studenten", university.getStudents());
+        return "redirect:/index";
+    }
+     */
 
 
 

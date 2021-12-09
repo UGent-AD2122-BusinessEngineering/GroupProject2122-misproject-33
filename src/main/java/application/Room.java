@@ -10,12 +10,12 @@ public class Room extends Appliance {
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
     private ArrayList<Student> students;
-    public String roomID;
+    public int roomID;
 
     public Room() {
     }
 
-    public Room(ArrayList<MonthlyEnergyConsumption> monthlyEnergy, ArrayList<Action> energyConservationActions, ArrayList<Student> students, String roomnumber, String roomID) {
+    public Room(ArrayList<MonthlyEnergyConsumption> monthlyEnergy, ArrayList<Action> energyConservationActions, ArrayList<Student> students, String roomnumber, int roomID) {
         super();
         this.roomID = roomID;
         this.roomnumber = roomnumber;
@@ -56,11 +56,11 @@ public class Room extends Appliance {
         this.students = students;
     }
 
-    public String getRoomID() {
+    public int getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(String roomID) {
+    public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 

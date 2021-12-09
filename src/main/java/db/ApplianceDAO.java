@@ -22,6 +22,7 @@ public class ApplianceDAO {
             ResultSet srs = stmt.executeQuery();
             int appliance_id1;
             String name;
+            String supplier_name;
             String model_identifier;
             energyEfficiencyClasses energy_efficiency_class;
             int annual_energy_consumption;
@@ -29,13 +30,14 @@ public class ApplianceDAO {
             if (srs.next()) {
                 appliance_id1 = srs.getInt("appliance_id");
                 name = srs.getString("name");
+                supplier_name = srs.getString("supplier_name");
                 model_identifier = srs.getString("model_identifier");
                 energy_efficiency_class = energyEfficiencyClasses.valueOf(srs.getString("energy_efficiency_class"));
                 annual_energy_consumption = srs.getInt("annual_energy_consumption");
             } else {
                 return null;
             }
-            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, name );
+            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name );
             return appliance;
 
         } catch (DBException | SQLException e) {

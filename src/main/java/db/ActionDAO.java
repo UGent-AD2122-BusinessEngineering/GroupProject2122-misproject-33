@@ -1,6 +1,7 @@
 package db;
 
 import application.Action;
+import application.Room;
 import application.Student;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 public class ActionDAO {
 
-    public Action getActions(int appliance_id) {
+    public ArrayList<Action> getActions(int appliance_id) {
         ArrayList<Action> actions = new ArrayList<Action>();
         Connection con = null;
         try {
@@ -44,8 +45,5 @@ public class ActionDAO {
         }
 
     }
-
-
-
 
 }

@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 public class Location extends Room {
+    private int location_id;
     private String country;
     private String city;
     private int ZIP;

@@ -2,9 +2,9 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 /*
@@ -17,12 +17,12 @@ Mogelijke energy conservation acties die we kunnen implementeren
 
 public class Action {
     private Appliance appliance;
-    private LocalDateTime time;
+    private LocalDate date;
     private String name;
 
-    public Action(Appliance appliance, LocalDateTime time, String name) {
+    public Action(Appliance appliance, LocalDate date, String name) {
         this.appliance = appliance;
-        this.time = time;
+        this.date = date;
         this.name = name;
     }
 

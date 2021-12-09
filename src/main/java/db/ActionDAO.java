@@ -19,21 +19,25 @@ public class ActionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT Action_action_id, Appliance_appliance_id, date "
-                    + "FROM interacts "
-                    + "WHERE Appliance_appliance_id = ?";
+            String sql = "SELECT A.action_id, A.`name`, I.Appliance_appliance_id, I.`date` " +
+                    "FROM action AS A INNER JOIN interacts as I " +
+                    "ON (A.action_id = I.Action_action_id) " +
+                    "WHERE I.Appliance_appliance_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appliance_id);
             ResultSet srs = stmt.executeQuery();
             int Action_action_id;
+            String name;
             int Appliance_appliance_id;
-            Date date;
+            LocalDate date;
 
             while (srs.next()) {
                 Action_action_id = srs.getInt("Action_action_id");
+                name = srs.getString("name");
                 Appliance_appliance_id = srs.getInt("Appliance_appliance_id");
-                date = srs.getDate("date");
-                Action action = new Action(Action_action_id, Appliance_appliance_id, date);
+                date = srs.getDate("date").toLocalDate();
+
+                Action action = new Action(Appliance_appliance_id, date, name); //?
                 actions.add(action);
             }
             return actions;

@@ -144,7 +144,7 @@ public class Appliance extends Action {
         }
         else{
             appliance.setTemperature(appliance.getTemperature()-1);
-            Action actie = new Action("lowered the temperature of the appliance one degree", appliance, LocalDateTime.now(), "decrease a degree");
+            Action actie = new Action(appliance, LocalDateTime.now(), "decrease a degree");
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
@@ -162,7 +162,7 @@ public class Appliance extends Action {
         }
         else{
             appliance.setTemperature(appliance.getTemperature() + 1);
-            Action actie = new Action("Increased the temperature of the appliance one degree", appliance, LocalDateTime.now(), "increase a degree");
+            Action actie = new Action(appliance, LocalDateTime.now(), "increase a degree");
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
@@ -178,10 +178,17 @@ public class Appliance extends Action {
         else {
             energyConservationMode = true;
             message = "Thank you, we have registered your energy conservation method.";
-            Action actie = new Action("Activated the energy conservation mode", appliance, LocalDateTime.now(), "energy conservation mode activated");
+            Action actie = new Action(appliance, LocalDateTime.now(), "energy conservation mode activated");
         }
         return message;
     }
+
+    public String customizedEnergyConservationAction(Appliance appliance, LocalDateTime date,String name){
+        String message = "";
+        Action actie = new Action(appliance, date, name);
+        return message = "Thank you, we have registered your energy conservation method.";
+    }
+    //dit ga ik sws nog aanpassen maar het is het idee, hangt er wat vanaf wat voor Vic en Boris gemakkelijk is
 
     /*public void setOperationDays ()
     {

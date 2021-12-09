@@ -9,20 +9,18 @@ import java.util.Scanner;
 
 /*
 Mogelijke energy conservation acties die we kunnen implementeren
-- Ledlampen gebruiken
-- Temperatuur graad lager
-- Toestellen met energiezuiniger label
-- Zet beeldscherm volledig uit
+- Ledlampen gebruiken /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
+- Temperatuur graad lager /Done
+- Toestellen met energiezuiniger label /Done
+- Zet beeldscherm volledig uit /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
 */
 
 public class Action {
-    private String description;
     private Appliance appliance;
     private LocalDateTime time;
     private String name;
 
-    public Action(String description, Appliance appliance, LocalDateTime time, String name) {
-        this.description = description;
+    public Action(Appliance appliance, LocalDateTime time, String name) {
         this.appliance = appliance;
         this.time = time;
         this.name = name;

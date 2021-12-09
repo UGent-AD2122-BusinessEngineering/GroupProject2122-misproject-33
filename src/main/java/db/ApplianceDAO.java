@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ApplianceDAO {
-    public Student getAppliance(int appliance_id) {
+    public Appliance getAppliance(int appliance_id) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();

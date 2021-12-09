@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ApplianceDAO {
     public Appliance getAppliance(int appliance_id) {
@@ -39,6 +40,43 @@ public class ApplianceDAO {
             }
             Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name );
             return appliance;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
+
+    public Appliance getAppliances(int room_id) {
+        ArrayList<Appliance> appliances = new ArrayList<Appliance>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT appliance_id, name, supplier_name, model_indetifier, energy_efficiency_class, annual_energy_consumption  "
+                    + "FROM appliance "
+                    + "WHERE Room_room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            ResultSet srs = stmt.executeQuery();
+            int appliance_id;
+            String name;
+            String supplier_name;
+            String model_identifier;
+            energyEfficiencyClasses energy_efficiency_class;
+            int annual_energy_consumption;
+
+            while (srs.next()) {
+                appliance_id = srs.getInt("appliance_id");
+                name = srs.getString("name");
+                supplier_name = srs.getString("supplier_name");
+                model_identifier = srs.getString("model_identifier");
+                energy_efficiency_class = energyEfficiencyClasses.valueOf(srs.getString("energy_efficiency_class"));
+                annual_energy_consumption = srs.getInt("annual_energy_consumption");
+                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name);
+                appliances.add(appliance);
+            }
+            return appliances;
 
         } catch (DBException | SQLException e) {
             e.printStackTrace();

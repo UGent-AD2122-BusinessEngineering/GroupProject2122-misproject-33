@@ -7,7 +7,6 @@ public class Room extends Appliance {
     public String roomnumber;
     public Location location;
     public Landlord landlord;
-    public String getID;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
     private ArrayList<Student> students;

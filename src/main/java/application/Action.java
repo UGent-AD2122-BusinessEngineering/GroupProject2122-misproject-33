@@ -54,7 +54,7 @@ public class Action {
         return message;
     }
 
-    public double energyLabelScore(){
+    public double energyLabelScore(int value){
         char A = 'A';
         char B = 'B';
         char C = 'C';
@@ -70,6 +70,7 @@ public class Action {
         int intE = (int) E - 40;
         int intF = (int) F - 40;
         int intG = (int) G - 40;
+
 
 
         return 0;

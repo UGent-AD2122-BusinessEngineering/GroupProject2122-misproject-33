@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -70,5 +71,10 @@ public class Room extends Appliance {
 
     public Landlord getLandlord() {
         return landlord;
+    }
+
+    public String getMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month);
+        return "Your monthly energy consumption of month " + month + " has been registered.";
     }
 }

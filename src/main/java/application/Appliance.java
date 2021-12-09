@@ -162,7 +162,7 @@ public class Appliance extends Action {
         }
         else{
             appliance.setTemperature(appliance.getTemperature() + 1);
-            Action actie = new Action(appliance, LocalDate.now(), "increase a degree");
+            Action actie = new Action(appliance, LocalDateTime.now(), "increase a degree");
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
@@ -186,9 +186,9 @@ public class Appliance extends Action {
     public String customizedEnergyConservationAction(Appliance appliance, LocalDate date,String name){
         String message = "";
         Action actie = new Action(appliance, date, name);
-        return message = "Thank you, we have registered your energy conservation method.";
+        return message = "Thank you, we have registered your energy conservation method: " + name;
     }
-    //dit ga ik sws nog aanpassen maar het is het idee, hangt er wat vanaf wat voor Vic en Boris gemakkelijk is
+
 
     /*public void setOperationDays ()
     {

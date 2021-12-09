@@ -19,7 +19,6 @@ public class Action {
     private String description;
     private Appliance appliance;
     private LocalDateTime time;
-    private double temperature;
     private String name;
 
     public Action(String description, Appliance appliance, LocalDateTime time, String name) {
@@ -30,25 +29,6 @@ public class Action {
     }
 
     public Action(){
-    }
-
-    //method for high room temperatures (suppose room temperature = 20°C)
-    public String aboveRoomTemperature(double temp) {
-        String message = "";
-        if (this.temperature > 20) {
-            temp = temperature;
-            message += "The room temperature (" + temp + "°C) is above 20°C, please lower to conserve energy.";
-        }
-        return message;
-    }
-
-    public String lowRoomTemperature(double temp) {
-        String message = "";
-        if (this.temperature < 18) {
-            temp = temperature;
-            message += "The room temperature (" + temp + "°C) is too low. Cold rooms require a lot of energy to heat up again.";
-        }
-        return message;
     }
 
     public String averageTemperature(double temperature) {

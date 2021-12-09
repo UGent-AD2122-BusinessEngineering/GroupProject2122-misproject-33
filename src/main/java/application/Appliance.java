@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,8 +20,8 @@ public class Appliance extends Action {
     private String supplierName;
     private String name;
     private boolean energyConservationMode;
-    private boolean tempProportionate;
-    private boolean tempDisproportionate;
+    private boolean tempProportionate; //hoe hoger, hoe meer je verbruikt (bv chauffage)
+    private boolean tempDisproportionate; //hoe hoger, hoe minder je verbruikt (bv frigo)
     private double temperature;
 
     public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
@@ -36,10 +37,7 @@ public class Appliance extends Action {
         this.tempDisproportionate = tempDisproportionate;
     }
 
-    public void setTemperature (Appliance appliance, double temperature){ //parameter wordt wrs nog name
-        if (!(tempProportionate && tempDisproportionate))
-            System.out.println("Is not necessary for this appliance");
-        else
+    public void setTemperature (double temperature){
             this.temperature = temperature;
     }
     //kwn wat makkelijker is, met Scanner werken voor de temp of als parameter
@@ -53,6 +51,23 @@ public class Appliance extends Action {
     public void setEnergyEfficiencyClass(energyEfficiencyClasses energyEfficiencyClass) {
         this.energyEfficiencyClass = energyEfficiencyClass;
     }
+
+    public boolean isEnergyConservationMode() {
+        return energyConservationMode;
+    }
+
+    public boolean isTempProportionate() {
+        return tempProportionate;
+    }
+
+    public boolean isTempDisproportionate() {
+        return tempDisproportionate;
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
 
     public String getModelIdentifier() {
         return modelIdentifier;
@@ -99,6 +114,39 @@ public class Appliance extends Action {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
     }
 
+    //method for high room temperatures (suppose room temperature = 20°C)
+    public String decreaseDegree(Appliance appliance) {
+        String message = "";
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+            message = "Is not possible for this appliance.";
+        if (appliance.isTempDisproportionate()){
+            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            appliance.setTemperature(appliance.getTemperature() - 1);
+        }
+        else{
+            appliance.setTemperature(appliance.getTemperature()-1);
+            Action actie = new Action("lowered the temperature of the appliance one degree", appliance, LocalDateTime.now(), "decrease a degree");
+            message = "Thank you, we have registered your energy conservation method.";
+        }
+        return message;
+    }
+
+    public String increaseDegree(Appliance appliance) {
+        String message = "";
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+            message = "Is not possible for this appliance.";
+        if (appliance.isTempProportionate()){
+            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            appliance.setTemperature(appliance.getTemperature() + 1);
+        }
+        else{
+            appliance.setTemperature(appliance.getTemperature() + 1);
+            Action actie = new Action("Increased the temperature of the appliance one degree", appliance, LocalDateTime.now(), "increase a degree");
+            message = "Thank you, we have registered your energy conservation method.";
+        }
+        return message;
+        }
+
     /*public void setOperationDays ()
     {
         for (int i = 0; i < getMonthlyOperation().size(); i++) {
@@ -107,4 +155,5 @@ public class Appliance extends Action {
             operationDays.add(function);
         }
     }*/
+
 }

@@ -19,7 +19,7 @@ public class RoomDAO {
                     + "WHERE room_id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setInt(1, room.getRoomID()); //String of int???
+            stmt.setInt(1, room.getRoomID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 

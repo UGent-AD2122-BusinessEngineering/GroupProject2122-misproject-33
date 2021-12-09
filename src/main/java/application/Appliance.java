@@ -131,8 +131,10 @@ public class Appliance extends Action {
 
     public String decreaseDegree(Appliance appliance) {
         String message = "";
-        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate())){
             message = "Is not possible for this appliance.";
+            return message;
+        }
         if (appliance.isTempDisproportionate()){
             message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
             appliance.setTemperature(appliance.getTemperature() - 1);
@@ -147,8 +149,10 @@ public class Appliance extends Action {
 
     public String increaseDegree(Appliance appliance) {
         String message = "";
-        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate())) {
             message = "Is not possible for this appliance.";
+            return message;
+        }
         if (appliance.isTempProportionate()){
             message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
             appliance.setTemperature(appliance.getTemperature() + 1);

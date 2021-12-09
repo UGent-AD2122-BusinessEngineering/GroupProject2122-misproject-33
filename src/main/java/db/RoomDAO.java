@@ -50,9 +50,9 @@ public class RoomDAO {
                 insertStm.setString(3, room.getLandlord().getEmail);
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
-                    if(generatedKeys.next()) {
-                        return generatedKeys.getInt(1);
-                    }
+                if(generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();

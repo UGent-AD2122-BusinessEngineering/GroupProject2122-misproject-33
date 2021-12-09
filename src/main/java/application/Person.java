@@ -11,16 +11,15 @@ public class Person {
     public String telephone_number;
     public String date_of_birth;
     public String password;
-    private boolean aangemeld;
+    public boolean isContactPerson;
 
-    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
+    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone_number = telephone_number;
         this.date_of_birth = date_of_birth;
         this.password = password;
-        this.aangemeld = aangemeld;
     }
 
     public Person() {
@@ -53,6 +52,11 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isContactPerson(boolean isContactPerson){
+        this.isContactPerson = isContactPerson;
+        return true;
     }
 
     @Override
@@ -127,13 +131,8 @@ public class Person {
             }
             System.out.println("Uw registratie is succesvol verlopen.");
             boolean aangemeld = true;
-            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord, aangemeld);
+            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord);
         }
     }
 
-    public void afmelden (Person person){
-        person.aangemeld = false;
-    }
-
-    public void inloggen ()
 }

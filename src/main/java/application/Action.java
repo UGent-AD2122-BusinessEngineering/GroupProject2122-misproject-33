@@ -31,23 +31,23 @@ public class Action {
     }
 
     public Action(){
-
     }
+
     //method for high room temperatures (suppose room temperature = 20°C)
-    public boolean aboveRoomTemperature(double temp) {
+    public double aboveRoomTemperature(double temp) {
         if (this.temperature > 20) {
             temp = temperature;
             System.out.println("The room temperature is above 20°C, please lower to conserve energy.");
         }
-        return temp > 20;
+        return temp;
     }
 
-    public boolean lowRoomTemperature(double temp) {
+    public double lowRoomTemperature(double temp) {
         if (this.temperature < 18) {
             temp = temperature;
             System.out.println("The room temperature is too low. Cold rooms require a lot of energy to heat up again.");
         }
-        return temp < 18;
+        return temp;
     }
 
     public double averageTemperature(double temperature) {
@@ -56,8 +56,8 @@ public class Action {
         Scanner scan = new Scanner(System.in);
         for (int i = 0; i < temp.length; ) {
             System.out.printf("Please enter your temperatures from last week ", i);
-            if (scan.hasNextFloat()) {
-                temp[i] = scan.nextFloat();
+            if (scan.hasNextDouble()) {
+                temp[i] = scan.nextDouble();
                 total = total + temp[i];
                 i++;
             } else {
@@ -72,7 +72,26 @@ public class Action {
         return average;
     }
 
+    public double energyLabelScore(){
+        char A = 'A';
+        char B = 'B';
+        char C = 'C';
+        char D = 'D';
+        char E = 'E';
+        char F = 'F';
+        char G = 'G';
 
+        int intA = (int) A - 40;
+        int intB = (int) B - 40;
+        int intC = (int) C - 40;
+        int intD = (int) D - 40;
+        int intE = (int) E - 40;
+        int intF = (int) F - 40;
+        int intG = (int) G - 40;
+
+
+        return 0;
+    }
 
 }
 

@@ -4,24 +4,25 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Room extends Appliance {
-    private String roomnumber;
+    public String roomnumber;
+    public Location location;
+    public Landlord landlord;
+    public String getID;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
-    private ArrayList<Appliance> appliances; //nog koppelen aan db
-    private ArrayList<Student> members;
+    private ArrayList<Student> students;
+    public String roomID;
 
     public Room() {
-
     }
 
-    public Room(String roomnumber) {
+    public Room(ArrayList<MonthlyEnergyConsumption> monthlyEnergy, ArrayList<Action> energyConservationActions, ArrayList<Student> students, String roomnumber, String roomID) {
         super();
+        this.roomID = roomID;
         this.roomnumber = roomnumber;
         monthlyEnergyConsumptions = new ArrayList<>();
         energyConservationActions = new ArrayList<>();
-        appliances = new ArrayList<>();
-        members = new ArrayList<>();
-
+        students = new ArrayList<>();
     }
 
     public String getRoomnumber() {
@@ -32,23 +33,43 @@ public class Room extends Appliance {
         this.roomnumber = roomnumber;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(roomnumber, room.roomnumber);
+    public ArrayList<MonthlyEnergyConsumption> getMonthlyEnergyConsumptions() {
+        return monthlyEnergyConsumptions;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(roomnumber);
+    public void setMonthlyEnergyConsumptions(ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions) {
+        this.monthlyEnergyConsumptions = monthlyEnergyConsumptions;
     }
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                ", roomnumber='" + roomnumber + '\'' +
-                '}';
+    public ArrayList<Action> getEnergyConservationActions() {
+        return energyConservationActions;
+    }
+
+    public void setEnergyConservationActions(ArrayList<Action> energyConservationActions) {
+        this.energyConservationActions = energyConservationActions;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(String roomID) {
+        this.roomID = roomID;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public Landlord getLandlord() {
+        return landlord;
     }
 }

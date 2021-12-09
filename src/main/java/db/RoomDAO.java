@@ -31,11 +31,11 @@ public class RoomDAO {
                         "Landlord_email = ?, " +
                         "WHERE room_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setString(1, room.getRoomID);
+                stmt2.setString(1, room.getRoomID());
                 stmt2.setString(2, room.getRoomnumber());
-                stmt2.setString(3, room.getLocation().getID);
-                stmt2.setString(4, room.getLandlord().getEmail);
-                stmt2.setString(5, room.getRoomID);
+                stmt2.setString(3, room.getLocation().getRoomID());
+                stmt2.setString(4, room.getLandlord().getEmail());
+                stmt2.setString(5, room.getRoomID());
                 stmt2.executeUpdate();
             } else {
                 // INSERT
@@ -46,8 +46,8 @@ public class RoomDAO {
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
                 insertStm.setString(1, room.getRoomnumber());
-                insertStm.setString(2, room.getLocation().getID);
-                insertStm.setString(3, room.getLandlord().getEmail);
+                insertStm.setString(2, room.getLocation().getRoomID());
+                insertStm.setString(3, room.getLandlord().getEmail());
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                     if(generatedKeys.next()) {

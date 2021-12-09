@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Student extends Person {
+
     private Location location;
     private ArrayList<Action> energyConservationActions;
     private ArrayList<Student> studentlist;
@@ -22,7 +23,6 @@ public class Student extends Person {
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth, aangemeld);
         this.room_id = room_id;
-        this.energyConservationActions = new ArrayList<>();
         this.studentlist = new ArrayList<Student>();
         this.energyConservationActions = new ArrayList<Action>();
     }
@@ -47,21 +47,20 @@ public class Student extends Person {
     }
 
     //add student with given object and room_id (db)
-    public boolean addStudent(Student student, int room_id){
+    public void addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.save(student, room_id);
         if (studentlist == null || studentlist.contains(student)) {
-            return false;
+            return;
         }
         studentlist.add(student);
-        return true;
     }
 
     //delete student
-    public void deleteStudent(Student student){
+    public void deleteStudent(Student student, String roomnumber, int room_id){
         System.out.println("Delete student " + student.getFirstname() + student.getLastname());
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.deleteStudent(student);
+        studentDAO.deleteStudent(roomnumber);
         for(Student stu: student.getStudents(room_id)) {
             if (stu.equals(student)) {
                 student.getStudents(room_id).remove(stu);

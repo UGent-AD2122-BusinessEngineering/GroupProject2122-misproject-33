@@ -18,11 +18,9 @@ public class Appliance extends Action {
     private int annualEnergyConsumption;
     private String supplierName;
     private String name;
-    private ArrayList<String> appliances;
 
-    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, ArrayList<String> appliances) {
+    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name) {
         super();
-        this.appliances = new ArrayList<String>();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
@@ -70,14 +68,6 @@ public class Appliance extends Action {
         this.name = name;
     }
 
-    public ArrayList<String> getAppliances() {
-        return appliances;
-    }
-
-    public void setAppliances(ArrayList<String> appliances) {
-        this.appliances = appliances;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,17 +79,6 @@ public class Appliance extends Action {
     @Override
     public int hashCode() {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
-    }
-
-    @Override
-    public String toString() {
-        return "Appliance{" +
-                "energyEfficiencyClass=" + energyEfficiencyClass +
-                ", modelIdentifier='" + modelIdentifier + '\'' +
-                ", annualEnergyConsumption=" + annualEnergyConsumption +
-                ", supplierName='" + supplierName + '\'' +
-                ", name='" + name + '\'' +
-                '}';
     }
 
     /*public void setOperationDays ()

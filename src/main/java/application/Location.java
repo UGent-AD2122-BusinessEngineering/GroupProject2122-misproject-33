@@ -11,10 +11,6 @@ public class Location extends Room {
     private String street;
     private int area;
     private String address;
-    private enum insulationType {Insulated, notInsulated}
-    public enum typeOfRoom {OnePersonRoom, TwoPersonRoom}
-
-
 
     public Location(int locationId, String country, String city, int ZIP, int number, String street, int area, String address) {
         super();
@@ -103,11 +99,13 @@ public class Location extends Room {
     public void addMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
         //communiceren met db (zie vb)
     }
-
+/*
     public void getMonthlyEnergyConsumptions () {
         //geeft AL terug
         //communiceren met db (zie vb)
     }
+
+ */
 
 
     /*

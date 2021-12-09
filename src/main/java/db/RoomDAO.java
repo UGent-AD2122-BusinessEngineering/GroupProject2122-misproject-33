@@ -1,10 +1,14 @@
 package db;
 
+import application.Action;
 import application.Room;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class RoomDAO {
 
@@ -59,6 +63,40 @@ public class RoomDAO {
 
         }
         return Location_location_id;
+    }
+
+    public Room getRooms(String Landlord_email) {
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT room_id, room_number, Location_location_id, Landlord_email "
+                    + "FROM room "
+                    + "WHERE Landlord_email = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, Landlord_email);
+            ResultSet srs = stmt.executeQuery();
+            int room_id;
+            int room_number ;
+            int Location_location_id;
+            String Landlord_email1;
+
+            while (srs.next()) {
+                room_id = srs.getInt("room_id");
+                room_number = srs.getInt("room_number");
+                Location_location_id = srs.getInt("Location_location_id");
+                Landlord_email1 = srs.getString("Landlord_email")
+                Room room = new Room()
+                rooms.add(room);
+            }
+            return rooms;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
     }
 
     /* moeten eerst weten welke instantievariabelen room klasse gaat hebben, alleszins number en wss arraylist<Appliance>?

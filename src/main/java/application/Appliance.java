@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -18,14 +19,21 @@ public class Appliance extends Action {
     private String supplierName;
     private String name;
     private String applianceID;
+    private boolean isTempProportionate;
+    private boolean isTempDisproportionate;
+    private boolean energyConservationMode;
+    private double temperature;
 
-    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name) {
+    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean energyConservationMode) {
         super();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
         this.supplierName = supplierName;
         this.name = name;
+        this.isTempProportionate = isTempProportionate;
+        this.isTempDisproportionate = isTempDisproportionate;
+        this.energyConservationMode = energyConservationMode;
     }
 
     public String getEnergyEfficiencyClass() {
@@ -76,6 +84,38 @@ public class Appliance extends Action {
         this.applianceID = applianceID;
     }
 
+    public boolean isTempProportionate() {
+        return isTempProportionate;
+    }
+
+    public void setTempProportionate(boolean tempProportionate) {
+        isTempProportionate = tempProportionate;
+    }
+
+    public boolean isTempDisproportionate() {
+        return isTempDisproportionate;
+    }
+
+    public void setTempDisproportionate(boolean tempDisproportionate) {
+        isTempDisproportionate = tempDisproportionate;
+    }
+
+    public boolean isEnergyConservationMode() {
+        return energyConservationMode;
+    }
+
+    public void setEnergyConservationMode(boolean energyConservationMode) {
+        this.energyConservationMode = energyConservationMode;
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,6 +127,38 @@ public class Appliance extends Action {
     @Override
     public int hashCode() {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
+    }
+
+    public String decreaseDegree(Appliance appliance) {
+        String message = "";
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+            message = "Is not possible for this appliance.";
+        if (appliance.isTempDisproportionate()){
+            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            appliance.setTemperature(appliance.getTemperature() - 1);
+        }
+        else{
+            appliance.setTemperature(appliance.getTemperature()-1);
+            Action actie = new Action("lowered the temperature of the appliance one degree", appliance, LocalDateTime.now(), "decrease a degree");
+            message = "Thank you, we have registered your energy conservation method.";
+        }
+        return message;
+    }
+
+    public String increaseDegree(Appliance appliance) {
+        String message = "";
+        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
+            message = "Is not possible for this appliance.";
+        if (appliance.isTempProportionate()){
+            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            appliance.setTemperature(appliance.getTemperature() + 1);
+        }
+        else{
+            appliance.setTemperature(appliance.getTemperature() + 1);
+            Action actie = new Action("Increased the temperature of the appliance one degree", appliance, LocalDateTime.now(), "increase a degree");
+            message = "Thank you, we have registered your energy conservation method.";
+        }
+        return message;
     }
 
     /*public void setOperationDays ()

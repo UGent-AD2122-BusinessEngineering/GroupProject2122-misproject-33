@@ -2,6 +2,7 @@ package db;
 
 import application.Appliance;
 import application.Student;
+import application.Appliance.energyEfficiencyClasses;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,14 +23,14 @@ public class ApplianceDAO {
             int appliance_id1;
             String name;
             String model_identifier;
-            energy_efficiency_class;
+            energyEfficiencyClasses energy_efficiency_class;
             int annual_energy_consumption;
 
             if (srs.next()) {
                 appliance_id1 = srs.getInt("appliance_id");
                 name = srs.getString("name");
                 model_identifier = srs.getString("model_identifier");
-                energy_efficiency_class = srs.getString("energy_efficiency_class");
+                energy_efficiency_class = energyEfficiencyClasses.valueOf(srs.getString("energy_efficiency_class"));
                 annual_energy_consumption = srs.getInt("annual_energy_consumption");
             } else {
                 return null;

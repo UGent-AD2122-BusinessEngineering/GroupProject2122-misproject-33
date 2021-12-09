@@ -33,28 +33,31 @@ public class Action {
     }
 
     //method for high room temperatures (suppose room temperature = 20°C)
-    public double aboveRoomTemperature(double temp) {
+    public String aboveRoomTemperature(double temp) {
+        String message = "";
         if (this.temperature > 20) {
             temp = temperature;
-            System.out.println("The room temperature is above 20°C, please lower to conserve energy.");
+            message += "The room temperature (" + temp + "°C) is above 20°C, please lower to conserve energy.";
         }
-        return temp;
+        return message;
     }
 
-    public double lowRoomTemperature(double temp) {
+    public String lowRoomTemperature(double temp) {
+        String message = "";
         if (this.temperature < 18) {
             temp = temperature;
-            System.out.println("The room temperature is too low. Cold rooms require a lot of energy to heat up again.");
+            message += "The room temperature (" + temp + "°C) is too low. Cold rooms require a lot of energy to heat up again.";
         }
-        return temp;
+        return message;
     }
 
-    public double averageTemperature(double temperature) {
+    public String averageTemperature(double temperature) {
+        String message = "";
         double[] temp = new double[6];
         double total = 0;
         Scanner scan = new Scanner(System.in);
         for (int i = 0; i < temp.length; ) {
-            System.out.printf("Please enter your temperatures from last week ", i);
+            System.out.println("Please enter your temperatures from last week ");
             if (scan.hasNextDouble()) {
                 temp[i] = scan.nextDouble();
                 total = total + temp[i];
@@ -65,10 +68,10 @@ public class Action {
         }
         double average = total / temp.length;
         java.util.Arrays.sort(temp);
-        System.out.println("Your lowest temperature = " + temp[0]);
-        System.out.println("Your highest temperature = " + temp[temp.length - 1]);
-        System.out.println("The average temperature of this week was " + average);
-        return average;
+        message += "Your lowest temperature = " + temp[0];
+        message += "Your highest temperature = " + temp[temp.length - 1];
+        message += "The average temperature of this week was: " + average;
+        return message;
     }
 
     public double energyLabelScore(){

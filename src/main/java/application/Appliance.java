@@ -177,7 +177,7 @@ public class Appliance extends Action {
             message = "The energy conservation mode of this appliance is already activated.";
         else {
             energyConservationMode = true;
-            message = "Thank you, we have registered your energy conservation method.";
+            message = "Thank you, we have registered the energy conservation method.";
             Action actie = new Action(appliance, LocalDateTime.now(), "energy conservation mode activated");
         }
         return message;
@@ -186,9 +186,9 @@ public class Appliance extends Action {
     public String customizedEnergyConservationAction(Appliance appliance, LocalDateTime date,String name){
         String message = "";
         Action actie = new Action(appliance, date, name);
-        return message = "Thank you, we have registered your energy conservation method.";
+        return message = "Thank you, we have registered your energy conservation method: " + name;
     }
-    //dit ga ik sws nog aanpassen maar het is het idee, hangt er wat vanaf wat voor Vic en Boris gemakkelijk is
+
 
     /*public void setOperationDays ()
     {

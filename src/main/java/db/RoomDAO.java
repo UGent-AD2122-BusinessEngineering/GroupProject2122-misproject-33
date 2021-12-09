@@ -65,7 +65,7 @@ public class RoomDAO {
         return Location_location_id;
     }
 
-    public Room getRooms(String Landlord_email) {
+    public ArrayList<Room> getRooms(String Landlord_email) {
         ArrayList<Room> rooms = new ArrayList<Room>();
         Connection con = null;
         try {

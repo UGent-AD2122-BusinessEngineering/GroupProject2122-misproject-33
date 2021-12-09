@@ -1,8 +1,6 @@
 package db;
 
 import application.Appliance;
-import application.Student;
-import application.Appliance.energyEfficiencyClasses;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +23,7 @@ public class ApplianceDAO {
             String name;
             String supplier_name;
             String model_identifier;
-            energyEfficiencyClasses energy_efficiency_class;
+            String energy_efficiency_class;
             int annual_energy_consumption;
 
             if (srs.next()) {
@@ -33,7 +31,7 @@ public class ApplianceDAO {
                 name = srs.getString("name");
                 supplier_name = srs.getString("supplier_name");
                 model_identifier = srs.getString("model_identifier");
-                energy_efficiency_class = energyEfficiencyClasses.valueOf(srs.getString("energy_efficiency_class"));
+                energy_efficiency_class = srs.getString("energy_efficiency_class");
                 annual_energy_consumption = srs.getInt("annual_energy_consumption");
             } else {
                 return null;
@@ -48,7 +46,7 @@ public class ApplianceDAO {
         }
     }
 
-    public Appliance getAppliances(int room_id) {
+    public ArrayList<Appliance> getAppliances(int room_id) {
         ArrayList<Appliance> appliances = new ArrayList<Appliance>();
         Connection con = null;
         try {
@@ -63,7 +61,7 @@ public class ApplianceDAO {
             String name;
             String supplier_name;
             String model_identifier;
-            energyEfficiencyClasses energy_efficiency_class;
+            String energy_efficiency_class;
             int annual_energy_consumption;
 
             while (srs.next()) {
@@ -71,7 +69,7 @@ public class ApplianceDAO {
                 name = srs.getString("name");
                 supplier_name = srs.getString("supplier_name");
                 model_identifier = srs.getString("model_identifier");
-                energy_efficiency_class = energyEfficiencyClasses.valueOf(srs.getString("energy_efficiency_class"));
+                energy_efficiency_class = srs.getString("energy_efficiency_class");
                 annual_energy_consumption = srs.getInt("annual_energy_consumption");
                 Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name);
                 appliances.add(appliance);
@@ -95,7 +93,7 @@ public class ApplianceDAO {
                     + "WHERE appliance_id = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setInt(1, a.getApplianceID());
+            stmt.setString(1, a.getApplianceID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -109,11 +107,11 @@ public class ApplianceDAO {
                         "Room_room_id = ?, " +
                         "WHERE appliance_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setInt(7, a.getApplianceID());
+                stmt2.setString(7, a.getApplianceID());
                 stmt2.setString(1, a.getName());
                 stmt2.setString(2, a.getSupplierName());
                 stmt2.setString(3, a.getModelIdentifier());
-                stmt2.set(4, a.getEnergyEfficiencyClass());
+                stmt2.setString(4, a.getEnergyEfficiencyClass());
                 stmt2.setInt(5, a.getAnnualEnergyConsumption());
                 stmt2.setInt(6, room_id);
                 stmt2.executeUpdate();
@@ -125,11 +123,11 @@ public class ApplianceDAO {
                         + "VALUES (?,?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setString(1, a.getApplianceID);
+                insertStm.setString(1, a.getApplianceID());
                 insertStm.setString(2, a.getName());
                 insertStm.setString(3, a.getSupplierName());
                 insertStm.setString(4, a.getModelIdentifier());
-                insertStm.set(5, a.getEnergyEfficiencyClass());
+                insertStm.setString(5, a.getEnergyEfficiencyClass());
                 insertStm.setInt(6, a.getAnnualEnergyConsumption());
                 insertStm.setInt(7, room_id);
                 insertStm.executeUpdate();

@@ -12,45 +12,27 @@ public class Appliance extends Action {
     //zie https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign/about_en
 
     //instantievariabelen
-    public enum energyEfficiencyClasses {A, B, C, D, E, F, G}
-    private energyEfficiencyClasses energyEfficiencyClass; //energy label of the appliance
+    private String energyEfficiencyClass; //energy label of the appliance {A, B, C, D, E, F, G}
     private String modelIdentifier;
     private int annualEnergyConsumption;
     private String supplierName;
     private String name;
-    private boolean energyConservationMode;
-    private boolean tempProportionate;
-    private boolean tempDisproportionate;
-    private double temperature;
+    private String applianceID;
 
-    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                     boolean energyConservationMode, boolean tempProportionate, boolean tempDisproportionate) {
+    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name) {
         super();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
         this.supplierName = supplierName;
         this.name = name;
-        this.energyConservationMode = energyConservationMode;
-        this.tempProportionate = tempProportionate;
-        this.tempDisproportionate = tempDisproportionate;
     }
 
-    public void setTemperature (Appliance appliance, double temperature){ //parameter wordt wrs nog name
-        if (!(tempProportionate && tempDisproportionate))
-            System.out.println("Is not necessary for this appliance");
-        else
-            this.temperature = temperature;
-    }
-    //kwn wat makkelijker is, met Scanner werken voor de temp of als parameter
-
-
-
-    public energyEfficiencyClasses getEnergyEfficiencyClass() {
+    public String getEnergyEfficiencyClass() {
         return energyEfficiencyClass;
     }
 
-    public void setEnergyEfficiencyClass(energyEfficiencyClasses energyEfficiencyClass) {
+    public void setEnergyEfficiencyClass(String energyEfficiencyClass) {
         this.energyEfficiencyClass = energyEfficiencyClass;
     }
 
@@ -84,6 +66,14 @@ public class Appliance extends Action {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getApplianceID() {
+        return applianceID;
+    }
+
+    public void setApplianceID(String applianceID) {
+        this.applianceID = applianceID;
     }
 
     @Override

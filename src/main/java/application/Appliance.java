@@ -18,15 +18,33 @@ public class Appliance extends Action {
     private int annualEnergyConsumption;
     private String supplierName;
     private String name;
+    private boolean energyConservationMode;
+    private boolean tempProportionate;
+    private boolean tempDisproportionate;
+    private double temperature;
 
-    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name) {
+    public Appliance(energyEfficiencyClasses energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
+                     boolean energyConservationMode, boolean tempProportionate, boolean tempDisproportionate) {
         super();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
         this.supplierName = supplierName;
         this.name = name;
+        this.energyConservationMode = energyConservationMode;
+        this.tempProportionate = tempProportionate;
+        this.tempDisproportionate = tempDisproportionate;
     }
+
+    public void setTemperature (Appliance appliance, double temperature){ //parameter wordt wrs nog name
+        if (!(tempProportionate && tempDisproportionate))
+            System.out.println("Is not necessary for this appliance");
+        else
+            this.temperature = temperature;
+    }
+    //kwn wat makkelijker is, met Scanner werken voor de temp of als parameter
+
+
 
     public energyEfficiencyClasses getEnergyEfficiencyClass() {
         return energyEfficiencyClass;

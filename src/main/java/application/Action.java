@@ -22,11 +22,10 @@ public class Action {
     private double temperature;
     private String name;
 
-    public Action(String description, Appliance appliance, LocalDateTime time, double temperature, String name) {
+    public Action(String description, Appliance appliance, LocalDateTime time, String name) {
         this.description = description;
         this.appliance = appliance;
         this.time = time;
-        this.temperature = temperature;
         this.name = name;
     }
 

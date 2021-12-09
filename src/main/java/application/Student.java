@@ -21,7 +21,7 @@ public class Student extends Person {
 
 
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
-        super(email, firstname, lastname, password, telephone_number, date_of_birth, aangemeld);
+        super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.room_id = room_id;
         this.studentlist = new ArrayList<Student>();
         this.energyConservationActions = new ArrayList<Action>();

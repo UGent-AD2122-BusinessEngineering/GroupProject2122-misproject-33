@@ -21,10 +21,12 @@ public class Appliance extends Action {
     private String applianceID;
     private boolean isTempProportionate;
     private boolean isTempDisproportionate;
-    private boolean energyConservationMode;
     private double temperature;
+    private boolean isEnergyConservationMode; // dit houdt bij of er één is
+    private boolean energyConservationMode; // dit houdt bij of hij aanstaa, als er géén is blijft dit op false staan
 
-    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean energyConservationMode) {
+    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
+                     String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, boolean energyConservationMode) {
         super();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
@@ -33,6 +35,7 @@ public class Appliance extends Action {
         this.name = name;
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
+        this.isEnergyConservationMode = isEnergyConservationMode;
         this.energyConservationMode = energyConservationMode;
     }
 
@@ -161,6 +164,21 @@ public class Appliance extends Action {
             appliance.setTemperature(appliance.getTemperature() + 1);
             Action actie = new Action("Increased the temperature of the appliance one degree", appliance, LocalDateTime.now(), "increase a degree");
             message = "Thank you, we have registered your energy conservation method.";
+        }
+        return message;
+    }
+
+    public String energyConservationModeOn (Appliance appliance) {
+        String message = "";
+        if(!(appliance.isEnergyConservationMode)) {
+            return message = "Is not possible for this appliance.";
+        }
+        if(energyConservationMode)
+            message = "The energy conservation mode of this appliance is already activated.";
+        else {
+            energyConservationMode = true;
+            message = "Thank you, we have registered your energy conservation method.";
+            Action actie = new Action("Activated the energy conservation mode", appliance, LocalDateTime.now(), "energy conservation mode activated");
         }
         return message;
     }

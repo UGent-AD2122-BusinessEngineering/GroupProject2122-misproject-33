@@ -54,37 +54,6 @@ public class Action {
         return message;
     }
 
-    public String decreaseDegree(Appliance appliance) {
-        String message = "";
-        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
-            message = "Is not possible for this appliance.";
-        if (appliance.isTempDisproportionate()){
-            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
-            appliance.setTemperature(appliance.getTemperature() - 1);
-        }
-        else{
-            appliance.setTemperature(appliance.getTemperature()-1);
-            Action actie = new Action("lowered the temperature of the appliance one degree", appliance, LocalDateTime.now(), "decrease a degree");
-            message = "Thank you, we have registered your energy conservation method.";
-        }
-        return message;
-    }
-
-    public String increaseDegree(Appliance appliance) {
-        String message = "";
-        if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate()))
-            message = "Is not possible for this appliance.";
-        if (appliance.isTempProportionate()){
-            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
-            appliance.setTemperature(appliance.getTemperature() + 1);
-        }
-        else{
-            appliance.setTemperature(appliance.getTemperature() + 1);
-            Action actie = new Action("Increased the temperature of the appliance one degree", appliance, LocalDateTime.now(), "increase a degree");
-            message = "Thank you, we have registered your energy conservation method.";
-        }
-        return message;
-    }
 
     public double energyLabelScore(int value){
         char A = 'A';

@@ -23,7 +23,6 @@ public class Appliance extends Action {
     private boolean isTempDisproportionate;
     private double temperature;
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
-    private boolean energyConservationMode; // dit houdt bij of hij aanstaa, als er géén is blijft dit op false staan
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
                      String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, boolean energyConservationMode) {

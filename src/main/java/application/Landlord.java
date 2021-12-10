@@ -4,12 +4,14 @@ import db.RoomDAO;
 import db.StudentDAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Landlord extends Person {
     private static int dagVdMaand = LocalDate.now().getDayOfMonth();
     private static int maandVhJaar = LocalDate.now().getMonthValue();
-    private HashMap<Student, Room> contactsRoom;
+    private HashMap<Room, Student> contactsRoom;
+    private ArrayList<Room> roomsPerLandLord;
 
     public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
         super(email, firstname, lastname, telephone_number, date_of_birth, password);
@@ -41,7 +43,9 @@ public class Landlord extends Person {
         return message = "The room has been succesfully deleted.";
     }
 
+    //addLocation
 
+    //deleteLocation
 
 
     /*public HashMap <Location, Student> getStudents(){

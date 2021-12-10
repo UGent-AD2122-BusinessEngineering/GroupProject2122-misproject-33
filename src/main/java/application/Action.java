@@ -33,6 +33,14 @@ public class Action {
         return getId();
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String averageTemperature(double temperature) {
         String message = "";
         double[] temp = new double[6];

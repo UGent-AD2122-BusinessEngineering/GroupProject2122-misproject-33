@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Room extends Appliance {
+public class Room {
     public String roomnumber;
     public Location location;
-    public Landlord landlord;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
     private ArrayList<Student> students;
@@ -16,11 +15,9 @@ public class Room extends Appliance {
     public Room() {
     }
 
-    public Room(String roomnumber, Location location, Landlord landlord) {
-        super();
+    public Room(String roomnumber, Location location) {
         this.roomnumber = roomnumber;
         this.location = location;
-        this.landlord = landlord;
         monthlyEnergyConsumptions = new ArrayList<>();
         energyConservationActions = new ArrayList<>();
         students = new ArrayList<>();

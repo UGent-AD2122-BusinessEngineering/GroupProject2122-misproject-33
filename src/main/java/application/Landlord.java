@@ -53,6 +53,12 @@ public class Landlord extends Person {
         return "Student " + s.firstname + " " + s.lastname + " is succesfully addes to the room.";
     }
 
+    public String deleteStudentFromRoom(String email){
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.deleteStudent(email);
+        return "The student has been succesfully deleted.";
+    }
+
 
     /*public HashMap <Location, Student> getStudents(){
         //communiceren met db (zie vb)

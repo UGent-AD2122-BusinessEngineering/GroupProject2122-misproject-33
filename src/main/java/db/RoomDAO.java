@@ -41,6 +41,7 @@ public class RoomDAO {
                 stmt2.setString(4, room.getLandlord().getEmail());
                 stmt2.setInt(5, room.getRoomID());
                 stmt2.executeUpdate();
+                return room.getRoomID();
             } else {
                 // INSERT
 
@@ -60,12 +61,13 @@ public class RoomDAO {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-
+            DBHandler.closeConnection(con);
+            return -1;
         }
-        return Location_location_id;
+        return -1;
     }
 
-    public ArrayList<Room> getRooms(String Landlord_email) {
+    public ArrayList<Room> getRooms(String Landlord_email) { //nog niet klaar
         ArrayList<Room> rooms = new ArrayList<Room>();
         Connection con = null;
         try {

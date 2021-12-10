@@ -50,4 +50,54 @@ public class ActionDAO {
 
     }
 
+    //returns -1 if something went wrong (no action saved)
+    public int saveAction(Action action, int appliance_id) {
+
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+
+            String sqlSelect = "SELECT action_id "
+                    + "FROM action "
+                    + "WHERE action_id = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sqlSelect);
+            stmt.setString(1, Action.getId);
+            ResultSet srs = stmt.executeQuery();
+            if (srs.next()) {
+
+                // UPDATE
+                String sqlUpdate = "UPDATE action " +
+                        "SET name = ?, " +
+                        "WHERE action_id = ?";
+
+                PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
+                stmt2.setString(1, action.getName);
+                stmt2.setInt(2, action.getId);
+                stmt2.executeUpdate();
+                return action.getId;
+            } else {
+                // INSERT
+
+                String sqlInsert = "INSERT into action "
+                        + "(name) "
+                        + "VALUES (?)";
+                //System.out.println(sql);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                insertStm.setString(1, action.getName());
+                insertStm.executeUpdate();
+                InteractsDAO interactsDAO = new InteractsDAO();
+                interactsDAO.saveInteracts(Action.getId, appliance_id, Action.getDate);
+                ResultSet generatedKeys = insertStm.getGeneratedKeys();
+                if(generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            DBHandler.closeConnection(con);
+            return -1;
+        }
+        return -1;
+    }
 }

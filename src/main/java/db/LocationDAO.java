@@ -1,14 +1,16 @@
 package db;
 
 import application.Location;
+import application.MonthlyEnergyConsumption;
 import application.Room;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LocationDAO {
-    public int save(Location location) {
+    public int saveLocation(Location location) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -55,7 +57,7 @@ public class LocationDAO {
                 insertStm.setString(5, location.getNumber());
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
-                if(generatedKeys.next()) {
+                if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 }
             }
@@ -65,6 +67,40 @@ public class LocationDAO {
             return -1;
         }
         return -1;
+    }
+
+    public Location getLocation(int location_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT country, city, ZIP, street, number, area, insulated, characteristics"
+                    + "FROM location "
+                    + "WHERE location_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, location_id);
+            ResultSet srs = stmt.executeQuery();
+
+            if (srs.next()) {
+                String country = srs.getString("country");
+                String city = srs.getString("city");
+                String ZIP = srs.getString("ZIP");
+                String street = srs.getString("street");
+                String number = srs.getString("number");
+                double area = srs.getDouble("area");
+                boolean insulated = srs.getBoolean("boolean");
+                String characteristics = srs.getString("characteristics");
+                return new Location(country, city, ZIP, street, number, area, insulated, characteristics);
+            } else {
+                return null;
+            }
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
+
     }
 
 }

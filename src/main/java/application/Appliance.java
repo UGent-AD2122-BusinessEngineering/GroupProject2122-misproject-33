@@ -3,7 +3,6 @@ package application;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.time.LocalDate;
 
 public class Appliance extends Action {
 
@@ -133,7 +132,7 @@ public class Appliance extends Action {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
     }
 
-    public String decreaseDegree(Appliance appliance, LocalDate date) {
+    public String decreaseDegree(Appliance appliance) {
         String message = "";
         if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate())){
             message = "Is not possible for this appliance.";
@@ -145,13 +144,13 @@ public class Appliance extends Action {
         }
         else{
             appliance.setTemperature(appliance.getTemperature()-1);
-            Action actie = new Action(date, "decrease a degree");
+            Action actie = new Action(appliance, LocalDateTime.now(), "decrease a degree");
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
     }
 
-    public String increaseDegree(Appliance appliance, LocalDate date) {
+    public String increaseDegree(Appliance appliance) {
         String message = "";
         if (!(appliance.isTempProportionate() && appliance.isTempDisproportionate())) {
             message = "Is not possible for this appliance.";
@@ -163,13 +162,13 @@ public class Appliance extends Action {
         }
         else{
             appliance.setTemperature(appliance.getTemperature() + 1);
-            Action actie = new Action(date, "increase a degree");
+            Action actie = new Action(appliance, LocalDateTime.now(), "increase a degree");
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
     }
 
-    public String energyConservationModeOn (Appliance appliance, LocalDate date) {
+    public String energyConservationModeOn (Appliance appliance) {
         String message = "";
         if(!(appliance.isEnergyConservationMode)) {
             return message = "Is not possible for this appliance.";
@@ -179,14 +178,14 @@ public class Appliance extends Action {
         else {
             energyConservationMode = true;
             message = "Thank you, we have registered the energy conservation method.";
-            Action actie = new Action(date, "energy conservation mode activated");
+            Action actie = new Action(appliance, LocalDateTime.now(), "energy conservation mode activated");
         }
         return message;
     }
 
-    public String customizedEnergyConservationAction(LocalDate date,String name){
+    public String customizedEnergyConservationAction(Appliance appliance, LocalDateTime date,String name){
         String message = "";
-        Action actie = new Action(date, name);
+        Action actie = new Action(appliance, date, name);
         return message = "Thank you, we have registered your energy conservation method: " + name;
     }
 

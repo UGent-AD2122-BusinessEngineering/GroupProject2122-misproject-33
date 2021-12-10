@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+
+//testen
 public class MonthlyEnergyConsumptionDAO {
     public MonthlyEnergyConsumption getMonthlyEnergyConsumption(int room_id, LocalDate date) {
         Connection con = null;

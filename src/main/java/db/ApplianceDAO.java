@@ -95,7 +95,7 @@ public class ApplianceDAO {
         }
     }
 
-    public void save(Appliance a, int room_id) {
+    public int save(Appliance a, int room_id) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -133,6 +133,7 @@ public class ApplianceDAO {
                 stmt2.setBoolean(8, a.isEnergyConservationMode());
                 stmt2.setInt(9, room_id);
                 stmt2.executeUpdate();
+                return room_id;
             } else {
                 // INSERT
 
@@ -152,11 +153,17 @@ public class ApplianceDAO {
                 insertStm.setBoolean(9, a.isEnergyConservationMode() );
                 insertStm.setInt(10, room_id);
                 insertStm.executeUpdate();
+                ResultSet generatedKeys = insertStm.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             DBHandler.closeConnection(con);
+            return -1;
         }
+        return -1;
     }
     public void deleteAppliance(int appliance_id) {
         Connection con = null;

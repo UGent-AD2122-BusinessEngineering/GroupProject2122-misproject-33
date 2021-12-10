@@ -1,6 +1,7 @@
 package application;
 
 import db.RoomDAO;
+import db.StudentDAO;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class Landlord extends Person {
         String message = "";
         Room room = new Room(roomnumber, location, landlord);
         RoomDAO roomDAO = new RoomDAO();
-        roomDAO.save(room, location_id, landlord.email);
+        int roomID = roomDAO.save(room, location_id, landlord.email);
         return message = "The room has been succesfully added.";
     }
 
@@ -40,7 +41,17 @@ public class Landlord extends Person {
         return message = "The room has been succesfully deleted.";
     }
 
-    public void monthlyEnergyConsumption(){}
+    public String monthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month){
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month);
+        //communiceren met db in db wordt he
+        return monthlyEnergyConsumption.toString();
+    }
+
+    public String addStudentToRoom(Student s, int roomId){
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.save(s, roomId);
+        return "Student " + s.firstname + " " + s.lastname + " is succesfully addes to the room.";
+    }
 
 
     /*public HashMap <Location, Student> getStudents(){

@@ -17,12 +17,15 @@ public class Student extends Person {
     private Location location;
     private ArrayList<Action> energyConservationActions;
     private ArrayList<Student> studentlist;
+    private boolean isContactPersoon;
     private int room_id;
 
 
-    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean aangemeld) {
+
+    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPersoon) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.room_id = room_id;
+        this.isContactPersoon = isContactPersoon;
         this.studentlist = new ArrayList<Student>();
         this.energyConservationActions = new ArrayList<Action>();
     }

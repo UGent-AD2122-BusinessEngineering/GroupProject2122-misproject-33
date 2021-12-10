@@ -22,7 +22,6 @@ public class Location extends Room {
         this.number = number;
         this.street = street;
         this.address = address;
-
     }
 
     public String getCountry() {return country;}

@@ -80,7 +80,7 @@ public class MonthlyEnergyConsumptionDAO {
                         + "VALUES (?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setInt(1, m.getMonthlyEnergyConsumption);
+                insertStm.setInt(1, m.getMonthlyEnergyConsumption());
                 insertStm.setDate(2, java.sql.Date.valueOf(m.getMonth()));
                 insertStm.setDouble(3, m.getWater());
                 insertStm.setDouble(4, m.getElectricity());

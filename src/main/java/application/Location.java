@@ -2,26 +2,26 @@ package application;
 
 import java.util.Objects;
 
-public class Location extends Room {
+public class Location {
     private int ID;
     private String country;
     private String city;
     private String ZIP;
     private String number;
     private String street;
-    private int area;
-    private String address;
+    private double area;
+    private boolean insulated;
+    private String characteristics;
 
-    public Location(int ID, String country, String city, String ZIP, String number, String street, int area, String address) {
-        super();
-        this.ID = ID;
+    public Location(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics) {
         this.area = area;
         this.country = country;
         this.city = city;
         this.ZIP = ZIP;
         this.number = number;
         this.street = street;
-        this.address = address;
+        this.insulated = insulated;
+        this.characteristics = characteristics;
     }
 
     public int getID() {return ID;}
@@ -37,10 +37,13 @@ public class Location extends Room {
     public void setNumber(String number) {this.number = number;}
     public String getStreet() {return street;}
     public void setStreet(String street) {this.street = street;}
-    public int getArea() {return area;}
-    public String getAddress() {return address;}
-    public void setAddress(String address) {this.address = address;}
-
+    public double getArea() {return area;}
+    public boolean isInsulated() {
+        return insulated;
+    }
+    public String getCharacteristics() {
+        return characteristics;
+    }
     /*
     //Wettelijk gestelde minimumnormen voor studentenkamers:
     //https://stad.gent/nl/wonen-bouwen/huren-verhuren/studentenkamers-verhuren/minimumnormen-voor-studentenkamers
@@ -129,11 +132,11 @@ public class Location extends Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return  ZIP == location.ZIP && number == location.number && area == location.area && Objects.equals(country, location.country) && Objects.equals(city, location.city) && Objects.equals(street, location.street) && Objects.equals(address, location.address);
+        return  ZIP == location.ZIP && number == location.number && area == location.area && Objects.equals(country, location.country) && Objects.equals(city, location.city) && Objects.equals(street, location.street);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( country, city, ZIP, number, street, area, address);
+        return Objects.hash( country, city, ZIP, number, street, area);
     }
 }

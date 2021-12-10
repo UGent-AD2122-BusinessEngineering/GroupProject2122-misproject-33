@@ -73,21 +73,23 @@ public class LocationDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT water_consumption, electricity_consumption, gas_consumption"
-                    + "FROM `monthly_energy_consumption` "
-                    + "WHERE room_id = ?" +
-                    "AND month = ?";
+            String sql = "SELECT country, city, ZIP, street, number, area, insulated, characteristics"
+                    + "FROM location "
+                    + "WHERE location_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, room_id);
-            stmt.setDate(2, java.sql.Date.valueOf(date));
+            stmt.setInt(1, location_id);
             ResultSet srs = stmt.executeQuery();
 
             if (srs.next()) {
-                double water = srs.getDouble("water_consumption");
-                double electricity = srs.getDouble("electricity_consumption");
-                double gas = srs.getDouble("gas_consumption");
-                int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
-                return new MonthlyEnergyConsumption(electricity, gas, water, date, monthlyEnergyConsumptionId);
+                String country = srs.getString("country");
+                String city = srs.getString("city");
+                String ZIP = srs.getString("ZIP");
+                String street = srs.getString("street");
+                String number = srs.getString("number");
+                double area = srs.getDouble("area");
+                boolean insulated = srs.getBoolean("boolean");
+                String characteristics = srs.getString("characteristics");
+                return new Location(country, city, ZIP, street, number, area, insulated, characteristics);
             } else {
                 return null;
             }

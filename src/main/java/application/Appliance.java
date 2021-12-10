@@ -33,7 +33,9 @@ public class Appliance {
         this.isEnergyConservationMode = isEnergyConservationMode;
     }
 
-
+    public boolean isEnergyConservationMode() {
+        return isEnergyConservationMode;
+    }
 
     public String getEnergyEfficiencyClass() {
         return energyEfficiencyClass;

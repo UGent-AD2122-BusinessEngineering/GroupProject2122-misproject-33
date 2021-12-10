@@ -164,12 +164,9 @@ public class Appliance {
         if(!(appliance.isEnergyConservationMode)) {
             return message = "Is not possible for this appliance.";
         }
-        if(isEnergyConservationMode)
-            message = "The energy conservation mode of this appliance is already activated.";
         else {
-            isEnergyConservationMode = true;
-            message = "Thank you, we have registered the energy conservation method.";
             Action actie = new Action(date, "energy conservation mode activated");
+            message = "Thank you, we have registered the energy conservation method.";
         }
         return message;
     }

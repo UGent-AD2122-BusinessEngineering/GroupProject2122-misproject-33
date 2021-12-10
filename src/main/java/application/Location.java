@@ -2,7 +2,7 @@ package application;
 
 import java.util.Objects;
 
-public class Location extends Room {
+public class Location {
     private int ID;
     private String country;
     private String city;
@@ -13,7 +13,7 @@ public class Location extends Room {
     private String address;
 
     public Location(int ID, String country, String city, String ZIP, String number, String street, int area, String address) {
-        super();
+
         this.ID = ID;
         this.area = area;
         this.country = country;

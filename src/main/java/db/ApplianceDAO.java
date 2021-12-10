@@ -36,7 +36,7 @@ public class ApplianceDAO {
             } else {
                 return null;
             }
-            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name);
+            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
             return appliance;
 
         } catch (DBException | SQLException e) {

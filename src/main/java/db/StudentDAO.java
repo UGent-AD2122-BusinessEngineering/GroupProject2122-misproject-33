@@ -122,7 +122,7 @@ public class StudentDAO {
                 stmt2.setString(3, s.getPassword());
                 stmt2.setString(4, s.getTelephonenumber());
                 stmt2.setString(5, s.getDateofbirth());
-                stmt2.setBoolean(6, s.isContactPerson);
+                stmt2.setBoolean(6, s.getIsContactPerson());
                 stmt2.setInt(7, room_id);
                 stmt2.executeUpdate();
             } else {
@@ -139,7 +139,7 @@ public class StudentDAO {
                 insertStm.setString(4, s.getPassword());
                 insertStm.setString(5, s.getTelephonenumber());
                 insertStm.setString(6, s.getDateofbirth());
-                insertStm.setBoolean(7, s.isContactPerson);
+                insertStm.setBoolean(7, s.getIsContactPerson());
                 insertStm.setInt(8, room_id);
                 insertStm.executeUpdate();
             }

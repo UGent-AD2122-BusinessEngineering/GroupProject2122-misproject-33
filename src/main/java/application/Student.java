@@ -17,7 +17,7 @@ public class Student extends Person {
     private Location location;
     private ArrayList<Action> energyConservationActions;
     private ArrayList<Student> studentlist;
-    private boolean isContactPersoon;
+    private boolean isContactPerson;
     private int room_id;
 
 
@@ -25,7 +25,7 @@ public class Student extends Person {
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPersoon) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.room_id = room_id;
-        this.isContactPersoon = isContactPersoon;
+        this.isContactPerson = isContactPerson;
         this.studentlist = new ArrayList<Student>();
         this.energyConservationActions = new ArrayList<Action>();
     }
@@ -41,6 +41,10 @@ public class Student extends Person {
             return true;
         }
         else return false;
+    }
+
+    public boolean getIsContactPerson() {
+        return isContactPerson;
     }
 
     //get student with given room_id (db)

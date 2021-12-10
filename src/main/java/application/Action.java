@@ -17,23 +17,21 @@ Mogelijke energy conservation acties die we kunnen implementeren
 //kheb de methodes bij appliance gezet omdat ik het wat raar vond om een action object hierin in te maken, (komt op hetzelfde neer uiteindelijk)
 
 public class Action {
-    private LocalDate date;
+    private static LocalDate date;
     private String name;
     private int Id;
+
 
     public Action(LocalDate date, String name) {
         this.date = date;
         this.name = name;
     }
 
-    public Action(){
-    }
-
     public static int getId() {
         return getId();
     }
 
-    public LocalDate getDate() {
+    public static LocalDate getDate() {
         return date;
     }
 

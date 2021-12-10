@@ -34,7 +34,7 @@ public class ActionDAO {
                 Appliance_appliance_id = srs.getInt("Appliance_appliance_id");
                 date = srs.getDate("date").toLocalDate();
 
-                Action action = new Action(Appliance_appliance_id, date, name); //?
+                Action action = new Action(date, name); //?
                 actions.add(action);
             }
             return actions;

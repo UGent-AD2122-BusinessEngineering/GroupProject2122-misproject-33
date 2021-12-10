@@ -17,7 +17,7 @@ public class LocationDAO {
                     + "WHERE location_id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setInt(1, location.getId());
+            stmt.setInt(1, location.getID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -31,15 +31,15 @@ public class LocationDAO {
                         "number = ? " +
                         "WHERE location_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setInt(1, location.getId());
+                stmt2.setInt(1, location.getID());
                 stmt2.setString(2, location.getCountry());
                 stmt2.setString(3, location.getCity());
                 stmt2.setString(4, location.getZIP());
                 stmt2.setString(5, location.getStreet());
                 stmt2.setString(6, location.getNumber());
-                stmt2.setInt(7, location.getId());
+                stmt2.setInt(7, location.getID());
                 stmt2.executeUpdate();
-                return location.getId();
+                return location.getID();
             } else {
                 // INSERT
 

@@ -8,14 +8,14 @@ public class MonthlyEnergyConsumption {
     private double gas;
     private double water;
     private LocalDate month;
-    //private int monthlyEnergyConsumptionId;
+    private int monthlyEnergyConsumptionId;
 
     public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month/*, int monthlyEnergyConsumptionId*/) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;
         this.month = month;
-        //this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
+        this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
     public double getElectricity() {
@@ -50,13 +50,13 @@ public class MonthlyEnergyConsumption {
         this.month = month;
     }
 
-    /*public int getMonthlyEnergyConsumptionId() {
+    public int getMonthlyEnergyConsumptionId() {
         return monthlyEnergyConsumptionId;
     }
 
     public void setMonthlyEnergyConsumptionId(int monthlyEnergyConsumptionId) {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -2,6 +2,7 @@ package db;
 
 import application.Action;
 import application.Room;
+import application.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,32 @@ import java.util.Date;
 
 public class RoomDAO {
 
-    //now returns AI generated PK, use for room_id
+    public Room getRoom(int room_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT room_id, room_number, Location_location_id "
+                    + "FROM room "
+                    + "WHERE room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            ResultSet srs = stmt.executeQuery();
+            int room_number;
+            int Location_location_id;
+
+            LocationDAO locationDAO = new LocationDAO();
+
+            room_number = srs.getInt("room_number");
+            Location_location_id = srs.getInt("Location_location_id");
+            return new Room(room_number, locationDAO.getLocation(Location_location_id));
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
+    }
+
     public int save(Room room, int Location_location_id, String Landlord_email) { //moet wss nog een methode aan toegevoegd worden die een room toewijst aan een student.
         Connection con = null;
         try {
@@ -36,8 +62,8 @@ public class RoomDAO {
                         "WHERE room_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                 stmt2.setInt(1, room.getRoomID());
-                stmt2.setString(2, room.getRoomnumber());
-                stmt2.setInt(3, room.getLocation().getRoomID());
+                stmt2.setInt(2, room.getRoomnumber());
+                stmt2.setInt(3, room.getLocation().getID());
                 stmt2.setString(4, room.getLandlord().getEmail());
                 stmt2.setInt(5, room.getRoomID());
                 stmt2.executeUpdate();
@@ -50,12 +76,12 @@ public class RoomDAO {
                         + "VALUES (?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setString(1, room.getRoomnumber());
-                insertStm.setInt(2, room.getLocation().getRoomID());
+                insertStm.setInt(1, room.getRoomnumber());
+                insertStm.setInt(2, room.getLocation().getID());
                 insertStm.setString(3, room.getLandlord().getEmail());
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
-                if(generatedKeys.next()) {
+                if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 }
             }
@@ -67,28 +93,28 @@ public class RoomDAO {
         return -1;
     }
 
-    public ArrayList<Room> getRooms(String Landlord_email) { //nog niet klaar
+    public ArrayList<Room> getRooms(String Landlord_email) {
         ArrayList<Room> rooms = new ArrayList<Room>();
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT room_id, room_number, Location_location_id, Landlord_email "
+            String sql = "SELECT room_id, room_number, Location_location_id "
                     + "FROM room "
                     + "WHERE Landlord_email = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, Landlord_email);
             ResultSet srs = stmt.executeQuery();
             int room_id;
-            int room_number ;
+            int room_number;
             int Location_location_id;
-            String Landlord_email1;
+
+            LocationDAO locationDAO = new LocationDAO();
 
             while (srs.next()) {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Landlord_email1 = srs.getString("Landlord_email");
-                Room room = new Room(room_number,Location_location_id);
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
                 rooms.add(room);
             }
             return rooms;
@@ -101,8 +127,7 @@ public class RoomDAO {
 
     }
 
-    /* moeten eerst weten welke instantievariabelen room klasse gaat hebben, alleszins number en wss arraylist<Appliance>?
-    public Room getRoom(Student student) {
+    public Room getRoom(String studentEmail) {
 
         Connection con = null;
         try {
@@ -110,13 +135,60 @@ public class RoomDAO {
 
             String sql1 = "SELECT Room_room_id FROM student WHERE email = ?";
             PreparedStatement stmt1 = con.prepareStatement(sql1);
-            stmt1.setString(1, student.getEmail());
+            stmt1.setString(1, studentEmail);
             ResultSet srs1 = stmt1.executeQuery();
             int room_id = srs1.getInt("Room_room_id");
+            return getRoom(room_id);
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-    } */
+    }
+
+    public void deleteRoom(int room_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "DELETE FROM room "
+                    + "WHERE room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            stmt.executeUpdate();
+        } catch (Exception dbe) {
+            dbe.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
+    }
+
+    public ArrayList<Room> getAllRooms() {
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * "
+                    + "FROM room ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+            int room_id;
+            int room_number;
+            int Location_location_id;
+
+            LocationDAO locationDAO = new LocationDAO();
+
+            while (srs.next()) {
+                room_id = srs.getInt("room_id");
+                room_number = srs.getInt("room_number");
+                Location_location_id = srs.getInt("Location_location_id");
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
+                rooms.add(room);
+            }
+            return rooms;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
 }

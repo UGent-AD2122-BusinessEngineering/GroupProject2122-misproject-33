@@ -157,7 +157,6 @@ public class StudentDAO {
                     + "WHERE email = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
-
             stmt.executeUpdate();
         } catch (Exception dbe) {
             dbe.printStackTrace();

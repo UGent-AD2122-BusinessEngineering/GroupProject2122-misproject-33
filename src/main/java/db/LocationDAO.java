@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LocationDAO {
     public int saveLocation(Location location) {
@@ -93,14 +94,39 @@ public class LocationDAO {
             } else {
                 return null;
             }
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-
-
     }
 
+    public ArrayList<Location> getAllLocations() {
+        ArrayList<Location> locations = new ArrayList<Location>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * "
+                    + "FROM location ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+
+            while (srs.next()) {
+                String country = srs.getString("country");
+                String city = srs.getString("city");
+                String ZIP = srs.getString("ZIP");
+                String street = srs.getString("street");
+                String number = srs.getString("number");
+                double area = srs.getDouble("area");
+                boolean insulated = srs.getBoolean("boolean");
+                String characteristics = srs.getString("characteristics");
+                locations.add(new Location(country, city, ZIP, street, number, area, insulated, characteristics));
+            }
+            return locations;
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
 }

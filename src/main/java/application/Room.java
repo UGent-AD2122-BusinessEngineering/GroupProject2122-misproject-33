@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Room {
-    public String roomnumber;
+    public int roomnumber;
     public Location location;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
@@ -13,7 +13,7 @@ public class Room {
     public int roomID;
     public Landlord landlord;
 
-    public Room(String roomnumber, Location location) {
+    public Room(int roomnumber, Location location) {
         this.roomnumber = roomnumber;
         this.location = location;
         monthlyEnergyConsumptions = new ArrayList<>();
@@ -21,11 +21,11 @@ public class Room {
         students = new ArrayList<>();
     }
 
-    public String getRoomnumber() {
+    public int getRoomnumber() {
         return roomnumber;
     }
 
-    public void setRoomnumber(String roomnumber) {
+    public void setRoomnumber(int roomnumber) {
         this.roomnumber = roomnumber;
     }
 

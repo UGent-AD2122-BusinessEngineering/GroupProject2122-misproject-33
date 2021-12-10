@@ -17,8 +17,8 @@ public class MonthlyEnergyConsumptionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT water_consmuption, electricity_consumption, gas_consumption"
-                    + "FROM `monthly energy consumption` "
+            String sql = "SELECT water_consumption, electricity_consumption, gas_consumption"
+                    + "FROM `monthly_energy_consumption` "
                     + "WHERE room_id = ?" +
                     "AND month = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class MonthlyEnergyConsumptionDAO {
             ResultSet srs = stmt.executeQuery();
 
             if (srs.next()) {
-                double water = srs.getDouble("water_consmuption");
+                double water = srs.getDouble("water_consumption");
                 double electricity = srs.getDouble("electricity_consumption");
                 double gas = srs.getDouble("gas_consumption");
                 return new MonthlyEnergyConsumption(electricity, gas, water, date);
@@ -109,6 +109,6 @@ public class MonthlyEnergyConsumptionDAO {
             DBHandler.closeConnection(con);
         }
     }
-
+3
 
 }

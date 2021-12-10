@@ -11,9 +11,7 @@ public class Room {
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
     private ArrayList<Student> students;
     public int roomID;
-
-    public Room() {
-    }
+    public Landlord landlord;
 
     public Room(String roomnumber, Location location) {
         this.roomnumber = roomnumber;
@@ -71,8 +69,8 @@ public class Room {
         return landlord;
     }
 
-    public String getMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month) {
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month);
+    public String getMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month,monthlyEnergyConsumptionId);
         return "Your monthly energy consumption of month " + month + " has been registered.";
     }
 }

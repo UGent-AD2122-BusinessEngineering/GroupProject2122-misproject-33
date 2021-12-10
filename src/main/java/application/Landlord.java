@@ -30,7 +30,7 @@ public class Landlord extends Person {
     public String addRoom(Landlord landlord, Location location, String roomnumber){
         int location_id = 10;//gwn om geen error te krijgen wordt nog veranderd
         String message = "";
-        Room room = new Room(roomnumber, location, landlord);
+        Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
         int roomID = roomDAO.save(room, location_id, landlord.email);
         return message = "The room has been succesfully added.";

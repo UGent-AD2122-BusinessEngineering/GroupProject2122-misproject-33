@@ -1,7 +1,6 @@
 package application;
 
 import java.util.Objects;
-import java.util.ArrayList;
 
 public class Location extends Room {
     private int ID;

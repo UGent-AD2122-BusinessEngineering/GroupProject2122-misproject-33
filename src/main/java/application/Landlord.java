@@ -41,17 +41,7 @@ public class Landlord extends Person {
         return message = "The room has been succesfully deleted.";
     }
 
-    public String monthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month){
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month);
-        //communiceren met db in db wordt he
-        return monthlyEnergyConsumption.toString();
-    }
 
-    public String addStudentToRoom(Student s, int roomId){
-        StudentDAO studentDAO = new StudentDAO();
-        studentDAO.save(s, roomId);
-        return "Student " + s.firstname + " " + s.lastname + " is succesfully addes to the room.";
-    }
 
 
     /*public HashMap <Location, Student> getStudents(){

@@ -1,16 +1,6 @@
 package application;
-
-import db.DBException;
-import db.DBHandler;
-
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import db.StudentDAO;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Student extends Person {
 
@@ -19,8 +9,6 @@ public class Student extends Person {
     private ArrayList<Student> studentlist;
     private boolean isContactPerson;
     private int room_id;
-
-
 
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPersoon) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);

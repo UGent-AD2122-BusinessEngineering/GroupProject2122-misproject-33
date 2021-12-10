@@ -87,8 +87,8 @@ public class RoomDAO {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Landlord_email1 = srs.getString("Landlord_email")
-                Room room = new Room()
+                Landlord_email1 = srs.getString("Landlord_email");
+                Room room = new Room(room_number,Location_location_id);
                 rooms.add(room);
             }
             return rooms;

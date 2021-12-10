@@ -59,7 +59,7 @@ public class ActionDAO {
                     + "WHERE action_id = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setInt(1, Action.getId());
+            stmt.setInt(1, action.getId());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -84,7 +84,7 @@ public class ActionDAO {
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
                 InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(action.getId, appliance_id, action.getDate());
+                interactsDAO.saveInteracts(action.getId(), appliance_id, action.getDate());
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if(generatedKeys.next()) {
                     return generatedKeys.getInt(1);

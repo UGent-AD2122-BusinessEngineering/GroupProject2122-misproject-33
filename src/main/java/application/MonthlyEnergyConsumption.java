@@ -10,7 +10,7 @@ public class MonthlyEnergyConsumption {
     private LocalDate month;
     private int monthlyEnergyConsumptionId;
 
-    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month/*, int monthlyEnergyConsumptionId*/) {
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;

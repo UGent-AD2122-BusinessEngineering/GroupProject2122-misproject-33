@@ -33,6 +33,18 @@ public class Appliance {
         this.isEnergyConservationMode = isEnergyConservationMode;
     }
 
+    public boolean isTempProportionate() {
+        return isTempProportionate;
+    }
+
+    public boolean isTempDisproportionate() {
+        return isTempDisproportionate;
+    }
+
+    public boolean isEnergyConservationMode() {
+        return isEnergyConservationMode;
+    }
+
     public String getEnergyEfficiencyClass() {
         return energyEfficiencyClass;
     }

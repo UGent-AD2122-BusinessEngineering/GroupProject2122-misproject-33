@@ -30,7 +30,8 @@ public class MonthlyEnergyConsumptionDAO {
                 double water = srs.getDouble("water_consumption");
                 double electricity = srs.getDouble("electricity_consumption");
                 double gas = srs.getDouble("gas_consumption");
-                return new MonthlyEnergyConsumption(electricity, gas, water, date);
+                int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
+                return new MonthlyEnergyConsumption(electricity, gas, water, date, monthlyEnergyConsumptionId);
             } else {
                 return null;
             }
@@ -52,7 +53,7 @@ public class MonthlyEnergyConsumptionDAO {
                     + "WHERE monthly_energy_consumption_id = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setString(1, m.getMonthlyEnergyConsumptionID());
+            stmt.setInt(1, m.getMonthlyEnergyConsumptionId());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -65,7 +66,7 @@ public class MonthlyEnergyConsumptionDAO {
                         "Room_room_id = ?, " +
                         "WHERE monthly_energy_consumption_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setInt(6, m.getMonthlyEnergyConsumptionID());
+                stmt2.setInt(6, m.getMonthlyEnergyConsumptionId());
                 stmt2.setDate(1, java.sql.Date.valueOf(m.getMonth()));
                 stmt2.setDouble(2, m.getWater());
                 stmt2.setDouble(3, m.getElectricity());
@@ -80,7 +81,7 @@ public class MonthlyEnergyConsumptionDAO {
                         + "VALUES (?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setInt(1, m.getMonthlyEnergyConsumption());
+                insertStm.setInt(1, m.getMonthlyEnergyConsumptionId());
                 insertStm.setDate(2, java.sql.Date.valueOf(m.getMonth()));
                 insertStm.setDouble(3, m.getWater());
                 insertStm.setDouble(4, m.getElectricity());
@@ -94,14 +95,14 @@ public class MonthlyEnergyConsumptionDAO {
         }
     }
 
-    public void deleteMonthlyEnergyConsumption(String monthly_energy_consumption_id) {
+    public void deleteMonthlyEnergyConsumption(String monthlyEnergyConsumptionId) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
             String sql = "DELETE FROM monthly_energy_consumption "
                     + "WHERE monthly_energy_consumption_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, monthly_energy_consumption_id);
+            stmt.setString(1, monthlyEnergyConsumptionId);
 
             stmt.executeUpdate();
         } catch (Exception dbe) {
@@ -109,6 +110,5 @@ public class MonthlyEnergyConsumptionDAO {
             DBHandler.closeConnection(con);
         }
     }
-3
 
 }

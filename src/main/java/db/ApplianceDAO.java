@@ -83,7 +83,7 @@ public class ApplianceDAO {
                 is_temp_proportionate = srs.getBoolean("is_temp_proportionate");
                 is_team_disproportionate = srs.getBoolean("is_team_disproportionate");
                 is_energy_conservation_mode = srs.getBoolean("is_energy_conservation_mode");
-                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_prortionate, is_team_disproportionate, is_energy_conservation_mode);
+                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_team_disproportionate, is_energy_conservation_mode);
                 appliances.add(appliance);
             }
             return appliances;
@@ -130,7 +130,7 @@ public class ApplianceDAO {
                 stmt2.setInt(5, a.getAnnualEnergyConsumption());
                 stmt2.setBoolean(6, a.getIsTempProportionate());
                 stmt2.setBoolean(7, a.getIsTempDisproportionate());
-                stmt2.setBoolean(8, a);
+                stmt2.setBoolean(8, a.isEnergyConservationMode());
                 stmt2.setInt(9, room_id);
                 stmt2.executeUpdate();
             } else {
@@ -149,7 +149,7 @@ public class ApplianceDAO {
                 insertStm.setInt(6, a.getAnnualEnergyConsumption());
                 insertStm.setBoolean(7, a.getIsTempProportionate());
                 insertStm.setBoolean(8, a.getIsTempDisproportionate());
-                insertStm.setBoolean(9, );
+                insertStm.setBoolean(9, a.isEnergyConservationMode() );
                 insertStm.setInt(10, room_id);
                 insertStm.executeUpdate();
             }

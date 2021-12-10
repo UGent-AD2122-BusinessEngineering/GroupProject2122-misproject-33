@@ -7,13 +7,13 @@ public class Location extends Room {
     private int location_id;
     private String country;
     private String city;
-    private int ZIP;
+    private String ZIP;
     private int number;
     private String street;
     private int area;
     private String address;
 
-    public Location(String country, String city, int ZIP, int number, String street, int area, String address) {
+    public Location(int locationId, String country, String city, String ZIP, int number, String street, int area, String address) {
         super();
         this.area = area;
         this.country = country;
@@ -28,8 +28,8 @@ public class Location extends Room {
     public void setCountry(String country) {this.country = country;}
     public String getCity() {return city;}
     public void setCity(String city) {this.city = city;}
-    public int getZIP() {return ZIP;}
-    public void setZIP(int ZIP) {this.ZIP = ZIP;}
+    public String getZIP() {return ZIP;}
+    public void setZIP(String ZIP) {this.ZIP = ZIP;}
     public int getNumber() {return number;}
     public void setNumber(int number) {this.number = number;}
     public String getStreet() {return street;}

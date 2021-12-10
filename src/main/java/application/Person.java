@@ -70,7 +70,7 @@ public class Person {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
 
-    public void registreren (String password){
+    /*public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is
         boolean student = keyboard.nextBoolean();
@@ -131,7 +131,7 @@ public class Person {
 
     public void afmelden (Person person){
         person.aangemeld = false;
-    }
+    }*/
 
-    public void inloggen ()
+    public void inloggen (){}
 }

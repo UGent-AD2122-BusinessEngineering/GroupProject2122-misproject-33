@@ -1,14 +1,16 @@
 package db;
 
 import application.Location;
+import application.MonthlyEnergyConsumption;
 import application.Room;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LocationDAO {
-    public int save(Location location) {
+    public int saveLocation(Location location) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -55,7 +57,7 @@ public class LocationDAO {
                 insertStm.setString(5, location.getNumber());
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
-                if(generatedKeys.next()) {
+                if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 }
             }
@@ -65,6 +67,38 @@ public class LocationDAO {
             return -1;
         }
         return -1;
+    }
+
+    public Location getLocation(int location_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT water_consumption, electricity_consumption, gas_consumption"
+                    + "FROM `monthly_energy_consumption` "
+                    + "WHERE room_id = ?" +
+                    "AND month = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            stmt.setDate(2, java.sql.Date.valueOf(date));
+            ResultSet srs = stmt.executeQuery();
+
+            if (srs.next()) {
+                double water = srs.getDouble("water_consumption");
+                double electricity = srs.getDouble("electricity_consumption");
+                double gas = srs.getDouble("gas_consumption");
+                int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
+                return new MonthlyEnergyConsumption(electricity, gas, water, date, monthlyEnergyConsumptionId);
+            } else {
+                return null;
+            }
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
+
     }
 
 }

@@ -1,5 +1,7 @@
 package application;
 
+import db.ActionDAO;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -136,6 +138,8 @@ public class Appliance {
         else{
             appliance.setTemperature(appliance.getTemperature()-1);
             Action actie = new Action(date, "decrease a degree");
+            ActionDAO actionDAO = new ActionDAO();
+            actionDAO.saveAction(actie, appliance.applianceID);
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
@@ -154,6 +158,8 @@ public class Appliance {
         else{
             appliance.setTemperature(appliance.getTemperature() + 1);
             Action actie = new Action(date, "increase a degree");
+            ActionDAO actionDAO = new ActionDAO();
+            actionDAO.saveAction(actie, appliance.applianceID);
             message = "Thank you, we have registered your energy conservation method.";
         }
         return message;
@@ -166,6 +172,8 @@ public class Appliance {
         }
         else {
             Action actie = new Action(date, "energy conservation mode activated");
+            ActionDAO actionDAO = new ActionDAO();
+            actionDAO.saveAction(actie, appliance.applianceID);
             message = "Thank you, we have registered the energy conservation method.";
         }
         return message;

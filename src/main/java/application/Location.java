@@ -1,5 +1,7 @@
 package application;
 
+import db.LocationDAO;
+
 import java.util.Objects;
 
 public class Location {
@@ -44,6 +46,24 @@ public class Location {
     public String getCharacteristics() {
         return characteristics;
     }
+
+    public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+        Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
+        LocationDAO locationDAO = new LocationDAO();
+        location.ID = locationDAO.saveLocation(location);
+        return "The location has been succesfully added.";
+    }
+
+    public void deleteLocation(){
+        //niet nodig bb
+    }
+
+    public String toString(Location location){
+        String message = "Country: " + country + "\n" + "City: " + city;
+        return message;
+     }
+
+
     /*
     //Wettelijk gestelde minimumnormen voor studentenkamers:
     //https://stad.gent/nl/wonen-bouwen/huren-verhuren/studentenkamers-verhuren/minimumnormen-voor-studentenkamers

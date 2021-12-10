@@ -1,5 +1,7 @@
 package application;
 
+import db.ApplianceDAO;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -67,6 +69,15 @@ public class Room {
 
     public Landlord getLandlord() {
         return landlord;
+    }
+
+    public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
+                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
+        String message = " ";
+        Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
+        ApplianceDAO applianceDAO = new ApplianceDAO();
+        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
+        return message = "The appliance has been succesfully added.";
     }
 
     public String getMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {

@@ -16,10 +16,11 @@ public class Room extends Appliance {
     public Room() {
     }
 
-    public Room(ArrayList<MonthlyEnergyConsumption> monthlyEnergy, ArrayList<Action> energyConservationActions, ArrayList<Student> students, String roomnumber, int roomID) {
+    public Room(String roomnumber, Location location, Landlord landlord) {
         super();
-        this.roomID = roomID;
         this.roomnumber = roomnumber;
+        this.location = location;
+        this.landlord = landlord;
         monthlyEnergyConsumptions = new ArrayList<>();
         energyConservationActions = new ArrayList<>();
         students = new ArrayList<>();

@@ -13,7 +13,7 @@ public class Location extends Room {
     private int area;
     private String address;
 
-    public Location(int locationId, String country, String city, int ZIP, int number, String street, int area, String address) {
+    public Location(String country, String city, int ZIP, int number, String street, int area, String address) {
         super();
         this.area = area;
         this.country = country;

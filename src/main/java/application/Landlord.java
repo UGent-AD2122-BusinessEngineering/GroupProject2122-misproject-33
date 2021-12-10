@@ -1,5 +1,7 @@
 package application;
 
+import db.RoomDAO;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -21,15 +23,25 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    //addStudent
-    public void addStudent(Location location, Student student){
-        //communiceren met db (zie vb)
+    //addRoom
+    public String addRoom(Landlord landlord, Location location, String roomnumber){
+        int location_id = 10;//gwn om geen error te krijgen wordt nog veranderd
+        String message = "";
+        Room room = new Room(roomnumber, location, landlord);
+        RoomDAO roomDAO = new RoomDAO();
+        roomDAO.save(room, location_id, landlord.email);
+        return message = "The room has been succesfully added.";
     }
 
-    //deleteStudent
-    public void deleteStudent(Location location, Student student){
+    //deleteRoom
+    public String deleteRoom(Landlord landlord, Room room){
+        String message = "";
         //communiceren met db (zie vb)
+        return message = "The room has been succesfully deleted.";
     }
+
+    public void monthlyEnergyConsumption(){}
+
 
     /*public HashMap <Location, Student> getStudents(){
         //communiceren met db (zie vb)

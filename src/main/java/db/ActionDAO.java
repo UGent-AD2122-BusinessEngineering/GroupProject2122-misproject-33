@@ -34,7 +34,7 @@ public class ActionDAO {
                 Appliance_appliance_id = srs.getInt("Appliance_appliance_id");
                 date = srs.getDate("date").toLocalDate();
 
-                Action action = new Action(date, name); //?
+                Action action = new Action(date, name);
                 actions.add(action);
             }
             return actions;
@@ -84,7 +84,7 @@ public class ActionDAO {
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
                 InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(Action.getId(), appliance_id, Action.getDate());
+                interactsDAO.saveInteracts(action.getId, appliance_id, action.getDate());
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if(generatedKeys.next()) {
                     return generatedKeys.getInt(1);

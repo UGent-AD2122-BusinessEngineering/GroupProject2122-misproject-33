@@ -40,6 +40,8 @@ public class Landlord extends Person {
         return message = "The room has been succesfully deleted.";
     }
 
+    public void monthlyEnergyConsumption(){}
+
 
     /*public HashMap <Location, Student> getStudents(){
         //communiceren met db (zie vb)

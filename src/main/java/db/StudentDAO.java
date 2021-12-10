@@ -162,7 +162,6 @@ public class StudentDAO {
         } catch (Exception dbe) {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);
-
         }
     }
 

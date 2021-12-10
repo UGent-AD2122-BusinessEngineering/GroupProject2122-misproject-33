@@ -1,8 +1,6 @@
 package db;
 
 import application.Action;
-import application.Room;
-import application.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ActionDAO {
 
@@ -99,5 +96,23 @@ public class ActionDAO {
             return -1;
         }
         return -1;
+    }
+
+    /* ervoor zorgen dat alleen user made kunnen verwijderd worden in application layer
+    want deze methode verwijdert ook alle records in interacts table waardoor anders alle in het verleden
+    geregistreerde actions van dezelfde soort (zoals bij decreaseTemperature) bij alle appliances verwijderd worden */
+    public void deleteAction(int action_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "DELETE FROM action "
+                    + "WHERE action_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, action_id);
+            stmt.executeUpdate();
+        } catch (Exception dbe) {
+            dbe.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
     }
 }

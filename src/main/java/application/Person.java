@@ -11,7 +11,6 @@ public class Person {
     public String telephone_number;
     public String date_of_birth;
     public String password;
-    public boolean isContactPerson;
 
     public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         this.email = email;
@@ -52,11 +51,6 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isContactPerson(boolean isContactPerson){
-        this.isContactPerson = isContactPerson;
-        return true;
     }
 
     @Override
@@ -131,8 +125,13 @@ public class Person {
             }
             System.out.println("Uw registratie is succesvol verlopen.");
             boolean aangemeld = true;
-            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord);
+            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord, aangemeld);
         }
     }
 
+    public void afmelden (Person person){
+        person.aangemeld = false;
+    }
+
+    public void inloggen ()
 }

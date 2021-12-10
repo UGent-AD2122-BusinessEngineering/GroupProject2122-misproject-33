@@ -27,7 +27,7 @@ public class Action {
         this.name = name;
     }
 
-    public static int getId() {
+    public int getId() {
         return getId();
     }
 

@@ -40,7 +40,11 @@ public class Landlord extends Person {
         return message = "The room has been succesfully deleted.";
     }
 
-    public void monthlyEnergyConsumption(){}
+    public String monthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month){
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month);
+        //communiceren met db in db wordt he
+        return monthlyEnergyConsumption.toString();
+    }
 
 
     /*public HashMap <Location, Student> getStudents(){

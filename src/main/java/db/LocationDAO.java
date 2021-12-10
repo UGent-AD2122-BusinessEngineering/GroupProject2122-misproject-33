@@ -37,7 +37,7 @@ public class LocationDAO {
                 stmt2.setString(4, location.getZIP());
                 stmt2.setString(5, location.getStreet());
                 stmt2.setString(6, location.getNumber());
-                stmt2.setString(7, location.getId);
+                stmt2.setInt(7, location.getId());
                 stmt2.executeUpdate();
                 return location.getId();
             } else {

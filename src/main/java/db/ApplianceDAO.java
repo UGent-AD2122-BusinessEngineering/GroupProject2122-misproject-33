@@ -36,7 +36,7 @@ public class ApplianceDAO {
             } else {
                 return null;
             }
-            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name );
+            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name);
             return appliance;
 
         } catch (DBException | SQLException e) {
@@ -93,7 +93,7 @@ public class ApplianceDAO {
                     + "WHERE appliance_id = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setString(1, a.getApplianceID());
+            stmt.setInt(1, a.getApplianceID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -107,7 +107,7 @@ public class ApplianceDAO {
                         "Room_room_id = ?, " +
                         "WHERE appliance_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setString(7, a.getApplianceID());
+                stmt2.setInt(7, a.getApplianceID());
                 stmt2.setString(1, a.getName());
                 stmt2.setString(2, a.getSupplierName());
                 stmt2.setString(3, a.getModelIdentifier());
@@ -123,7 +123,7 @@ public class ApplianceDAO {
                         + "VALUES (?,?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setString(1, a.getApplianceID());
+                insertStm.setInt(1, a.getApplianceID());
                 insertStm.setString(2, a.getName());
                 insertStm.setString(3, a.getSupplierName());
                 insertStm.setString(4, a.getModelIdentifier());

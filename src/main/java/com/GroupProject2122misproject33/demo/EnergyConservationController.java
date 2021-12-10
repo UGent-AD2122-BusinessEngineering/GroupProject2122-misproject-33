@@ -19,11 +19,12 @@ public class EnergyConservationController {
 		return String.format("Hello %s!", name);
 	}
 
-	@GetMapping("/EnergyConservation")
+	/* @GetMapping("/EnergyConservation")
 	public String aboveRoomTemperature(@RequestParam(value = "temperature", defaultValue = "0.0") String temperature){
 		new Action().aboveRoomTemperature(Double.parseDouble(temperature));
 		return "EnergyConservation";
 	}
+	 */
 
 
 }

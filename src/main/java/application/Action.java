@@ -19,6 +19,7 @@ Mogelijke energy conservation acties die we kunnen implementeren
 public class Action {
     private LocalDate date;
     private String name;
+    private int Id;
 
     public Action(LocalDate date, String name) {
         this.date = date;
@@ -26,6 +27,10 @@ public class Action {
     }
 
     public Action(){
+    }
+
+    public static int getId() {
+        return getId();
     }
 
     public String averageTemperature(double temperature) {

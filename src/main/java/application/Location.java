@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 public class Location extends Room {
-    private int location_id;
+    private int ID;
     private String country;
     private String city;
     private String ZIP;
@@ -13,8 +13,9 @@ public class Location extends Room {
     private int area;
     private String address;
 
-    public Location(int locationId, String country, String city, String ZIP, String number, String street, int area, String address) {
+    public Location(int ID, String country, String city, String ZIP, String number, String street, int area, String address) {
         super();
+        this.ID = ID;
         this.area = area;
         this.country = country;
         this.city = city;
@@ -24,6 +25,9 @@ public class Location extends Room {
         this.address = address;
     }
 
+    public int getID() {return ID;}
+    public void setId(int ID) {this.ID = ID;}
+    public void setArea(int area) {this.area = area;}
     public String getCountry() {return country;}
     public void setCountry(String country) {this.country = country;}
     public String getCity() {return city;}

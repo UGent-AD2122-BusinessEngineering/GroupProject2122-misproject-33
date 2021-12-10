@@ -59,7 +59,7 @@ public class ActionDAO {
                     + "WHERE action_id = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
-            stmt.setString(1, Action.getId);
+            stmt.setInt(1, Action.getId());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
 
@@ -69,10 +69,10 @@ public class ActionDAO {
                         "WHERE action_id = ?";
 
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setString(1, action.getName);
-                stmt2.setInt(2, action.getId);
+                stmt2.setString(1, action.getName());
+                stmt2.setInt(2, action.getId());
                 stmt2.executeUpdate();
-                return action.getId;
+                return action.getId();
             } else {
                 // INSERT
 
@@ -84,7 +84,7 @@ public class ActionDAO {
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
                 InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(Action.getId, appliance_id, Action.getDate);
+                interactsDAO.saveInteracts(Action.getId(), appliance_id, Action.getDate());
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if(generatedKeys.next()) {
                     return generatedKeys.getInt(1);

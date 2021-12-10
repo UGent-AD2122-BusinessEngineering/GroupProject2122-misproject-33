@@ -152,6 +152,8 @@ public class ApplianceDAO {
             DBHandler.closeConnection(con);
 
         }
+
+
     }
 
 }

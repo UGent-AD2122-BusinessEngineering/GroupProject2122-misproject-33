@@ -133,7 +133,7 @@ public class ApplianceDAO {
                 stmt2.setBoolean(8, a.isEnergyConservationMode());
                 stmt2.setInt(9, room_id);
                 stmt2.executeUpdate();
-                return room_id;
+                return a.getApplianceID();
             } else {
                 // INSERT
 

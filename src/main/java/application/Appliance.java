@@ -22,6 +22,7 @@ public class Appliance {
     private boolean isTempDisproportionate;
     private double temperature;
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
+    private ArrayList <Action> actionsPerAppliance;
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
                      String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode) {
@@ -34,6 +35,12 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
+    }
+
+    public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
+        ActionDAO actionDAO = new ActionDAO();
+        actionDAO.getActions(appliance.getApplianceID());
+        return actionsPerAppliance;
     }
 
     public boolean isEnergyConservationMode() {

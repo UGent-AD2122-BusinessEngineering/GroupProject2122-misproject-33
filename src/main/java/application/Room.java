@@ -2,7 +2,9 @@ package application;
 
 import db.ApplianceDAO;
 import db.RoomDAO;
+import db.StudentDAO;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -10,9 +12,8 @@ import java.util.Objects;
 public class Room {
     public int roomnumber;
     public Location location;
-    private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db, nodig ?
-    private ArrayList<Action> energyConservationActions; //nog koppelen aan db
-    private ArrayList<Student> students; // nog koppelen aan db
+    private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db,
+    private ArrayList<Student> studentsPerRoom; // nog koppelen aan db
     public int roomID;
     public Landlord landlord;
 
@@ -20,8 +21,12 @@ public class Room {
         this.roomnumber = roomnumber;
         this.location = location;
         monthlyEnergyConsumptions = new ArrayList<>();
-        energyConservationActions = new ArrayList<>();
-        students = new ArrayList<>();
+        studentsPerRoom = new ArrayList<>();
+    }
+
+    public ArrayList<Student> getStudentPerRoom (Room room){
+        StudentDAO studentDAO = new StudentDAO();
+        return studentDAO.getStudents(room.getRoomID());
     }
 
     public int getRoomnumber() {
@@ -40,21 +45,6 @@ public class Room {
         this.monthlyEnergyConsumptions = monthlyEnergyConsumptions;
     }
 
-    public ArrayList<Action> getEnergyConservationActions() {
-        return energyConservationActions;
-    }
-
-    public void setEnergyConservationActions(ArrayList<Action> energyConservationActions) {
-        this.energyConservationActions = energyConservationActions;
-    }
-
-    public ArrayList<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(ArrayList<Student> students) {
-        this.students = students;
-    }
 
     public int getRoomID() {
         return roomID;

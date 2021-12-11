@@ -10,12 +10,18 @@ import java.util.HashMap;
 public class Landlord extends Person {
     private static int dagVdMaand = LocalDate.now().getDayOfMonth();
     private static int maandVhJaar = LocalDate.now().getMonthValue();
-    private HashMap<Room, Student> contactsRoom;
-    private ArrayList<Room> roomsPerLandLord;
+    private HashMap<Room, Student> contactsRoom; //?
+    private ArrayList<Room> roomsLandLord;
 
     public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
         super(email, firstname, lastname, telephone_number, date_of_birth, password);
         contactsRoom = new HashMap<>(); //nog koppelen aan db
+    }
+
+    public ArrayList<Room> getRoomsLandLord(Landlord landlord) {
+        RoomDAO roomDAO = new RoomDAO();
+        roomsLandLord = roomDAO.getRooms(landlord.email);
+        return roomsLandLord;
     }
 
     public static int getDagVdMaand() {

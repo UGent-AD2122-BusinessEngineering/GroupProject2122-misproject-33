@@ -157,6 +157,20 @@ public class RoomDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);
             stmt.executeUpdate();
+
+            //LATER
+            /* String sql2 = "DELETE FROM location " +
+                    "WHERE NOT EXISTS(SELECT Location_location_id " +
+                    "FROM interacts a " +
+                    "WHERE room_id = ?)"; //AND >4 ofzo als we in de eerste 4 rijen standaard acties steken die niet verwijderd mogen worden
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setInt(1, action_id);
+            stmt2.executeUpdate();
+        } catch (Exception dbe) {
+            dbe.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
+*/
         } catch (Exception dbe) {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);

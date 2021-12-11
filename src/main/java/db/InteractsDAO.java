@@ -41,13 +41,11 @@ public class InteractsDAO {
             stmt.executeUpdate();
 
             //het gedeelte dat aactions verwijdert als ze niet meer in de interacts table voorkomen
-            //komt ook bij deleteAppliance wss
-            String sql2 = "DELETE FROM action " +
+            String sql2 = "DELETE FROM action a" +
                     "WHERE NOT EXISTS(SELECT Action_action_id " +
-                    "FROM interacts a " +
-                    "WHERE a.Action_action_id = ?)"; //AND >4 ofzo als we in de eerste 4 rijen standaard acties steken die niet verwijderd mogen worden
+                    "FROM interacts i " +
+                    "WHERE i.Action_action_id = a.action_id)"; //AND >4 ofzo als we in de eerste 4 rijen standaard acties steken die niet verwijderd mogen worden
             PreparedStatement stmt2 = con.prepareStatement(sql2);
-            stmt2.setInt(1, action_id);
             stmt2.executeUpdate();
         } catch (Exception dbe) {
             dbe.printStackTrace();

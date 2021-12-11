@@ -90,6 +90,44 @@ public class StudentDAO {
 
     }
 
+    public ArrayList<Student> getAllStudents() {
+        ArrayList<Student> students = new ArrayList<Student>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * "
+                    + "FROM student ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+            String email;
+            String first_name;
+            String last_name;
+            String password;
+            String telephone_number;
+            String date_of_birth;
+            boolean is_contact_person;
+
+            while (srs.next()) {
+                email = srs.getString("email");
+                first_name = srs.getString("first_name");
+                last_name = srs.getString("last_name");
+                password = srs.getString("password");
+                telephone_number = srs.getString("telephone_number");
+                date_of_birth = srs.getString("date_of_birth");
+                is_contact_person = srs.getBoolean("is_contact_person");
+                Student student = new Student(email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person);
+                students.add(student);
+            }
+            return students;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
+    }
+
     //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
     public void save(Student s, int room_id) {
         Connection con = null;

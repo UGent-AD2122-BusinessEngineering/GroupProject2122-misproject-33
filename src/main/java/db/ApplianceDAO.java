@@ -95,6 +95,47 @@ public class ApplianceDAO {
         }
     }
 
+    public ArrayList<Appliance> getAllAppliances() {
+        ArrayList<Appliance> appliances = new ArrayList<Appliance>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * "
+                    + "FROM appliance ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+            int appliance_id;
+            String name;
+            String supplier_name;
+            String model_identifier;
+            String energy_efficiency_class;
+            int annual_energy_consumption;
+            Boolean is_temp_proportionate;
+            Boolean is_team_disproportionate;
+            Boolean is_energy_conservation_mode;
+
+            while (srs.next()) {
+                appliance_id = srs.getInt("appliance_id");
+                name = srs.getString("name");
+                supplier_name = srs.getString("supplier_name");
+                model_identifier = srs.getString("model_identifier");
+                energy_efficiency_class = srs.getString("energy_efficiency_class");
+                annual_energy_consumption = srs.getInt("annual_energy_consumption");
+                is_temp_proportionate = srs.getBoolean("is_temp_proportionate");
+                is_team_disproportionate = srs.getBoolean("is_team_disproportionate");
+                is_energy_conservation_mode = srs.getBoolean("is_energy_conservation_mode");
+                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_team_disproportionate, is_energy_conservation_mode);
+                appliances.add(appliance);
+            }
+            return appliances;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
+
     public int save(Appliance a, int room_id) {
         Connection con = null;
         try {
@@ -165,6 +206,7 @@ public class ApplianceDAO {
         }
         return -1;
     }
+
     public void deleteAppliance(int appliance_id) {
         Connection con = null;
         try {
@@ -183,5 +225,4 @@ public class ApplianceDAO {
 
 
     }
-
 }

@@ -91,7 +91,7 @@ public class LocationDAO {
                 boolean insulated = srs.getBoolean("boolean");
                 String characteristics = srs.getString("characteristics");
                 int location_id1 = srs.getInt("location_id");
-                return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id);
+                return new Location(country, city, ZIP, number, street, area, insulated, characteristics, location_id);
             } else {
                 return null;
             }
@@ -122,7 +122,7 @@ public class LocationDAO {
                 boolean insulated = srs.getBoolean("boolean");
                 String characteristics = srs.getString("characteristics");
                 int location_id = srs.getInt("location_id");
-                locations.add(new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id));
+                locations.add(new Location(country, city, ZIP, number, street, area, insulated, characteristics, location_id));
             }
             return locations;
         } catch (DBException | SQLException e) {

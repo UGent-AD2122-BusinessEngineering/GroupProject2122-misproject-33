@@ -26,7 +26,7 @@ public class Location {
         this.characteristics = characteristics;
     }
 
-    public Location(String country, String city, String ZIP, String number, String street, double area, boolean insulated, String characteristics, int ID) {
+    public Location(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics, int ID) {
         this.ID = ID;
         this.country = country;
         this.city = city;

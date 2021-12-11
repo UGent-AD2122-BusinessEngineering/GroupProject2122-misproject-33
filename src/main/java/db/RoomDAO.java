@@ -25,12 +25,14 @@ public class RoomDAO {
             ResultSet srs = stmt.executeQuery();
             int room_number;
             int Location_location_id;
+            int room_ic;
 
             LocationDAO locationDAO = new LocationDAO();
 
             room_number = srs.getInt("room_number");
             Location_location_id = srs.getInt("Location_location_id");
-            return new Room(room_number, locationDAO.getLocation(Location_location_id));
+            room_id = srs.getInt("room_id");
+            return new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -114,7 +116,7 @@ public class RoomDAO {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
                 rooms.add(room);
             }
             return rooms;
@@ -155,6 +157,20 @@ public class RoomDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);
             stmt.executeUpdate();
+
+            //LATER
+            /* String sql2 = "DELETE FROM location " +
+                    "WHERE NOT EXISTS(SELECT Location_location_id " +
+                    "FROM interacts a " +
+                    "WHERE room_id = ?)"; //AND >4 ofzo als we in de eerste 4 rijen standaard acties steken die niet verwijderd mogen worden
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setInt(1, action_id);
+            stmt2.executeUpdate();
+        } catch (Exception dbe) {
+            dbe.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
+*/
         } catch (Exception dbe) {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);
@@ -180,7 +196,7 @@ public class RoomDAO {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
                 rooms.add(room);
             }
             return rooms;

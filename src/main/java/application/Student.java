@@ -56,7 +56,8 @@ public class Student extends Person {
     //moet ook nog met room en dan van room de room_id nemen
     public void addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.save(student, room_id);
+        studentDAO.save(student);
+        studentDAO.update(student, room_id);
         if (studentlist == null || studentlist.contains(student)) {
             return;
         }

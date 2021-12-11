@@ -94,14 +94,14 @@ public class MonthlyEnergyConsumptionDAO {
         }
     }
 
-    public void deleteMonthlyEnergyConsumption(String monthlyEnergyConsumptionId) {
+    public void deleteMonthlyEnergyConsumption(int monthlyEnergyConsumptionId) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
             String sql = "DELETE FROM monthly_energy_consumption "
                     + "WHERE monthly_energy_consumption_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, monthlyEnergyConsumptionId);
+            stmt.setInt(1, monthlyEnergyConsumptionId);
 
             stmt.executeUpdate();
         } catch (Exception dbe) {

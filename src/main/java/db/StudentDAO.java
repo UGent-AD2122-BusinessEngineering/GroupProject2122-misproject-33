@@ -129,7 +129,46 @@ public class StudentDAO {
     }
 
     //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
-    public void save(Student s, int room_id) {
+    public void save(Student s) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+
+            String sqlSelect = "SELECT email "
+                    + "FROM student "
+                    + "WHERE email = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sqlSelect);
+            stmt.setString(1, s.getEmail());
+            ResultSet srs = stmt.executeQuery();
+            if (srs.next()) {
+                System.out.println("Student already saved, use update method");
+                DBHandler.closeConnection(con);
+                return;
+            } else {
+                // INSERT
+
+                String sqlInsert = "INSERT into student "
+                        + "(email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person) "
+                        + "VALUES (?,?,?,?,?,?,?)";
+                //System.out.println(sql);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                insertStm.setString(1, s.getEmail());
+                insertStm.setString(2, s.getFirstname());
+                insertStm.setString(3, s.getLastname());
+                insertStm.setString(4, s.getPassword());
+                insertStm.setString(5, s.getTelephonenumber());
+                insertStm.setString(6, s.getDateofbirth());
+                insertStm.setBoolean(7, s.getIsContactPerson());
+                insertStm.executeUpdate();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
+    }
+
+    public void update(Student s, int room_id) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -164,28 +203,16 @@ public class StudentDAO {
                 stmt2.setInt(7, room_id);
                 stmt2.executeUpdate();
             } else {
-                // INSERT
-
-                String sqlInsert = "INSERT into student "
-                        + "(email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person, Room_room_id) "
-                        + "VALUES (?,?,?,?,?,?,?,?)";
-                //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
-                insertStm.setString(1, s.getEmail());
-                insertStm.setString(2, s.getFirstname());
-                insertStm.setString(3, s.getLastname());
-                insertStm.setString(4, s.getPassword());
-                insertStm.setString(5, s.getTelephonenumber());
-                insertStm.setString(6, s.getDateofbirth());
-                insertStm.setBoolean(7, s.getIsContactPerson());
-                insertStm.setInt(8, room_id);
-                insertStm.executeUpdate();
+                System.out.println("student nog niet toegevoegd in database, gebruik save methode en daarna update om room aan te maken");
+                DBHandler.closeConnection(con);
+                return;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             DBHandler.closeConnection(con);
         }
     }
+
 
     public void deleteStudent(String email) {
         Connection con = null;
@@ -201,7 +228,6 @@ public class StudentDAO {
             DBHandler.closeConnection(con);
         }
     }
-
 
 
     public static void main(String[] args) {

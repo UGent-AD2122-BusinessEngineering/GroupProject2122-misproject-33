@@ -43,6 +43,8 @@ public class Student extends Person {
         return isContactPerson;
     }
 
+
+
     //get student with given room_id (db)
     public ArrayList<Student> getStudents(int room_id) {
         StudentDAO studentDAO = new StudentDAO();
@@ -51,6 +53,7 @@ public class Student extends Person {
 
     //moet nog ergens kunnen toevoegen of het contactperson is van de room
     //add student with given object and room_id (db)
+    //moet ook nog met room en dan van room de room_id nemen
     public void addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.save(student, room_id);

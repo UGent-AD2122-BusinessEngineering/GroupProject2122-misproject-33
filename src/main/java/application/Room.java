@@ -1,6 +1,7 @@
 package application;
 
 import db.ApplianceDAO;
+import db.RoomDAO;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,9 +10,9 @@ import java.util.Objects;
 public class Room {
     public int roomnumber;
     public Location location;
-    private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db
+    private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db, nodig ?
     private ArrayList<Action> energyConservationActions; //nog koppelen aan db
-    private ArrayList<Student> students;
+    private ArrayList<Student> students; // nog koppelen aan db
     public int roomID;
     public Landlord landlord;
 
@@ -71,17 +72,22 @@ public class Room {
         return landlord;
     }
 
-    public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
+    public String addRoom(Landlord landlord, Location location, int roomnumber){
         String message = " ";
-        Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
-        ApplianceDAO applianceDAO = new ApplianceDAO();
-        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
-        return message = "The appliance has been succesfully added.";
+        Room room = new Room(roomnumber, location);
+        RoomDAO roomDAO = new RoomDAO();
+        int roomID = roomDAO.save(room, location.getID(), landlord.email);
+        return message = "The room has been succesfully added.";
     }
 
-    public String getMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month,monthlyEnergyConsumptionId);
-        return "Your monthly energy consumption of month " + month + " has been registered.";
+
+    public String deleteRoom(Room room){
+        String message = "";
+        RoomDAO roomDAO = new RoomDAO();
+        roomDAO.deleteRoom(room.roomID);
+        return message = "The room has been succesfully deleted.";
     }
+
+
+
 }

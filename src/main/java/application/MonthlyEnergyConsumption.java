@@ -58,6 +58,12 @@ public class MonthlyEnergyConsumption {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month,monthlyEnergyConsumptionId);
+        //moeten nog manier vinden om aan monthlyEnergyConsumptionId te raken.
+        return "Your monthly energy consumption of month " + month + " has been registered.";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

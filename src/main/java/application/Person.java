@@ -133,5 +133,5 @@ public class Person {
         person.aangemeld = false;
     }*/
 
-    public void inloggen (){}
+
 }

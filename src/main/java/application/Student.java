@@ -41,6 +41,7 @@ public class Student extends Person {
         return studentDAO.getStudents(room_id);
     }
 
+    //moet nog ergens kunnen toevoegen of het contactperson is van de room
     //add student with given object and room_id (db)
     public void addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
@@ -81,14 +82,6 @@ public class Student extends Person {
         }
     }
 
-    public void addEnergyConservationAction (Action energyConservationAction){
-        //communiceren met db (zie vb)
-    }
-
-    public void getEnergyConservationActions (){
-        //communiceren met db (zie vb)
-        //is geen void maar gwn om geen error te krijgen geeft arraylist terug
-    }
 
     /*public ArrayList<String> getPerformedEnergyConservationActions() {
         return performedEnergyConservationActions;

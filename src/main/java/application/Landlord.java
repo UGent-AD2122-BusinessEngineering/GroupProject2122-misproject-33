@@ -26,25 +26,8 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    //addRoom
-    public String addRoom(Landlord landlord, Location location, int roomnumber){
-        String message = " ";
-        Room room = new Room(roomnumber, location);
-        RoomDAO roomDAO = new RoomDAO();
-        int roomID = roomDAO.save(room, location.getID(), landlord.email);
-        return message = "The room has been succesfully added.";
-    }
 
-    //deleteRoom
-    public String deleteRoom(Landlord landlord, Room room){
-        String message = "";
-        //communiceren met db (zie vb)
-        return message = "The room has been succesfully deleted.";
-    }
 
-    //addLocation
-
-    //deleteLocation
 
 
     /*public HashMap <Location, Student> getStudents(){
@@ -52,10 +35,6 @@ public class Landlord extends Person {
         return hashmap die we uit de db halen...
     } staat in commentaar omdat we anders error krijgen
     */
-
-
-
-
 
 
     /*1. ik doe hier nog geen test voor eerste dag vd maand omdat me het beter lijkt dat te doen waar je de methode oproept

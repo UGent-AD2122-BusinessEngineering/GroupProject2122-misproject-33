@@ -54,9 +54,6 @@ public class Location {
         return "The location has been succesfully added.";
     }
 
-    public void deleteLocation(){
-        //niet nodig bb
-    }
 
     public String toString(Location location){
         String message = "Country: " + country + "\n" + "City: " + city;
@@ -110,21 +107,6 @@ public class Location {
         //moet toegevoegd worden ad database
     }*/
 
-    public void addAppliance (Appliance appliance) {
-        //communiceren met db (zie vb)
-    }
-
-    public void changeAppliance (Appliance appliance) {
-        //communiceren met db (zie vb)
-    }
-
-    public void deleteAppliance (Appliance appliance) {
-        //communiceren met db (zie vb)
-    }
-
-    public void addMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
-        //communiceren met db (zie vb)
-    }
 /*
     public void getMonthlyEnergyConsumptions () {
         //geeft AL terug

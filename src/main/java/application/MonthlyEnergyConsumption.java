@@ -1,5 +1,7 @@
 package application;
 
+import db.MonthlyEnergyConsumptionDAO;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -65,10 +67,18 @@ public class MonthlyEnergyConsumption {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
-    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month,monthlyEnergyConsumptionId);
-        //moeten nog manier vinden om aan monthlyEnergyConsumptionId te raken.
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, room.roomID);
         return "Your monthly energy consumption of month " + month + " has been registered.";
+    }
+
+    public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
+        String message = " ";
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(" ");// moet wrs nog int worden
+        return "MonthlyEnergyConsumption was succesfully deleted.";
     }
 
     @Override

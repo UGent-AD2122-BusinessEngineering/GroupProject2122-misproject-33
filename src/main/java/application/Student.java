@@ -13,10 +13,17 @@ public class Student extends Person {
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.room_id = room_id;
-        this.isContactPerson = false;
         this.studentlist = new ArrayList<Student>();
         this.energyConservationActions = new ArrayList<Action>();
         this.isContactPerson = false;
+    }
+
+    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPerson) {
+        super(email, firstname, lastname, password, telephone_number, date_of_birth);
+        this.isContactPerson = isContactPerson;
+        this.studentlist = new ArrayList<Student>();
+        this.energyConservationActions = new ArrayList<Action>();
+
     }
 
     public Student() {

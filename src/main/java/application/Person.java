@@ -1,5 +1,8 @@
 package application;
 
+import db.StudentDAO;
+
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -70,6 +73,25 @@ public class Person {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
 
+    //niet af
+    public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
+        if (student) {
+            StudentDAO studentDAO = new StudentDAO();
+            ArrayList<Student> allStudents = studentDAO.getAllStudents();
+            for (Student item : allStudents){
+                if (item.getEmail().equals(email)){
+                    return "Het account dat u probeerde te maken bestaat al.";
+                }
+            }
+            Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
+        }
+        else {
+            Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
+        }
+            return "Registratie is succesvol verlopen.";
+        }
+    }
+
     /*public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is
@@ -134,4 +156,4 @@ public class Person {
     }*/
 
 
-}
+

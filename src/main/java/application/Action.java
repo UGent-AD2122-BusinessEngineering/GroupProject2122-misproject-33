@@ -47,6 +47,8 @@ public class Action {
         return name;
     }
 
+
+
     public String decreaseDegree(Appliance appliance, LocalDate date) {
         String message = "";
         if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())){

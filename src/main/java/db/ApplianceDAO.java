@@ -42,7 +42,7 @@ public class ApplianceDAO {
             } else {
                 return null;
             }
-            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode);
+            Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name , name, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode, appliance_id);
             return appliance;
 
         } catch (DBException | SQLException e) {
@@ -124,7 +124,7 @@ public class ApplianceDAO {
                 is_temp_proportionate = srs.getBoolean("is_temp_proportionate");
                 is_team_disproportionate = srs.getBoolean("is_team_disproportionate");
                 is_energy_conservation_mode = srs.getBoolean("is_energy_conservation_mode");
-                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_team_disproportionate, is_energy_conservation_mode);
+                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_team_disproportionate, is_energy_conservation_mode, appliance_id);
                 appliances.add(appliance);
             }
             return appliances;

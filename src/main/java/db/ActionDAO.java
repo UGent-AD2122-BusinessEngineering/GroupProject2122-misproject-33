@@ -32,7 +32,7 @@ public class ActionDAO {
                 name = srs.getString("name");
                 date = srs.getDate("date").toLocalDate();
 
-                Action action = new Action(date, name);
+                Action action = new Action(date, name, Action_action_id);
                 actions.add(action);
             }
             return actions;
@@ -62,7 +62,7 @@ public class ActionDAO {
                 Action_action_id = srs.getInt("Action_action_id");
                 name = srs.getString("name");
                 date = srs.getDate("date").toLocalDate();
-                Action action = new Action(date, name);
+                Action action = new Action(date, name, Action_action_id);
                 actions.add(action);
             }
             return actions;

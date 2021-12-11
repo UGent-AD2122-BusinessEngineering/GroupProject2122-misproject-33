@@ -14,7 +14,7 @@ public class Landlord extends Person {
     private ArrayList<Room> roomsLandLord;
 
     public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        super(email, firstname, lastname, telephone_number, date_of_birth, password);
+        super(email, firstname, lastname, password, telephone_number, date_of_birth);
         contactsRoom = new HashMap<>(); //nog koppelen aan db
     }
 

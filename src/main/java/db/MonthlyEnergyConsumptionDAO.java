@@ -1,14 +1,13 @@
 package db;
 
+import application.Action;
 import application.MonthlyEnergyConsumption;
 import application.Room;
 import application.Student;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 //testen
@@ -111,4 +110,31 @@ public class MonthlyEnergyConsumptionDAO {
         }
     }
 
+    public ArrayList<MonthlyEnergyConsumption> getAllMonthlyEnergyConsumptions() {
+        ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions = new ArrayList<MonthlyEnergyConsumption>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * " +
+                    "FROM monthly_energy_consumption";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+
+            while (srs.next()) {
+                double water = srs.getDouble("water_consumption");
+                double electricity = srs.getDouble("electricity_consumption");
+                double gas = srs.getDouble("gas_consumption");
+                LocalDate month = srs.getDate("month").toLocalDate();
+                int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
+                MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month, monthlyEnergyConsumptionId);
+                monthlyEnergyConsumptions.add(monthlyEnergyConsumption);
+            }
+            return monthlyEnergyConsumptions;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
 }

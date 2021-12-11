@@ -74,7 +74,6 @@ public class ActionDAO {
         }
     }
 
-
     //returns -1 if something went wrong (no action saved)
     public int saveAction(Action action, int appliance_id) {
 

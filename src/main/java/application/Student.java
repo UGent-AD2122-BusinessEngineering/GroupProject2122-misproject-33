@@ -64,7 +64,7 @@ public class Student extends Person {
     public void deleteStudent(Student student, String roomnumber, int room_id){
         System.out.println("Delete student " + student.getFirstname() + student.getLastname());
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.deleteStudent(roomnumber);
+        studentDAO.deleteStudent(student.getEmail());
         for(Student stu: student.getStudents(room_id)) {
             if (stu.equals(student)) {
                 student.getStudents(room_id).remove(stu);

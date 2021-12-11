@@ -53,7 +53,7 @@ public class LocationDAO {
                 // INSERT
 
                 String sqlInsert = "INSERT into location "
-                        + "(country, city, ZIP, street, number, area, insulated, characterics) "
+                        + "(country, city, ZIP, street, number, area, insulated, characteristics) "
                         + "VALUES (?,?,?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);

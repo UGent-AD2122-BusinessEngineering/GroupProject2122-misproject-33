@@ -80,7 +80,7 @@ public class LocationDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT country, city, ZIP, street, number, area, insulated, characteristics"
+            String sql = "SELECT * "
                     + "FROM location "
                     + "WHERE location_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class LocationDAO {
                 boolean insulated = srs.getBoolean("insulated");
                 String characteristics = srs.getString("characteristics");
                 int location_id1 = srs.getInt("location_id");
-                return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id);
+                return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id1);
             } else {
                 return null;
             }
@@ -140,8 +140,8 @@ public class LocationDAO {
 
     public static void main(String[] args) {
         LocationDAO locationDAO = new LocationDAO();
-        Location location = new Location("Belgium", "Lochristi", "9080", "fazantenstraat", "12", 50, true, "jatochhh");
-        System.out.println(locationDAO.saveLocation(location));
+        Location location = new Location("France", "Paris", "baguette", "fromage", "69", 420, false, "EKIP");
+        System.out.println(locationDAO.getLocation(4).getCountry());
     }
 
 }

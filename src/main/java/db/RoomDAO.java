@@ -63,7 +63,7 @@ public class RoomDAO {
                 stmt2.setInt(1, room.getRoomID());
                 stmt2.setInt(2, room.getRoomnumber());
                 stmt2.setInt(3, room.getLocation().getID());
-                stmt2.setString(4, room.getLandlord().getEmail());
+                stmt2.setString(4, Landlord_email);
                 stmt2.setInt(5, room.getRoomID());
                 stmt2.executeUpdate();
                 return room.getRoomID();
@@ -77,7 +77,7 @@ public class RoomDAO {
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setInt(1, room.getRoomnumber());
                 insertStm.setInt(2, room.getLocation().getID());
-                insertStm.setString(3, room.getLandlord().getEmail());
+                insertStm.setString(3, Landlord_email);
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if (generatedKeys.next()) {
@@ -196,5 +196,12 @@ public class RoomDAO {
             DBHandler.closeConnection(con);
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        RoomDAO roomDAO = new RoomDAO();
+        LocationDAO locationDAO = new LocationDAO();
+        Room room = new Room(1, locationDAO.getLocation(4));
+        System.out.println(roomDAO.save(room, room.getLocation().getID(), "a.b@gmail.com"));
     }
 }

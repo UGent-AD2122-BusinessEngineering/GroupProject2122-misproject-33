@@ -26,6 +26,18 @@ public class Location {
         this.characteristics = characteristics;
     }
 
+    public Location(String country, String city, String ZIP, String number, String street, double area, boolean insulated, String characteristics, int ID) {
+        this.ID = ID;
+        this.country = country;
+        this.city = city;
+        this.ZIP = ZIP;
+        this.number = number;
+        this.street = street;
+        this.area = area;
+        this.insulated = insulated;
+        this.characteristics = characteristics;
+    }
+
     public int getID() {return ID;}
     public void setId(int ID) {this.ID = ID;}
     public void setArea(int area) {this.area = area;}

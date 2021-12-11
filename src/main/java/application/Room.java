@@ -24,6 +24,12 @@ public class Room {
         studentsPerRoom = new ArrayList<>();
     }
 
+    public Room(int roomnumber, Location location, int roomID) {
+        this.roomnumber = roomnumber;
+        this.location = location;
+        this.roomID = roomID;
+    }
+
     public ArrayList<Student> getStudentPerRoom (Room room){
         StudentDAO studentDAO = new StudentDAO();
         return studentDAO.getStudents(room.getRoomID());

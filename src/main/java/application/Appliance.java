@@ -37,6 +37,18 @@ public class Appliance {
         this.isEnergyConservationMode = isEnergyConservationMode;
     }
 
+    public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, int applianceID) {
+        this.energyEfficiencyClass = energyEfficiencyClass;
+        this.modelIdentifier = modelIdentifier;
+        this.annualEnergyConsumption = annualEnergyConsumption;
+        this.supplierName = supplierName;
+        this.name = name;
+        this.applianceID = applianceID;
+        this.isTempProportionate = isTempProportionate;
+        this.isTempDisproportionate = isTempDisproportionate;
+        this.isEnergyConservationMode = isEnergyConservationMode;
+    }
+
     public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.getActions(appliance.getApplianceID());

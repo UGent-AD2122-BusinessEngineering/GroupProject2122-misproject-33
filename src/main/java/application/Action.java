@@ -29,6 +29,12 @@ public class Action {
         this.name = name;
     }
 
+    public Action(LocalDate date, String name, int id) {
+        this.date = date;
+        this.name = name;
+        this.Id = id;
+    }
+
     public int getId() {
         return getId();
     }

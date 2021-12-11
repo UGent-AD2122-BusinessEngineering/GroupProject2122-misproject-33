@@ -18,6 +18,8 @@ public class Landlord extends Person {
         contactsRoom = new HashMap<>(); //nog koppelen aan db
     }
 
+
+
     public ArrayList<Room> getRoomsLandLord(Landlord landlord) {
         RoomDAO roomDAO = new RoomDAO();
         roomsLandLord = roomDAO.getRooms(landlord.email);

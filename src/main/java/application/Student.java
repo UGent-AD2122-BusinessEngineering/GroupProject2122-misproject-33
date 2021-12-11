@@ -26,6 +26,10 @@ public class Student extends Person {
 
     }
 
+    public Student() {
+        super();
+    }
+
     //returns true if given (not yet encoded) password equals the password of the user with the given email address
     public static boolean checkPassword(String email, String password) {
         StudentDAO studentDAO = new StudentDAO();

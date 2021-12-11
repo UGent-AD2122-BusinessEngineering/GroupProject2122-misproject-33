@@ -18,6 +18,21 @@ public class Landlord extends Person {
         contactsRoom = new HashMap<>(); //nog koppelen aan db
     }
 
+    public HashMap <Room, Student> getRoomStudentHashmap() {
+        RoomDAO roomDAO = new RoomDAO();
+        ArrayList<Room> allRooms = roomDAO.getAllRooms();
+        StudentDAO studentDAO = new StudentDAO();
+        HashMap<Room, Student> roomStudentHashMap = new HashMap<Room, Student>();
+        for (Room item : allRooms){
+            ArrayList<Student> studentsOfRoom = studentDAO.getStudents(item.roomID);
+            for(Student item1 : studentsOfRoom){
+                if (item1.getIsContactPerson())
+                    roomStudentHashMap.put(item, item1);
+            }
+        }
+        return roomStudentHashMap;
+    }
+
 
 
     public ArrayList<Room> getRoomsLandLord(Landlord landlord) {

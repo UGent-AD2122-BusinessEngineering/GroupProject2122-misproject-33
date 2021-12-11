@@ -76,7 +76,7 @@ public class Room {
         String message = " ";
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
-        int roomID = roomDAO.save(room, location.getID(), landlord.email);
+        room.roomID = roomDAO.save(room, location.getID(), landlord.email);
         return message = "The room has been succesfully added.";
     }
 

@@ -32,6 +32,9 @@ public class LocationDAO {
                         "ZIP = ?, " +
                         "street = ?" +
                         "number = ? " +
+                        "area = ?" +
+                        "insulated = ?" +
+                        "characteristics = ?" +
                         "WHERE location_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                 stmt2.setInt(1, location.getID());
@@ -40,15 +43,18 @@ public class LocationDAO {
                 stmt2.setString(4, location.getZIP());
                 stmt2.setString(5, location.getStreet());
                 stmt2.setString(6, location.getNumber());
-                stmt2.setInt(7, location.getID());
+                stmt2.setDouble(7, location.getArea());
+                stmt2.setBoolean(8, location.isInsulated());
+                stmt2.setString(9, location.getCharacteristics());
+                stmt2.setInt(10, location.getID());
                 stmt2.executeUpdate();
                 return location.getID();
             } else {
                 // INSERT
 
                 String sqlInsert = "INSERT into location "
-                        + "(country, city, ZIP, street, number) "
-                        + "VALUES (?,?,?,?,?)";
+                        + "(country, city, ZIP, street, number, area, insulated, charasterics) "
+                        + "VALUES (?,?,?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
                 insertStm.setString(1, location.getCountry());
@@ -56,6 +62,9 @@ public class LocationDAO {
                 insertStm.setString(3, location.getZIP());
                 insertStm.setString(4, location.getStreet());
                 insertStm.setString(5, location.getNumber());
+                insertStm.setDouble(6, location.getArea());
+                insertStm.setBoolean(7, location.isInsulated());
+                insertStm.setString(8, location.getCharacteristics());
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if (generatedKeys.next()) {
@@ -88,7 +97,7 @@ public class LocationDAO {
                 String street = srs.getString("street");
                 String number = srs.getString("number");
                 double area = srs.getDouble("area");
-                boolean insulated = srs.getBoolean("boolean");
+                boolean insulated = srs.getBoolean("insulated");
                 String characteristics = srs.getString("characteristics");
                 int location_id1 = srs.getInt("location_id");
                 return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id);
@@ -119,7 +128,7 @@ public class LocationDAO {
                 String street = srs.getString("street");
                 String number = srs.getString("number");
                 double area = srs.getDouble("area");
-                boolean insulated = srs.getBoolean("boolean");
+                boolean insulated = srs.getBoolean("insulated");
                 String characteristics = srs.getString("characteristics");
                 int location_id = srs.getInt("location_id");
                 locations.add(new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id));

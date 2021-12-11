@@ -25,12 +25,14 @@ public class RoomDAO {
             ResultSet srs = stmt.executeQuery();
             int room_number;
             int Location_location_id;
+            int room_ic;
 
             LocationDAO locationDAO = new LocationDAO();
 
             room_number = srs.getInt("room_number");
             Location_location_id = srs.getInt("Location_location_id");
-            return new Room(room_number, locationDAO.getLocation(Location_location_id));
+            room_id = srs.getInt("room_id");
+            return new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -114,7 +116,7 @@ public class RoomDAO {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
                 rooms.add(room);
             }
             return rooms;
@@ -180,7 +182,7 @@ public class RoomDAO {
                 room_id = srs.getInt("room_id");
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
-                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id));
+                Room room = new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
                 rooms.add(room);
             }
             return rooms;

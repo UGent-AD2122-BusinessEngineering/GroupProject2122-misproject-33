@@ -16,7 +16,7 @@ public class MonthlyEnergyConsumptionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT water_consumption, electricity_consumption, gas_consumption"
+            String sql = "SELECT water_consumption, electricity_consumption, gas_consumption, monthly_energy_consumption_id"
                     + "FROM `monthly_energy_consumption` "
                     + "WHERE room_id = ?" +
                     "AND month = ?";

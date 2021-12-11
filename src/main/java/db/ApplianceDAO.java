@@ -2,10 +2,7 @@ package db;
 
 import application.Appliance;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ApplianceDAO {
@@ -145,7 +142,7 @@ public class ApplianceDAO {
                     + "FROM appliance "
                     + "WHERE appliance_id = ? ";
 
-            PreparedStatement stmt = con.prepareStatement(sqlSelect);
+            PreparedStatement stmt = con.prepareStatement(sqlSelect, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, a.getApplianceID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {

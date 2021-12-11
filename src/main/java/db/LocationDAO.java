@@ -4,10 +4,7 @@ import application.Location;
 import application.MonthlyEnergyConsumption;
 import application.Room;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class LocationDAO {
@@ -56,7 +53,7 @@ public class LocationDAO {
                         + "(country, city, ZIP, street, number, area, insulated, characteristics) "
                         + "VALUES (?,?,?,?,?,?,?,?)";
                 //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, location.getCountry());
                 insertStm.setString(2, location.getCity());
                 insertStm.setString(3, location.getZIP());
@@ -140,4 +137,11 @@ public class LocationDAO {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        LocationDAO locationDAO = new LocationDAO();
+        Location location = new Location("Belgium", "Lochristi", "9080", "fazantenstraat", "12", 50, true, "jatochhh");
+        System.out.println(locationDAO.saveLocation(location));
+    }
+
 }

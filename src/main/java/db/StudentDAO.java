@@ -213,7 +213,6 @@ public class StudentDAO {
         }
     }
 
-
     public void deleteStudent(String email) {
         Connection con = null;
         try {
@@ -229,12 +228,19 @@ public class StudentDAO {
         }
     }
 
-
     public static void main(String[] args) {
         StudentDAO studentDAO = new StudentDAO();
-        System.out.println(studentDAO.getStudent("mbtopper@gmail.com").getFirstname());
-        //Student s = new Student("s.delange2@gmail.be", "simonAANGEPAST", "delange", "IKBENDIK", "0479052422", "04.12.1985", false);
-        //studentDAO.save(s, 1);
+        //System.out.println(studentDAO.getStudent("mbtopper@gmail.com").getFirstname());
+        Student a = new Student("mathibrab@gm.co", "mathi", "brab", "test1", "0479052448", "02.11.2001");
+        Student b = new Student("bob", "simon", "ffg", "IKBsdfENDIK", "fgh", "bert");
+        Student c = new Student("tyhd", "sisdfgsdmon", "delange", "IKBENDyjjIK", "0479052422", "04.12.1985");
+        Student d = new Student("rhdfgs", "sdftgtr", "ffdth", "ttsrs", "erhed", "04.12.1985");
+
+
+        studentDAO.save(a);
+        studentDAO.save(b);
+        studentDAO.save(c);
+        studentDAO.save(d);
         //studentDAO.deleteStudent(s);
 
         /* ArrayList<Student> students = studentDAO.getStudents(1);

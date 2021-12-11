@@ -42,7 +42,7 @@ public class MonthlyEnergyConsumptionDAO {
         }
     }
 
-    public void save(MonthlyEnergyConsumption m, int room_id) {
+    public int save(MonthlyEnergyConsumption m, int room_id) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -72,6 +72,7 @@ public class MonthlyEnergyConsumptionDAO {
                 stmt2.setDouble(4, m.getGas());
                 stmt2.setInt(5, room_id);
                 stmt2.executeUpdate();
+                return m.getMonthlyEnergyConsumptionId();
             } else {
                 // INSERT
 
@@ -79,7 +80,7 @@ public class MonthlyEnergyConsumptionDAO {
                         + "(monthly_energy_consumption_id, month, water_consumption, electricity_consumption, gas_consumption, Room_room_id) "
                         + "VALUES (?,?,?,?,?,?)";
                 //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setInt(1, m.getMonthlyEnergyConsumptionId());
                 insertStm.setDate(2, java.sql.Date.valueOf(m.getMonth()));
                 insertStm.setDouble(3, m.getWater());
@@ -87,11 +88,17 @@ public class MonthlyEnergyConsumptionDAO {
                 insertStm.setDouble(5, m.getGas());
                 insertStm.setInt(6, room_id);
                 insertStm.executeUpdate();
+                ResultSet generatedKeys = insertStm.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             DBHandler.closeConnection(con);
+            return -1;
         }
+        return -1;
     }
 
     public void deleteMonthlyEnergyConsumption(int monthlyEnergyConsumptionId) {

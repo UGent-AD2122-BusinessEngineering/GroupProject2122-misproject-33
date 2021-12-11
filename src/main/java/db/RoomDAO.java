@@ -4,10 +4,7 @@ import application.Action;
 import application.Room;
 import application.Student;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -77,7 +74,7 @@ public class RoomDAO {
                         + "(room_number, Location_location_id, Landlord_email) "
                         + "VALUES (?,?,?)";
                 //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setInt(1, room.getRoomnumber());
                 insertStm.setInt(2, room.getLocation().getID());
                 insertStm.setString(3, room.getLandlord().getEmail());

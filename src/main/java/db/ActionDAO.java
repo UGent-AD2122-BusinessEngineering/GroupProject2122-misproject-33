@@ -2,10 +2,7 @@ package db;
 
 import application.Action;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -107,7 +104,7 @@ public class ActionDAO {
                         + "(name) "
                         + "VALUES (?)";
                 //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
                 InteractsDAO interactsDAO = new InteractsDAO();

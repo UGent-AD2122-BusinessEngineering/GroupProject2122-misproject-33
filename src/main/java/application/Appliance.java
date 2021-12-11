@@ -131,6 +131,7 @@ public class Appliance {
         this.temperature = temperature;
     }
 
+
     public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
                                boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
         String message = " ";

@@ -13,7 +13,7 @@ public class Room {
     public int roomnumber;
     public Location location;
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db,
-    private ArrayList<Student> studentsPerRoom; // nog koppelen aan db
+    private ArrayList<Student> studentsPerRoom;
     public int roomID;
     public Landlord landlord;
 

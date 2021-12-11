@@ -13,7 +13,7 @@ public class Landlord extends Person {
     private HashMap<Room, Student> contactsRoom; //?
     private ArrayList<Room> roomsLandLord;
 
-    public Landlord(String email, String firstname, String lastname, String telephone_number, String date_of_birth, String password) {
+    public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, telephone_number, date_of_birth, password);
         contactsRoom = new HashMap<>(); //nog koppelen aan db
     }

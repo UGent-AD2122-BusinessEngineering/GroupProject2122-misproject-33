@@ -154,8 +154,8 @@ public class LandlordDAO {
 
     public static void main(String[] args) {
         LandlordDAO landlordDAO = new LandlordDAO();
-        //Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
-        //landlordDAO.save(l);
+        Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
         //System.out.println(landlordDAO.getLandlord(landlordDAO.getLandlordEmail(1)).getFirstname());
     }

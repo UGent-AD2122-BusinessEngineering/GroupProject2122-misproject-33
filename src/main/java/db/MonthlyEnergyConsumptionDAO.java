@@ -137,4 +137,35 @@ public class MonthlyEnergyConsumptionDAO {
             return null;
         }
     }
+
+    public ArrayList<MonthlyEnergyConsumption> getAllMonthlyEnergyConsumptions(int room_id) {
+        ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions = new ArrayList<MonthlyEnergyConsumption>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * " +
+                    "FROM monthly_energy_consumption" +
+                    "WHERE Room_room_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, room_id);
+            ResultSet srs = stmt.executeQuery();
+
+            while (srs.next()) {
+                double water = srs.getDouble("water_consumption");
+                double electricity = srs.getDouble("electricity_consumption");
+                double gas = srs.getDouble("gas_consumption");
+                LocalDate month = srs.getDate("month").toLocalDate();
+                int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
+                MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month, monthlyEnergyConsumptionId);
+                monthlyEnergyConsumptions.add(monthlyEnergyConsumption);
+            }
+            return monthlyEnergyConsumptions;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
+
 }

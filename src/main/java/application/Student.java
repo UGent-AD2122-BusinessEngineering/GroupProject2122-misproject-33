@@ -53,7 +53,8 @@ public class Student extends Person {
     //add student with given object and room_id (db)
     public void addStudent(Student student, int room_id){
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.save(student, room_id);
+        studentDAO.save(student);
+        studentDAO.update(student, room_id);
         if (studentlist == null || studentlist.contains(student)) {
             return;
         }

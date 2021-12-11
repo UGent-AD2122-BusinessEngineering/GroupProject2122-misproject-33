@@ -76,7 +76,7 @@ public class Room {
         return message = "The room has been succesfully added.";
     }
 
-
+    //contactperson moet nog weg dan
     public String deleteRoom(Room room){
         String message = "";
         RoomDAO roomDAO = new RoomDAO();

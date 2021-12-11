@@ -35,6 +35,8 @@ public class Landlord extends Person {
 
 
 
+
+
     public ArrayList<Room> getRoomsLandLord(Landlord landlord) {
         RoomDAO roomDAO = new RoomDAO();
         roomsLandLord = roomDAO.getRooms(landlord.email);

@@ -79,6 +79,23 @@ public class Action {
         return tips.get(randomNum);
     }
 
+    public String tipsAppliance(Appliance appliance){
+        String message = "";
+        if(appliance.isEnergyConservationMode()) {
+            message = "You could put the energy conservation mode on.";
+        }
+        if(appliance.getIsTempProportionate()){
+            message += "\nMaybe you could lower the temperature of the appliance.";
+        }
+        if(appliance.getIsTempDisproportionate()){
+            message += "\nMaybe you could increase the temperature of the appliance.";
+        }
+        if(message.equals("")){
+            message = "We don't have predefined tips for your appliance.";
+        }
+        return message;
+    }
+
     public String decreaseDegree(Appliance appliance, LocalDate date) {
         String message = "";
         if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())){

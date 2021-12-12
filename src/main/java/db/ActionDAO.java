@@ -107,19 +107,20 @@ public class ActionDAO {
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
-                InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(action.getId(), appliance_id, action.getDate());
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
+                int generatedKey = -1;
                 if(generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
+                    generatedKey = generatedKeys.getInt(1);
                 }
+                InteractsDAO interactsDAO = new InteractsDAO();
+                interactsDAO.saveInteracts(generatedKey, appliance_id, action.getDate());
+                return generatedKey;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             DBHandler.closeConnection(con);
             return -1;
         }
-        return -1;
     }
 
     /* ervoor zorgen dat alleen user made kunnen verwijderd worden in application layer
@@ -138,5 +139,12 @@ public class ActionDAO {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);
         }
+    }
+
+    public static void main(String[] args) {
+        ActionDAO actionDAO = new ActionDAO();
+        LocalDate localDate = LocalDate.parse("2021-12-22");
+        Action action = new Action(localDate,"test");
+        System.out.println(actionDAO.saveAction(action, 3));
     }
 }

@@ -19,7 +19,7 @@ public class Appliance {
     private int applianceID;
     private boolean isTempProportionate;
     private boolean isTempDisproportionate;
-    private double temperature;
+    private double temperature; //deze moet er niet meer staan vermoed ik, temperature wordt niet opgeslaan in db -Simon
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
     private ArrayList <Action> actionsPerAppliance;
 

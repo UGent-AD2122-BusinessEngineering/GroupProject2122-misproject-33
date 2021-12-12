@@ -22,14 +22,21 @@ public class RoomDAO {
             ResultSet srs = stmt.executeQuery();
             int room_number;
             int Location_location_id;
-            int room_ic;
+            int room_id1;
 
             LocationDAO locationDAO = new LocationDAO();
+            if (srs.next()) {
+                room_number = srs.getInt("room_number");
+                Location_location_id = srs.getInt("Location_location_id");
+                room_id1 = srs.getInt("room_id");
+                //System.out
 
-            room_number = srs.getInt("room_number");
-            Location_location_id = srs.getInt("Location_location_id");
-            room_id = srs.getInt("room_id");
-            return new Room(room_number, locationDAO.getLocation(Location_location_id), room_id);
+            }
+            else {
+                return null;
+            }
+            Room room = new Room(room_number, locationDAO.getLocation(Location_location_id), room_id1);
+            return room;
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -201,7 +208,8 @@ public class RoomDAO {
     public static void main(String[] args) {
         RoomDAO roomDAO = new RoomDAO();
         LocationDAO locationDAO = new LocationDAO();
-        Room room = new Room(1, locationDAO.getLocation(4));
-        System.out.println(roomDAO.save(room, room.getLocation().getID(), "a.b@gmail.com"));
+        //Room room = new Room(1, locationDAO.getLocation(5));
+        //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
+        //System.out.println(roomDAO.getRoom(4).getLocation().getCountry());
     }
 }

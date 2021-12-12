@@ -16,7 +16,7 @@ public class InteractsDAO {
             //System.out.println(sql);
             PreparedStatement insertStm = con.prepareStatement(sqlInsert);
             insertStm.setInt(1, action_id);
-            insertStm.setInt(2, action_id);
+            insertStm.setInt(2, appliance_id);
             insertStm.setDate(3, java.sql.Date.valueOf(date));
             insertStm.executeUpdate();
 

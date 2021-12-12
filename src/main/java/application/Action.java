@@ -36,7 +36,7 @@ public class Action {
     }
 
     public int getId() {
-        return getId();
+        return Id;
     }
 
     public LocalDate getDate() {

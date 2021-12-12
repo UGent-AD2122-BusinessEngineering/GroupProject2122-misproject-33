@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
 Mogelijke energy conservation acties die we kunnen implementeren
@@ -35,6 +36,7 @@ public class Action {
         this.Id = id;
     }
 
+
     public int getId() {
         return Id;
     }
@@ -47,7 +49,35 @@ public class Action {
         return name;
     }
 
-
+    public String getRandomTip(){
+        ArrayList<String> tips = new ArrayList<String>();
+        int randomNum = ThreadLocalRandom.current().nextInt(0, 23);
+        tips.add("Utilize natural light.");
+        tips.add("Turn off lights and electronics when you aren't using them.");
+        tips.add("Replace traditional light bulbs with LEDs.");
+        tips.add("Get a smart thermostat.");
+        tips.add("Ensure your home is properly insulated.");
+        tips.add("Put decorative lights on a timer.");
+        tips.add("Reduce appliance use.");
+        tips.add("Wash only full loads of dishes and clothes.");
+        tips.add("Wash clothes with cold water.");
+        tips.add("Keep your appliances clean.");
+        tips.add("Keep the oven door closed while cooking.");
+        tips.add("Don’t stand in front of an open refrigerator door.");
+        tips.add("Air-dry clothes.");
+        tips.add("Air-dry dishes instead of using your dishwasher’s drying cycle.");
+        tips.add("Open curtains facing the sun.");
+        tips.add("Switch out incandescent lights.");
+        tips.add("Turn off electronics and appliances when they’re not in use.");
+        tips.add("Unplug battery chargers when not in use.");
+        tips.add("Adjust your thermostat according to the time of day.");
+        tips.add("Set your computer to sleep or hibernate mode.");
+        tips.add("Avoid using the rinse-and-hold setting on your dishwasher.");
+        tips.add("Use the dishwasher instead of washing by hand.");
+        tips.add("Plug home electronics into power strips.");
+        tips.add("Install low-flow shower heads.");
+        return tips.get(randomNum);
+    }
 
     public String decreaseDegree(Appliance appliance, LocalDate date) {
         String message = "";
@@ -156,7 +186,6 @@ public class Action {
 
         return 0;
     }
-
 }
 
    /*

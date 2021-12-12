@@ -65,6 +65,8 @@ public class Location {
         return "The location has been succesfully added.";
     }
 
+    //wanneer alle kamers van een locatie verwijderd zijn wordt de locatie vanzelf verwijderd
+
 
     public String toString(Location location){
         String message = "Country: " + country + "\n" + "City: " + city;

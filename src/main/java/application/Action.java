@@ -17,7 +17,6 @@ Mogelijke energy conservation acties die we kunnen implementeren
 - Toestellen met energiezuiniger label /Done
 - Zet beeldscherm volledig uit /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
 */
-//kheb de methodes bij appliance gezet omdat ik het wat raar vond om een action object hierin in te maken, (komt op hetzelfde neer uiteindelijk)
 
 public class Action {
     private LocalDate date;

@@ -144,7 +144,7 @@ public class Appliance {
         String message = " ";
         ApplianceDAO applianceDAO = new ApplianceDAO();
         applianceDAO.deleteAppliance(appliance.getApplianceID());
-        return message = "The appliance has been succesfully added.";
+        return message = "The appliance has been succesfully deleted.";
     }
 
     @Override

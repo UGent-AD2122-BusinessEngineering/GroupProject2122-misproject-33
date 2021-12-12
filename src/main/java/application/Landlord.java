@@ -9,17 +9,16 @@ import java.util.HashMap;
 public class Landlord extends Person {
     private static int dagVdMaand = LocalDate.now().getDayOfMonth();
     private static int maandVhJaar = LocalDate.now().getMonthValue();
-    private HashMap<Room, Student> contactsRoom; //?
+    private HashMap<Room, Student> roomStudentHashMap;
     private ArrayList<Room> roomsLandLord;
 
     public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
-        contactsRoom = new HashMap<>();
     }
 
-    public HashMap <Room, Student> getRoomStudentHashmap() {
+    public HashMap <Room, Student> getRoomStudentHashmap(Landlord landlord) {
         RoomDAO roomDAO = new RoomDAO();
-        ArrayList<Room> allRooms = roomDAO.getAllRooms();
+        ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
         StudentDAO studentDAO = new StudentDAO();
         HashMap<Room, Student> roomStudentHashMap = new HashMap<Room, Student>();
         for (Room item : allRooms){
@@ -29,17 +28,14 @@ public class Landlord extends Person {
                     roomStudentHashMap.put(item, item1);
             }
         }
-        return roomStudentHashMap;
+        this.roomStudentHashMap = roomStudentHashMap;
+        return this.roomStudentHashMap;
     }
-
-
-
-
 
     public ArrayList<Room> getRoomsLandLord(Landlord landlord) {
         RoomDAO roomDAO = new RoomDAO();
-        roomsLandLord = roomDAO.getRooms(landlord.email);
-        return roomsLandLord;
+        this.roomsLandLord = roomDAO.getRooms(landlord.email);
+        return this.roomsLandLord;
     }
 
     public static int getDagVdMaand() {

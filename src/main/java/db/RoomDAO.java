@@ -211,5 +211,6 @@ public class RoomDAO {
         //Room room = new Room(1, locationDAO.getLocation(5));
         //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
         //System.out.println(roomDAO.getRoom(4).getLocation().getCountry());
+        //test
     }
 }

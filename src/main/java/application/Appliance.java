@@ -11,7 +11,6 @@ public class Appliance {
 
     //zie https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign/about_en
 
-    //instantievariabelen
     private String energyEfficiencyClass; //energy label of the appliance {A, B, C, D, E, F, G}
     private String modelIdentifier;
     private int annualEnergyConsumption;
@@ -160,7 +159,6 @@ public class Appliance {
     public int hashCode() {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
     }
-
 
     /*public void setOperationDays ()
     {

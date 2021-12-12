@@ -1,13 +1,8 @@
 package application;
 
-import db.ApplianceDAO;
 import db.RoomDAO;
 import db.StudentDAO;
-
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Room {
     public int roomnumber;
@@ -50,7 +45,6 @@ public class Room {
         this.monthlyEnergyConsumptions = monthlyEnergyConsumptions;
     }
 
-
     public int getRoomID() {
         return roomID;
     }
@@ -72,14 +66,10 @@ public class Room {
         return message = "The room has been succesfully added.";
     }
 
-    //contactperson moet nog weg dan
     public String deleteRoom(Room room){
         String message = "";
         RoomDAO roomDAO = new RoomDAO();
         roomDAO.deleteRoom(room.roomID);
         return message = "The room has been succesfully deleted.";
     }
-
-
-
 }

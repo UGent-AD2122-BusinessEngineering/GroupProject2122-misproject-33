@@ -4,6 +4,7 @@ import db.ActionDAO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalDate;
@@ -135,7 +136,7 @@ public class Action {
         return message;
     }
 
-
+    //detail
     public double energyLabelScore(int value){
         char A = 'A';
         char B = 'B';
@@ -152,8 +153,6 @@ public class Action {
         int intE = (int) E - 40;
         int intF = (int) F - 40;
         int intG = (int) G - 40;
-
-
 
         return 0;
     }

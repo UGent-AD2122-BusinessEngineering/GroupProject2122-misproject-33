@@ -2,7 +2,6 @@ package application;
 
 import db.RoomDAO;
 import db.StudentDAO;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +14,7 @@ public class Landlord extends Person {
 
     public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
-        contactsRoom = new HashMap<>(); //nog koppelen aan db
+        contactsRoom = new HashMap<>();
     }
 
     public HashMap <Room, Student> getRoomStudentHashmap() {

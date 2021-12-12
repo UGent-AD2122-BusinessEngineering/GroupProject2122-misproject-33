@@ -1,7 +1,6 @@
 package application;
 
 import db.LocationDAO;
-
 import java.util.Objects;
 
 public class Location {
@@ -70,7 +69,7 @@ public class Location {
     public String toString(Location location){
         String message = "Country: " + country + "\n" + "City: " + city;
         return message;
-     }
+    }
 
 
     /*

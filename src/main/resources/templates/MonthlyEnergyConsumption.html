@@ -33,6 +33,7 @@
 
 <form action="#" th:action="@{/MonthlyEnergyConsumption}" method="post" th:object="${student}" >
     <div class="RegisterBox">
+        <h1>Register Monthly Energy Consumption</h1>
         <label for="electricityUsage" class="form-label">Electricity:</label>
         <input th:field="*{electricity}" type="double" class="form-control" id="electricityUsage">
         <br>

@@ -1,5 +1,6 @@
 package application;
 
+import db.LandlordDAO;
 import db.StudentDAO;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class Person {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
 
-    //niet af
+
     public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
         if (student) {
             StudentDAO studentDAO = new StudentDAO();
@@ -84,13 +85,51 @@ public class Person {
                 }
             }
             Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
+            studentDAO.save(student1);
         }
         else {
+            LandlordDAO landlordDAO = new LandlordDAO();
+            ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
+            for (Landlord item : allLandlords){
+                if (item.getEmail().equals(email)) {
+                    return "Het account dat u probeerde te maken bestaat al.";
+                }
+            }
             Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
+            landlordDAO.save(landlord);
         }
             return "Registratie is succesvol verlopen.";
+    }
+
+    public Object login (String email, String password, boolean student){
+        if (student){
+            StudentDAO studentDAO = new StudentDAO();
+            ArrayList<Student> allStudents = studentDAO.getAllStudents();
+            for (Student item : allStudents){
+                if (item.getEmail().equals(email)){
+                    if(item.password.equals(password)){
+                        return item;
+                    }
+                }
+            }
+            String message = "Your e-mail or password was incorrect.";
+            return message;
+        }
+        else{
+            LandlordDAO landlordDAO = new LandlordDAO();
+            ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
+            for(Landlord item : allLandlords){
+                if (item.getEmail().equals(email)) {
+                    if (item.password.equals(password)) {
+                        return item;
+                    }
+                }
+            }
+            String message = "Your e-mail or password was incorrect.";
+            return message;
         }
     }
+}
 
 
 

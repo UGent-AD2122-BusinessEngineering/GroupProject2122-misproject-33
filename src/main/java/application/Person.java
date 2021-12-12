@@ -81,7 +81,7 @@ public class Person {
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
             for (Student item : allStudents){
                 if (item.getEmail().equals(email)){
-                    return "Het account dat u probeerde te maken bestaat al.";
+                    return "An account already exists with this email address.";
                 }
             }
             Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
@@ -92,13 +92,13 @@ public class Person {
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
             for (Landlord item : allLandlords){
                 if (item.getEmail().equals(email)) {
-                    return "Het account dat u probeerde te maken bestaat al.";
+                    return "An account already exists with this email address.";
                 }
             }
             Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
             landlordDAO.save(landlord);
         }
-            return "Registratie is succesvol verlopen.";
+            return "Your registration has been succesfull.";
     }
 
     public Object login (String email, String password, boolean student){

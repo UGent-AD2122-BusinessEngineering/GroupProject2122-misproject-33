@@ -25,8 +25,8 @@ public class StudentController {
     }
 
     @GetMapping("/toevoegenStudent")
-    public String studentToevoegen(@RequestParam(value = "Student", defaultValue = "Naam") Student student, int roomnumber) {
-        new Student().addStudent(student, roomnumber);
+    public String studentToevoegen(@RequestParam(value = "Student", defaultValue = "Naam") Student student, Room room) {
+        new Student().addStudent(student, room);
         return "toevoegenstudent";
     }
 

@@ -13,17 +13,12 @@ public class Student extends Person {
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.room_id = room_id;
-        this.studentlist = new ArrayList<Student>();
-        this.energyConservationActions = new ArrayList<Action>();
         this.isContactPerson = false;
     }
 
     public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPerson) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
         this.isContactPerson = isContactPerson;
-        this.studentlist = new ArrayList<Student>();
-        this.energyConservationActions = new ArrayList<Action>();
-
     }
 
     public Student() {
@@ -54,28 +49,19 @@ public class Student extends Person {
     //moet nog ergens kunnen toevoegen of het contactperson is van de room
     //add student with given object and room_id (db)
     //moet ook nog met room en dan van room de room_id nemen
-    public void addStudent(Student student, int room_id){
+    public String addStudent(Student student, Room room){
+        String message = " ";
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.save(student);
-        studentDAO.update(student, room_id);
-        if (studentlist == null || studentlist.contains(student)) {
-            return;
-        }
-        studentlist.add(student);
+        studentDAO.update(student, room.getRoomID());
+        return message = "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
     }
 
-    //delete student
-    public void deleteStudent(Student student, String roomnumber, int room_id){
-        System.out.println("Delete student " + student.getFirstname() + student.getLastname());
+    public String deleteStudent(Student student){
+        String message = " ";
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.deleteStudent(student.getEmail());
-        for(Student stu: student.getStudents(room_id)) {
-            if (stu.equals(student)) {
-                student.getStudents(room_id).remove(stu);
-                return;
-            }
-        }
-        return;
+        return message = "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
 
     //prints students

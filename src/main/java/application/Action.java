@@ -36,7 +36,7 @@ public class Action {
     }
 
     public int getId() {
-        return getId();
+        return Id;
     }
 
     public LocalDate getDate() {
@@ -89,13 +89,14 @@ public class Action {
         return message;
     }
 
+    //Ook een energyConservationModeOff nodig denk ik -Simon
     public String energyConservationModeOn (Appliance appliance, LocalDate date) {
         String message = "";
         if(!(appliance.isEnergyConservationMode())) {
             return message = "Is not possible for this appliance.";
         }
         else {
-            Action actie = new Action(date, "energy conservation mode activated");
+            Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, appliance.getApplianceID());
             message = "Thank you, we have registered the energy conservation method.";

@@ -1,12 +1,44 @@
 package db;
 
 import application.Action;
+import application.Landlord;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ActionDAO {
+    public Action getAction(int action_id) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT A.action_id, A.`name`, I.`date` " +
+                                        "FROM action AS A INNER JOIN interacts as I " +
+                                        "ON (A.action_id = I.Action_action_id) " +
+                                        "WHERE A.action_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, action_id);
+            ResultSet srs = stmt.executeQuery();
+            int action_id1;
+            String name;
+            LocalDate date;
+
+            if (srs.next()) {
+                action_id1 = srs.getInt("action_id");
+                name = srs.getString("name");
+                date = srs.getDate("date").toLocalDate();
+            } else {
+                return null;
+            }
+            Action action = new Action(date, name, action_id1);
+            return action;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+    }
 
     public ArrayList<Action> getActions(int appliance_id) {
         ArrayList<Action> actions = new ArrayList<Action>();
@@ -20,16 +52,16 @@ public class ActionDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appliance_id);
             ResultSet srs = stmt.executeQuery();
-            int Action_action_id;
+            int action_id;
             String name;
             LocalDate date;
 
             while (srs.next()) {
-                Action_action_id = srs.getInt("Action_action_id");
+                action_id = srs.getInt("action_id");
                 name = srs.getString("name");
                 date = srs.getDate("date").toLocalDate();
 
-                Action action = new Action(date, name, Action_action_id);
+                Action action = new Action(date, name, action_id);
                 actions.add(action);
             }
             return actions;
@@ -47,19 +79,20 @@ public class ActionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT * " +
-                    "FROM action";
+            String sql = "SELECT A.action_id, A.`name`, I.`date` " +
+                    "FROM action AS A INNER JOIN interacts as I " +
+                    "ON (A.action_id = I.Action_action_id) ";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
-            int Action_action_id;
+            int action_id;
             String name;
             LocalDate date;
 
             while (srs.next()) {
-                Action_action_id = srs.getInt("Action_action_id");
+                action_id = srs.getInt("action_id");
                 name = srs.getString("name");
                 date = srs.getDate("date").toLocalDate();
-                Action action = new Action(date, name, Action_action_id);
+                Action action = new Action(date, name, action_id);
                 actions.add(action);
             }
             return actions;
@@ -107,19 +140,20 @@ public class ActionDAO {
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, action.getName());
                 insertStm.executeUpdate();
-                InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(action.getId(), appliance_id, action.getDate());
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
+                int generatedKey = -1;
                 if(generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
+                    generatedKey = generatedKeys.getInt(1);
                 }
+                InteractsDAO interactsDAO = new InteractsDAO();
+                interactsDAO.saveInteracts(generatedKey, appliance_id, action.getDate());
+                return generatedKey;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             DBHandler.closeConnection(con);
             return -1;
         }
-        return -1;
     }
 
     /* ervoor zorgen dat alleen user made kunnen verwijderd worden in application layer
@@ -138,5 +172,12 @@ public class ActionDAO {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);
         }
+    }
+
+    public static void main(String[] args) {
+        ActionDAO actionDAO = new ActionDAO();
+        LocalDate localDate = LocalDate.parse("2021-12-22");
+        Action action = new Action(localDate,"test");
+        System.out.println(actionDAO.getAllActions());
     }
 }

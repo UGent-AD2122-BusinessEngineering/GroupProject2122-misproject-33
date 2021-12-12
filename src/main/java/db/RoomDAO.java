@@ -1,12 +1,8 @@
 package db;
 
-import application.Action;
 import application.Room;
-import application.Student;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class RoomDAO {
 

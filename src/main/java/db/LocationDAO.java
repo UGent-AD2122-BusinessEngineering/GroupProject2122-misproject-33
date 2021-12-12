@@ -1,9 +1,6 @@
 package db;
 
 import application.Location;
-import application.MonthlyEnergyConsumption;
-import application.Room;
-
 import java.sql.*;
 import java.util.ArrayList;
 

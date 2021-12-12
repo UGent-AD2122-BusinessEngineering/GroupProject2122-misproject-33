@@ -15,7 +15,6 @@ public class Room {
     private ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions; //nog koppelen aan db,
     private ArrayList<Student> studentsPerRoom;
     public int roomID;
-    public Landlord landlord;
 
     public Room(int roomnumber, Location location) {
         this.roomnumber = roomnumber;
@@ -64,9 +63,6 @@ public class Room {
         return location;
     }
 
-    public Landlord getLandlord() {
-        return landlord;
-    }
 
     public String addRoom(Landlord landlord, Location location, int roomnumber){
         String message = " ";

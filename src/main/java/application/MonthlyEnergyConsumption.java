@@ -77,7 +77,7 @@ public class MonthlyEnergyConsumption {
     public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
         String message = " ";
         MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
-        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());// moet wrs nog int worden
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
         return "MonthlyEnergyConsumption was succesfully deleted.";
     }
 

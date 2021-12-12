@@ -63,9 +63,6 @@ public class Room {
         return location;
     }
 
-    public Landlord getLandlord() {
-        return landlord;
-    }
 
     public String addRoom(Landlord landlord, Location location, int roomnumber){
         String message = " ";

@@ -4,10 +4,7 @@ import application.Location;
 import application.MonthlyEnergyConsumption;
 import application.Room;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class LocationDAO {
@@ -56,7 +53,7 @@ public class LocationDAO {
                         + "(country, city, ZIP, street, number, area, insulated, characteristics) "
                         + "VALUES (?,?,?,?,?,?,?,?)";
                 //System.out.println(sql);
-                PreparedStatement insertStm = con.prepareStatement(sqlInsert);
+                PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, location.getCountry());
                 insertStm.setString(2, location.getCity());
                 insertStm.setString(3, location.getZIP());
@@ -83,7 +80,7 @@ public class LocationDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT country, city, ZIP, street, number, area, insulated, characteristics"
+            String sql = "SELECT * "
                     + "FROM location "
                     + "WHERE location_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -100,7 +97,7 @@ public class LocationDAO {
                 boolean insulated = srs.getBoolean("insulated");
                 String characteristics = srs.getString("characteristics");
                 int location_id1 = srs.getInt("location_id");
-                return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id);
+                return new Location(country, city, ZIP, street, number, area, insulated, characteristics, location_id1);
             } else {
                 return null;
             }
@@ -140,4 +137,11 @@ public class LocationDAO {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        LocationDAO locationDAO = new LocationDAO();
+        Location location = new Location("France", "Paris", "baguette", "fromage", "69", 420, false, "EKIP");
+        System.out.println(locationDAO.getLocation(4).getCountry());
+    }
+
 }

@@ -36,7 +36,7 @@ public class LandlordDAO {
             } else {
                 return null;
             }
-            Landlord landlord = new Landlord(email, first_name, last_name, password, telephone_number, date_of_birth);
+            Landlord landlord = new Landlord(email1, first_name, last_name, password, telephone_number, date_of_birth);
             return landlord;
 
         } catch (DBException | SQLException e) {
@@ -154,8 +154,10 @@ public class LandlordDAO {
 
     public static void main(String[] args) {
         LandlordDAO landlordDAO = new LandlordDAO();
-        Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
-        landlordDAO.save(l);
+        System.out.println(landlordDAO.getLandlord("a.b@gmail.com").getFirstname());
+        //Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
+        //System.out.println(l.getFirstname());
+        //landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
         //System.out.println(landlordDAO.getLandlord(landlordDAO.getLandlordEmail(1)).getFirstname());
     }

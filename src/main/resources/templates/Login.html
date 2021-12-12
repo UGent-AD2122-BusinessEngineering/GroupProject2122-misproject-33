@@ -2,13 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Login</title>
     <link rel="stylesheet" href="Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-
+</head> <!--css import-->
 
 <body>
 <div class="navbar">
@@ -27,7 +25,7 @@
             <li><a href="Login.html"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
         </ul>
     </nav>
-</div>
+</div> <!--navbar-->
 
 <form class="modal-content animate" th:action="@{/Login}" th:object="${Loginform}" method="post">
     <div class="imgcontainer">
@@ -43,20 +41,14 @@
         <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit">Login</button>
-        <div class="secondButton">
-        <button type="submit" >Register As Student</button>
-        </div>
+    </div>
 
-        <div class="secondButton">
-            <button type="submit" >Register As Landlord</button>
-        </div>
-
-
-
-
+    <div class="registerbuttons">
+        <button> <a href="RegisterAsStudent.html" class="secondButton">Register As Student</a></button>
+    </div><div class="registerbuttons">
+        <button> <a href="RegisterAsLandlord.html" class="secondButton">Register As Landlord</a></button>
     </div>
 </form>
 
 </body>
-
 </html>

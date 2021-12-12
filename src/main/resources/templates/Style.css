@@ -158,9 +158,7 @@ input[type=text], input[type=password] {
     border: 1px solid #888;
     width: 30%; /* Could be more or less, depending on screen size */
 }
-.secondButton{
-    margin-top: 10px;
-}
+
 
 
 /* Add Zoom Animation */
@@ -184,10 +182,22 @@ input[type=text], input[type=password] {
 
 .RegisterBox{
     color: white;
-
     margin-left:70px;
-
     width: 25%; /* Could be more or less, depending on screen size */
+}
+.registerbuttons{
+    background-color: #fefefe;
+    color: white;
+    margin: 5% auto 5% auto;
+    width: 92.5%;
+    text-decoration: none;
+}
+
+.secondButton{
+    margin-top: 10px;
+    color: white;
+    width: 92.5%;
+    text-decoration: none;
 }
 
 

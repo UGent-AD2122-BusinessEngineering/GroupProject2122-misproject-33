@@ -31,30 +31,30 @@
     </nav>
 </div> <!--navbar-->
 
-<form action="#" th:action="@{/toevoegenStudent}" method="post" th:object="${student}" >
+<form action="#" th:action="@{/RegisterAsLandlord}" method="post" th:object="${person}" >
     <div class="RegisterBox">
         <h1>Register as a Landlord</h1>
         <label for="firstname" class="form-label">First Name:</label>
-        <input th:field="*{name}" type="text" class="form-control" id="firstname">
+        <input th:field="*{firstname}" type="text"  id="firstname">
 
         <label for="lastname" class="form-label">Last Name:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="lastname">
+        <input th:field="*{lastname}" type="text"  id="lastname">
 
         <label for="email" class="form-label">Email:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="email">
+        <input th:field="*{email}" type="text"  id="email">
 
         <label for="telephone_number" class="form-label">Phone Number:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="telephone_number">
+        <input th:field="*{telephone_number}" type="text" id="telephone_number">
 
         <label for="date_of_birth" class="form-label">Date Of Birth:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="date_of_birth">
+        <input th:field="*{date_of_birth}" type="text" id="date_of_birth">
 
         <label for="password" class="form-label">Password:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="password">
+        <input th:field="*{password}" type="text"  id="password">
 
         <!-- nog nieuwe instantievar + methode schrijven-->
         <label for="passwordCheck" class="form-label">Repeat Password:</label>
-        <input th:field="*{number}" type="text" class="form-control" id="passwordCheck">
+        <input th:field="*{passwordCheck}" type="text"  id="passwordCheck">
 
         <button type="submit" >Create profile</button>
 

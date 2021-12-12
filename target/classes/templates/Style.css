@@ -178,4 +178,26 @@ input[type=text], input[type=password] {
 }
 
 
+/* Register */
+
+.RegisterBox{
+    color: white;
+    margin-left:70px;
+    width: 25%; /* Could be more or less, depending on screen size */
+}
+.registerbuttons{
+    background-color: #fefefe;
+    color: white;
+    margin: 5% auto 5% auto;
+    width: 92.5%;
+    text-decoration: none;
+}
+
+.secondButton{
+    margin-top: 10px;
+    color: white;
+    width: 92.5%;
+    text-decoration: none;
+}
+
 

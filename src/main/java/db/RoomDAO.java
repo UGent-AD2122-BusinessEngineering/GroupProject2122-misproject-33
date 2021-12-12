@@ -143,8 +143,13 @@ public class RoomDAO {
             PreparedStatement stmt1 = con.prepareStatement(sql1);
             stmt1.setString(1, studentEmail);
             ResultSet srs1 = stmt1.executeQuery();
-            int room_id = srs1.getInt("Room_room_id");
-            return getRoom(room_id);
+            int room_id = 0;
+            if(srs1.next()) {
+                room_id = srs1.getInt("Room_room_id");
+                System.out.println(room_id);
+            }
+            Room room = getRoom(room_id);
+            return room;
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -210,7 +215,7 @@ public class RoomDAO {
         LocationDAO locationDAO = new LocationDAO();
         //Room room = new Room(1, locationDAO.getLocation(5));
         //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
-        //System.out.println(roomDAO.getRoom(4).getLocation().getCountry());
+        //System.out.println(roomDAO.getAllRooms());
         //test
     }
 }

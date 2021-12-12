@@ -84,7 +84,6 @@ public class LandlordDAO {
 
     }
 
-
     //returns email van de landlord van een bepaalde room, kan dan via getLandlord omgezet worden in Landlord object
     public String getLandlordEmail(int room_id) {
         Connection con = null;
@@ -198,6 +197,6 @@ public class LandlordDAO {
         //System.out.println(l.getFirstname());
         //landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
-        //System.out.println(landlordDAO.getAllLandlords());
+        //System.out.println(landlordDAO.getLandlordEmail(4));
     }
 }

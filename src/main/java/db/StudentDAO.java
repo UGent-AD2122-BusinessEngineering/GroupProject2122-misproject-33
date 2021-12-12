@@ -55,7 +55,7 @@ public class StudentDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT email, first_name, last_name, password, telephone_number, date_of_birth "
+            String sql = "SELECT email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person "
                     + "FROM student "
                     + "WHERE Room_room_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -189,11 +189,10 @@ public class StudentDAO {
                         "password = ?, " +
                         "telephone_number = ?, " +
                         "date_of_birth = ?, " +
-                        "is_contact_person = ? " +
-                        "Room_room_id = ?, " +
+                        "is_contact_person = ?, " +
+                        "Room_room_id = ? " +
                         "WHERE email = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
-                stmt2.setString(8, s.getEmail());
                 stmt2.setString(1, s.getFirstname());
                 stmt2.setString(2, s.getLastname());
                 stmt2.setString(3, s.getPassword());
@@ -201,6 +200,7 @@ public class StudentDAO {
                 stmt2.setString(5, s.getDateofbirth());
                 stmt2.setBoolean(6, s.getIsContactPerson());
                 stmt2.setInt(7, room_id);
+                stmt2.setString(8, s.getEmail());
                 stmt2.executeUpdate();
             } else {
                 System.out.println("student nog niet toegevoegd in database, gebruik save methode en daarna update om room aan te maken");
@@ -231,21 +231,21 @@ public class StudentDAO {
     public static void main(String[] args) {
         StudentDAO studentDAO = new StudentDAO();
         //System.out.println(studentDAO.getStudent("mbtopper@gmail.com").getFirstname());
-        Student a = new Student("mathibrab@gm.co", "mathi", "brab", "test1", "0479052448", "02.11.2001");
-        Student b = new Student("bob", "simon", "ffg", "IKBsdfENDIK", "fgh", "bert");
-        Student c = new Student("tyhd", "sisdfgsdmon", "delange", "IKBENDyjjIK", "0479052422", "04.12.1985");
-        Student d = new Student("rhdfgs", "sdftgtr", "ffdth", "ttsrs", "erhed", "04.12.1985");
+        //Student a = new Student("mathibrab@gm.co", "mathi", "brab", "test1", "0479052448", "02.11.2001");
+        //Student b = new Student("bob", "simon", "ffg", "IKBsdfENDIK", "fgh", "bert");
+        //Student c = new Student("tyhd", "sisdfgsdmon", "delange", "IKBENDyjjIK", "0479052422", "04.12.1985");
+        //Student d = new Student("rhdfgs", "sdftgtr", "ffdth", "ttsrs", "erhed", "04.12.1985");
 
 
-        studentDAO.save(a);
-        studentDAO.save(b);
-        studentDAO.save(c);
-        studentDAO.save(d);
+        //studentDAO.save(a);
+        //studentDAO.save(b);
+        //studentDAO.save(c);
+        //studentDAO.save(d);
         //studentDAO.deleteStudent(s);
-
-        /* ArrayList<Student> students = studentDAO.getStudents(1);
+        //studentDAO.update(studentDAO.getStudent("vic.werk@gmeil.com"), 4);
+        ArrayList<Student> students = studentDAO.getAllStudents();
         for(Student student : students) {
-            System.out.println(student.getTelephonenumber());
-        } */
+            System.out.println(student.getPassword());
+        }
     }
 }

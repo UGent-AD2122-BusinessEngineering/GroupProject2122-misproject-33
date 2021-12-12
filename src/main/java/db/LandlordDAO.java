@@ -1,8 +1,6 @@
 package db;
 
 import application.Landlord;
-import application.Student;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

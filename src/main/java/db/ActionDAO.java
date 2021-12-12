@@ -1,7 +1,6 @@
 package db;
 
 import application.Action;
-import application.Landlord;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,10 +11,7 @@ public class ActionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT A.action_id, A.`name`, I.`date` " +
-                                        "FROM action AS A INNER JOIN interacts as I " +
-                                        "ON (A.action_id = I.Action_action_id) " +
-                                        "WHERE A.action_id = ?";
+            String sql = "SELECT * FROM action WHERE action_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, action_id);
             ResultSet srs = stmt.executeQuery();
@@ -45,10 +41,9 @@ public class ActionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT A.action_id, A.`name`, I.Appliance_appliance_id, I.`date` " +
-                    "FROM action AS A INNER JOIN interacts as I " +
-                    "ON (A.action_id = I.Action_action_id) " +
-                    "WHERE I.Appliance_appliance_id = ?";
+            String sql = "SELECT * " +
+                    "FROM action " +
+                    "WHERE Appliance_appliance_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appliance_id);
             ResultSet srs = stmt.executeQuery();
@@ -65,13 +60,11 @@ public class ActionDAO {
                 actions.add(action);
             }
             return actions;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-
     }
 
     public ArrayList<Action> getAllActions() {
@@ -79,9 +72,8 @@ public class ActionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT A.action_id, A.`name`, I.`date` " +
-                    "FROM action AS A INNER JOIN interacts as I " +
-                    "ON (A.action_id = I.Action_action_id) ";
+            String sql = "SELECT * " +
+                    "FROM action ";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             int action_id;
@@ -96,7 +88,6 @@ public class ActionDAO {
                 actions.add(action);
             }
             return actions;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -134,19 +125,20 @@ public class ActionDAO {
                 // INSERT
 
                 String sqlInsert = "INSERT into action "
-                        + "(name) "
-                        + "VALUES (?)";
+                        + "(name, date, Appliance_appliance_id) "
+                        + "VALUES (?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, action.getName());
+                insertStm.setDate(2, java.sql.Date.valueOf(action.getDate()) );
+                insertStm.setInt(3, appliance_id);
+
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 int generatedKey = -1;
                 if(generatedKeys.next()) {
                     generatedKey = generatedKeys.getInt(1);
                 }
-                InteractsDAO interactsDAO = new InteractsDAO();
-                interactsDAO.saveInteracts(generatedKey, appliance_id, action.getDate());
                 return generatedKey;
             }
         } catch (Exception ex) {

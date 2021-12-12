@@ -1,14 +1,13 @@
 package com.GroupProject2122misproject33.demo;
 
-import application.Action;
-import application.Landlord;
-import application.LoginForm;
-import application.Person;
+import application.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 @SpringBootApplication
 @RestController
@@ -42,15 +41,14 @@ public class EnergyConservationController {
 	}
 
 
-	@GetMapping("/RegisterAsLandlord")
+	@GetMapping("/RegisterAsStudent")
 	public String personToevoegen(Model model) {
 
-		Person person= new Person();
-		model.addAttribute("person", new Person());
-		return "RegisterAsLandlord";
+		model.addAttribute("student", new Student());
+		return "RegisterAsStudent";
 	}
 
-	@PostMapping( "/RegisterAsLandlord")
+	@PostMapping( "/RegisterAsStudent")
 	public String personToevoegenSubmit(@ModelAttribute Person person, Model model, RedirectAttributes redirAttrs) {
 
 		return "Login";

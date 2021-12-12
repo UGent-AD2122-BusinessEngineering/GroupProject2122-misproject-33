@@ -1,11 +1,13 @@
 package db;
 
 import application.Landlord;
+import application.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LandlordDAO {
 
@@ -45,6 +47,43 @@ public class LandlordDAO {
             return null;
         }
     }
+
+    public ArrayList<Landlord> getAllLandlords() {
+        ArrayList<Landlord> landlords = new ArrayList<Landlord>();
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+            String sql = "SELECT * "
+                    + "FROM landlord ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet srs = stmt.executeQuery();
+            String email;
+            String first_name;
+            String last_name;
+            String password;
+            String telephone_number;
+            String date_of_birth;
+
+            while (srs.next()) {
+                email = srs.getString("email");
+                first_name = srs.getString("first_name");
+                last_name = srs.getString("last_name");
+                password = srs.getString("password");
+                telephone_number = srs.getString("telephone_number");
+                date_of_birth = srs.getString("date_of_birth");
+                Landlord landlord = new Landlord(email, first_name, last_name, password, telephone_number, date_of_birth);
+                landlords.add(landlord);
+            }
+            return landlords;
+
+        } catch (DBException | SQLException e) {
+            e.printStackTrace();
+            DBHandler.closeConnection(con);
+            return null;
+        }
+
+    }
+
 
     //returns email van de landlord van een bepaalde room, kan dan via getLandlord omgezet worden in Landlord object
     public String getLandlordEmail(int room_id) {
@@ -154,11 +193,11 @@ public class LandlordDAO {
 
     public static void main(String[] args) {
         LandlordDAO landlordDAO = new LandlordDAO();
-        System.out.println(landlordDAO.getLandlord("a.b@gmail.com").getFirstname());
+        //System.out.println(landlordDAO.getLandlord("a.b@gmail.com").getFirstname());
         //Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
         //System.out.println(l.getFirstname());
         //landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
-        //System.out.println(landlordDAO.getLandlord(landlordDAO.getLandlordEmail(1)).getFirstname());
+        //System.out.println(landlordDAO.getAllLandlords());
     }
 }

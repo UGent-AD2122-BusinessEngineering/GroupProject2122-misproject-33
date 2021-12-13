@@ -1,7 +1,6 @@
 package application;
 
 import db.ActionDAO;
-import db.ApplianceDAO;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -136,7 +135,7 @@ public class Appliance {
     public String energyConservationModeOn (Appliance appliance, LocalDate date) {
         String message = "";
         if(!(appliance.isEnergyConservationMode())) {
-            return message += "Is not possible for this appliance.";
+            return message = "Is not possible for this appliance.";
         }
         else {
             Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
@@ -211,7 +210,7 @@ public class Appliance {
         return message;
     }
 
-    public String averageTemperature(double temperature) {
+    public String averageTemperature() {
         String message = "";
         double[] temp = new double[6];
         double total = 0;

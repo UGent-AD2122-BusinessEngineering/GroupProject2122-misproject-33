@@ -2,7 +2,6 @@ package application;
 
 import db.ApplianceDAO;
 import db.MonthlyEnergyConsumptionDAO;
-import db.RoomDAO;
 import db.StudentDAO;
 
 import java.time.LocalDate;
@@ -29,9 +28,11 @@ public class Room {
         this.roomnumber = roomnumber;
         this.location = location;
         this.roomID = roomID;
+        monthlyEnergyConsumptions = new ArrayList<>();
+        studentsPerRoom = new ArrayList<>();
     }
 
-    public ArrayList<Student> getStudentPerRoom (Room room){
+    public ArrayList<Student> getStudentsPerRoom(Room room){
         StudentDAO studentDAO = new StudentDAO();
         return studentDAO.getStudents(room.getRoomID());
     }

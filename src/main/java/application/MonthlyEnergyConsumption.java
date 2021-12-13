@@ -1,7 +1,5 @@
 package application;
 
-import db.MonthlyEnergyConsumptionDAO;
-
 import java.time.LocalDate;
 import java.util.Objects;
 

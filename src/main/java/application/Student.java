@@ -29,15 +29,6 @@ public class Student extends Person {
         super();
     }
 
-    //returns true if given (not yet encoded) password equals the password of the user with the given email address
-    public static boolean checkPassword(String email, String password) {
-        StudentDAO studentDAO = new StudentDAO();
-        if(studentDAO.getStudent(email).getPassword().equals(PasswordHashing.doHashing(password))) {
-            return true;
-        }
-        else return false;
-    }
-
     public boolean getIsContactPerson() {
         return isContactPerson;
     }
@@ -78,7 +69,7 @@ public class Student extends Person {
                     return "An account already exists with this email address.";
                 }
             }
-            Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
+            Student student1 = new Student(email, firstname, lastname,PasswordHashing.doHashing(password), telephone_number, date_of_birth);
             studentDAO.save(student1);
         return "Your registration has been succesfull.";
     }
@@ -88,7 +79,7 @@ public class Student extends Person {
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
             for (Student item : allStudents) {
                 if (item.getEmail().equals(email)) {
-                    if (item.password.equals(password)) {
+                    if (item.password.equals(PasswordHashing.doHashing(password))) {
                         return item;
                     }
                 }

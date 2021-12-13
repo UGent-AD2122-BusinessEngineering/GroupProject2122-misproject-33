@@ -1,5 +1,6 @@
 package application;
 
+import db.ApplianceDAO;
 import db.RoomDAO;
 import db.StudentDAO;
 import java.util.ArrayList;
@@ -65,6 +66,21 @@ public class Room {
         studentDAO.save(student);
         studentDAO.update(student, roomID);
         return "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
+    }
+
+    public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
+                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
+        Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
+        ApplianceDAO applianceDAO = new ApplianceDAO();
+        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
+        return "The appliance has been succesfully added.";
+    }
+
+    public String deleteAppliance(Appliance appliance){
+
+        ApplianceDAO applianceDAO = new ApplianceDAO();
+        applianceDAO.deleteAppliance(appliance.getApplianceID());
+        return "The appliance has been succesfully deleted.";
     }
 
 }

@@ -24,6 +24,8 @@ public class Action {
     private String name;
     private int Id;
 
+    public Action() {
+    }
 
     public Action(LocalDate date, String name) {
         this.date = date;

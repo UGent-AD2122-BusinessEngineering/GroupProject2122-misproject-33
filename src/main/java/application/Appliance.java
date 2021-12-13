@@ -132,23 +132,6 @@ public class Appliance {
         this.temperature = temperature;
     }
 
-
-    public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
-        String message = " ";
-        Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
-        ApplianceDAO applianceDAO = new ApplianceDAO();
-        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
-        return message = "The appliance has been succesfully added.";
-    }
-
-    public String deleteAppliance(Appliance appliance){
-        String message = "";
-        ApplianceDAO applianceDAO = new ApplianceDAO();
-        applianceDAO.deleteAppliance(appliance.getApplianceID());
-        return message = "The appliance has been succesfully deleted.";
-    }
-
     //Ook een energyConservationModeOff nodig denk ik -Simon
     public String energyConservationModeOn (Appliance appliance, LocalDate date) {
         String message = "";

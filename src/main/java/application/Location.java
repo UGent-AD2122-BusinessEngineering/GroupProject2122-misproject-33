@@ -43,7 +43,6 @@ public class Location {
 
 
     public int getID() {return ID;}
-    public void setId(int ID) {this.ID = ID;}
     public void setArea(int area) {this.area = area;}
     public String getCountry() {return country;}
     public void setCountry(String country) {this.country = country;}

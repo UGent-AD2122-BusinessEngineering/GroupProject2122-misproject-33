@@ -67,21 +67,6 @@ public class MonthlyEnergyConsumption {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
-    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room) {
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
-        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
-        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, room.roomID);
-        return "Your monthly energy consumption of month " + month + " has been registered.";
-    }
-
-    public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
-        String message = " ";
-        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
-        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
-        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
-        return "MonthlyEnergyConsumption was succesfully deleted.";
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

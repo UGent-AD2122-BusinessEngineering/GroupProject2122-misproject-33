@@ -24,11 +24,11 @@ public class LocationDAO {
                         "country = ?, " +
                         "city = ?, " +
                         "ZIP = ?, " +
-                        "street = ?" +
-                        "number = ? " +
-                        "area = ?" +
-                        "insulated = ?" +
-                        "characteristics = ?" +
+                        "street = ?, " +
+                        "number = ?, " +
+                        "area = ?, " +
+                        "insulated = ?, " +
+                        "characteristics = ? " +
                         "WHERE location_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                 stmt2.setInt(1, location.getID());

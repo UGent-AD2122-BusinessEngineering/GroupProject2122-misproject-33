@@ -1,8 +1,11 @@
 package application;
 
 import db.ApplianceDAO;
+import db.MonthlyEnergyConsumptionDAO;
 import db.RoomDAO;
 import db.StudentDAO;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Room {
@@ -61,11 +64,18 @@ public class Room {
         return location;
     }
 
-    public String addStudent(Student student){
+    public String addStudent(Student student, Boolean contactPersoon){
         StudentDAO studentDAO = new StudentDAO();
+        student.setContactPerson(contactPersoon);
         studentDAO.save(student);
         studentDAO.update(student, roomID);
         return "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
+    }
+
+    public String deleteStudent(Student student){
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.deleteStudent(student.getEmail());
+        return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
 
     public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
@@ -81,6 +91,21 @@ public class Room {
         ApplianceDAO applianceDAO = new ApplianceDAO();
         applianceDAO.deleteAppliance(appliance.getApplianceID());
         return "The appliance has been succesfully deleted.";
+    }
+
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, room.roomID);
+        return "Your monthly energy consumption of month " + month + " has been registered.";
+    }
+
+    public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
+        String message = " ";
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
+        return "MonthlyEnergyConsumption was succesfully deleted.";
     }
 
 }

@@ -1,6 +1,5 @@
 package com.GroupProject2122misproject33.demo;
 
-
 import application.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
-
-
 
 @SpringBootApplication
 @RestController
@@ -23,7 +20,7 @@ public class EnergyConservationController {
 	@GetMapping("/RequestAsStudent")
 	public String toevoegenStudent(@RequestParam(value = "Person", defaultValue = "Naam") Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
 
-		return new Person().toRegister(student, email, firstname, lastname, password, telephone_number, date_of_birth);
+		return new Student().toRegister(student, email, firstname, lastname, password, telephone_number, date_of_birth);
 	}
 
 
@@ -62,19 +59,19 @@ public class EnergyConservationController {
 		return "Login";
 	}
 
+	//eenzelfde code nog voor landlord?
 	@RequestMapping(value = "/Login", method = RequestMethod.POST)
-	public String login(@ModelAttribute(name = "LoginForm") Person person, Model model){
-		String email= person.getEmail();
-		String password= person.getPassword();
+	public String login(@ModelAttribute(name = "LoginForm") Student student, Model model){
+		String email= student.getEmail();
+		String password= student.getPassword();
 
-		if(person.loginSucces(email, password)){
+		if(student.loginSucces(email, password)){
 			return "FucntionScreen";
 		}
-
 		model.addAttribute("invalidCredentials", true);
-
 		return "Login";
 	}
+
 	/*
 
 	@RequestMapping(value="/test", method = RequestMethod.POST)

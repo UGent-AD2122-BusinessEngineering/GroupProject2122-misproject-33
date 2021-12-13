@@ -30,22 +30,25 @@
 </div>
 
 <form action="#" th:action="@{/MonthlyEnergyConsumption}" method="post" th:object="${student}" >
-    <div class="RegisterBox">
-        <h1>Register Monthly Energy Consumption</h1>
-        <label for="electricityUsage" class="form-label">Electricity:</label>
-        <input th:field="*{electricity}" type="double" class="form-control" id="electricityUsage">
-        <br>
-        <label for="gasUsage" class="form-label">Gas:</label>
-        <input th:field="*{gas}" type="double" class="form-control" id="gasUsage">
-        <br>
-        <label for="waterUsage" class="form-label">Water:</label>
-        <input th:field="*{water}" type="double" class="form-control" id="waterUsage">
-        <br>
-        <label for="pastMonth" class="form-label">Select month:</label>
-        <input th:field="*{month}" type="month" class="form-control" id="pastMonth">
 
-        <br/>
-        <textarea id="opmerking" th:field="*{summary}" name="opmerking" rows="3" ></textarea>
+
+        <h1>Register Monthly Energy Consumption</h1>
+    <div class="question">
+        <label for="electricityUsage" class="form-label">Electricity:</label>
+        <input th:field="*{electricity}"  class="form-control" id="electricityUsage" type="text" required/>
+    </div>
+    <div class="question">
+        <label for="gasUsage" class="form-label">Gas:</label>
+        <input th:field="*{gas}" class="form-control" id="gasUsage" type="text" required/>
+    </div>
+    <div class="question">
+        <label for="waterUsage" class="form-label">Water:</label>
+        <input th:field="*{water}" class="form-control" id="waterUsage" type="text" required/>
+    </div>
+        <label for="pastMonth" class="form-label">Select month:</label>
+        <input th:field="*{month}" class="form-control" id="pastMonth" type="month" required/>
+
+
 
     </div>
 

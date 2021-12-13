@@ -73,7 +73,7 @@ public class Landlord extends Person {
                     return "An account already exists with this email address.";
                 }
             }
-            Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
+            Landlord landlord = new Landlord(email, firstname, lastname, PasswordHashing.doHashing(password), telephone_number, date_of_birth);
             landlordDAO.save(landlord);
         return "Your registration has been succesfull.";
 }
@@ -83,7 +83,7 @@ public class Landlord extends Person {
         ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
         for (Landlord item : allLandlords) {
             if (item.getEmail().equals(email)) {
-                if (item.password.equals(password)) {
+                if (item.password.equals(PasswordHashing.doHashing(password))) {
                     return item;
                 }
             }

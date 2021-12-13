@@ -25,10 +25,8 @@
     <nav>
         <ul>
             <li><a href="Home.html"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-            <li><a href="toevoegenstudent.html"><i class="fa fa-fw fa-question"></i><b>Toevoegen Student</b></a></li>
-            <li><a href="EnergyConservation.html"><i class="fa fa-fw fa-lightbulb-o"></i><b>Energy Conservation</b></a></li>
             <li><a href="ContactUs.html"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
-            <li><a href="Login.html"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
+            <li><a href="FunctionScreen.html"><i class="fa fa-fw fa-wrench"></i><b>Functionalities</b></a></li>
         </ul>
     </nav>
 </div>
@@ -37,23 +35,25 @@
 <form action="#" th:action="@{/Appliances}" method="post" th:object="${appliance}" >
     <div class="RegisterBox">
         <h1>Register an Appliance</h1>
-        <label for="energy_EfficiencyClass" class="form-label">EnergyEfficiencyClass:</label>
+        <label for="energy_EfficiencyClass" class="form-label">Energy Efficiency Class:</label>
         <input th:field="*{energyEfficiencyClass}" type="text"  id="energy_EfficiencyClass">
 
-        <label for="model_Identifier" class="form-label">ModelIdentifier:</label>
+        <label for="model_Identifier" class="form-label">Model Identifier:</label>
         <input th:field="*{modelIdentifier}" type="text"  id="model_Identifier">
 
-        <label for="annual_Energy_Consumption" class="form-label">AnnualEnergyConsumption:</label>
-        <input th:field="*{annualEnergyConsumption}" type="int"  id="annual_Energy_Consumption">
-
-        <label for="supplier_Name" class="form-label">SupplierName:</label>
+        <label for="annual_Energy_Consumption" class="form-label">Annual Energy Consumption:</label>
+        <input th:field="*{annualEnergyConsumption}" type="int" id="annual_Energy_Consumption">
+        <br>
+        <label for="supplier_Name" class="form-label">Supplier Name:</label>
         <input th:field="*{supplierName}" type="text" id="supplier_Name">
 
         <label for="Name" class="form-label">Name:</label>
         <input th:field="*{name}" type="text" id="Name">
 
-        <label for="appliance_ID" class="form-label">ApplianceID:</label>
+        <label for="appliance_ID" class="form-label">Appliance ID:</label>
         <input th:field="*{applianceID}" type="int"  id="appliance_ID">  <!--????-->
+
+       <br><br>
 
         <label for="Temperature" class="form-label">Temperature:</label>
         <input th:field="*{temperature}" type="double"  id="Temperature">

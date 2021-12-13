@@ -200,4 +200,16 @@ input[type=text], input[type=password] {
     text-decoration: none;
 }
 
+.card5{
+    background-image: url(Pictures/Room.jpg);
+}
+.card6{
+    background-image: url(Pictures/fridge.png);
+}
+.card7{
+    background-image: url(Pictures/thermostatische-kranen_radiatoren_zomer_verwarming.jpg);
+}
+.card8{
+    background-image: url(Pictures/bill.jpg);
+}
 

@@ -23,15 +23,41 @@
     <nav>
         <ul>
             <li><a href="Home.html"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-            <li><a href="toevoegenstudent.html"><i class="fa fa-fw fa-question"></i><b>Toevoegen Student</b></a></li>
-            <li><a href="EnergyConservation.html"><i class="fa fa-fw fa-lightbulb-o"></i><b>Energy Conservation</b></a></li>
             <li><a href="ContactUs.html"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
             <li><a href="Login.html"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
         </ul>
     </nav>
 </div> <!--navbar-->
 
-<form action="#" th:action="@{/RegisterAsLandlord}" method="post" th:object="${person}" >
+<form action="http://localhost:8081/test" method="post">
+    <div class="RegisterBox">
+        <h1>Register as a Landlord</h1>
+    <label for="firstname">First Name:</label>
+    <input type="text" name="firstname" id="firstname">
+
+    <label for="lastname" class="form-label">Last Name:</label>
+    <input type="text" name="lastname" id="lastname">
+
+    <label for="email" class="form-label">Email:</label>
+    <input type="text" name="email" id="email">
+
+    <label for="telephone_number" class="form-label">Phone Number:</label>
+    <input type="text" name="telephone_number" id="telephone_number">
+
+    <label for="date_of_birth" class="form-label">Date Of Birth:</label>
+    <input type="text" name="date_of_birth" id="date_of_birth">
+
+    <label for="password" class="form-label">Password:</label>
+    <input type="text" name="password" id="password">
+
+
+    <button type="submit" value="Submit">Create profile</button>
+    </div>
+</form>
+
+<!--
+
+<form action="saveUser" th:action="@{/RegisterAsLandlord}" method="post" th:object="${person}" >
     <div class="RegisterBox">
         <h1>Register as a Landlord</h1>
         <label for="firstname" class="form-label">First Name:</label>
@@ -52,7 +78,7 @@
         <label for="password" class="form-label">Password:</label>
         <input th:field="*{password}" type="text"  id="password">
 
-        <!-- nog nieuwe instantievar + methode schrijven-->
+
         <label for="passwordCheck" class="form-label">Repeat Password:</label>
         <input th:field="*{passwordCheck}" type="text"  id="passwordCheck">
 
@@ -61,7 +87,7 @@
     </div>
 
 </form>
-
+-->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -71,6 +97,6 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 -->
 </div>
-
+-->
 </body>
 </html>

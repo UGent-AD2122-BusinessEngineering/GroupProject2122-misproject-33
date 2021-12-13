@@ -29,25 +29,45 @@ public class Person {
 
     }
 
-    public String getEmail() {return email;}
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) {this.email = email;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getFirstname() {return firstname;}
+    public String getFirstname() {
+        return firstname;
+    }
 
-    public void setFirstname(String firstname) {this.firstname = firstname;}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-    public String getLastname() {return lastname;}
+    public String getLastname() {
+        return lastname;
+    }
 
-    public void setLastname(String lastname) {this.lastname = lastname;}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-    public String getTelephonenumber() {return telephone_number;}
+    public String getTelephonenumber() {
+        return telephone_number;
+    }
 
-    public void setTelephonenumber(String telephonenumber) {this.telephone_number = telephonenumber;}
+    public void setTelephonenumber(String telephonenumber) {
+        this.telephone_number = telephonenumber;
+    }
 
-    public String getDateofbirth() {return date_of_birth;}
+    public String getDateofbirth() {
+        return date_of_birth;
+    }
 
-    public void setDateofbirth(String dateofbirth) {this.date_of_birth = dateofbirth;}
+    public void setDateofbirth(String dateofbirth) {
+        this.date_of_birth = dateofbirth;
+    }
 
     public String getPassword() {
         return password;
@@ -75,22 +95,21 @@ public class Person {
     }
 
 
-    public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
+    public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         if (student) {
             StudentDAO studentDAO = new StudentDAO();
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents){
-                if (item.getEmail().equals(email)){
+            for (Student item : allStudents) {
+                if (item.getEmail().equals(email)) {
                     return "An account already exists with this email address.";
                 }
             }
             Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
             studentDAO.save(student1);
-        }
-        else {
+        } else {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
-            for (Landlord item : allLandlords){
+            for (Landlord item : allLandlords) {
                 if (item.getEmail().equals(email)) {
                     return "An account already exists with this email address.";
                 }
@@ -98,27 +117,26 @@ public class Person {
             Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
             landlordDAO.save(landlord);
         }
-            return "Your registration has been succesfull.";
+        return "Your registration has been succesfull.";
     }
 
-    public Object login (String email, String password, boolean student){
-        if (student){
+    public Object login(String email, String password, boolean student) {
+        if (student) {
             StudentDAO studentDAO = new StudentDAO();
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents){
-                if (item.getEmail().equals(email)){
-                    if(item.password.equals(password)){
+            for (Student item : allStudents) {
+                if (item.getEmail().equals(email)) {
+                    if (item.password.equals(password)) {
                         return item;
                     }
                 }
             }
             String message = "Your e-mail or password was incorrect.";
             return message;
-        }
-        else{
+        } else {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
-            for(Landlord item : allLandlords){
+            for (Landlord item : allLandlords) {
                 if (item.getEmail().equals(email)) {
                     if (item.password.equals(password)) {
                         return item;
@@ -129,10 +147,21 @@ public class Person {
             return message;
         }
     }
+
+
+    public boolean loginSucces(String email, String password) {
+        StudentDAO studentDAO = new StudentDAO();
+        ArrayList<Student> allStudents = studentDAO.getAllStudents();
+        for (Student item : allStudents) {
+            if (item.getEmail().equals(email)) {
+                if (item.password.equals(password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
-
-
-
     /*public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is

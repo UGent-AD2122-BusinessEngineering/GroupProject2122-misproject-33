@@ -21,6 +21,10 @@ public class Student extends Person {
         this.isContactPerson = isContactPerson;
     }
 
+    public void setContactPerson(boolean contactPerson) {
+        isContactPerson = contactPerson;
+    }
+
     public Student() {
         super();
     }

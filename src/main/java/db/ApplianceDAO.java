@@ -225,7 +225,8 @@ public class ApplianceDAO {
 
     public static void main(String[] args) {
         ApplianceDAO applianceDAO = new ApplianceDAO();
-        Appliance appliance = new Appliance("B", "modelnr", 550, "zanussi", "koelkast", true, false, false, 3);
-        System.out.println(applianceDAO.getAllAppliances());
+        //Appliance appliance = new Appliance("B", "modelnr", 550, "zanussi", "koelkast", true, false, false, 3);
+        //System.out.println(applianceDAO.getAllAppliances());
+        applianceDAO.deleteAppliance(4);
     }
 }

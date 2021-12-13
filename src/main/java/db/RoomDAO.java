@@ -163,7 +163,7 @@ public class RoomDAO {
             stmt.setInt(1, room_id);
             stmt.executeUpdate();
 
-            String sql2 = "DELETE FROM location " +
+            String sql2 = "DELETE FROM location L " +
                     "WHERE NOT EXISTS(SELECT room_id " +
                     "FROM room R " +
                     "WHERE R.Location_location_id = L.location_id)";
@@ -213,5 +213,6 @@ public class RoomDAO {
         //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
         //System.out.println(roomDAO.getAllRooms());
         //test
+        roomDAO.deleteRoom(2);
     }
 }

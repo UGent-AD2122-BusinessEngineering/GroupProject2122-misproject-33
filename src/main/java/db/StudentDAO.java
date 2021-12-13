@@ -241,11 +241,11 @@ public class StudentDAO {
         //studentDAO.save(b);
         //studentDAO.save(c);
         //studentDAO.save(d);
-        //studentDAO.deleteStudent(s);
+        studentDAO.deleteStudent("bob");
         //studentDAO.update(studentDAO.getStudent("vic.werk@gmeil.com"), 4);
-        ArrayList<Student> students = studentDAO.getAllStudents();
-        for(Student student : students) {
-            System.out.println(student.getPassword());
-        }
+        //ArrayList<Student> students = studentDAO.getAllStudents();
+        //for(Student student : students) {
+            //System.out.println(student.getPassword());
+       // }
     }
 }

@@ -162,7 +162,7 @@ public class LandlordDAO {
         }
     }
 
-    public void deleteLandlord(Landlord l){
+    public void deleteLandlord(String email){
 
         /*als landlord wordt verwijderd worden ook alle rooms in bezit verwijderd en ik zal nog es kijken voor die
         trigger te maken die eventueel een location verwijdert als er zich daar geen rooms meer bevinden
@@ -178,7 +178,7 @@ public class LandlordDAO {
             String sql = "DELETE FROM landlord "
                     + "WHERE email = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, l.getEmail());
+            stmt.setString(1, email);
 
             stmt.executeUpdate();
         } catch (DBException dbe) {
@@ -196,5 +196,6 @@ public class LandlordDAO {
         //landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
         //System.out.println(landlordDAO.getLandlordEmail(4));
+        landlordDAO.deleteLandlord("c.d@gmail.com");
     }
 }

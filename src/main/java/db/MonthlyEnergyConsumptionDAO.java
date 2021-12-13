@@ -201,9 +201,10 @@ public class MonthlyEnergyConsumptionDAO {
     }
 
     public static void main(String[] args) {
-        //MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
         //LocalDate date = LocalDate.parse("2021-12-01");
         //MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(100, 0, 100, date, 3);
         //System.out.println(monthlyEnergyConsumptionDAO.getAllMonthlyEnergyConsumptions(4));
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(2);
     }
 }

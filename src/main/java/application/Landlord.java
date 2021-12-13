@@ -65,7 +65,7 @@ public class Landlord extends Person {
         return message += "The room has been succesfully deleted.";
     }
 
-    public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public static String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
             for (Landlord item : allLandlords) {
@@ -78,7 +78,7 @@ public class Landlord extends Person {
         return "Your registration has been succesfull.";
 }
 
-    public Object login(String email, String password) {
+    public static Object login(String email, String password) {
         LandlordDAO landlordDAO = new LandlordDAO();
         ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
         for (Landlord item : allLandlords) {

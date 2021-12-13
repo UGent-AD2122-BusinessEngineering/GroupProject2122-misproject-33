@@ -19,14 +19,14 @@ public class Landlord extends Person {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
     }
 
-    public HashMap <Room, Student> getRoomStudentHashmap(Landlord landlord) {
+    public HashMap<Room, Student> getRoomStudentHashmap(Landlord landlord) {
         RoomDAO roomDAO = new RoomDAO();
         ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
         StudentDAO studentDAO = new StudentDAO();
         HashMap<Room, Student> roomStudentHashMap = new HashMap<Room, Student>();
-        for (Room item : allRooms){
+        for (Room item : allRooms) {
             ArrayList<Student> studentsOfRoom = studentDAO.getStudents(item.roomID);
-            for(Student item1 : studentsOfRoom){
+            for (Student item1 : studentsOfRoom) {
                 if (item1.getIsContactPerson())
                     roomStudentHashMap.put(item, item1);
             }
@@ -49,7 +49,7 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    public String addRoom(Landlord landlord, Location location, int roomnumber){
+    public String addRoom(Landlord landlord, Location location, int roomnumber) {
         String message = "";
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
@@ -57,13 +57,27 @@ public class Landlord extends Person {
         return message += "The room has been succesfully added.";
     }
 
-    public String deleteRoom(Room room){
+    public String deleteRoom(Room room) {
         String message = "";
         RoomDAO roomDAO = new RoomDAO();
         roomDAO.deleteRoom(room.roomID);
         return message += "The room has been succesfully deleted.";
     }
 
+    public String toRegister(Boolean landlord, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+        if (landlord) {
+            LandlordDAO landlordDAO = new LandlordDAO();
+            ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
+            for (Landlord item : allLandlords) {
+                if (item.getEmail().equals(email)) {
+                    return "An account already exists with this email address.";
+                }
+            }
+            Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
+            landlordDAO.save(landlord);
+        }
+        return "Your registration has been succesfull.";
+}
 
 
 

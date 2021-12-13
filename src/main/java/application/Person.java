@@ -95,31 +95,6 @@ public class Person {
     }
 
 
-    public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        if (student) {
-            StudentDAO studentDAO = new StudentDAO();
-            ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents) {
-                if (item.getEmail().equals(email)) {
-                    return "An account already exists with this email address.";
-                }
-            }
-            Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
-            studentDAO.save(student1);
-        } else {
-            LandlordDAO landlordDAO = new LandlordDAO();
-            ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
-            for (Landlord item : allLandlords) {
-                if (item.getEmail().equals(email)) {
-                    return "An account already exists with this email address.";
-                }
-            }
-            Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
-            landlordDAO.save(landlord);
-        }
-        return "Your registration has been succesfull.";
-    }
-
     public Object login(String email, String password, boolean student) {
         if (student) {
             StudentDAO studentDAO = new StudentDAO();

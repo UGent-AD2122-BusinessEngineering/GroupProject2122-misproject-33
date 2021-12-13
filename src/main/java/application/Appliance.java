@@ -1,7 +1,6 @@
 package application;
 
 import db.ActionDAO;
-import db.ApplianceDAO;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,13 +20,11 @@ public class Appliance {
     private int applianceID;
     private boolean isTempProportionate;
     private boolean isTempDisproportionate;
-    private double temperature; //deze moet er niet meer staan vermoed ik, temperature wordt niet opgeslaan in db -Simon
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
     private ArrayList <Action> actionsPerAppliance;
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
                      String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode) {
-        super();
         this.energyEfficiencyClass = energyEfficiencyClass;
         this.modelIdentifier = modelIdentifier;
         this.annualEnergyConsumption = annualEnergyConsumption;
@@ -36,6 +33,7 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
+        this.actionsPerAppliance = new ArrayList<>(actionsPerAppliance);
     }
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, int applianceID) {
@@ -48,6 +46,7 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
+        this.actionsPerAppliance = new ActionDAO().getActions(applianceID);
     }
 
     public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
@@ -104,10 +103,6 @@ public class Appliance {
         return applianceID;
     }
 
-    public void setApplianceID(int applianceID) {
-        this.applianceID = applianceID;
-    }
-
     public boolean getIsTempProportionate() {
         return isTempProportionate;
     }
@@ -124,19 +119,11 @@ public class Appliance {
         isTempDisproportionate = tempDisproportionate;
     }
 
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
     //Ook een energyConservationModeOff nodig denk ik -Simon
     public String energyConservationModeOn (Appliance appliance, LocalDate date) {
         String message = "";
         if(!(appliance.isEnergyConservationMode())) {
-            return message += "Is not possible for this appliance.";
+            return message = "Is not possible for this appliance.";
         }
         else {
             Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
@@ -147,7 +134,22 @@ public class Appliance {
         return message;
     }
 
-    public String customizedEnergyConservationAction(Appliance appliance, LocalDate date,String name){
+    public String energyConservationModeOff (Appliance appliance, LocalDate date) {
+        String message = "";
+        if(!(appliance.isEnergyConservationMode())) {
+            return message += "Is not possible for this appliance.";
+        }
+        else {
+            Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
+            ActionDAO actionDAO = new ActionDAO();
+            actionDAO.deleteAction(actie.getId());
+            message += "Thank you, we have registered the energy conservation method.";
+        }
+        return message;
+    }
+
+
+    public String customizedEnergyConservationAction(Appliance appliance, LocalDate date, String name){
         Action actie = new Action(date, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, appliance.getApplianceID());
@@ -179,10 +181,8 @@ public class Appliance {
         }
         if (appliance.getIsTempDisproportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
-            appliance.setTemperature(appliance.getTemperature() - 1);
         }
         else{
-            appliance.setTemperature(appliance.getTemperature()-1);
             Action actie = new Action(date, "decrease a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, appliance.getApplianceID());
@@ -199,10 +199,8 @@ public class Appliance {
         }
         if (appliance.getIsTempProportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
-            appliance.setTemperature(appliance.getTemperature() + 1);
         }
         else{
-            appliance.setTemperature(appliance.getTemperature() + 1);
             Action actie = new Action(date, "increase a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, appliance.getApplianceID());
@@ -211,26 +209,20 @@ public class Appliance {
         return message;
     }
 
-    public String averageTemperature(double temperature) {
+    public String averageTemperature() {
         String message = "";
-        double[] temp = new double[6];
+        double[] temp = new double[7];
         double total = 0;
-        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter your temperatures from last week: ");
         for (int i = 0; i < temp.length; ) {
-            System.out.println("Please enter your temperatures from last week ");
-            if (scan.hasNextDouble()) {
-                temp[i] = scan.nextDouble();
                 total = total + temp[i];
                 i++;
-            } else {
-                scan.next();
-            }
         }
         double average = total / temp.length;
         java.util.Arrays.sort(temp);
-        message += "Your lowest temperature = " + temp[0];
-        message += "Your highest temperature = " + temp[temp.length - 1];
-        message += "The average temperature of this week was: " + average;
+        message += "\n Your lowest temperature = " + temp[0];
+        message += "\n Your highest temperature = " + temp[temp.length - 1];
+        message += "\n The average temperature of this week was: " + average;
         return message;
     }
 

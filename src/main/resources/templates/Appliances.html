@@ -33,30 +33,44 @@
 
 
 <form action="#" th:action="@{/Appliances}" method="post" th:object="${appliance}" >
-    <div class="RegisterBox">
+
         <h1>Register an Appliance</h1>
+
+    <div class="question">
         <label for="energy_EfficiencyClass" class="form-label">Energy Efficiency Class:</label>
-        <input th:field="*{energyEfficiencyClass}" type="text"  id="energy_EfficiencyClass">
+        <input th:field="*{energyEfficiencyClass}" type="text" required id="energy_EfficiencyClass">
+    </div>
 
+    <div class="question">
         <label for="model_Identifier" class="form-label">Model Identifier:</label>
-        <input th:field="*{modelIdentifier}" type="text"  id="model_Identifier">
+        <input th:field="*{modelIdentifier}" type="text" required  id="model_Identifier">
+    </div>
 
+    <div class="question">
         <label for="annual_Energy_Consumption" class="form-label">Annual Energy Consumption:</label>
-        <input th:field="*{annualEnergyConsumption}" type="int" id="annual_Energy_Consumption">
-        <br>
+        <input th:field="*{annualEnergyConsumption}" type="int" required id="annual_Energy_Consumption">
+    </div>
+
+    <div class="question">
         <label for="supplier_Name" class="form-label">Supplier Name:</label>
-        <input th:field="*{supplierName}" type="text" id="supplier_Name">
+        <input th:field="*{supplierName}" type="text" required id="supplier_Name">
+    </div>
 
+    <div class="question">
         <label for="Name" class="form-label">Name:</label>
-        <input th:field="*{name}" type="text" id="Name">
+        <input th:field="*{name}" type="text" required id="Name">
+    </div>
 
+    <div class="question">
         <label for="appliance_ID" class="form-label">Appliance ID:</label>
-        <input th:field="*{applianceID}" type="int"  id="appliance_ID">  <!--????-->
+        <input th:field="*{applianceID}" type="int" required  id="appliance_ID">  <!--????-->
 
-       <br><br>
+    </div>
 
+    <div class="question">
         <label for="Temperature" class="form-label">Temperature:</label>
-        <input th:field="*{temperature}" type="double"  id="Temperature">
+        <input th:field="*{temperature}" type="double" required id="Temperature">
+    </div>
 
         <button type="submit" >Create profile</button>
 

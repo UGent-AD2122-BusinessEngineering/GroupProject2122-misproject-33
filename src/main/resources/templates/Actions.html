@@ -29,24 +29,31 @@
     </nav>
 </div>
 
-<form action="#" th:action="@{/Actions}" method="post" th:object="${action}" >
-    <div class="RegisterBox">
-        <h1>Register Energy Conservation Action </h1>
-        <label for="actionDate" class="form-label">Date:</label>
-        <input th:field="*{date}" type="date" class="form-control" id="actionDate">
-        <br>
+<form action="#" th:action="@{/Actions}" method="post" th:object="${action}">
+
+    <h1>Register Energy Conservation Action</h1>
+
+    <div class="question">
+
         <label for="actionName" class="form-label">Name of the Action:</label>
-        <input th:field="*{name}" type="text" class="form-control" id="actionName">
-        <br>
-        <label for="actionID" class="form-label">Action's ID:</label>
-        <input th:field="*{id}" type="double" class="form-control" id="actionID">
-        <br>
-
-        <br><br>
-    <button type="submit" width="40%">Submit new Action</button>
-
+        <input th:field="*{name}" id="actionName" type="text" required/>
     </div>
+
+    <div class="question">
+
+        <label for="actionID" class="form-label">Action's ID:</label>
+        <input th:field="*{id}" type="text" required id="actionID">
+    </div>
+
+    <div class="question">
+
+        <label for="actionDate" class="form-label">Date:</label>
+        <input th:field="*{date}" id="actionDate" type="date" required/>
+    </div>
+
+    <button type="submit" width="40%">Submit new Action</button>
 </form>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

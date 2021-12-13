@@ -32,29 +32,43 @@
 </div>
 
 <form action="#" th:action="@{/Location}" method="post" th:object="${location}" >
-    <div class="RegisterBox">
+
         <h1>Add a Room</h1>
+
+        <div class="question">
         <label for="Country" class="form-label">Country:</label>
-        <input th:field="*{country}" type="text"  id="Country">
+        <input th:field="*{country}" type="text"  id="Country" type="text" required/>
+        </div>
 
+        <div class="question">
         <label for="City" class="form-label">City:</label>
-        <input th:field="*{city}" type="text"  id="City">
+        <input th:field="*{city}" type="text"  id="City" type="text" required/>
+        </div>
 
+        <div class="question">
         <label for="zip" class="form-label">ZIP:</label>
-        <input th:field="*{ZIP}" type="text"  id="zip">
+        <input th:field="*{ZIP}" type="text"  id="zip" type="text" required/>
+        </div>
 
+        <div class="question">
         <label for="Street" class="form-label">Street:</label>
-        <input th:field="*{street}" type="text" id="Street">
+        <input th:field="*{street}" id="Street" type="text" required/>
+        </div>
 
+        <div class="question">
         <label for="Number" class="form-label">Number:</label>
-        <input th:field="*{number}" type="text" id="Number">
+        <input th:field="*{number}" id="Number" type="text" required/>
+        </div>
 
+        <div class="question">
         <label for="Area" class="form-label">Area:</label>
-        <input th:field="*{area}" type="text"  id="Area">
+        <input th:field="*{area}" id="Area" type="text" required/>
+        </div>
 
-
+        <div class="question">
         <label for="Characteristics" class="form-label">Characteristics:</label>
-        <input th:field="*{characteristics}" type="text"  id="Characteristics">
+        <input th:field="*{characteristics}" id="Characteristics" type="text" required/>
+        </div>
 
         <div class="custom-control custom-checkbox">
             <input th:field="*{insulated}" type="checkbox" class="custom-control-input" id="checkInsulation">
@@ -63,7 +77,7 @@
 
         <button type="submit" >Create profile</button>
 
-    </div>
+
 
 </form>
 

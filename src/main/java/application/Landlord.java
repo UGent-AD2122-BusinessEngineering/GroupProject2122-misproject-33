@@ -2,6 +2,7 @@ package application;
 
 import db.RoomDAO;
 import db.StudentDAO;
+import db.LandlordDAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,8 +65,7 @@ public class Landlord extends Person {
         return message += "The room has been succesfully deleted.";
     }
 
-    public String toRegister(Boolean landlord, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        if (landlord) {
+    public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
             for (Landlord item : allLandlords) {
@@ -75,9 +75,22 @@ public class Landlord extends Person {
             }
             Landlord landlord = new Landlord(email, firstname, lastname, password, telephone_number, date_of_birth);
             landlordDAO.save(landlord);
-        }
         return "Your registration has been succesfull.";
 }
+
+    public Object login(String email, String password) {
+        LandlordDAO landlordDAO = new LandlordDAO();
+        ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
+        for (Landlord item : allLandlords) {
+            if (item.getEmail().equals(email)) {
+                if (item.password.equals(password)) {
+                    return item;
+                }
+            }
+        }
+        String message = "Your e-mail or password was incorrect.";
+        return message;
+    }
 
 
 

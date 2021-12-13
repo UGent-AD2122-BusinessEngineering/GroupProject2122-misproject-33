@@ -1,8 +1,11 @@
 package application;
 
 import db.ApplianceDAO;
+import db.MonthlyEnergyConsumptionDAO;
 import db.RoomDAO;
 import db.StudentDAO;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Room {
@@ -81,6 +84,21 @@ public class Room {
         ApplianceDAO applianceDAO = new ApplianceDAO();
         applianceDAO.deleteAppliance(appliance.getApplianceID());
         return "The appliance has been succesfully deleted.";
+    }
+
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room) {
+        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, room.roomID);
+        return "Your monthly energy consumption of month " + month + " has been registered.";
+    }
+
+    public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
+        String message = " ";
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
+        monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
+        return "MonthlyEnergyConsumption was succesfully deleted.";
     }
 
 }

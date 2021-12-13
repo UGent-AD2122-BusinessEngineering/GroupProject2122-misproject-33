@@ -95,47 +95,6 @@ public class Person {
     }
 
 
-    public Object login(String email, String password, boolean student) {
-        if (student) {
-            StudentDAO studentDAO = new StudentDAO();
-            ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents) {
-                if (item.getEmail().equals(email)) {
-                    if (item.password.equals(password)) {
-                        return item;
-                    }
-                }
-            }
-            String message = "Your e-mail or password was incorrect.";
-            return message;
-        } else {
-            LandlordDAO landlordDAO = new LandlordDAO();
-            ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
-            for (Landlord item : allLandlords) {
-                if (item.getEmail().equals(email)) {
-                    if (item.password.equals(password)) {
-                        return item;
-                    }
-                }
-            }
-            String message = "Your e-mail or password was incorrect.";
-            return message;
-        }
-    }
-
-
-    public boolean loginSucces(String email, String password) {
-        StudentDAO studentDAO = new StudentDAO();
-        ArrayList<Student> allStudents = studentDAO.getAllStudents();
-        for (Student item : allStudents) {
-            if (item.getEmail().equals(email)) {
-                if (item.password.equals(password)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
     /*public void registreren (String password){
         Scanner keyboard = new Scanner(System.in);

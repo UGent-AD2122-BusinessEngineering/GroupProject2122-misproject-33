@@ -50,14 +50,10 @@ public class Student extends Person {
     //add student with given object and room_id (db)
     //moet ook nog met room en dan van room de room_id nemen
 
-
-
-
     public String deleteStudent(Student student){
-        String message = " ";
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.deleteStudent(student.getEmail());
-        return message = "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
+        return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
 
     //prints students
@@ -77,7 +73,6 @@ public class Student extends Person {
     }
 
     public String toRegister(Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        if (student) {
             StudentDAO studentDAO = new StudentDAO();
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
             for (Student item : allStudents) {
@@ -87,10 +82,35 @@ public class Student extends Person {
             }
             Student student1 = new Student(email, firstname, lastname, password, telephone_number, date_of_birth);
             studentDAO.save(student1);
-        }
         return "Your registration has been succesfull.";
     }
 
+    public Object login(String email, String password) {
+            StudentDAO studentDAO = new StudentDAO();
+            ArrayList<Student> allStudents = studentDAO.getAllStudents();
+            for (Student item : allStudents) {
+                if (item.getEmail().equals(email)) {
+                    if (item.password.equals(password)) {
+                        return item;
+                    }
+                }
+            }
+            String message = "Your e-mail or password was incorrect.";
+            return message;
+    }
+
+    public boolean loginSucces(String email, String password) {
+        StudentDAO studentDAO = new StudentDAO();
+        ArrayList<Student> allStudents = studentDAO.getAllStudents();
+        for (Student item : allStudents) {
+            if (item.getEmail().equals(email)) {
+                if (item.password.equals(password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     /*public ArrayList<String> getPerformedEnergyConservationActions() {
         return performedEnergyConservationActions;

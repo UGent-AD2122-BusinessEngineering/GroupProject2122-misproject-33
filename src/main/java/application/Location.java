@@ -40,6 +40,8 @@ public class Location {
         this.characteristics = characteristics;
     }
 
+
+
     public int getID() {return ID;}
     public void setId(int ID) {this.ID = ID;}
     public void setArea(int area) {this.area = area;}

@@ -13,18 +13,25 @@ import org.springframework.stereotype.Controller;
 
 
 @SpringBootApplication
-@Controller
+@RestController
 public class EnergyConservationController {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EnergyConservationController.class, args);}
 
-
+	//Register Student
 	@GetMapping("/RequestAsStudent")
 	public String toevoegenStudent(@RequestParam(value = "Person", defaultValue = "Naam") Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
 
 		return new Person().toRegister(student, email, firstname, lastname, password, telephone_number, date_of_birth);
+	}
 
+
+	// Location
+	@GetMapping("/Location")
+	public String addroom(@RequestParam(name = "location") String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+		Location location= new Location();
+		return location.addLocation(country, city, ZIP, street, number, area, insulated,characteristics);
 
 	}
 	/*
@@ -49,6 +56,7 @@ public class EnergyConservationController {
 		return String.format("Hello %s!", name);
 	}
 	*/
+	//Login
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String getLoginForm(){
 		return "Login";

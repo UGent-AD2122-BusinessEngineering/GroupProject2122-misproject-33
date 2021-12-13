@@ -64,8 +64,9 @@ public class Room {
         return location;
     }
 
-    public String addStudent(Student student){
+    public String addStudent(Student student, Boolean contactPersoon){
         StudentDAO studentDAO = new StudentDAO();
+        student.setContactPerson(contactPersoon);
         studentDAO.save(student);
         studentDAO.update(student, roomID);
         return "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";

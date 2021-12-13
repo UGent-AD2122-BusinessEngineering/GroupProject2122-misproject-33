@@ -11,6 +11,9 @@ public class Room {
     private ArrayList<Student> studentsPerRoom;
     public int roomID;
 
+    public Room() {
+    }
+
     public Room(int roomnumber, Location location) {
         this.roomnumber = roomnumber;
         this.location = location;
@@ -57,19 +60,11 @@ public class Room {
         return location;
     }
 
-
-    public String addRoom(Landlord landlord, Location location, int roomnumber){
-        String message = " ";
-        Room room = new Room(roomnumber, location);
-        RoomDAO roomDAO = new RoomDAO();
-        room.roomID = roomDAO.save(room, location.getID(), landlord.email);
-        return message = "The room has been succesfully added.";
+    public String addStudent(Student student){
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.save(student);
+        studentDAO.update(student, roomID);
+        return "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
     }
 
-    public String deleteRoom(Room room){
-        String message = "";
-        RoomDAO roomDAO = new RoomDAO();
-        roomDAO.deleteRoom(room.roomID);
-        return message = "The room has been succesfully deleted.";
-    }
 }

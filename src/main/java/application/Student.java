@@ -50,13 +50,7 @@ public class Student extends Person {
     //add student with given object and room_id (db)
     //moet ook nog met room en dan van room de room_id nemen
 
-    public String addStudent(Student student, Room room){
-        String message = " ";
-        StudentDAO studentDAO = new StudentDAO();
-        studentDAO.save(student);
-        studentDAO.update(student, room.getRoomID());
-        return message = "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
-    }
+
 
 
     public String deleteStudent(Student student){

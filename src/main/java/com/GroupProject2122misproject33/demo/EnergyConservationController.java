@@ -21,7 +21,7 @@ public class EnergyConservationController {
 
 
 	@GetMapping("/RequestAsStudent")
-	public String toegvoegenStudent(@RequestParam(value = "Person", defaultValue = "Naam") Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
+	public String toevoegenStudent(@RequestParam(value = "Person", defaultValue = "Naam") Boolean student, String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth){
 
 		return new Person().toRegister(student, email, firstname, lastname, password, telephone_number, date_of_birth);
 

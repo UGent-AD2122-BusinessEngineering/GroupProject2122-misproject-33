@@ -14,6 +14,9 @@ public class Location {
     private boolean insulated;
     private String characteristics;
 
+    public Location() {
+    }
+
     public Location(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics) {
         this.area = area;
         this.country = country;
@@ -66,8 +69,6 @@ public class Location {
     }
 
     //wanneer alle kamers van een locatie verwijderd zijn wordt de locatie vanzelf verwijderd
-
-
     public String toString(Location location){
         String message = "Country: " + country + "\n" + "City: " + city;
         return message;

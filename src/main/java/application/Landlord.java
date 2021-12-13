@@ -12,6 +12,9 @@ public class Landlord extends Person {
     private HashMap<Room, Student> roomStudentHashMap;
     private ArrayList<Room> roomsLandLord;
 
+    public Landlord() {
+    }
+
     public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
     }
@@ -44,6 +47,21 @@ public class Landlord extends Person {
 
     public static int getMaandVhJaar() {
         return maandVhJaar;
+    }
+
+    public String addRoom(Landlord landlord, Location location, int roomnumber){
+        String message = "";
+        Room room = new Room(roomnumber, location);
+        RoomDAO roomDAO = new RoomDAO();
+        room.roomID = roomDAO.save(room, location.getID(), landlord.email);
+        return message += "The room has been succesfully added.";
+    }
+
+    public String deleteRoom(Room room){
+        String message = "";
+        RoomDAO roomDAO = new RoomDAO();
+        roomDAO.deleteRoom(room.roomID);
+        return message += "The room has been succesfully deleted.";
     }
 
 

@@ -174,11 +174,11 @@ public class Appliance {
     public String decreaseDegree(Appliance appliance, LocalDate date) {
         String message = "";
         if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())){
-            message = "Is not possible for this appliance.";
+            message += "Is not possible for this appliance.";
             return message;
         }
         if (appliance.getIsTempDisproportionate()){
-            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
             appliance.setTemperature(appliance.getTemperature() - 1);
         }
         else{
@@ -186,7 +186,7 @@ public class Appliance {
             Action actie = new Action(date, "decrease a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, appliance.getApplianceID());
-            message = "Thank you, we have registered your energy conservation method.";
+            message += "Thank you, we have registered your energy conservation method.";
         }
         return message;
     }
@@ -194,11 +194,11 @@ public class Appliance {
     public String increaseDegree(Appliance appliance, LocalDate date) {
         String message = "";
         if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())) {
-            message = "Is not possible for this appliance.";
+            message += "Is not possible for this appliance.";
             return message;
         }
         if (appliance.getIsTempProportionate()){
-            message = "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
+            message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
             appliance.setTemperature(appliance.getTemperature() + 1);
         }
         else{
@@ -206,7 +206,7 @@ public class Appliance {
             Action actie = new Action(date, "increase a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, appliance.getApplianceID());
-            message = "Thank you, we have registered your energy conservation method.";
+            message += "Thank you, we have registered your energy conservation method.";
         }
         return message;
     }

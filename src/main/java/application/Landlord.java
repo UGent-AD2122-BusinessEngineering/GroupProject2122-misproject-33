@@ -88,12 +88,8 @@ public class Landlord extends Person {
                 }
             }
         }
-        String message = "Your e-mail or password was incorrect.";
-        return message;
+        return "Your e-mail or password was incorrect.";
     }
-
-
-
 
     /*public HashMap <Location, Student> getStudents(){
         //communiceren met db (zie vb)

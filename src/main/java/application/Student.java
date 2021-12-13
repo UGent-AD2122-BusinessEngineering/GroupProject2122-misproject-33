@@ -50,12 +50,6 @@ public class Student extends Person {
     //add student with given object and room_id (db)
     //moet ook nog met room en dan van room de room_id nemen
 
-    public String deleteStudent(Student student){
-        StudentDAO studentDAO = new StudentDAO();
-        studentDAO.deleteStudent(student.getEmail());
-        return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
-    }
-
     //prints students
     public void listUsers() {
         if(studentlist.isEmpty())

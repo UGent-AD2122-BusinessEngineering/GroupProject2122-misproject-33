@@ -213,6 +213,38 @@ public class StudentDAO {
         }
     }
 
+    public void deleteStudentFromRoom(Student s) {
+        Connection con = null;
+        try {
+            con = DBHandler.getConnection();
+
+            String sqlSelect = "SELECT email "
+                    + "FROM student "
+                    + "WHERE email = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sqlSelect);
+            stmt.setString(1, s.getEmail());
+            ResultSet srs = stmt.executeQuery();
+            if (srs.next()) {
+
+                // UPDATE
+                String sqlUpdate = "UPDATE student " +
+                        "SET Room_room_id = null " +
+                        "WHERE email = ?";
+                PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
+                stmt2.setString(1, s.getEmail());
+                stmt2.executeUpdate();
+            } else {
+                System.out.println("Student not found");
+                DBHandler.closeConnection(con);
+                return;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            DBHandler.closeConnection(con);
+        }
+    }
+
     public void deleteStudent(String email) {
         Connection con = null;
         try {
@@ -241,7 +273,7 @@ public class StudentDAO {
         //studentDAO.save(b);
         //studentDAO.save(c);
         //studentDAO.save(d);
-        studentDAO.deleteStudent("bob");
+        studentDAO.deleteStudentFromRoom(studentDAO.getStudent("s"));
         //studentDAO.update(studentDAO.getStudent("vic.werk@gmeil.com"), 4);
         //ArrayList<Student> students = studentDAO.getAllStudents();
         //for(Student student : students) {

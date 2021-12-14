@@ -82,7 +82,7 @@ public class Room {
 
     public String deleteStudent(Student student){
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.update(student, 0);
+        studentDAO.deleteStudentFromRoom(student);
         return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
 
@@ -116,3 +116,4 @@ public class Room {
     }
 
 }
+

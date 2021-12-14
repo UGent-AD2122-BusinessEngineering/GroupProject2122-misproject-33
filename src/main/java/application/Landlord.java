@@ -74,7 +74,7 @@ public class Landlord extends Person {
         return message += "The room has been succesfully deleted.";
     }
 
-    public static String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
             for (Landlord item : allLandlords) {

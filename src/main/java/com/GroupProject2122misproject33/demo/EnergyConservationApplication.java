@@ -4,11 +4,9 @@ package com.GroupProject2122misproject33.demo;
 import application.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @SpringBootApplication
 
@@ -21,19 +19,16 @@ public class EnergyConservationApplication {
 
     @GetMapping("/index")
     public String showStudenten() {
-
         return "index";
     }
 
     @GetMapping("/functionscreen")
     public String showFunction() {
-
-        return "FunctionScreen";
+        return "FunctionScreenLandlord";
     }
 
     @GetMapping("/ContactUs")
     public String showContact() {
-
         return "ContactUs";
     }
 
@@ -41,29 +36,23 @@ public class EnergyConservationApplication {
     public String showLogin(Model model) {
         model.addAttribute("login", new LoginForm());
         return "Login";
-    }
-    /*
+    }/*
     @PostMapping("/Login")
     public String goToLogin(@ModelAttribute(name = "login") Person person, Model model){
         person= Person.get
-    }
-    */
+    }*/
+
 
     @GetMapping("/Location")
     public String showLocation(Model model) {
         model.addAttribute("location", new Location());
         return "Location";
     }
-    /*
-    @PostMapping("/toevoegenStudent")
-    public String studentToevoegenSubmit(@ModelAttribute Location location, Model model, RedirectAttributes redirAttrs) {
+    @PostMapping("/Location")
+    public String gotoLocation(Model model){
 
-        university.addStudent(student);
-        redirAttrs.addFlashAttribute("success", "Student werd toegevoegd");
-        model.addAttribute("studenten", university.getStudents());
-        return "redirect:/index";
     }
-*/
+
 
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
@@ -86,19 +75,24 @@ public class EnergyConservationApplication {
     public String registerStudent(Model model) {
         model.addAttribute("student", new Student());
         return "RegisterAsStudent";
-    }
-
+    }/*
     @PostMapping("/RegisterAsStudent")
     public String studentToevoegen(@ModelAttribute(name= "student") Student student, Model model) {
         model.addAttribute("inlogtudent", new Student());
-        return "FunctionScreen";
-    }
+        return "FunctionScreenStudent";
+    }*/
 
     @GetMapping("/RegisterAsLandlord")
     public String registerLandlord(Model model) {
         model.addAttribute("landlord", new Landlord());
         return "RegisterAsLandlord";
-    }
+    }/*
+    @PostMapping("/RegisterAsLandlord")
+    public String studentToevoegen(@ModelAttribute(name= "landlord") Landlord landlord, Model model) {
+        Landlord landlord1 = new Landlord();
+        model.addAttribute("inlogLandlord", landlord.toRegister());
+        return "FunctionScreenLandlord";
+    }*/
 
     @GetMapping("/MonthlyEnergyConsumption")
     public String MonthlyEnergyCons(Model model) {
@@ -115,7 +109,7 @@ public class EnergyConservationApplication {
     @GetMapping("/FunctionScreen")
     public String givesFunctions(Model model) {
 
-        return "FunctionScreen";
+        return "FunctionScreenLandlord";
     }
 
 

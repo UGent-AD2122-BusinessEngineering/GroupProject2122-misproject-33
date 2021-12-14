@@ -1,5 +1,6 @@
 package application;
 
+import db.LocationDAO;
 import db.RoomDAO;
 import db.StudentDAO;
 import db.LandlordDAO;
@@ -21,9 +22,9 @@ public class Landlord extends Person {
         this.roomsLandLord = getRoomsLandLord(email);
     }
 
-    public HashMap<Room, Student> getRoomStudentHashmap(Landlord landlord) {
+    public HashMap<Room, Student> getRoomStudentHashmap() {
         RoomDAO roomDAO = new RoomDAO();
-        ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
+        ArrayList<Room> allRooms = roomDAO.getRooms(this.email);
         StudentDAO studentDAO = new StudentDAO();
         HashMap<Room, Student> roomStudentHashMap = new HashMap<Room, Student>();
         for (Room item : allRooms) {
@@ -51,12 +52,19 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    public String addRoom(Landlord landlord, Location location, int roomnumber) {
+    public String addRoom(Location location, int roomnumber) {
         String message = "";
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
-        room.roomID = roomDAO.save(room, location.getID(), landlord.email);
+        room.roomID = roomDAO.save(room, location.getID(), this.email); //setRoomId
         return message += "The room has been succesfully added.";
+    }
+
+    public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+        Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
+        LocationDAO locationDAO = new LocationDAO();
+        location.setID(locationDAO.saveLocation(location));
+        return "The location has been succesfully added.";
     }
 
     public String deleteRoom(Room room) {
@@ -91,28 +99,4 @@ public class Landlord extends Person {
         }
         return "Your e-mail or password was incorrect.";
     }
-
-    /*public HashMap <Location, Student> getStudents(){
-        //communiceren met db (zie vb)
-        return hashmap die we uit de db halen...
-    } staat in commentaar omdat we anders error krijgen
-    */
-
-
-    /*1. ik doe hier nog geen test voor eerste dag vd maand omdat me het beter lijkt dat te doen waar je de methode oproept
-    //   ik heb hier wel tussen de instantievariabelen een "dagVdMaand" gezet dat ik getest heb en zeker werkt
-    //2. moeten we de energieconsumptie per maand per landlord of per kamer bijhouden ? (anders moet ik dat hier nog wat aanpassen)
-    public void getMonthlyEnergyConsumption(){
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("What was the elektricity consumption (in kWh) this month?");
-        int electricity = keyboard.nextInt();
-        System.out.println("What was the gas consumption (in kWh) this month?");
-        int gas = keyboard.nextInt();
-        System.out.println("What was the water consumption (in m^3) this month?");
-        int water = keyboard.nextInt();
-        System.out.println("Okay thank you!");
-        //ik ben nie zeker ofdat dit wel hoeft...
-        MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, maandVhJaar);
-        //moet toegevoegd worden ad db
-    }*/
 }

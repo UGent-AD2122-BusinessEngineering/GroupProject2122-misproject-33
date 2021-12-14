@@ -1,17 +1,6 @@
 package application;
 
-
-import db.LocationDAO;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
 /*
 Mogelijke energy conservation acties die we kunnen implementeren
 - Ledlampen gebruiken /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
@@ -93,53 +82,11 @@ public class Action {
         //r.addAppliance("A", "001", 20, "simon", "thalongi", false, true, true, r );
         //System.out.println(a.energyConservationModeOn(a, LocalDate.parse("2001-11-02")));
         //System.out.println(la.getRoomsLandLord(la));
-    }
-}
+    }*/
 
-    //method for certain temperatures between certain hours
-    public Action() {
-        try {
-            String string1 = "08:00:00";
-            Date time1 = new SimpleDateFormat("HH:mm:ss").parse(string1);
-            Calendar calendar1 = Calendar.getInstance();
-            calendar1.setTime(time1);
-            calendar1.add(Calendar.DATE, 1);
 
-            String string2 = "00:00:00";
-            Date time2 = new SimpleDateFormat("HH:mm:ss").parse(string2);
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.setTime(time2);
-            calendar2.add(Calendar.DATE, 1);
 
-            String someRandomTime = String.valueOf(LocalDateTime.now());
-            Date d = new SimpleDateFormat("HH:mm:ss").parse(someRandomTime);
-            Calendar calendar3 = Calendar.getInstance();
-            calendar3.setTime(d);
-            calendar3.add(Calendar.DATE, 1);
 
-            Date now = calendar3.getTime();
 
-            if (now.after(calendar1.getTime()) && now.before(calendar2.getTime())) {
-                //checks whether the current time is between 08:00:00 and 00:00:00.
-                if (temperature == 20) {
-                    this.temperature = temperature;
-                }
-                else System.out.println("Adjust the temperature to 20°C");
-            }
-
-            if (now.after(calendar2.getTime()) && now.before(calendar1.getTime())) {
-                //checks whether the current time is between 00:00:00 and 08:00:00.
-                if (temperature > 20) {
-                    System.out.println("The temperature is too high. Lower the temperature.");
-                }
-                else if (temperature < 18) {
-                    System.out.println("The temperature is too low. Higher the temperature.");
-                }
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 
 

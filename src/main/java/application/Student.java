@@ -42,7 +42,7 @@ public class Student extends Person {
                     return "An account already exists with this email address.";
                 }
             }
-            Student student1 = new Student(email, firstname, lastname,PasswordHashing.doHashing(password), telephone_number, date_of_birth);
+            Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephone_number, date_of_birth);
             studentDAO.save(student1);
         return "Your registration has been succesfull.";
     }

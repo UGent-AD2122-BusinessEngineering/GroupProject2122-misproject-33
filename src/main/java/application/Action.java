@@ -78,20 +78,21 @@ public class Action {
     }
 
     public static void main(String[] args) {
-        Location l = new Location("Belgie", "gent", "9000", "volmolen", "20", 200, false, "wide", 10);
-        Room r = new Room(1, l, 8);
-        Landlord la = new Landlord("y.z@gmail.com", "mathias", "brabants", "ikbenmathias123", "0479052433", "02.11.2001");
-        Student st = new Student("r.b@gmail.com", "r", "b", "rb", "041", "02", true);
-        st.toRegister(true, "r.b@gmail.com", "r", "b", "rb", "041", "02" );
+        //Location l = new Location("Belgie", "gent", "9000", "volmolen", "20", 200, false, "wide", 10);
+        //Room r = new Room(1, l, 8);
+        //Landlord la = new Landlord("y.z@gmail.com", "mathias", "brabants", "ikbenmathias123", "0479052433", "02.11.2001");
+        //Student st = new Student("r.b@gmail.com", "r", "b", "rb", "041", "02", true);
+        //st.toRegister(true, "r.b@gmail.com", "r", "b", "rb", "041", "02" );
         Appliance a = new Appliance("A", "001", 20, "simon", "thalongi", false, true, true, 16 );
         //Action ac = new Action(LocalDate.parse("2001-11-02"), "power");
-        LocationDAO ldao = new LocationDAO();
-        ldao.saveLocation(l);
-        la.toRegister("y.z@gmail.com", "mathias", "brabants", "ikbenmathias123", "0479052433", "02.11.2001");
-        System.out.println(la.addRoom(la, l, 1));
-        r.addAppliance("A", "001", 20, "simon", "thalongi", false, true, true, r );
+        //LocationDAO ldao = new LocationDAO();
+        //ldao.saveLocation(l);
+        //la.toRegister("y.z@gmail.com", "mathias", "brabants", "ikbenmathias123", "0479052433", "02.11.2001");
+        //System.out.println(la.addRoom(la, l, 1));
+        System.out.println(a.averageTemperature());
+        //r.addAppliance("A", "001", 20, "simon", "thalongi", false, true, true, r );
         //System.out.println(a.energyConservationModeOn(a, LocalDate.parse("2001-11-02")));
-        System.out.println(la.getRoomsLandLord(la));
+        //System.out.println(la.getRoomsLandLord(la));
     }
 }
 

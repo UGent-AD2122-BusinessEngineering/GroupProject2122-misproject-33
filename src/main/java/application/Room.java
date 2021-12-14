@@ -28,13 +28,22 @@ public class Room {
         this.roomnumber = roomnumber;
         this.location = location;
         this.roomID = roomID;
-        monthlyEnergyConsumptions = new ArrayList<>();
-        studentsPerRoom = new ArrayList<>();
+        monthlyEnergyConsumptions = getMonthlyEnergyConsumptionPerRoom(roomID);
+        studentsPerRoom = getStudentsPerRoom(roomID);
     }
 
-    public ArrayList<Student> getStudentsPerRoom(Room room){
+    public ArrayList<Student> getStudentsPerRoom(int roomID){
+        ArrayList <Student> studentsPerRoom = new ArrayList<>();
         StudentDAO studentDAO = new StudentDAO();
-        return studentDAO.getStudents(room.getRoomID());
+        studentsPerRoom = studentDAO.getStudents(roomID);
+        return studentsPerRoom;
+    }
+
+    public ArrayList<MonthlyEnergyConsumption> getMonthlyEnergyConsumptionPerRoom(int roomID){
+        ArrayList <MonthlyEnergyConsumption> monthlyEnergyConsumptionsPerRoom = new ArrayList<>();
+        MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
+        monthlyEnergyConsumptionsPerRoom = monthlyEnergyConsumptionDAO.getAllMonthlyEnergyConsumptions(roomID);
+        return monthlyEnergyConsumptionsPerRoom;
     }
 
     public int getRoomnumber() {
@@ -83,10 +92,10 @@ public class Room {
 
     //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room
 
-    public String addAppliance(Appliance appliance){
+    /*public String addAppliance(Appliance appliance){
         ApplianceDAO applianceDAO = new ApplianceDAO();
         return "The appliance has been succesfully added.";
-    }
+    }*/
 
     public String deleteAppliance(Appliance appliance){
         ApplianceDAO applianceDAO = new ApplianceDAO();

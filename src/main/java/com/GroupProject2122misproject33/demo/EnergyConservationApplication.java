@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @SpringBootApplication
 
@@ -48,16 +49,31 @@ public class EnergyConservationApplication {
         model.addAttribute("location", new Location());
         return "Location";
     }
+
     @PostMapping("/Location")
-    public String gotoLocation(Model model){
+    public String addLocation(@ModelAttribute String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
 
+    Landlord landlord= new Landlord();
+    landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
+
+    return "test";
     }
-
 
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         model.addAttribute("appliance", new Appliance());
         return "Appliances";
+    }
+
+    @PostMapping("/Appliances")
+    public String addAppliance(@ModelAttribute String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
+                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode){
+
+        Room room= new Room();
+        room.addAppliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name,
+        isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
+
+        return "/Appliances";
     }
 
     /*

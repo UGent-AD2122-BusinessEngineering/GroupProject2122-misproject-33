@@ -38,6 +38,17 @@ public class Landlord extends Person {
         return this.roomStudentHashMap;
     }
 
+    public ArrayList<Location> getAllLocationsPerLandlord(){
+        RoomDAO roomDAO = new RoomDAO();
+        ArrayList<Room> allRooms = roomDAO.getRooms(this.email);
+        ArrayList<Location> locations = new ArrayList<Location>();
+        for (Room item : allRooms){
+            locations.add(item.location);
+        }
+        return locations;
+    }
+
+
     public ArrayList<Room> getRoomsLandLord(String email) {
         RoomDAO roomDAO = new RoomDAO();
         this.roomsLandLord = roomDAO.getRooms(email);

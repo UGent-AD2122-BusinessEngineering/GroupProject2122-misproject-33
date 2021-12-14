@@ -43,16 +43,6 @@ public class Location {
         this.characteristics = characteristics;
     }
 
-    public ArrayList<Location> getAllLocationsPerLandlord(Landlord landlord){
-        RoomDAO roomDAO = new RoomDAO();
-        ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
-        ArrayList<Location> locations = new ArrayList<Location>();
-        for (Room item : allRooms){
-            locations.add(item.location);
-        }
-        return locations;
-    }
-
 
 
 

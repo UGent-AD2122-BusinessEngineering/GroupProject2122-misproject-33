@@ -1,7 +1,10 @@
 package application;
 
 import db.LocationDAO;
+
+import java.util.ArrayList;
 import java.util.Objects;
+import db.RoomDAO;
 
 public class Location {
     private int ID;
@@ -39,6 +42,18 @@ public class Location {
         this.insulated = insulated;
         this.characteristics = characteristics;
     }
+
+    public ArrayList<Location> getAllLocationsPerLandlord(Landlord landlord){
+        RoomDAO roomDAO = new RoomDAO();
+        ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
+        ArrayList<Location> locations = new ArrayList<Location>();
+        for (Room item : allRooms){
+            locations.add(item.location);
+        }
+        return locations;
+    }
+
+
 
 
 

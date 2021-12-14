@@ -1,17 +1,6 @@
 package application;
 
-
-import db.LocationDAO;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
 /*
 Mogelijke energy conservation acties die we kunnen implementeren
 - Ledlampen gebruiken /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)

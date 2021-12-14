@@ -1,11 +1,6 @@
 package application;
 
-import db.LandlordDAO;
-import db.StudentDAO;
-
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Person {
 

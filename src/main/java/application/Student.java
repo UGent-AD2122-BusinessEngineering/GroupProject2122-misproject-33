@@ -19,6 +19,8 @@ public class Student extends Person {
 
     public void setContactPerson(boolean contactPerson) {
         isContactPerson = contactPerson;
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.save(new Student(this.email, this.firstname, this.lastname, this.password, this.telephoneNumber, this.dateOfBirth, contactPerson));
     }
 
     public Student() {
@@ -35,7 +37,7 @@ public class Student extends Person {
         return studentDAO.getStudents(room_id);
     }
 
-    public String toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
+    public static String toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
             StudentDAO studentDAO = new StudentDAO();
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
             for (Student item : allStudents) {
@@ -45,7 +47,7 @@ public class Student extends Person {
             }
             Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephoneNumber, dateOfBirth);
             studentDAO.save(student1);
-        return "Your registration has been succesfull.";
+        return "Your registration has been successful.";
     }
 
     public Object login(String email, String password) {

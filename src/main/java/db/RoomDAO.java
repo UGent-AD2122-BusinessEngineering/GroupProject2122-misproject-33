@@ -41,7 +41,7 @@ public class RoomDAO {
 
     }
 
-    public int save(Room room, int Location_location_id, String Landlord_email) { //moet wss nog een methode aan toegevoegd worden die een room toewijst aan een student.
+    public int save(Room room, String Landlord_email) { //moet wss nog een methode aan toegevoegd worden die een room toewijst aan een student.
         Connection con = null;
         try {
             con = DBHandler.getConnection();

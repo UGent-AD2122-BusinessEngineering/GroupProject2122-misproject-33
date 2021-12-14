@@ -6,20 +6,21 @@ public class Student extends Person {
 
     private boolean isContactPerson;
 
-    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        super(email, firstname, lastname, password, telephone_number, date_of_birth);
+    public Student(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
+        super(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
         this.isContactPerson = false;
     }
 
-    public Student(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth, boolean isContactPerson) {
-        super(email, firstname, lastname, password, telephone_number, date_of_birth);
+    public Student(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth, boolean isContactPerson) {
+        super(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
         this.isContactPerson = isContactPerson;
     }
 
 
-
     public void setContactPerson(boolean contactPerson) {
         isContactPerson = contactPerson;
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.save(new Student(this.email, this.firstname, this.lastname, this.password, this.telephoneNumber, this.dateOfBirth, contactPerson));
     }
 
     public Student() {
@@ -36,7 +37,7 @@ public class Student extends Person {
         return studentDAO.getStudents(room_id);
     }
 
-    public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public static String toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
             StudentDAO studentDAO = new StudentDAO();
             ArrayList<Student> allStudents = studentDAO.getAllStudents();
             for (Student item : allStudents) {
@@ -44,9 +45,9 @@ public class Student extends Person {
                     return "An account already exists with this email address.";
                 }
             }
-            Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephone_number, date_of_birth);
+            Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephoneNumber, dateOfBirth);
             studentDAO.save(student1);
-        return "Your registration has been succesfull.";
+        return "Your registration has been successful.";
     }
 
     public Object login(String email, String password) {

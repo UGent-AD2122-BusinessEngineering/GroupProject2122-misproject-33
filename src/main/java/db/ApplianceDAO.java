@@ -168,7 +168,7 @@ public class ApplianceDAO {
                 stmt2.setInt(5, a.getAnnualEnergyConsumption());
                 stmt2.setBoolean(6, a.getIsTempProportionate());
                 stmt2.setBoolean(7, a.getIsTempDisproportionate());
-                stmt2.setBoolean(8, a.isEnergyConservationMode());
+                stmt2.setBoolean(8, a.getIsEnergyConservationMode());
                 stmt2.setInt(9, room_id);
                 stmt2.executeUpdate();
                 return a.getApplianceID();
@@ -188,7 +188,7 @@ public class ApplianceDAO {
                 insertStm.setInt(6, a.getAnnualEnergyConsumption());
                 insertStm.setBoolean(7, a.getIsTempProportionate());
                 insertStm.setBoolean(8, a.getIsTempDisproportionate());
-                insertStm.setBoolean(9, a.isEnergyConservationMode() );
+                insertStm.setBoolean(9, a.getIsEnergyConservationMode() );
                 insertStm.setInt(10, room_id);
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();

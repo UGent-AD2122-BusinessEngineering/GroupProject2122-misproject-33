@@ -9,11 +9,7 @@
 
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
-        .navbar {
-            height:12%;
-            display: flex;
-            align-items: center;
-        }
+
 
         nav{
             margin-left:10px;
@@ -24,7 +20,7 @@
         nav ul li{
             display: inline-block;
             list-style: none;
-            margin: 0px;
+            margin: 20px;
         }
 
         nav ul li a{
@@ -108,7 +104,7 @@
             text-decoration: none;
         }
 
-        .transition, form button, form .question label, form .question input[type="text"] {
+        form button, form .question label, form .question input[type="text"] {
             -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
             -o-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
             -webkit-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
@@ -160,6 +156,7 @@
             font-weight: 100;
             letter-spacing: 0.01em;
             position: relative;
+            width: 100%;
             z-index: 1;
             cursor:pointer;
         }
@@ -254,10 +251,9 @@
 
 
     </style>
-</head> <!--css import-->
+</head>
 
 <body style="background-color:darkgray;">
-<div class="navbar">
 
 
     <nav>
@@ -268,28 +264,29 @@
 
         </ul>
     </nav>
-</div> <!--navbar-->
 
-<form class="modal-content animate" th:action="@{/Login}" th:object="${Loginform}" method="post">
+
+<form class="modal-content animate" th:action="@{/Login}" th:object="${login}" method="post">
     <div class="imgcontainer">
-        <img src="Pictures/keys.png" style="width:25%">
+        <i class="fa fa-fw fa-lock" ></i>
 
     </div>
 
     <div class="container">
-
-        <input type="text" placeholder="Enter Email Address" name="uname" required>
-
-
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <div class="question">
+        <input th:field="*{username}" id="uname" type="text" placeholder="Enter Email Address" name="uname"required/>
+        </div>
+        <div class="question">
+        <input th:field="*{password}" id="psw" type="text" placeholder="Enter Password" name="psw" required/>
+        </div>
 
         <button type="submit">Login</button>
     </div>
 
     <div class="registerbuttons">
-        <button1> <a href="RegisterAsStudent.html" class="secondButton">Register As Student</a></button1>
+        <button1> <a href="RegisterAsStudent" class="secondButton">Register As Student</a></button1>
     </div><div class="registerbuttons">
-        <button1> <a href="RegisterAsLandlord.html" class="secondButton">Register As Landlord</a></button1>
+        <button1> <a href="RegisterAsLandlord" class="secondButton">Register As Landlord</a></button1>
     </div>
 </form>
 

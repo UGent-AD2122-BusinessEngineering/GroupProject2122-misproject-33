@@ -22,6 +22,10 @@ public class Appliance {
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
     private ArrayList <Action> actionsPerAppliance;
 
+    public Appliance() {
+
+    }
+
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
                      String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode) {
         this.energyEfficiencyClass = energyEfficiencyClass;
@@ -48,6 +52,8 @@ public class Appliance {
         this.actionsPerAppliance = getActionsPerApplianceId(applianceID);
     }
 
+
+
     public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
         ActionDAO actionDAO = new ActionDAO();
         actionsPerAppliance = actionDAO.getActions(appliance.applianceID);
@@ -61,7 +67,7 @@ public class Appliance {
         return actionsPerAppliance;
      }
 
-    public boolean isEnergyConservationMode() {
+    public boolean getIsEnergyConservationMode() {
         return isEnergyConservationMode;
     }
 
@@ -104,7 +110,7 @@ public class Appliance {
     //Ook een energyConservationModeOff nodig denk ik -Simon
     public String energyConservationModeOn (LocalDate date) {
         String message = "";
-        if(!(this.isEnergyConservationMode())) {
+        if(!(this.getIsEnergyConservationMode())) {
             return message += "Is not possible for this appliance.";
         }
         else {
@@ -126,7 +132,7 @@ public class Appliance {
 
     public String tipsAppliance(){
         String message = "";
-        if(this.isEnergyConservationMode()) {
+        if(this.getIsEnergyConservationMode()) {
             message += "You could put the energy conservation mode on.";
         }
         if(this.getIsTempProportionate()){

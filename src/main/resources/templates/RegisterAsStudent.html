@@ -3,58 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-</head>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        nav{
+            margin-left:10px;
+
+
+        }
+
+        nav ul li{
+            display: inline-block;
+            list-style: none;
+            margin: 20px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+        }
+
+        * {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+
+        body{
+            min-width:600px;
+        }
+
+        form {
+            position: relative;
+            display: inline-block;
+            max-width: 700px;
+            min-width: 500px;
+            box-sizing: border-box;
+            padding: 30px 25px;
+            background-color: white;
+            border-radius: 40px;
+            margin: 40px 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        form h1 {
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            margin-left: 15px;
+            margin-bottom: 35px;
+
+        }
+        form button {
+            margin-top: 35px;
+            background-color: white;
+            border: 1px solid #3c3b52;
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+        }
+
+        form button:hover, form button:focus {
+            color: white;
+            background-color: #3c3b52;
+        }
+        form .question {
+            position: relative;
+            padding: 10px 0;
+        }
+        form .question:first-of-type {
+            padding-top: 0;
+        }
+        form .question:last-of-type {
+            padding-bottom: 0;
+        }
+        form .question label {
+            transform-origin: left center;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            font-size: 17px;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            display: block;
+            position: absolute;
+            margin-top: -30px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        form .question input {
+            appearance: none;
+            background-color: white;
+            border: 1px solid #3c3b52;
+            line-height: 0;
+            font-size: 17px;
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            border-radius: 60px;
+
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+        }
+        form .question input:focus {
+            outline: none;
+            background: #3c3b52;
+            color: white;
+
+        }
+        form .question input:valid {
+
+        }
+
+        form .question input:valid + label {
+            text-transform: uppercase;
+            font-style: italic;
+
+        }
+    </style>
 </head>
 
-<body>
+<body style="background-color:darkgray;">
 <div class="container-fluid">
-    <div class="Layout">
-        <video autoplay muted loop id="myVideo">
-            <source src="Pictures/video.mp4" type="video/mp4">
-        </video>
-    </div>
+
     <nav>
         <ul>
-            <li><a href="index.html"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-            <li><a href="ContactUs.html"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
-            <li><a href="Login.html"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
+            <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
+            <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
+            <li><a href="Login"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
         </ul>
     </nav>
 </div>
 
-<form action="#" th:action="@{/RegisterAsStudent}" method="post" th:object="${person}" >
+<form action="#" th:action="@{/RegisterAsStudent}" method="post" th:object="${student}" >
     <div class="RegisterBox">
-        <label for="firstnameStudent" class="form-label">First Name:</label>
-        <input th:field="*{firstname}" type="text" class="form-control" id="firstnameStudent">
 
-        <label for="lastnameStudent" class="form-label">Last Name:</label>
-        <input th:field="*{lastname}" type="text" class="form-control" id="lastnameStudent">
+        <h1>Register as a Landlord</h1>
+        <div class="question">
+            <label for="firstnameStudent" class="form-label">First Name:</label>
+            <input th:field="*{firstname}" type="text" class="form-control" id="firstnameStudent">
+        </div>
+        <div class="question">
+            <label for="lastnameStudent" class="form-label">Last Name:</label>
+            <input th:field="*{lastname}" type="text" class="form-control" id="lastnameStudent">
+        </div>
+        <div class="question">
+            <label for="emailAdres" class="form-label">Email:</label>
+            <input th:field="*{email}" type="text" class="form-control" id="emailAdres">
+        </div>
+        <div class="question">
+            <label for="date_of_birthStudent" class="form-label">Date Of Birth:</label>
+            <input th:field="*{dateOfBirth}" type="text" class="form-control" id="date_of_birthStudent">
+        </div>
+        <div class="question">
+            <label for="telephone_numberStudent" class="form-label">Telephone Number:</label>
+            <input th:field="*{telephoneNumber}" type="text" class="form-control" id="telephone_numberStudent">
+        </div>
 
-        <label for="emailAdres" class="form-label">Email:</label>
-        <input th:field="*{email}" type="text" class="form-control" id="emailAdres">
-
-        <label for="telephone_numberStudent" class="form-label">Telephone Number:</label>
-        <input th:field="*{telephone_number}" type="text" class="form-control" id="telephone_numberStudent">
-
-        <label for="date_of_birthStudent" class="form-label">Date Of Birth:</label>
-        <input th:field="*{date_of_birth}" type="date" class="form-control" id="date_of_birthStudent">
-
-       <br><br>
-        <label for="pwStudent" class="form-label">Password:</label>
-        <input th:field="*{password}" type="text" class="form-control" id="pwStudent">
+        <div class="question">
+            <label for="pwStudent" class="form-label">Password:</label>
+            <input th:field="*{password}" type="text" class="form-control" id="pwStudent">
+        </div>
 
         <button type="submit" value="Submit">Create profile</button>
-
     </div>
-
-    <br/>
 </form>
 
 <!-- Optional JavaScript -->

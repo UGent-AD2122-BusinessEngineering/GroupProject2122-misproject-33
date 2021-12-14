@@ -1,5 +1,6 @@
 package application;
 
+
 import java.util.Objects;
 
 public class Person {
@@ -7,22 +8,23 @@ public class Person {
     public String email;
     public String firstname;
     public String lastname;
-    public String telephone_number;
-    public String date_of_birth;
+    public String telephoneNumber;
+    public String dateOfBirth;
     public String password;
-
-    public Person(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
-        this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.telephone_number = telephone_number;
-        this.date_of_birth = date_of_birth;
-        this.password = password;
-    }
 
     public Person() {
 
     }
+
+    public Person(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.telephoneNumber = telephoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.password = password;
+    }
+
 
     public String getEmail() {
         return email;
@@ -36,12 +38,12 @@ public class Person {
         return lastname;
     }
 
-    public String getTelephonenumber() {
-        return telephone_number;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
-    public String getDateofbirth() {
-        return date_of_birth;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public String getPassword() {
@@ -57,16 +59,16 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return telephone_number == person.telephone_number
+        return telephoneNumber == person.telephoneNumber
                 && Objects.equals(email, person.email)
                 && Objects.equals(firstname, person.firstname)
                 && Objects.equals(lastname, person.lastname)
-                && Objects.equals(date_of_birth, person.date_of_birth);
+                && Objects.equals(dateOfBirth, person.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
+        return Objects.hash(email, firstname, lastname, telephoneNumber, dateOfBirth);
     }
 }
 

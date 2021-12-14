@@ -157,8 +157,8 @@ public class StudentDAO {
                 insertStm.setString(2, s.getFirstname());
                 insertStm.setString(3, s.getLastname());
                 insertStm.setString(4, s.getPassword());
-                insertStm.setString(5, s.getTelephonenumber());
-                insertStm.setString(6, s.getDateofbirth());
+                insertStm.setString(5, s.getTelephoneNumber());
+                insertStm.setString(6, s.getDateOfBirth());
                 insertStm.setBoolean(7, s.getIsContactPerson());
                 insertStm.executeUpdate();
             }
@@ -196,8 +196,8 @@ public class StudentDAO {
                 stmt2.setString(1, s.getFirstname());
                 stmt2.setString(2, s.getLastname());
                 stmt2.setString(3, s.getPassword());
-                stmt2.setString(4, s.getTelephonenumber());
-                stmt2.setString(5, s.getDateofbirth());
+                stmt2.setString(4, s.getTelephoneNumber());
+                stmt2.setString(5, s.getDateOfBirth());
                 stmt2.setBoolean(6, s.getIsContactPerson());
                 stmt2.setInt(7, room_id);
                 stmt2.setString(8, s.getEmail());

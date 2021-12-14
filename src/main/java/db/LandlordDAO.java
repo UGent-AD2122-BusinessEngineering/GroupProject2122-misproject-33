@@ -136,8 +136,8 @@ public class LandlordDAO {
                 stmt2.setString(1, l.getFirstname());
                 stmt2.setString(2, l.getLastname());
                 stmt2.setString(3, l.getPassword());
-                stmt2.setString(4, l.getTelephonenumber());
-                stmt2.setString(5, l.getDateofbirth());
+                stmt2.setString(4, l.getTelephoneNumber());
+                stmt2.setString(5, l.getDateOfBirth());
                 stmt2.setString(6, l.getEmail());
                 stmt2.executeUpdate();
             } else {
@@ -152,8 +152,8 @@ public class LandlordDAO {
                 insertStm.setString(2, l.getFirstname());
                 insertStm.setString(3, l.getLastname());
                 insertStm.setString(4, l.getPassword());
-                insertStm.setString(5, l.getTelephonenumber());
-                insertStm.setString(6, l.getDateofbirth());
+                insertStm.setString(5, l.getTelephoneNumber());
+                insertStm.setString(6, l.getDateOfBirth());
                 insertStm.executeUpdate();
             }
         } catch (Exception ex) {

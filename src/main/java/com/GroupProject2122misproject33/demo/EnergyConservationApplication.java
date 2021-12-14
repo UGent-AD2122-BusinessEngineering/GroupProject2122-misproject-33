@@ -90,7 +90,7 @@ public class EnergyConservationApplication {
 
     @PostMapping("/RegisterAsStudent")
     public String studentToevoegen(@ModelAttribute(name= "student") Student student, Model model) {
-        model.addAttribute("inlogtudent", student);
+        model.addAttribute("inlogtudent", new Student());
         return "FunctionScreen";
     }
 
@@ -117,6 +117,8 @@ public class EnergyConservationApplication {
 
         return "FunctionScreen";
     }
+
+
 
 
 

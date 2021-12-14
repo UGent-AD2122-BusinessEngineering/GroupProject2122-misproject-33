@@ -51,6 +51,7 @@ public class Action {
     public String getName() {
         return name;
     }
+}
 
 
 
@@ -74,7 +75,7 @@ public class Action {
         int intG = (int) G - 40;
 
         return 0;
-    } */
+    }
 
     public static void main(String[] args) {
         Location l = new Location("Belgie", "gent", "9000", "volmolen", "20", 200, false, "wide", 10);
@@ -93,7 +94,7 @@ public class Action {
         System.out.println(la.getRoomsLandLord(la));
     }
 }
-   /*
+
     //method for certain temperatures between certain hours
     public Action() {
         try {

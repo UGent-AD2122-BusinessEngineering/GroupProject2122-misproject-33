@@ -19,23 +19,24 @@ public class EnergyConservationApplication {
         SpringApplication.run(EnergyConservationApplication.class, args);
     }
 
-    @GetMapping("/index2")
+    @GetMapping("/index")
     public String showStudenten() {
 
         return "index";
     }
 
-    @GetMapping("/test2")
-    public String showtest() {
+    @GetMapping("/functionscreen")
+    public String showFunction() {
 
-        return "test";
+        return "FunctionScreen";
     }
 
-    @GetMapping("/location")
-    public String locatieToevoegen() {
+    @GetMapping("/ContactUs")
+    public String showContact() {
 
-        return "Location";
+        return "ContactUs";
     }
+
 
 }
 

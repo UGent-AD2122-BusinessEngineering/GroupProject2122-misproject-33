@@ -6,20 +6,96 @@
     <link rel="stylesheet" href="Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+
+        .navbar {
+            height:12%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav{
+            margin-left:10px;
+
+
+        }
+
+        nav ul li{
+            display: inline-block;
+            list-style: none;
+            margin: 0px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+        }
+
+        .row{
+            display: flex;
+            height: 88%;
+            align-items: center;
+        }
+
+        .col{
+            flex-basis: 50%;
+        }
+
+        .Card{
+            color: white;
+            width:300px;
+            height:230px;
+            display: inline-block;
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-sizing: border-box;
+            margin: 10px 10px 10px 10px;
+
+            background-position:center;
+            background-size: cover;
+
+        }
+
+        .card1{
+            background-image: url(Pictures/rating.png);
+        }
+        .card2{
+            background-image: url(Pictures/fridge.png);
+        }
+        .card3{
+            background-image: url(Pictures/gebouw.jpg);
+        }
+        .card4{
+            background-image: url(Pictures/bill.jpg);
+        }
+        .Layout{
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    </style>
 </head>
 
-<body>
+<body style="background-color:powderblue;">
 
  <div class="container-fluid">
         <div class="Layout">
-            <video autoplay muted loop id="myVideo">
-                <source src="Pictures/video.mp4" type="video/mp4">
-            </video>
+            <img src="https://jooinn.com/images/city-281.jpg">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-                <li><a href="ContactUs.html"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
+                <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
+                <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
                 <li><a href="Login.html"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
             </ul>
         </nav>
@@ -37,6 +113,7 @@
 
         <div class="Card card1">
             <h2>Analyse your electricity usage</h2>
+
 
         </div>
         <div class="Card card2">

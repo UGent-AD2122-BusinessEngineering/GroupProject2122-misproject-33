@@ -23,6 +23,10 @@ public class Appliance {
     private boolean isEnergyConservationMode; // dit houdt bij of er één is
     private ArrayList <Action> actionsPerAppliance;
 
+    public Appliance() {
+
+    }
+
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption,
                      String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode) {
         this.energyEfficiencyClass = energyEfficiencyClass;
@@ -48,6 +52,8 @@ public class Appliance {
         this.isEnergyConservationMode = isEnergyConservationMode;
         this.actionsPerAppliance = getActionsPerApplianceId(applianceID);
     }
+
+
 
     public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
         ActionDAO actionDAO = new ActionDAO();

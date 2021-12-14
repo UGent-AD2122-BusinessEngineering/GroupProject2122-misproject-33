@@ -254,11 +254,10 @@
 
 
     </style>
-</head> <!--css import-->
+</head>
 
 <body style="background-color:darkgray;">
 <div class="navbar">
-
 
     <nav>
         <ul>
@@ -270,18 +269,18 @@
     </nav>
 </div> <!--navbar-->
 
-<form class="modal-content animate" th:action="@{/Login}" th:object="${Loginform}" method="post">
+<form class="modal-content animate" th:action="@{/Login}" th:object="${login}" method="post">
     <div class="imgcontainer">
         <img src="Pictures/keys.png" style="width:25%">
 
     </div>
 
     <div class="container">
+        <input th:field="*{username}" id="uname" type="text" placeholder="Enter Email Address" name="uname"required/>
 
-        <input type="text" placeholder="Enter Email Address" name="uname" required>
 
+        <input th:field="*{password}" id="psw" type="text" placeholder="Enter Password" name="psw" required/>
 
-        <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit">Login</button>
     </div>

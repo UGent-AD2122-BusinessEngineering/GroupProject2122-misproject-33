@@ -1,8 +1,7 @@
 package com.GroupProject2122misproject33.demo;
 
 
-import application.Location;
-import application.Person;
+import application.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,8 +38,8 @@ public class EnergyConservationApplication {
     }
 
     @GetMapping("/Login")
-    public String showLogin() {
-
+    public String showLogin(Model model) {
+        model.addAttribute("login", new LoginForm());
         return "Login";
     }
     /*
@@ -49,12 +48,13 @@ public class EnergyConservationApplication {
         person= Person.get
     }
     */
+
     @GetMapping("/Location")
     public String showLocation(Model model) {
         model.addAttribute("location", new Location());
         return "Location";
     }
-
+    /*
     @PostMapping("/toevoegenStudent")
     public String studentToevoegenSubmit(@ModelAttribute Location location, Model model, RedirectAttributes redirAttrs) {
 
@@ -63,13 +63,62 @@ public class EnergyConservationApplication {
         model.addAttribute("studenten", university.getStudents());
         return "redirect:/index";
     }
-
+*/
 
     @GetMapping("/Appliances")
-    public String showAppliances() {
-
+    public String showAppliances(Model model) {
+        model.addAttribute("appliance", new Appliance());
         return "Appliances";
     }
+
+    /*
+    @PostMapping("/Appliances")
+    public String applianceToevoegen(@ModelAttribute Appliance appliance, Model model, RedirectAttributes redirAttrs) {
+        Room room= new Room();
+        university.addStudent(student);
+        redirAttrs.addFlashAttribute("success", "Student werd toegevoegd");
+        model.addAttribute("studenten", university.getStudents());
+        return "redirect:/index";
+    }
+    */
+
+    @GetMapping("/RegisterAsStudent")
+    public String registerStudent(Model model) {
+        model.addAttribute("student", new Student());
+        return "RegisterAsStudent";
+    }
+
+    @PostMapping("/RegisterAsStudent")
+    public String studentToevoegen(@ModelAttribute(name= "student") Student student, Model model) {
+        model.addAttribute("inlogtudent", student);
+        return "FunctionScreen";
+    }
+
+    @GetMapping("/RegisterAsLandlord")
+    public String registerLandlord(Model model) {
+        model.addAttribute("landlord", new Landlord());
+        return "RegisterAsLandlord";
+    }
+
+    @GetMapping("/MonthlyEnergyConsumption")
+    public String MonthlyEnergyCons(Model model) {
+        model.addAttribute("monthlyenergyconsumption", new MonthlyEnergyConsumption());
+        return "MonthlyEnergyConsumption";
+    }
+
+    @GetMapping("/Actions")
+    public String givesActions(Model model) {
+        model.addAttribute("actions", new Action());
+        return "Actions";
+    }
+
+    @GetMapping("/FunctionScreen")
+    public String givesFunctions(Model model) {
+
+        return "FunctionScreen";
+    }
+
+
 
 }
 

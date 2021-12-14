@@ -56,7 +56,8 @@ public class EnergyConservationApplication {
     Landlord landlord= new Landlord();
     landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
 
-    return "test";
+
+    return "FunctionScreenLandlord";
     }
 
     @GetMapping("/Appliances")
@@ -73,7 +74,7 @@ public class EnergyConservationApplication {
         room.addAppliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name,
         isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
 
-        return "/Appliances";
+        return "/test2";
     }
 
     /*

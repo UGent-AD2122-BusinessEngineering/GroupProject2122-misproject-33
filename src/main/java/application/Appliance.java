@@ -33,7 +33,7 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
-        this.actionsPerAppliance = new ArrayList<>(actionsPerAppliance);
+        this.actionsPerAppliance = new ArrayList<>(actionsPerAppliance); //ik denk niet dat dit klopt, kan niet in deze constructor volgens mij
     }
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, int applianceID) {
@@ -46,14 +46,21 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
-        this.actionsPerAppliance = new ActionDAO().getActions(applianceID);
+        this.actionsPerAppliance = getActionsPerApplianceId(applianceID);
     }
 
     public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
         ActionDAO actionDAO = new ActionDAO();
-        actionDAO.getActions(appliance.getApplianceID());
+        actionsPerAppliance = actionDAO.getActions(appliance.applianceID);
         return actionsPerAppliance;
     }
+
+    public ArrayList<Action> getActionsPerApplianceId(int applianceID){
+        ActionDAO actionDAO = new ActionDAO();
+        ArrayList<Action> actionsPerAppliance  = new ArrayList<Action>();
+        actionsPerAppliance  = actionDAO.getActions(applianceID);
+        return actionsPerAppliance;
+     }
 
     public boolean isEnergyConservationMode() {
         return isEnergyConservationMode;
@@ -134,7 +141,7 @@ public class Appliance {
         return message;
     }
 
-    public String energyConservationModeOff (Appliance appliance, LocalDate date) {
+    /*public String energyConservationModeOff (Appliance appliance, LocalDate date) {
         String message = "";
         if(!(appliance.isEnergyConservationMode())) {
             return message += "Is not possible for this appliance.";
@@ -146,7 +153,7 @@ public class Appliance {
             message += "Thank you, we have registered the energy conservation method.";
         }
         return message;
-    }
+    }*/
 
 
     public String customizedEnergyConservationAction(Appliance appliance, LocalDate date, String name){

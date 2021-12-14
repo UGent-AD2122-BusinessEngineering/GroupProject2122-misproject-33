@@ -1,5 +1,6 @@
 package application;
 
+import db.LocationDAO;
 import db.RoomDAO;
 import db.StudentDAO;
 import db.LandlordDAO;
@@ -57,6 +58,13 @@ public class Landlord extends Person {
         RoomDAO roomDAO = new RoomDAO();
         room.roomID = roomDAO.save(room, location.getID(), this.email); //setRoomId
         return message += "The room has been succesfully added.";
+    }
+
+    public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+        Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
+        LocationDAO locationDAO = new LocationDAO();
+        location.setID(locationDAO.saveLocation(location));
+        return "The location has been succesfully added.";
     }
 
     public String deleteRoom(Room room) {

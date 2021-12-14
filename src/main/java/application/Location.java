@@ -56,11 +56,8 @@ public class Location {
         return characteristics;
     }
 
-    public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
-        Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
-        LocationDAO locationDAO = new LocationDAO();
-        location.ID = locationDAO.saveLocation(location);
-        return "The location has been succesfully added.";
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     //wanneer alle kamers van een locatie verwijderd zijn wordt de locatie vanzelf verwijderd

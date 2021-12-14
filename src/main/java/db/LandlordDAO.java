@@ -195,7 +195,7 @@ public class LandlordDAO {
         //System.out.println(l.getFirstname());
         //landlordDAO.save(l);
         //landlordDAO.deleteLandlord(l);
-        //System.out.println(landlordDAO.getLandlordEmail(4));
-        landlordDAO.deleteLandlord("c.d@gmail.com");
+        System.out.println(landlordDAO.getAllLandlords());
+        //.deleteLandlord("c.d@gmail.com");
     }
 }

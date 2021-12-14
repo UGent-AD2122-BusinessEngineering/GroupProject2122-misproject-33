@@ -67,7 +67,7 @@ public class Appliance {
         return actionsPerAppliance;
      }
 
-    public boolean isEnergyConservationMode() {
+    public boolean getIsEnergyConservationMode() {
         return isEnergyConservationMode;
     }
 
@@ -110,7 +110,7 @@ public class Appliance {
     //Ook een energyConservationModeOff nodig denk ik -Simon
     public String energyConservationModeOn (LocalDate date) {
         String message = "";
-        if(!(this.isEnergyConservationMode())) {
+        if(!(this.getIsEnergyConservationMode())) {
             return message += "Is not possible for this appliance.";
         }
         else {
@@ -132,7 +132,7 @@ public class Appliance {
 
     public String tipsAppliance(){
         String message = "";
-        if(this.isEnergyConservationMode()) {
+        if(this.getIsEnergyConservationMode()) {
             message += "You could put the energy conservation mode on.";
         }
         if(this.getIsTempProportionate()){

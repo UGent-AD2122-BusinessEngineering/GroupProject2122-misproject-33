@@ -86,7 +86,7 @@ public class Room {
         return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
 
-    //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room
+    //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean getIsEnergyConservationMode, Room room
 
     public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
                                boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){

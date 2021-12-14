@@ -155,7 +155,7 @@ input[type=text], input[type=password] {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 0% auto 0% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 30%; /* Could be more or less, depending on screen size */
 }
@@ -186,17 +186,17 @@ input[type=text], input[type=password] {
     margin-left:70px;
     width: 25%; /* Could be more or less, depending on screen size */
 }
+
 .registerbuttons{
     background-color: #fefefe;
-    color: white;
+    color: black;
     margin: 5% auto 5% auto;
     width: 92.5%;
     text-decoration: none;
 }
 
 .secondButton{
-    margin-top: 10px;
-    color: white;
+    color: black;
     width: 92.5%;
     text-decoration: none;
 }
@@ -269,6 +269,7 @@ form button {
     z-index: 1;
     cursor:pointer;
 }
+
 form button:hover, form button:focus {
     color: white;
     background-color: #3c3b52;
@@ -333,6 +334,27 @@ form .question input:valid + label {
 
 
 
-
-
+/*BUTTON 1*/
+form button1 {
+    background-color: white;
+    border: 1px solid #3c3b52;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    border-radius: 60px;
+    color: #3c3b52;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    width: 100%;
+    text-align: center;
+}
+form button1:hover, form button:focus {
+    color: #fefefe;
+    background-color: #888888;
+}
 

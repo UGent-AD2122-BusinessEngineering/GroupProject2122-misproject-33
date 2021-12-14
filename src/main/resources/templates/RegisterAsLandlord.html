@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <style>
+
+
+        <style>
 
         nav{
             margin-left:10px;
@@ -132,7 +134,7 @@
             font-style: italic;
 
         }
-    </style>
+        </style>
 </head>
 <html lang="en">
 <head>
@@ -153,32 +155,37 @@
             <li><a href="Login"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
         </ul>
     </nav>
-</div> <!--navbar-->
+</div>
 
 <form action="#" th:action="@{/RegisterAsLandlord}" method="post" th:object="${landlord}" >
     <div class="RegisterBox">
 
         <h1>Register as a Landlord</h1>
-
+        <div class="question">
         <label for="firstnameStudent" class="form-label">First Name:</label>
         <input th:field="*{firstname}" type="text" class="form-control" id="firstnameStudent">
-
+        </div>
+        <div class="question">
         <label for="lastnameStudent" class="form-label">Last Name:</label>
         <input th:field="*{lastname}" type="text" class="form-control" id="lastnameStudent">
-
+        </div>
+        <div class="question">
         <label for="emailAdres" class="form-label">Email:</label>
         <input th:field="*{email}" type="text" class="form-control" id="emailAdres">
-
+        </div>
+        <div class="question">
         <label for="date_of_birthStudent" class="form-label">Date Of Birth:</label>
         <input th:field="*{dateOfBirth}" type="text" class="form-control" id="date_of_birthStudent">
-
+        </div>
+        <div class="question">
         <label for="telephone_numberStudent" class="form-label">Telephone Number:</label>
         <input th:field="*{telephoneNumber}" type="text" class="form-control" id="telephone_numberStudent">
+        </div>
 
-        <br><br>
+        <div class="question">
         <label for="pwStudent" class="form-label">Password:</label>
         <input th:field="*{password}" type="text" class="form-control" id="pwStudent">
-
+        </div>
 
     <button type="submit" value="Submit">Create profile</button>
     </div>

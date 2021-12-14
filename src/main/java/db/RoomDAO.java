@@ -153,7 +153,7 @@ public class RoomDAO {
         }
     }
 
-    public void deleteRoom(int room_id) {
+    public void deleteRoom(int room_id) { //location id opvragen van room net voor die verwijderd wordt
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -166,7 +166,7 @@ public class RoomDAO {
             String sql2 = "DELETE FROM location L " +
                     "WHERE NOT EXISTS(SELECT room_id " +
                     "FROM room R " +
-                    "WHERE R.Location_location_id = L.location_id)";
+                    "WHERE R.Location_location_id = L.location_id)"; // en R.Location_location_id = location id
             PreparedStatement stmt2 = con.prepareStatement(sql2);
             stmt2.executeUpdate();
         } catch (Exception dbe) {

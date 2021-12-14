@@ -18,6 +18,7 @@ public class Landlord extends Person {
 
     public Landlord(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
         super(email, firstname, lastname, password, telephone_number, date_of_birth);
+        this.roomsLandLord = getRoomsLandLord(email);
     }
 
     public HashMap<Room, Student> getRoomStudentHashmap(Landlord landlord) {
@@ -36,9 +37,9 @@ public class Landlord extends Person {
         return this.roomStudentHashMap;
     }
 
-    public ArrayList<Room> getRoomsLandLord(Landlord landlord) {
+    public ArrayList<Room> getRoomsLandLord(String email) {
         RoomDAO roomDAO = new RoomDAO();
-        this.roomsLandLord = roomDAO.getRooms(landlord.email);
+        this.roomsLandLord = roomDAO.getRooms(email);
         return this.roomsLandLord;
     }
 

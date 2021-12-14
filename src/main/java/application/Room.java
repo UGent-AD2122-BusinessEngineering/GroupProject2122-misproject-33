@@ -46,12 +46,10 @@ public class Room {
         return monthlyEnergyConsumptionsPerRoom;
     }
 
+
+
     public int getRoomnumber() {
         return roomnumber;
-    }
-
-    public void setRoomnumber(int roomnumber) {
-        this.roomnumber = roomnumber;
     }
 
     public ArrayList<MonthlyEnergyConsumption> getMonthlyEnergyConsumptions() {
@@ -91,10 +89,13 @@ public class Room {
 
     //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room
 
-    /*public String addAppliance(Appliance appliance){
+    public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
+                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
+        Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
         ApplianceDAO applianceDAO = new ApplianceDAO();
+        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
         return "The appliance has been succesfully added.";
-    }*/
+    }
 
     public String deleteAppliance(Appliance appliance){
         ApplianceDAO applianceDAO = new ApplianceDAO();
@@ -102,10 +103,10 @@ public class Room {
         return "The appliance has been successfully deleted.";
     }
 
-    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room, ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions) {
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month) {
         MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
         MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
-        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, room.roomID);
+        monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, this.roomID);
         return "Your monthly energy consumption of month " + month + " has been registered.";
     }
 

@@ -29,32 +29,16 @@ public class MonthlyEnergyConsumption {
         return electricity;
     }
 
-    public void setElectricity(double electricity) {
-        this.electricity = electricity;
-    }
-
     public double getGas() {
         return gas;
-    }
-
-    public void setGas(double gas) {
-        this.gas = gas;
     }
 
     public double getWater() {
         return water;
     }
 
-    public void setWater(double water) {
-        this.water = water;
-    }
-
     public LocalDate getMonth() {
         return month;
-    }
-
-    public void setMonth(LocalDate month) {
-        this.month = month;
     }
 
     public int getMonthlyEnergyConsumptionId() {

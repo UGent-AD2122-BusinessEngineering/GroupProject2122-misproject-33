@@ -37,32 +37,16 @@ public class Person {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getTelephonenumber() {
         return telephone_number;
     }
 
-    public void setTelephonenumber(String telephonenumber) {
-        this.telephone_number = telephonenumber;
-    }
-
     public String getDateofbirth() {
         return date_of_birth;
-    }
-
-    public void setDateofbirth(String dateofbirth) {
-        this.date_of_birth = dateofbirth;
     }
 
     public String getPassword() {
@@ -89,71 +73,7 @@ public class Person {
     public int hashCode() {
         return Objects.hash(email, firstname, lastname, telephone_number, date_of_birth);
     }
-
-
 }
-    /*public void registreren (String password){
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Bent u student?");//kunnen misschien met knoppen werken ofzo kwn of dat haalbaar is
-        boolean student = keyboard.nextBoolean();
-        if (student){
-            System.out.println("Wat is uw e-mailadres?");
-            String email = keyboard.nextLine();
-            System.out.println("Wat is uw voornaam?");
-            String voornaam = keyboard.nextLine();
-            System.out.println("Wat is uw familienaam?");
-            String familienaam = keyboard.nextLine();
-            System.out.println("Wat is uw telefoonnummer?");
-            String telefoonnummer = keyboard.nextLine();
-            System.out.println("Wat is uw geboortedatum?");
-            String geboortedatum = keyboard.nextLine();
-            System.out.println("Geef uw wachtwoord in alstublieft");
-            String wachtwoord = keyboard.nextLine();
-            boolean flag = false;
-            while (!flag) {
-                System.out.println("Herhaal uw wachtwoord alstublieft");
-                String wachtoordherh = keyboard.nextLine();
-                if (!(wachtwoord.equals(wachtoordherh)))
-                    System.out.println("De twee wachtwoorden komen niet overeen.");
-                else
-                    flag = true;
-            }
-            System.out.println("Uw registratie is succesvol verlopen");
-            boolean aangemeld = true;
-            Student student1 = new Student(email, voornaam, familienaam, wachtwoord, telefoonnummer, geboortedatum, aangemeld);
-        }
-
-        if(!student){
-            System.out.println("Wat is uw e-mailadres?");
-            String email = keyboard.nextLine();
-            System.out.println("Wat is uw voornaam?");
-            String voornaam = keyboard.nextLine();
-            System.out.println("Wat is uw familienaam?");
-            String familienaam = keyboard.nextLine();
-            System.out.println("Wat is uw telefoonnummer?");
-            String telefoonnummer = keyboard.nextLine();
-            System.out.println("Wat is uw geboortedatum?");
-            String geboortedatum = keyboard.nextLine();
-            System.out.println("Geef uw wachtwoord in alstublieft");
-            String wachtwoord = keyboard.nextLine();
-            boolean flag = false;
-            while (!flag) {
-                System.out.println("Herhaal uw wachtwoord alstublieft");
-                String wachtoordherh = keyboard.nextLine();
-                if (!(wachtwoord.equals(wachtoordherh)))
-                    System.out.println("De twee wachtwoorden komen niet overeen.");
-                else
-                    flag = true;
-            }
-            System.out.println("Uw registratie is succesvol verlopen.");
-            boolean aangemeld = true;
-            Landlord landlord = new Landlord(email, voornaam, familienaam, telefoonnummer, geboortedatum, wachtwoord, aangemeld);
-        }
-    }
-
-    public void afmelden (Person person){
-        person.aangemeld = false;
-    }*/
 
 
 

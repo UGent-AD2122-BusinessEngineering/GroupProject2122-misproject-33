@@ -69,40 +69,20 @@ public class Appliance {
         return energyEfficiencyClass;
     }
 
-    public void setEnergyEfficiencyClass(String energyEfficiencyClass) {
-        this.energyEfficiencyClass = energyEfficiencyClass;
-    }
-
     public String getModelIdentifier() {
         return modelIdentifier;
-    }
-
-    public void setModelIdentifier(String modelIdentifier) {
-        this.modelIdentifier = modelIdentifier;
     }
 
     public int getAnnualEnergyConsumption() {
         return annualEnergyConsumption;
     }
 
-    public void setAnnualEnergyConsumption(int annualEnergyConsumption) {
-        this.annualEnergyConsumption = annualEnergyConsumption;
-    }
-
     public String getSupplierName() {
         return supplierName;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getApplianceID() {
@@ -113,16 +93,12 @@ public class Appliance {
         return isTempProportionate;
     }
 
-    public void setIsTempProportionate(boolean tempProportionate) {
-        isTempProportionate = tempProportionate;
-    }
-
     public boolean getIsTempDisproportionate() {
         return isTempDisproportionate;
     }
 
-    public void setIsTempDisproportionate(boolean tempDisproportionate) {
-        isTempDisproportionate = tempDisproportionate;
+    public void setApplianceID(int applianceID) {
+        this.applianceID = applianceID;
     }
 
     //Ook een energyConservationModeOff nodig denk ik -Simon
@@ -140,37 +116,23 @@ public class Appliance {
         return message;
     }
 
-    /*public String energyConservationModeOff (Appliance appliance, LocalDate date) {
-        String message = "";
-        if(!(appliance.isEnergyConservationMode())) {
-            return message += "Is not possible for this appliance.";
-        }
-        else {
-            Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
-            ActionDAO actionDAO = new ActionDAO();
-            actionDAO.deleteAction(actie.getId());
-            message += "Thank you, we have registered the energy conservation method.";
-        }
-        return message;
-    }*/
 
-
-    public String customizedEnergyConservationAction(Appliance appliance, LocalDate date, String name){
+    public String customizedEnergyConservationAction(LocalDate date, String name){
         Action actie = new Action(date, name);
         ActionDAO actionDAO = new ActionDAO();
-        actionDAO.saveAction(actie, appliance.getApplianceID());
+        actionDAO.saveAction(actie, this.getApplianceID());
         return "Thank you, we have registered your energy conservation method: " + name;
     }
 
-    public String tipsAppliance(Appliance appliance){
+    public String tipsAppliance(){
         String message = "";
-        if(appliance.isEnergyConservationMode()) {
+        if(this.isEnergyConservationMode()) {
             message += "You could put the energy conservation mode on.";
         }
-        if(appliance.getIsTempProportionate()){
+        if(this.getIsTempProportionate()){
             message += "\nMaybe you could lower the temperature of the appliance.";
         }
-        if(appliance.getIsTempDisproportionate()){
+        if(this.getIsTempDisproportionate()){
             message += "\nMaybe you could increase the temperature of the appliance.";
         }
         if(message.equals("")){

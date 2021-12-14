@@ -56,7 +56,7 @@ public class Landlord extends Person {
         String message = "";
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
-        room.roomID = roomDAO.save(room, location.getID(), this.email); //setRoomId
+        room.roomID = roomDAO.save(room, this.email); //setRoomId
         return message += "The room has been succesfully added.";
     }
 

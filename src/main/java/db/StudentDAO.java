@@ -129,6 +129,7 @@ public class StudentDAO {
     }
 
     //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
+    //save wordt ook gebruikt bij setIsContactPerson
     public void save(Student s) {
         Connection con = null;
         try {
@@ -142,9 +143,24 @@ public class StudentDAO {
             stmt.setString(1, s.getEmail());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-                System.out.println("Student already saved, use update method");
-                DBHandler.closeConnection(con);
-                return;
+                // UPDATE
+                String sqlUpdate = "UPDATE student " +
+                        "SET first_name = ?, " +
+                        "last_name = ?, " +
+                        "password = ?, " +
+                        "telephone_number = ?, " +
+                        "date_of_birth = ?, " +
+                        "is_contact_person = ? " +
+                        "WHERE email = ?";
+                PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
+                stmt2.setString(1, s.getFirstname());
+                stmt2.setString(2, s.getLastname());
+                stmt2.setString(3, s.getPassword());
+                stmt2.setString(4, s.getTelephoneNumber());
+                stmt2.setString(5, s.getDateOfBirth());
+                stmt2.setBoolean(6, s.getIsContactPerson());
+                stmt2.setString(7, s.getEmail());
+                stmt2.executeUpdate();
             } else {
                 // INSERT
 

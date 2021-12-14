@@ -89,10 +89,10 @@ public class Room {
     //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean getIsEnergyConservationMode, Room room
 
     public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, Room room){
+                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode){
         Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
         ApplianceDAO applianceDAO = new ApplianceDAO();
-        appliance.setApplianceID(applianceDAO.save(appliance, room.roomID));
+        appliance.setApplianceID(applianceDAO.save(appliance, this.roomID));
         return "The appliance has been succesfully added.";
     }
 

@@ -138,7 +138,7 @@
 
         }
     </style>
-</head> <!--css import-->
+</head>
 
 <body style="background-color:darkgray;">
 <div class="container-fluid">
@@ -180,6 +180,21 @@
     <div class="question">
         <label for="Name" class="form-label">Name:</label>
         <input th:field="*{name}" type="text" required id="Name">
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input th:field="*{isTempProportionate}" type="checkbox" class="custom-control-input" id="checkisTempProportionate">
+        <label class="custom-control-label" for="checkisTempProportionate">Check this box if the temperature is proportionate)</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input th:field="*{isTempDisproportionate}" type="checkbox" class="custom-control-input" id="checkisTempDisproportionate">
+        <label class="custom-control-label" for="checkisTempDisproportionate">Check this box if the temperature is disproportionate</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input th:field="*{isEnergyConservationMode}" type="checkbox" class="custom-control-input" id="checkisEnergyConservationMode">
+        <label class="custom-control-label" for="checkisEnergyConservationMode">Check this box if your appliance has a conservation mode</label>
     </div>
 
 

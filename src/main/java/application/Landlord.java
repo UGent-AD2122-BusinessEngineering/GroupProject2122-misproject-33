@@ -21,9 +21,9 @@ public class Landlord extends Person {
         this.roomsLandLord = getRoomsLandLord(email);
     }
 
-    public HashMap<Room, Student> getRoomStudentHashmap(Landlord landlord) {
+    public HashMap<Room, Student> getRoomStudentHashmap() {
         RoomDAO roomDAO = new RoomDAO();
-        ArrayList<Room> allRooms = roomDAO.getRooms(landlord.email);
+        ArrayList<Room> allRooms = roomDAO.getRooms(this.email);
         StudentDAO studentDAO = new StudentDAO();
         HashMap<Room, Student> roomStudentHashMap = new HashMap<Room, Student>();
         for (Room item : allRooms) {
@@ -51,11 +51,11 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    public String addRoom(Landlord landlord, Location location, int roomnumber) {
+    public String addRoom(Location location, int roomnumber) {
         String message = "";
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
-        room.roomID = roomDAO.save(room, location.getID(), landlord.email);
+        room.roomID = roomDAO.save(room, location.getID(), this.email);
         return message += "The room has been succesfully added.";
     }
 

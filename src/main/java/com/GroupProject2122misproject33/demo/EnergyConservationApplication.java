@@ -1,6 +1,7 @@
 package com.GroupProject2122misproject33.demo;
 
-
+import application.Room;
+import application.Student;
 import application.Location;
 import application.Person;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @SpringBootApplication
-
 @Controller
 public class EnergyConservationApplication {
 
@@ -20,22 +20,26 @@ public class EnergyConservationApplication {
         SpringApplication.run(EnergyConservationApplication.class, args);
     }
 
-    @GetMapping("/index")
-    public String showStudenten() {
-
-        return "index";
+    @GetMapping("/index2")
+    public String showStudenten(Model model) {
+        Student student = new Student();
+        model.addAttribute("studenten", student.getIsContactPerson());
+        return "index2";
     }
 
-    @GetMapping("/functionscreen")
-    public String showFunction() {
+    @GetMapping("/Location")
+    public String locatieToevoegen() {
 
-        return "FunctionScreen";
+        return "Location";
     }
 
-    @GetMapping("/ContactUs")
-    public String showContact() {
-
-        return "ContactUs";
+    @PostMapping("/toevoegenStudent")
+    public String addStudent(@ModelAttribute Student student, boolean isContactPerson, Model model, RedirectAttributes redirAttrs) {
+        Room room = new Room();
+        room.addStudent(student, isContactPerson);
+        redirAttrs.addFlashAttribute("success", "Student werd toegevoegd");
+        model.addAttribute("studenten", room.addStudent(student, isContactPerson));
+        return "redirect:/index";
     }
 
     @GetMapping("/Login")
@@ -64,6 +68,11 @@ public class EnergyConservationApplication {
         return "redirect:/index";
     }
 
+    @GetMapping("/test2")
+    public String showtest() {
+
+        return "test2";
+    }
 
     @GetMapping("/Appliances")
     public String showAppliances() {

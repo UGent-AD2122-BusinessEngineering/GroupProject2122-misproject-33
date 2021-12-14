@@ -5,7 +5,6 @@ import db.ActionDAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Appliance {
@@ -33,7 +32,7 @@ public class Appliance {
         this.isTempProportionate = isTempProportionate;
         this.isTempDisproportionate = isTempDisproportionate;
         this.isEnergyConservationMode = isEnergyConservationMode;
-        this.actionsPerAppliance = new ArrayList<>(actionsPerAppliance); //ik denk niet dat dit klopt, kan niet in deze constructor volgens mij
+        this.actionsPerAppliance = new ArrayList<>();
     }
 
     public Appliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode, int applianceID) {
@@ -127,15 +126,15 @@ public class Appliance {
     }
 
     //Ook een energyConservationModeOff nodig denk ik -Simon
-    public String energyConservationModeOn (Appliance appliance, LocalDate date) {
+    public String energyConservationModeOn (LocalDate date) {
         String message = "";
-        if(!(appliance.isEnergyConservationMode())) {
-            return message = "Is not possible for this appliance.";
+        if(!(this.isEnergyConservationMode())) {
+            return message += "Is not possible for this appliance.";
         }
         else {
             Action actie = new Action(date, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
             ActionDAO actionDAO = new ActionDAO();
-            actionDAO.saveAction(actie, appliance.getApplianceID());
+            actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered the energy conservation method.";
         }
         return message;
@@ -180,37 +179,37 @@ public class Appliance {
         return message;
     }
 
-    public String decreaseDegree(Appliance appliance, LocalDate date) {
+    public String decreaseDegree(LocalDate date) {
         String message = "";
-        if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())){
+        if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())){
             message += "Is not possible for this appliance.";
             return message;
         }
-        if (appliance.getIsTempDisproportionate()){
+        if (this.getIsTempDisproportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }
         else{
             Action actie = new Action(date, "decrease a degree");
             ActionDAO actionDAO = new ActionDAO();
-            actionDAO.saveAction(actie, appliance.getApplianceID());
+            actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered your energy conservation method.";
         }
         return message;
     }
 
-    public String increaseDegree(Appliance appliance, LocalDate date) {
+    public String increaseDegree(LocalDate date) {
         String message = "";
-        if (!(appliance.getIsTempProportionate() && appliance.getIsTempDisproportionate())) {
+        if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())) {
             message += "Is not possible for this appliance.";
             return message;
         }
-        if (appliance.getIsTempProportionate()){
+        if (this.getIsTempProportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }
         else{
             Action actie = new Action(date, "increase a degree");
             ActionDAO actionDAO = new ActionDAO();
-            actionDAO.saveAction(actie, appliance.getApplianceID());
+            actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered your energy conservation method.";
         }
         return message;

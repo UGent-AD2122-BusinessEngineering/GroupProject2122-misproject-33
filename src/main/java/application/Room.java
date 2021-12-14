@@ -85,7 +85,6 @@ public class Room {
 
     public String deleteStudent(Student student){
         StudentDAO studentDAO = new StudentDAO();
-        studentDAO.deleteStudent(student.getEmail());
         studentDAO.update(student, 0);
         return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
     }
@@ -100,7 +99,7 @@ public class Room {
     public String deleteAppliance(Appliance appliance){
         ApplianceDAO applianceDAO = new ApplianceDAO();
         applianceDAO.deleteAppliance(appliance.getApplianceID());
-        return "The appliance has been succesfully deleted.";
+        return "The appliance has been successfully deleted.";
     }
 
     public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month, Room room, ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptions) {
@@ -113,7 +112,7 @@ public class Room {
     public String deleteMonthlyEnergyConsumption (MonthlyEnergyConsumption monthlyEnergyConsumption){
         MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
         monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
-        return "MonthlyEnergyConsumption was succesfully deleted.";
+        return "MonthlyEnergyConsumption was successfully deleted.";
     }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 @SpringBootApplication
@@ -49,8 +50,14 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsStudent")
     public String registerNewStudent(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Student student = new Student();
+        ArrayList<Student> allStudents = student.getAllStudents();
+        for (Student item : allStudents) {
+            if (item.getEmail().equals(email)) {
+                return "An account already exists with this email address.";
+            }
+        }
         student.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
-        System.out.println(student.getReport());
+        //System.out.println(student.getReport());
         return "/test2";
     }
 
@@ -62,6 +69,12 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsLandlord")
     public String registerNewLandlord(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
+        ArrayList<Landlord> allLandlords= new ArrayList<>();
+        allLandlords = landlord.allLandlords();
+        for(Landlord item : allLandlords){
+            if(item.getEmail().equals(email))
+                return "An account already exists with this email adress.";
+        }
         landlord.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
         return "/test2";
     }

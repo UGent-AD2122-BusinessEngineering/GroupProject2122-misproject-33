@@ -22,6 +22,13 @@ public class Landlord extends Person {
         this.roomsLandLord = getRoomsLandLord(email);
     }
 
+    public ArrayList<Landlord> allLandlords (){
+        LandlordDAO landlordDAO = new LandlordDAO();
+        ArrayList allLandlords = new ArrayList<>();
+        allLandlords = landlordDAO.getAllLandlords();
+        return allLandlords;
+    }
+
     public HashMap<Room, Student> getRoomStudentHashmap() {
         RoomDAO roomDAO = new RoomDAO();
         ArrayList<Room> allRooms = roomDAO.getRooms(this.email);

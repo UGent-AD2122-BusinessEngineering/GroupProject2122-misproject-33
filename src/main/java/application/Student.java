@@ -38,16 +38,17 @@ public class Student extends Person {
         return studentDAO.getStudents(room_id);
     }
 
+    public ArrayList<Student> getAllStudents (){
+        ArrayList<Student> allStudents = new ArrayList<>();
+        StudentDAO studentDAO = new StudentDAO();
+        allStudents = studentDAO.getAllStudents();
+        return allStudents;
+    }
+
     public static String toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
-            StudentDAO studentDAO = new StudentDAO();
-            ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents) {
-                if (item.getEmail().equals(email)) {
-                    return "An account already exists with this email address.";
-                }
-            }
-            Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephoneNumber, dateOfBirth);
-            studentDAO.save(student1);
+        StudentDAO studentDAO = new StudentDAO();
+        Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephoneNumber, dateOfBirth);
+        studentDAO.save(student1);
         return "Your registration has been successful.";
     }
 

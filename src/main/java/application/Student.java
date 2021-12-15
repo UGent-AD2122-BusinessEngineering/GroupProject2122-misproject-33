@@ -38,7 +38,7 @@ public class Student extends Person {
         return studentDAO.getStudents(room_id);
     }
 
-    public ArrayList<Student> getAllStudents (){
+    public ArrayList<Student> getAllStudents() {
         ArrayList<Student> allStudents = new ArrayList<>();
         StudentDAO studentDAO = new StudentDAO();
         allStudents = studentDAO.getAllStudents();
@@ -53,17 +53,17 @@ public class Student extends Person {
     }
 
     public Object login(String email, String password) {
-            StudentDAO studentDAO = new StudentDAO();
-            ArrayList<Student> allStudents = studentDAO.getAllStudents();
-            for (Student item : allStudents) {
-                if (item.getEmail().equals(email)) {
-                    if (item.password.equals(PasswordHashing.doHashing(password))) {
-                        return item;
-                    }
+        StudentDAO studentDAO = new StudentDAO();
+        ArrayList<Student> allStudents = studentDAO.getAllStudents();
+        for (Student item : allStudents) {
+            if (item.getEmail().equals(email)) {
+                if (item.password.equals(PasswordHashing.doHashing(password))) {
+                    return item;
                 }
             }
-            String message = "Your e-mail or password was incorrect.";
-            return message;
+        }
+        String message = "Your e-mail or password was incorrect.";
+        return message;
     }
 
     public boolean loginSucces(String email, String password) {
@@ -79,13 +79,12 @@ public class Student extends Person {
         return false;
     }
 
-    public String test()
-    {
+    public String test() {
         String message = "test";
         return message;
     }
 
-    public String getReport(){
+    public String getReport() {
         String message = "Het werkt ? ";
         Room room;
         RoomDAO roomDAO = new RoomDAO();
@@ -94,23 +93,21 @@ public class Student extends Person {
         appliancesInTheRoom = room.getAppliancesInTheRoom();
         ArrayList<Action> actionsPerAppliance = new ArrayList<>();
         message += "The following is a report of all the appliances in the room where the student lives and all the energy conservation actions performed on each appliance: ";
-        for (Appliance item : appliancesInTheRoom){
+        for (Appliance item : appliancesInTheRoom) {
             message += "\n" + item.getName() + " of supplier " + item.getSupplierName();
             actionsPerAppliance = item.getActionsPerAppliance();
-            if(actionsPerAppliance.isEmpty()){
+            if (actionsPerAppliance.isEmpty()) {
                 message += "\n" + "There were no energy conservation actions performed on this appliance.";
-            }
-            else {
+            } else {
                 for (Action item1 : actionsPerAppliance) {
                     message += "\n" + "The following energy conservation action were performed on the appliance:";
                     message += "\n" + item1.getName();
                 }
             }
-            return message;
-    }
 
-        //gwn nog vgl van de energyconsumptions
-
+        }
         return message;
+
     }
 }
+

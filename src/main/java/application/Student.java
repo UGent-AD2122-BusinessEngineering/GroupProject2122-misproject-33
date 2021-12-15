@@ -1,4 +1,5 @@
 package application;
+import db.RoomDAO;
 import db.StudentDAO;
 import java.util.ArrayList;
 
@@ -75,5 +76,33 @@ public class Student extends Person {
             }
         }
         return false;
+    }
+
+    public String getReport(){
+        String message = "";
+        Room room;
+        RoomDAO roomDAO = new RoomDAO();
+        room = roomDAO.getRoom(this.email);
+        ArrayList<Appliance> appliancesInTheRoom = new ArrayList<>();
+        appliancesInTheRoom = room.getAppliancesInTheRoom();
+        ArrayList<Action> actionsPerAppliance = new ArrayList<>();
+        message += "The following is a report of all the appliances in the room where the student lives and all the energy conservation actions performed on each appliance: ";
+        for (Appliance item : appliancesInTheRoom){
+            message += "\n" + item.getName() + " of supplier " + item.getSupplierName();
+            actionsPerAppliance = item.getActionsPerAppliance();
+            if(actionsPerAppliance.isEmpty()){
+                message += "\n" + "There were no energy conservation actions performed on this appliance.";
+            }
+            else{
+            for(Action item1 : actionsPerAppliance){
+                message += "\n" + "The following energy conservation action were performed on the appliance:";
+                message += "\n" + item1.getName();
+            }
+        }
+    }
+
+        //gwn nog vgl van de energyconsumptions
+
+        return message;
     }
 }

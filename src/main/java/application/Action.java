@@ -28,6 +28,10 @@ public class Action {
         this.Id = id;
     }
 
+    public int getMonth(){
+        return date.getMonthValue();
+    }
+
 
     public int getId() {
         return Id;

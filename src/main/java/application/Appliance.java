@@ -54,9 +54,9 @@ public class Appliance {
 
 
 
-    public ArrayList<Action> getActionsPerAppliance(Appliance appliance) {
+    public ArrayList<Action> getActionsPerAppliance() {
         ActionDAO actionDAO = new ActionDAO();
-        actionsPerAppliance = actionDAO.getActions(appliance.applianceID);
+        actionsPerAppliance = actionDAO.getActions(this.applianceID);
         return actionsPerAppliance;
     }
 

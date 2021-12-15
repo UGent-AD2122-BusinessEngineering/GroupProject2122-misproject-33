@@ -85,8 +85,8 @@ public class Student extends Person {
         return message;
     }
 
-    public String getReport(){
-        String message = "Het werkt ? ";
+    public String getReport() {
+        String message = "";
         Room room;
         RoomDAO roomDAO = new RoomDAO();
         room = roomDAO.getRoom(this.email);
@@ -94,23 +94,33 @@ public class Student extends Person {
         appliancesInTheRoom = room.getAppliancesInTheRoom();
         ArrayList<Action> actionsPerAppliance = new ArrayList<>();
         message += "The following is a report of all the appliances in the room where the student lives and all the energy conservation actions performed on each appliance: ";
-        for (Appliance item : appliancesInTheRoom){
-            message += "\n" + item.getName() + " of supplier " + item.getSupplierName();
-            actionsPerAppliance = item.getActionsPerAppliance();
-            if(actionsPerAppliance.isEmpty()){
-                message += "\n" + "There were no energy conservation actions performed on this appliance.";
-            }
-            else {
-                for (Action item1 : actionsPerAppliance) {
-                    message += "\n" + "The following energy conservation action were performed on the appliance:";
-                    message += "\n" + item1.getName();
+        String message2 = "\nWe were not able to generate a relevant report since there were not any appliances found in the room.";
+        if (appliancesInTheRoom.isEmpty()) {
+            message += message2;
+        } else {
+            for (Appliance item : appliancesInTheRoom) {
+                message += "\n" + item.getName() + " of supplier " + item.getSupplierName();
+                actionsPerAppliance = item.getActionsPerAppliance();
+                if (actionsPerAppliance.isEmpty()) {
+                    message += "\n" + "There were no energy conservation actions performed on this appliance.";
+                } else {
+                    for (Action item1 : actionsPerAppliance) {
+                        message += "\n" + "The following energy conservation action were performed on the appliance:";
+                        message += "\n" + item1.getName();
+                    }
                 }
             }
-            return message;
-    }
-
-        //gwn nog vgl van de energyconsumptions
-
+        }
+        message += "\n" + "Monthly energy consumptions of the room: ";
+        ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptionsOfTheRoom = new ArrayList<>();
+        monthlyEnergyConsumptionsOfTheRoom = room.getMonthlyEnergyConsumptionPerRoom(room.roomID);
+        if (monthlyEnergyConsumptionsOfTheRoom.isEmpty()) {
+            message += "\n" + "There were no monthly energy consumptions found.";
+        } else {
+            for (MonthlyEnergyConsumption item : monthlyEnergyConsumptionsOfTheRoom) {
+                message += "\nMonth " + monthlyEnergyConsumptionsOfTheRoom.indexOf(item) + 1 + ":" + "\nElectricity: " + item.getElectricity() + " kWh" + "\nGas: " + item.getGas() + " kWh" + "\nWater: " + item.getWater() + " m^3" + "\n";
+            }
+        }
         return message;
     }
 }

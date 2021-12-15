@@ -2,14 +2,15 @@ package com.GroupProject2122misproject33.demo;
 
 import application.*;
 
+import db.LandlordDAO;
+import db.LocationDAO;
+import models.AddRoomModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class EnergyConservationApplication {
         return "RegisterAsLandlord";
     }
     @PostMapping("/RegisterAsLandlord")
-    public String registerNewLandlord(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
+    public String registerNewLandlord(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
         ArrayList<Landlord> allLandlords= new ArrayList<>();
         allLandlords = landlord.allLandlords();
@@ -100,18 +101,44 @@ public class EnergyConservationApplication {
 
     @GetMapping("/Location")
     public String showLocation(Model model) {
-        model.addAttribute("room", new Landlord());
+        model.addAttribute("location", new Location());
         return "Location";
     }
-    /*
+
     @PostMapping("/Location")
-    public String addLocation(@ModelAttribute String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics, int roomnumber){
+    public String addLocation( String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
         Landlord landlord= new Landlord();
-        Location location1 = new Location();
-        landlord.addLocationAndRoom(country, city, ZIP, street, number, area,insulated,characteristics, roomnumber);
-        landlord.addRoom(location1,roomnumber);
+        landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
+
         return"FunctionScreenLandlord";
-    }*/
+    }
+
+    @GetMapping("/Room")
+    public String showRoom(Model model) {
+
+        var landlords= new LandlordDAO().getAllLandlords();
+
+
+        var locations= new LocationDAO().getAllLocations();
+        model.addAttribute("room", new AddRoomModel());
+        model.addAttribute("locations",locations);
+
+        model.addAttribute("landlords", landlords);
+
+
+        return "Room";
+    }
+
+    @PostMapping("/Room")
+    public String addRoom(@ModelAttribute AddRoomModel roomModel){
+        var landlord=new LandlordDAO().getLandlord(roomModel.getLandlordEmail());
+        var location= new LocationDAO().getLocation(roomModel.getLocationID());
+        landlord.addRoom(location, roomModel.getRoomnumber());
+
+        return"FunctionScreenLandlord";
+    }
+
+
 /*
     @RequestMapping(value = "/Location", method = RequestMethod.GET)
     public String page1( @ModelAttribute Location location, ModelMap model ) {

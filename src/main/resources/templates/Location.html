@@ -154,7 +154,7 @@
     </nav>
 </div>
 
-<form action=# th:action="@{/Location}" method="post" th:object="${room}" >
+<form action=# th:action="@{/Location}" method="post" th:object="${location}" >
 
         <h1>Add a Room</h1>
 
@@ -199,10 +199,6 @@
             <label class="custom-control-label" for="checkInsulation">Insulated (Check the box if insulated)</label>
         </div>
 
-        <div class="question">
-            <label for="roomnumber" class="form-label">Roomnumber:</label>
-            <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
-        </div>
 
 
 

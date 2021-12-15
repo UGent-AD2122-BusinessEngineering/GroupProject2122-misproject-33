@@ -65,6 +65,8 @@ public class Location {
         this.ID = ID;
     }
 
+
+
     //wanneer alle kamers van een locatie verwijderd zijn wordt de locatie vanzelf verwijderd
     public String toString(){
         String message = "Country: " + country + "\n" + "City: " + city;

@@ -157,25 +157,41 @@
 <form action=# th:action="@{/Room}" method="post" th:object="${room}" >
 
     <h1>Add a Room</h1>
-
-
     <div class="question">
+        <select class="form-control" th:field="*{landlordEmail}">
+            <option value="">Select landlord</option>
+            <option th:each="landlord : ${landlords}" th:value="${landlord.email}" th:text="|${landlord.firstname} ${landlord.lastname}|"></option>
+        </select>
+        <br><br>
+        <select class="form-control" th:field="*{locationID}">
+            <option value="0">Select location</option>
+            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.city} ${location.ZIP} ${location.street} ${location.number}|"></option>
+        </select>
+        <br><br><br>
+
         <label for="roomnumber" class="form-label">Roomnumber:</label>
         <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
     </div>
-
-
-
-
-
-
     <button type="submit" >Create location</button>
-
-
-
 </form>
 
-<!-- Optional JavaScript -->
+
+<!-- <form action=# th:action="@{/Room}" method="post" th:object="${room}" >
+
+    <h1>Add a Room</h1>
+    <div class="question">
+        <select class="form-control" th:field="${locationID}" id="dropOperator">
+            <option value="0">Select location</option>
+            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.city} ${location.ZIP} ${location.street} ${location.number}|"></option>
+        </select>
+        <br><br><br>
+
+        <label for="roomnumber" class="form-label">Roomnumber:</label>
+        <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
+    </div>
+    <button type="submit" >Create location</button>
+</form> -->
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
@@ -187,3 +203,4 @@
 
 </body>
 </html>
+

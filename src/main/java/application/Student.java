@@ -78,6 +78,12 @@ public class Student extends Person {
         return false;
     }
 
+    public String test()
+    {
+        String message = "test";
+        return message;
+    }
+
     public String getReport(){
         String message = "Het werkt ? ";
         Room room;

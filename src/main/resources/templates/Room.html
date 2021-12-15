@@ -4,7 +4,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Location</title>
+    <title>Room</title>
 
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,60 +154,22 @@
     </nav>
 </div>
 
-<form action=# th:action="@{/Location}" method="post" th:object="${room}" >
+<form action=# th:action="@{/Room}" method="post" th:object="${room}" >
 
-        <h1>Add a Room</h1>
-
-        <div class="question">
-        <label for="Country" class="form-label">Country:</label>
-        <input th:field="*{country}" id="Country" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="City" class="form-label">City:</label>
-        <input th:field="*{city}" id="City" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="zip" class="form-label">ZIP:</label>
-        <input th:field="*{ZIP}"id="zip" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Street" class="form-label">Street:</label>
-        <input th:field="*{street}" id="Street" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Number" class="form-label">Number:</label>
-        <input th:field="*{number}" id="Number" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Area" class="form-label">Area:</label>
-        <input th:field="*{area}" id="Area" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Characteristics" class="form-label">Characteristics:</label>
-        <input th:field="*{characteristics}" id="Characteristics" type="text" required/>
-        </div>
+    <h1>Add a Room</h1>
 
 
-        <div class="custom-control custom-checkbox">
-            <input th:field="*{insulated}" type="checkbox" class="custom-control-input" id="checkInsulation">
-            <label class="custom-control-label" for="checkInsulation">Insulated (Check the box if insulated)</label>
-        </div>
-
-        <div class="question">
-            <label for="roomnumber" class="form-label">Roomnumber:</label>
-            <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
-        </div>
+    <div class="question">
+        <label for="roomnumber" class="form-label">Roomnumber:</label>
+        <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
+    </div>
 
 
 
 
-        <button type="submit" >Create location</button>
+
+
+    <button type="submit" >Create location</button>
 
 
 

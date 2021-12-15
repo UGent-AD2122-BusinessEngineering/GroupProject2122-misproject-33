@@ -115,5 +115,6 @@ public class Room {
         return "MonthlyEnergyConsumption was successfully deleted.";
     }
 
+
 }
 

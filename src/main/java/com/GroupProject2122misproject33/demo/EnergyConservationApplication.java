@@ -2,6 +2,7 @@ package com.GroupProject2122misproject33.demo;
 
 
 import application.*;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -46,20 +47,36 @@ public class EnergyConservationApplication {
 
     @GetMapping("/Location")
     public String showLocation(Model model) {
-        model.addAttribute("location", new Location());
+        model.addAttribute("room", new Landlord());
         return "Location";
     }
 
     @PostMapping("/Location")
-    public String addLocation(@ModelAttribute String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+    public String addLocation(@ModelAttribute String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics, int roomnumber){
 
     Landlord landlord= new Landlord();
-    landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
-
+    landlord.addLocationAndRoom(country, city, ZIP, street, number, area,insulated,characteristics, roomnumber);
 
     return "FunctionScreenLandlord";
     }
 
+    @GetMapping("/Room")
+    public String showRoom(Model model) {
+        model.addAttribute("room", new Room());
+        return "Room";
+    }
+/*
+    @PostMapping("/Room")
+    public String addRoom(@ModelAttribute Location location, int roomnumber){
+
+        Landlord landlord= new Landlord();
+
+        landlord.addRoom(location, roomnumber);
+
+        return "FunctionScreenLandlord";
+    }
+
+*/
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         model.addAttribute("appliance", new Appliance());
@@ -92,25 +109,25 @@ public class EnergyConservationApplication {
     public String registerStudent(Model model) {
         model.addAttribute("student", new Student());
         return "RegisterAsStudent";
-    }/*
-    @PostMapping("/RegisterAsStudent")
-    public String studentToevoegen(@ModelAttribute(name= "student") Student student, Model model) {
-        model.addAttribute("inlogtudent", new Student());
-        return "FunctionScreenStudent";
-    }*/
+    }
+
+
+    /*
+
 
     @GetMapping("/RegisterAsLandlord")
     public String registerLandlord(Model model) {
         model.addAttribute("landlord", new Landlord());
         return "RegisterAsLandlord";
-    }/*
+    }
+/*
     @PostMapping("/RegisterAsLandlord")
-    public String studentToevoegen(@ModelAttribute(name= "landlord") Landlord landlord, Model model) {
-        Landlord landlord1 = new Landlord();
-        model.addAttribute("inlogLandlord", landlord.toRegister());
-        return "FunctionScreenLandlord";
-    }*/
+    public String studentLandlord(@ModelAttribute(name= "landlord") Landlord landlord, Model model) {
 
+        model.addAttribute("landlords", landlord.getAllLocationsPerLandlord());
+        return "FunctionScreenLandlord";
+    }
+*/
     @GetMapping("/MonthlyEnergyConsumption")
     public String MonthlyEnergyCons(Model model) {
         model.addAttribute("monthlyenergyconsumption", new MonthlyEnergyConsumption());

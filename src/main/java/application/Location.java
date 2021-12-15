@@ -1,7 +1,10 @@
 package application;
 
 import db.LocationDAO;
+
+import java.util.ArrayList;
 import java.util.Objects;
+import db.RoomDAO;
 
 public class Location {
     private int ID;
@@ -39,6 +42,8 @@ public class Location {
         this.insulated = insulated;
         this.characteristics = characteristics;
     }
+
+
 
 
 

@@ -60,6 +60,17 @@ public class Landlord extends Person {
         return message += "The room has been succesfully added.";
     }
 
+    //nodig voor html, mss kunnen andere methodes weg omdat ze hierdoor overbodig zijn
+    public String addLocationAndRoom(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics, int roomnumber){
+        Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
+        LocationDAO locationDAO = new LocationDAO();
+        Room room = new Room(roomnumber, location);
+        RoomDAO roomDAO = new RoomDAO();
+        location.setID(locationDAO.saveLocation(location));
+        room.roomID = roomDAO.save(room, this.email);
+        return "The room has been succesfully added.";
+    }
+
     public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
         Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
         LocationDAO locationDAO = new LocationDAO();

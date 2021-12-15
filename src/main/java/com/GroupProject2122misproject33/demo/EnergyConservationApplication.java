@@ -1,6 +1,5 @@
 package com.GroupProject2122misproject33.demo;
 
-
 import application.*;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
@@ -145,10 +144,6 @@ public class EnergyConservationApplication {
 
         return "FunctionScreenLandlord";
     }
-
-
-
-
 
 }
 

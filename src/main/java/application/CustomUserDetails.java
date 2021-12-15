@@ -7,10 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private Landlord landlord;
 
-    public CustomUserDetails(User user) {
-        this.user = user;
+    public CustomUserDetails(Landlord landlord) {
+        this.landlord = landlord;
     }
 
     @Override
@@ -20,12 +20,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return landlord.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return landlord.getEmail();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
     public String getFullName() {
-        return user.getFirstName() + " " + user.getLastName();
+        return landlord.firstname + " " + landlord.lastname;
     }
 
 }

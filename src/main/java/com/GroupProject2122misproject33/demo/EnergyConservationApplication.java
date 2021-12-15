@@ -1,13 +1,17 @@
 package com.GroupProject2122misproject33.demo;
 
 import application.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @SpringBootApplication
 
@@ -17,6 +21,47 @@ public class EnergyConservationApplication {
     public static void main(String[] args) {
         SpringApplication.run(EnergyConservationApplication.class, args);
     }
+
+    @Autowired
+    private UserRepository userRepo;
+
+    @GetMapping("")
+    public String viewHomePage() {
+        return "index";
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new Landlord());
+
+        return "signup_form";
+    }
+
+    @PostMapping("/process_register")
+    public String processRegister(Landlord landlord) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(landlord.getPassword());
+        landlord.setPassword(encodedPassword);
+
+        userRepo.save(landlord);
+
+        return "register_success";
+    }
+
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<Landlord> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
+    }
+
+
+
+
+
+
+
 
     @GetMapping("/index")
     public String showStudenten() {

@@ -24,17 +24,17 @@ public class UserRepositoryTests {
 
     @Test
     public void testCreateUser() {
-        User user = new User();
-        user.setEmail("ravikumar@gmail.com");
-        user.setPassword("ravi2020");
-        user.setFirstName("Ravi");
-        user.setLastName("Kumar");
+        Landlord landlord= new Landlord();
+        landlord.setEmail("ravikumar@gmail.com");
+        landlord.setPassword("ravi2020");
+        landlord.setFirstname("Ravi");
+        landlord.setLastname("Kumar");
 
-        User savedUser = repo.save(user);
+        Landlord savedLandlord = repo.save(landlord);
 
-        User existUser = entityManager.find(User.class, savedUser.getId());
+        Landlord existLandlord = entityManager.find(Landlord.class, savedLandlord.getEmail());
 
-        assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
+        assertThat(landlord.getEmail()).isEqualTo(existLandlord.getEmail());
 
     }
 

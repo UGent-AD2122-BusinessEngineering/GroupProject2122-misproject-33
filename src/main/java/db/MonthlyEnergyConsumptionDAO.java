@@ -176,7 +176,7 @@ public class MonthlyEnergyConsumptionDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * " +
-                    "FROM monthly_energy_consumption" +
+                    "FROM monthly_energy_consumption " +
                     "WHERE Room_room_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);

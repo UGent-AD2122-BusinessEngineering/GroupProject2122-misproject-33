@@ -129,5 +129,18 @@ public class Landlord extends Person {
         return "Your e-mail or password was incorrect.";
     }
 
+    public String getReport () {
+        String message = "";
+        RoomDAO roomDAO = new RoomDAO();
+        ArrayList<Room> roomsOfTheLandlord = new ArrayList<>();
+        roomsOfTheLandlord = roomDAO.getRooms(this.email);
+        for (Room item : roomsOfTheLandlord){
+            ArrayList monthlyEnergyConsumpionsRoom = new ArrayList<>();
+            monthlyEnergyConsumpionsRoom = item.getMonthlyEnergyConsumptionPerRoom(item.roomID);
+        }
+        return message;
+    }
+    //werk ik straks verder af
+
 
 }

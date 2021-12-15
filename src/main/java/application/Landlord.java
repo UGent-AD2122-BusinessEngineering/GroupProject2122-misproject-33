@@ -134,13 +134,26 @@ public class Landlord extends Person {
         RoomDAO roomDAO = new RoomDAO();
         ArrayList<Room> roomsOfTheLandlord = new ArrayList<>();
         roomsOfTheLandlord = roomDAO.getRooms(this.email);
-        for (Room item : roomsOfTheLandlord){
-            ArrayList monthlyEnergyConsumpionsRoom = new ArrayList<>();
+        if(roomsOfTheLandlord.isEmpty()){
+            message += "There are no registered rooms found.";
+        }
+        else{
+            for (Room item : roomsOfTheLandlord){
+            ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumpionsRoom = new ArrayList<>();
             monthlyEnergyConsumpionsRoom = item.getMonthlyEnergyConsumptionPerRoom(item.roomID);
+            message = "\nRoom " + monthlyEnergyConsumpionsRoom.indexOf(item) + 1 + ": ";
+                if(monthlyEnergyConsumpionsRoom.isEmpty()){
+                message += "\nThis room does not have any monthly energy consumption reports.";
+                }
+                else{
+                    for(MonthlyEnergyConsumption item2 : monthlyEnergyConsumpionsRoom){
+                        message += "\n" + "Water: " + item2.getWater() + "m^3" + "\nElectricity: " + item2.getElectricity() + " kWh" + "\nGas: " + item2.getGas() + " kWh";
+                    }
+                }
+            }
         }
         return message;
     }
-    //werk ik straks verder af
 
 
 }

@@ -79,7 +79,7 @@ public class Student extends Person {
     }
 
     public String getReport(){
-        String message = "";
+        String message = "Het werkt ? ";
         Room room;
         RoomDAO roomDAO = new RoomDAO();
         room = roomDAO.getRoom(this.email);
@@ -93,12 +93,13 @@ public class Student extends Person {
             if(actionsPerAppliance.isEmpty()){
                 message += "\n" + "There were no energy conservation actions performed on this appliance.";
             }
-            else{
-            for(Action item1 : actionsPerAppliance){
-                message += "\n" + "The following energy conservation action were performed on the appliance:";
-                message += "\n" + item1.getName();
+            else {
+                for (Action item1 : actionsPerAppliance) {
+                    message += "\n" + "The following energy conservation action were performed on the appliance:";
+                    message += "\n" + item1.getName();
+                }
             }
-        }
+            return message;
     }
 
         //gwn nog vgl van de energyconsumptions

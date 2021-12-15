@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,11 +34,18 @@ public class EnergyConservationApplication {
         return "ContactUs";
     }
 
+    @GetMapping("/teruggaveFout")
+    public String showFout() {
+        return "teruggaveFout";
+    }
+
     @GetMapping("/Login")
     public String showLogin(Model model) {
         model.addAttribute("login", new LoginForm());
         return "Login";
-    }/*
+    }
+
+    /*
     @PostMapping("/Login")
     public String goToLogin(@ModelAttribute(name = "login") Person person, Model model){
         person= Person.get
@@ -53,12 +62,12 @@ public class EnergyConservationApplication {
         ArrayList<Student> allStudents = student.getAllStudents();
         for (Student item : allStudents) {
             if (item.getEmail().equals(email)) {
-                return "An account already exists with this email address.";
+                return "/teruggaveFout";
             }
         }
         student.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
-        //System.out.println(student.getReport());
-        return "/test2";
+
+        return "/FunctionScreenStudent";
     }
 
     @GetMapping("/RegisterAsLandlord")
@@ -73,10 +82,10 @@ public class EnergyConservationApplication {
         allLandlords = landlord.allLandlords();
         for(Landlord item : allLandlords){
             if(item.getEmail().equals(email))
-                return "An account already exists with this email adress.";
+                return "/teruggaveFout";
         }
         landlord.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
-        return "/test2";
+        return "FunctionScreenLandlord";
     }
 
     @GetMapping("/FunctionScreenLandlord")
@@ -103,6 +112,21 @@ public class EnergyConservationApplication {
         landlord.addRoom(location1,roomnumber);
         return"FunctionScreenLandlord";
     }*/
+/*
+    @RequestMapping(value = "/Location", method = RequestMethod.GET)
+    public String page1( @ModelAttribute Location location, ModelMap model ) {
+        model.addAttribute("givelocation", location);
+        return "Location";
+    }
+
+    // Now you model is having myObject, so it has to be used in jsp. You can add ModelMap parameter to this method and check what contains model in debug mode.
+    @RequestMapping(value = "/Room", method = RequestMethod.GET)
+    public String page(ModelMap model) {
+        model.get("location").setaddRoom();
+        return "Room";
+    }
+
+*/
 
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {

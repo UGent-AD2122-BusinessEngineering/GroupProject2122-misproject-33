@@ -324,6 +324,29 @@ public class EnergyConservationApplication {
         return "stringprinter";
     }
 
+    @GetMapping("/RandomTip")
+    public String showRandomTip(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+        return "RandomTip";
+    }
+
+    @PostMapping("/RandomTip")
+    public String selectRandomTip(@ModelAttribute SelectApplianceModel selectApplianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/OutputRandomTip?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputRandomTip")
+    public String showRandomTip(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.tipsAppliance());
+        return "OutputRandomTip";
+    }
+
     @GetMapping("/CreateReportStudent")
     public String showReport(Model model) {
         var students= new StudentDAO().getAllStudents();

@@ -1,6 +1,9 @@
 package application;
 import db.RoomDAO;
 import db.StudentDAO;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -94,7 +97,7 @@ public class Student extends Person {
         appliancesInTheRoom = room.getAppliancesInTheRoom();
         ArrayList<Action> actionsPerAppliance = new ArrayList<>();
         message += "The following is a report of all the appliances in the room where the student lives and all the energy conservation actions performed on each appliance: ";
-        String message2 = "\nWe were not able to generate a relevant report since there were not any appliances found in the room.";
+        String message2 = "\nWe were not able to generate a relevant report since there were no appliances found in the room.";
         if (appliancesInTheRoom.isEmpty()) {
             message += message2;
         } else {
@@ -122,5 +125,17 @@ public class Student extends Person {
             }
         }
         return message;
+    }
+
+    //makes a text file from the report, don't know if this works with Spring
+    public void downloadStudentReport() {
+        String message = this.getReport();
+        try {
+            PrintWriter output = new PrintWriter("Report.txt");
+            output.println(message);
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -11,7 +11,7 @@ public class MonthlyEnergyConsumptionDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "SELECT *"
+            String sql = "SELECT * "
                     + "FROM monthly_energy_consumption "
                     + "WHERE monthly_energy_consumption_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -28,7 +28,6 @@ public class MonthlyEnergyConsumptionDAO {
             } else {
                 return null;
             }
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -41,9 +40,9 @@ public class MonthlyEnergyConsumptionDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM `monthly_energy_consumption` "
+                    + "FROM monthly_energy_consumption "
                     + "WHERE Room_room_id = ? " +
-                    "AND `month` = ?";
+                    "AND month = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);
             stmt.setDate(2, java.sql.Date.valueOf(date));
@@ -59,7 +58,6 @@ public class MonthlyEnergyConsumptionDAO {
             } else {
                 return null;
             }
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -74,13 +72,12 @@ public class MonthlyEnergyConsumptionDAO {
 
             String sqlSelect = "SELECT monthly_energy_consumption_id "
                     + "FROM monthly_energy_consumption "
-                    + "WHERE monthly_energy_consumption_id = ? ";
+                    + "WHERE monthly_energy_consumption_id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setInt(1, m.getMonthlyEnergyConsumptionId());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-
                 // UPDATE
                 String sqlUpdate = "UPDATE monthly_energy_consumption " +
                         "SET month = ?, " +
@@ -100,18 +97,15 @@ public class MonthlyEnergyConsumptionDAO {
                 return m.getMonthlyEnergyConsumptionId();
             } else {
                 // INSERT
-
                 String sqlInsert = "INSERT into monthly_energy_consumption "
-                        + "(monthly_energy_consumption_id, month, water_consumption, electricity_consumption, gas_consumption, Room_room_id) "
-                        + "VALUES (?,?,?,?,?,?)";
-                //System.out.println(sql);
+                        + "(month, water_consumption, electricity_consumption, gas_consumption, Room_room_id) "
+                        + "VALUES (?,?,?,?,?)";
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-                insertStm.setInt(1, m.getMonthlyEnergyConsumptionId());
-                insertStm.setDate(2, java.sql.Date.valueOf(m.getMonth()));
-                insertStm.setDouble(3, m.getWater());
-                insertStm.setDouble(4, m.getElectricity());
-                insertStm.setDouble(5, m.getGas());
-                insertStm.setInt(6, room_id);
+                insertStm.setDate(1, java.sql.Date.valueOf(m.getMonth()));
+                insertStm.setDouble(2, m.getWater());
+                insertStm.setDouble(3, m.getElectricity());
+                insertStm.setDouble(4, m.getGas());
+                insertStm.setInt(5, room_id);
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if (generatedKeys.next()) {
@@ -134,7 +128,6 @@ public class MonthlyEnergyConsumptionDAO {
                     + "WHERE monthly_energy_consumption_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, monthlyEnergyConsumptionId);
-
             stmt.executeUpdate();
         } catch (Exception dbe) {
             dbe.printStackTrace();
@@ -162,7 +155,6 @@ public class MonthlyEnergyConsumptionDAO {
                 monthlyEnergyConsumptions.add(monthlyEnergyConsumption);
             }
             return monthlyEnergyConsumptions;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -192,7 +184,6 @@ public class MonthlyEnergyConsumptionDAO {
                 monthlyEnergyConsumptions.add(monthlyEnergyConsumption);
             }
             return monthlyEnergyConsumptions;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);

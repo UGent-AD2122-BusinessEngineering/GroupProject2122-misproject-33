@@ -148,9 +148,6 @@ public class ActionDAO {
         }
     }
 
-    /* ervoor zorgen dat alleen user made kunnen verwijderd worden in application layer
-    want deze methode verwijdert ook alle records in interacts table waardoor anders alle in het verleden
-    geregistreerde actions van dezelfde soort (zoals bij decreaseTemperature) bij alle appliances verwijderd worden */
     public void deleteAction(int action_id) {
         Connection con = null;
         try {

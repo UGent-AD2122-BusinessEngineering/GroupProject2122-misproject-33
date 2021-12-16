@@ -25,6 +25,35 @@
             text-decoration: none;
             color: white;
         }
+
+        button1 {
+            background-color: white;
+            border: 1px solid #3c3b52;
+
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+            width: 290px;
+            text-align: center;
+        }
+        button1:hover, form button:focus {
+            color: #fefefe;
+            background-color: lightgray;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
@@ -40,29 +69,14 @@
     </nav>
 </div>
 <br><br><br><br><br>
-<div class="row">
 
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Register Appliance</h2>
 
-        </div>
-    </a>
+    <button1><a href="Appliances">Add Appliance</a></button1>
+    <button1><a href="DeleteAppliance">Delete Appliance</a></button1>
 
-    <a href="Actions">
-        <div class="Card card7">
-            <h2>Register Energy Conservation Action</h2>
+<br><br>
+<button1><a href="Actions">Add Action</a></button1>
 
-        </div>
-    </a>
-    <a href="MonthlyEnergyConsumption">
-        <div class="Card card8">
-            <h2>Register Monthly Energy Consumption</h2>
-
-        </div>
-    </a>
-
-</div>
 
 
 

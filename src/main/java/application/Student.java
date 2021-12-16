@@ -112,13 +112,19 @@ public class Student extends Person {
             }
         }
         message += "\n" + "Monthly energy consumptions of the room: ";
-        ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptionsOfTheRoom = new ArrayList<>();
-        monthlyEnergyConsumptionsOfTheRoom = room.getMonthlyEnergyConsumptionPerRoom(room.roomID);
-        if (monthlyEnergyConsumptionsOfTheRoom.isEmpty()) {
+        ArrayList<MonthlyEnergyConsumption> mecOfTheRoom = new ArrayList<>(); //mec = monthly energy consumption
+        mecOfTheRoom = room.getMonthlyEnergyConsumptionPerRoom(room.roomID);
+        if (mecOfTheRoom.isEmpty()) {
             message += "\n" + "There were no monthly energy consumptions found.";
         } else {
-            for (MonthlyEnergyConsumption item : monthlyEnergyConsumptionsOfTheRoom) {
-                message += "\nMonth " + monthlyEnergyConsumptionsOfTheRoom.indexOf(item) + 1 + ":" + "\nElectricity: " + item.getElectricity() + " kWh" + "\nGas: " + item.getGas() + " kWh" + "\nWater: " + item.getWater() + " m^3" + "\n";
+            for (MonthlyEnergyConsumption item : mecOfTheRoom) {
+                message += "\nMonth " + mecOfTheRoom.indexOf(item) + 1 + ":" + "\nElectricity: " + item.getElectricity() + " kWh" + "\nGas: " + item.getGas() + " kWh" + "\nWater: " + item.getWater() + " m^3" + "\n";
+                if(!((mecOfTheRoom.indexOf(item)) == 0)){
+                    if(((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getElectricity()) > item.getElectricity()) && ((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getGas()) < item.getGas())
+                            && ((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getWater()) < item.getWater())){
+                        message += "\nThe electricity, gas and water consumption are all decreased!";
+                    }
+                }
             }
         }
         return message;

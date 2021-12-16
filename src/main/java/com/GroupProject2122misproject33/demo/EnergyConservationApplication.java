@@ -2,13 +2,8 @@ package com.GroupProject2122misproject33.demo;
 
 import application.*;
 
-import db.ApplianceDAO;
-import db.LandlordDAO;
-import db.LocationDAO;
-import db.RoomDAO;
-import models.AddActionModel;
-import models.AddApplianceModel;
-import models.AddRoomModel;
+import db.*;
+import models.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -62,7 +57,7 @@ public class EnergyConservationApplication {
         return "RegisterAsStudent";
     }
     @PostMapping("/RegisterAsStudent")
-    public String registerNewStudent(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
+    public String registerNewStudent(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Student student = new Student();
         if(!(email.contains("@"))) {
             return "/errorContainsEmail";
@@ -242,7 +237,25 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
+    @GetMapping("/AddStudentToRoom")
+    public String ShowAddStudentToRoom(Model model) {
+        var rooms= new RoomDAO().getAllRooms();
+        var students= new StudentDAO().getAllStudents();
+        model.addAttribute("student",new AddStudentModel());
+        model.addAttribute("rooms",rooms);
+        model.addAttribute("students", students);
 
+        return "AddStudentToRoom";
+    }
+
+    @PostMapping("/AddStudentToRoom")
+    public String addStudentToRoom(@ModelAttribute AddStudentModel addStudentModel){
+
+        var room=new RoomDAO().getRoom(addStudentModel.getRoomid());
+        var student=new StudentDAO().getStudent(addStudentModel.getEmail());
+        room.addStudent(student, addStudentModel.getContactPersoon());
+        return"FunctionScreenLandlord";
+    }
 
 
 
@@ -265,43 +278,28 @@ public class EnergyConservationApplication {
     @GetMapping("/Tip")
     public String showTip(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("applianceModel", new SelectApplianceModel());
         model.addAttribute("appliances", appliances);
         return "Tip";
     }
 
 
     @PostMapping("/Tip")
-    public String addTip(@ModelAttribute AddApplianceModel applianceModel){
+    public String selectTip(@ModelAttribute SelectApplianceModel selectApplianceModel){
 
-        var appliance=new ApplianceDAO().getAppliance(applianceModel.getApplianceid());
-        return"stringprinter";
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/stringprinter?applianceid="+ selectApplianceModel.getApplianceid();
     }
 
     @GetMapping("/stringprinter")
-    public String showSP(Model model) {
-        model.addAttribute("appliance", new Appliance());
+    public String showSP(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.tipsAppliance());
         return "stringprinter";
     }
 
-    @PostMapping("/stringprinter")
-    public String postSP(){
-        Appliance appliance= new Appliance();
-        appliance.tipsAppliance();
-        return"FunctionScreenLandlord";
-    }
 
-    @GetMapping("/OutputReport")
-    public String showReport(Model model) {
-        model.addAttribute("landlord", new Landlord());
-        return "stringprinter";
-    }
 
-    @PostMapping("/OutputReport")
-    public String postReport(){
-        Landlord landlord= new Landlord();
-        landlord.getReport();
-
-        return"OutputReport";
-    }
 
 }

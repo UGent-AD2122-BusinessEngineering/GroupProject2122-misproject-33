@@ -157,13 +157,13 @@
     </nav>
 </div>
 
-<form action="#" th:action="@{/Tip}" method="post" th:object="${appliances}">
+<form action="#" th:action="@{/Tip}" method="post" th:object="${applianceModel}">
 
     <h1>Discover a Tip</h1>
 
     <div class="question">
 
-        <select class="form-control">
+        <select th:field="*{applianceid}" class="form-control">
             <option value="0">Select Appliance</option>
             <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
         </select>

@@ -2,14 +2,19 @@ package com.GroupProject2122misproject33.demo;
 
 import application.*;
 
+import db.ApplianceDAO;
+import db.LandlordDAO;
+import db.LocationDAO;
+import db.RoomDAO;
+import models.AddActionModel;
+import models.AddApplianceModel;
+import models.AddRoomModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -76,7 +81,7 @@ public class EnergyConservationApplication {
         return "RegisterAsLandlord";
     }
     @PostMapping("/RegisterAsLandlord")
-    public String registerNewLandlord(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
+    public String registerNewLandlord(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
         ArrayList<Landlord> allLandlords= new ArrayList<>();
         allLandlords = landlord.allLandlords();
@@ -100,47 +105,121 @@ public class EnergyConservationApplication {
 
     @GetMapping("/Location")
     public String showLocation(Model model) {
-        model.addAttribute("room", new Landlord());
-        return "Location";
-    }
-    /*
-    @PostMapping("/Location")
-    public String addLocation(@ModelAttribute String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics, int roomnumber){
-        Landlord landlord= new Landlord();
-        Location location1 = new Location();
-        landlord.addLocationAndRoom(country, city, ZIP, street, number, area,insulated,characteristics, roomnumber);
-        landlord.addRoom(location1,roomnumber);
-        return"FunctionScreenLandlord";
-    }*/
-/*
-    @RequestMapping(value = "/Location", method = RequestMethod.GET)
-    public String page1( @ModelAttribute Location location, ModelMap model ) {
-        model.addAttribute("givelocation", location);
+        model.addAttribute("location", new Location());
         return "Location";
     }
 
-    // Now you model is having myObject, so it has to be used in jsp. You can add ModelMap parameter to this method and check what contains model in debug mode.
-    @RequestMapping(value = "/Room", method = RequestMethod.GET)
-    public String page(ModelMap model) {
-        model.get("location").setaddRoom();
+    @PostMapping("/Location")
+    public String addLocation( String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+        Landlord landlord= new Landlord();
+        landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
+
+        return"FunctionScreenLandlord";
+    }
+
+    @GetMapping("/Room")
+    public String showRoom(Model model) {
+
+        var landlords= new LandlordDAO().getAllLandlords();
+
+
+        var locations= new LocationDAO().getAllLocations();
+        model.addAttribute("room", new AddRoomModel());
+        model.addAttribute("locations",locations);
+
+        model.addAttribute("landlords", landlords);
+
+
         return "Room";
+    }
+
+    @PostMapping("/Room")
+    public String addRoom(@ModelAttribute AddRoomModel roomModel){
+        var landlord=new LandlordDAO().getLandlord(roomModel.getLandlordEmail());
+        var location= new LocationDAO().getLocation(roomModel.getLocationID());
+        landlord.addRoom(location, roomModel.getRoomnumber());
+
+        return"FunctionScreenLandlord";
+    }
+
+    @GetMapping("/DeleteRoom")
+    public String showDeleteRoom(Model model) {
+
+        var landlords= new LandlordDAO().getAllLandlords();
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        model.addAttribute("room", new AddRoomModel());
+
+        model.addAttribute("locations",locations);
+
+        model.addAttribute("landlords", landlords);
+        model.addAttribute("rooms", rooms);
+
+        return "DeleteRoom";
+    }
+
+    @PostMapping("/DeleteRoom")
+    public String deleteRoom(@ModelAttribute AddRoomModel roomModel){
+        var landlord=new LandlordDAO().getLandlord(roomModel.getLandlordEmail());
+        var room= new RoomDAO().getRoom(roomModel.getRoomid());
+        landlord.deleteRoom(room);
+
+        return"FunctionScreenLandlord";
+    }
+
+
+
+
+
+
+    @GetMapping("/Appliances")
+    public String showAppliances(Model model) {
+        var rooms= new RoomDAO().getAllRooms();
+
+        model.addAttribute("appliance", new AddApplianceModel());
+        model.addAttribute("rooms",rooms);
+
+        return "Appliances";
+    }
+
+    @PostMapping("/Appliances")
+    public String addAppliance(@ModelAttribute AddApplianceModel appModel){
+
+        var room=new RoomDAO().getRoom(appModel.getRoomid());
+
+        room.addAppliance(appModel.getEnergyEfficiencyClass(),appModel.getModelIdentifier(), appModel.getAnnualEnergyConsumption(), appModel.getSupplierName(), appModel.getName(),
+                appModel.getIsTempProportionate(), appModel.getIsTempDisproportionate(), appModel.getIsEnergyConservationMode());
+
+        return"FunctionScreenLandlord";
+    }
+
+
+
+
+    @GetMapping("/Actions")
+    public String showActions(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+
+        model.addAttribute("action", new AddActionModel());
+        model.addAttribute("appliances",appliances);
+
+        return "Actions";
+    }
+/*
+    @PostMapping("/Actions")
+    public String addAction(@ModelAttribute AddActionModel actionModel){
+
+        var appliance=new ApplianceDAO().getAppliance(actionModel.getApplianceid());
+
+        appliance.customizedEnergyConservationAction(actionModel.getDate(), actionModel.getName());
+        return"FunctionScreenLandlord";
     }
 
 */
 
-    @GetMapping("/Appliances")
-    public String showAppliances(Model model) {
-        model.addAttribute("appliance", new Appliance());
-        return "Appliances";
-    }
-    @PostMapping("/Appliances")
-    public String addAppliance(@ModelAttribute String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode){
-        Room room= new Room();
-        room.addAppliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name,
-                isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
-        return "/test2";
-    }
+
+
+
 
     @GetMapping("/MonthlyEnergyConsumption")
     public String MonthlyEnergyCons(Model model) {
@@ -155,47 +234,9 @@ public class EnergyConservationApplication {
         return "/test2";
     }
 
-    @GetMapping("/Actions")
-    public String givesActions(Model model) {
-        model.addAttribute("actions", new Action());
-        return "Actions";
-    }
 
 
 
 
-    /*@Autowired
-    private UserRepository userRepo;
-
-    @GetMapping("")
-    public String viewHomePage() {
-        return "index";
-    }
-
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new Landlord());
-
-        return "signup_form";
-    }
-
-    @PostMapping("/process_register")
-    public String processRegister(Landlord landlord) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(landlord.getPassword());
-        landlord.setPassword(encodedPassword);
-
-        userRepo.save(landlord);
-
-        return "register_success";
-    }
-
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<Landlord> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
-
-        return "users";
-    }*/
 
 }

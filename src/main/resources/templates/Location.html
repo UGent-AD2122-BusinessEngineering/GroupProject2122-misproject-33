@@ -35,6 +35,7 @@
         }
 
 
+
         body{
             min-width:600px;
         }
@@ -130,15 +131,57 @@
             color: white;
 
         }
-        form .question input:valid {
 
-        }
 
         form .question input:valid + label {
             text-transform: uppercase;
             font-style: italic;
 
         }
+
+
+
+        /*BUTTON 1*/
+        form button1 {
+            background-color: white;
+            border: 1px solid #3c3b52;
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+
+            text-align: center;
+
+
+        }
+
+        .registerbuttons{
+            background-color: #fefefe;
+            color: black;
+            margin: 5% auto 5% auto;
+            width: 92.5%;
+            text-decoration: none;
+        }
+
+        .secondButton{
+            color: black;
+            width: 92.5%;
+            text-decoration: none;
+        }
+
+        form button1:hover, form button:focus {
+            color: #fefefe;
+            background-color: #3c3b52
+        }
+
     </style>
 </head> <!--css import-->
 
@@ -154,10 +197,19 @@
     </nav>
 </div>
 
-<form action=# th:action="@{/Location}" method="post" th:object="${room}" >
+<form>
+    <h1>Use Existing Location</h1>
+    <div class="question">
 
-        <h1>Add a Room</h1>
+        <div class="registerbuttons">
+            <button1> <a href="Room" class="secondButton">Continue</a></button1>
+        </div>
+    </div>
+</form>
 
+<form action=# th:action="@{/Location}" method="post" th:object="${location}" >
+
+        <h1>Add New Location</h1>
         <div class="question">
         <label for="Country" class="form-label">Country:</label>
         <input th:field="*{country}" id="Country" type="text" required/>
@@ -199,10 +251,6 @@
             <label class="custom-control-label" for="checkInsulation">Insulated (Check the box if insulated)</label>
         </div>
 
-        <div class="question">
-            <label for="roomnumber" class="form-label">Roomnumber:</label>
-            <input th:field="*{roomnumber}" id="roomnumber" type="text" required/>
-        </div>
 
 
 
@@ -212,6 +260,9 @@
 
 
 </form>
+
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Random Tip</title>
+    <title>String Printer</title>
     <style>
 
 
@@ -139,43 +139,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Actions</title>
+    <title>Random Tip</title>
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body style="background-color:darkgray;">
-<div class="container-fluid">
-
-    <nav>
-        <ul>
-            <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-            <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
-            <li><a href="FunctionScreenStudent"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Student</b></a></li>
-            <li><a href="FunctionScreenLandlord"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Landlord</b></a></li>
-        </ul>
-    </nav>
-</div>
-
-<form action="#" th:action="@{/RandomTip}" method="post" th:object="${ApplianceModel}">
-
-    <h1>Discover a Tip</h1>
-
-    <div class="question">
-
-        <select th:field="*{applianceid}" class="form-control">
-            <option value="0">Select Appliance</option>
-            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
-        </select>
-
-        <br><br><br>
-
-
-        <button type="submit" width="40%">Discover a Tip</button>
+<form>
+    <div>
+        <p th:text="${message}"></p>
     </div>
 </form>
-
-
 </body>
 </html>

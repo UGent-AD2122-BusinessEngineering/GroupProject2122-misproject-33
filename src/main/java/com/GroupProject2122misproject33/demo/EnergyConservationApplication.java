@@ -324,6 +324,54 @@ public class EnergyConservationApplication {
         return "stringprinter";
     }
 
+    @GetMapping("/RandomTip")
+    public String showRandomTip(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+        return "RandomTip";
+    }
+
+    @PostMapping("/RandomTip")
+    public String selectRandomTip(@ModelAttribute SelectApplianceModel selectApplianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/OutputRandomTip?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputRandomTip")
+    public String showRandomTip(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.getRandomTip());
+        return "OutputRandomTip";
+    }
+
+    @GetMapping("/EnergyConservationModeOn")
+    public String showEnergyConservationModeOn(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "EnergyConservationModeOn";
+    }
+
+    @PostMapping("/EnergyConservationModeOn")
+    public String selectEnergyConservationModeOn(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.energyConservationModeOn(date);
+        return "redirect:/OutputEnergyConservationModeOn?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputEnergyConservationModeOn")
+    public String showEnergyConservationModeOn(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.energyConservationModeOn(date));
+        return "OutputEnergyConservationModeOn";
+    }
+
     @GetMapping("/CreateReportStudent")
     public String showReport(Model model) {
         var students= new StudentDAO().getAllStudents();

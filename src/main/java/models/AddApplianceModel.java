@@ -71,7 +71,7 @@ public class AddApplianceModel {
         return isTempProportionate;
     }
 
-    public void setTempProportionate(boolean isTempProportionate) {
+    public void setIsTempProportionate(boolean isTempProportionate) {
         this.isTempProportionate = isTempProportionate;
     }
 
@@ -81,7 +81,7 @@ public class AddApplianceModel {
         return isTempDisproportionate;
     }
 
-    public void setTempDisproportionate(boolean isTempDisproportionate) {
+    public void setIsTempDisproportionate(boolean isTempDisproportionate) {
         this.isTempDisproportionate = isTempDisproportionate;
     }
 
@@ -91,7 +91,7 @@ public class AddApplianceModel {
         return isEnergyConservationMode;
     }
 
-    public void setEnergyConservationMode(boolean isEnergyConservationMode) {
+    public void setIsEnergyConservationMode(boolean isEnergyConservationMode) {
         this.isEnergyConservationMode = isEnergyConservationMode;
     }
 

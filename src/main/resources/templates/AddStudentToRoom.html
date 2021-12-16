@@ -4,7 +4,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Appliance</title>
+    <title>Add Student to Room</title>
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,6 +29,7 @@
 
         * {
             font-family: Helvetica, sans-serif;
+            font-weight: lighter;
         }
 
 
@@ -152,29 +153,38 @@
 </div>
 
 
-<form action=# th:action="@{/DeleteAppliance}" method="post" th:object="${appliance}" >
+<form action="#" th:action="@{/AddStudentToRoom}" method="post" th:object="${student}" >
 
-    <h1>Delete a Appliance</h1>
+    <h1>Add Student to Room</h1>
     <div class="question">
-        <select class="form-control" th:field="*{locationID}">
-            <option value="0">Select Location</option>
-            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.city} ${location.ZIP} ${location.street} ${location.number}|"></option>
-        </select>
-        <br><br><br>
+
+
         <select class="form-control" th:field="*{roomid}">
             <option value="0">Select Room</option>
-            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="${room.roomnumber}"></option>
+            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="|${room.location} ${room.roomnumber}|"></option>
         </select>
+        <br><br>
+        <select class="form-control" th:field="*{email}">
+            <option value="0">Select registered Student</option>
+            <option th:each="student : ${students}" th:value="${student.email}" th:text="|${student.firstname} ${student.lastname}|"></option>
+        </select>
+
+
         <br><br><br>
-        <select class="form-control" th:field="*{applianceid}">
-            <option value="0">Select Appliance</option>
-            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
-        </select>
     </div>
-    <button type="submit" >Delete Appliance</button>
+
+    <div class="custom-control custom-checkbox">
+        <input th:field="*{contactPersoon}" type="checkbox" class="custom-control-input" id="checkContactPersoon">
+        <label class="custom-control-label" for="checkContactPersoon">Check this box if you are the contactperson</label>
+    </div>
+
+
+
+    <button type="submit" >Add Student</button>
+
+    </div>
+
 </form>
-
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

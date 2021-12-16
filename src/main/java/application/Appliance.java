@@ -141,10 +141,10 @@ public class Appliance {
             message += "You could put the energy conservation mode on.";
         }
         if(this.getIsTempProportionate()){
-            message += "\nMaybe you could lower the temperature of the appliance.";
+            message += "\r\n Maybe you could lower the temperature of the appliance.";
         }
         if(this.getIsTempDisproportionate()){
-            message += "\nMaybe you could increase the temperature of the appliance.";
+            message += "\r\n Maybe you could increase the temperature of the appliance.";
         }
         if(message.equals("")){
             message += "We don't have predefined tips for your appliance.";
@@ -236,6 +236,7 @@ public class Appliance {
         tips.add("Use the dishwasher instead of washing by hand.");
         tips.add("Plug home electronics into power strips.");
         tips.add("Install low-flow shower heads.");
+
         return tips.get(randomNum);
     }
 

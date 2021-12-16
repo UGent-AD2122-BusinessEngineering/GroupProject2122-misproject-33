@@ -4,6 +4,9 @@ import db.LocationDAO;
 import db.RoomDAO;
 import db.StudentDAO;
 import db.LandlordDAO;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,4 +150,15 @@ public class Landlord extends Person {
         return message;
     }
 
+    //makes a text file from the report, don't know if this works with Spring
+    public void downloadLandlordReport() {
+        String message = this.getReport();
+        try {
+            PrintWriter output = new PrintWriter("Report.txt");
+            output.println(message);
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

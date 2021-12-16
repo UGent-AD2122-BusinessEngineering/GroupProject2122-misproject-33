@@ -13,7 +13,6 @@ public class Person {
     public String password;
 
     public Person() {
-
     }
 
     public Person(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {

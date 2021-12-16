@@ -14,6 +14,8 @@ public class AddStudentModel {
     private String firstname;
     private String lastname;
 
+    private int locationID;
+
     public int getRoomid() {
         return roomid;
     }
@@ -76,5 +78,13 @@ public class AddStudentModel {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 }

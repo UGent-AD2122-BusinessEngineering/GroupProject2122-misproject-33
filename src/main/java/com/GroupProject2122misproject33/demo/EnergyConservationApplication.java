@@ -257,6 +257,31 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
+    @GetMapping("/RemoveStudentFromRoom")
+    public String showDeleteStudent(Model model) {
+
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        var students= new StudentDAO().getAllStudents();
+        model.addAttribute("student", new AddStudentModel());
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("students",students);
+
+        return "RemoveStudentFromRoom";
+    }
+
+    @PostMapping("/RemoveStudentFromRoom")
+    public String deleteStudent(@ModelAttribute AddStudentModel studentModel){
+        var location=new LocationDAO().getLocation(studentModel.getLocationID());
+        var room=new RoomDAO().getRoom(studentModel.getRoomid());
+        var student= new StudentDAO().getStudent(studentModel.getStudentemail());
+        room.deleteStudent(student);
+
+        return"FunctionScreenLandlord";
+    }
+
 
 
 
@@ -297,6 +322,54 @@ public class EnergyConservationApplication {
         var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
         model.addAttribute("message", appliance.tipsAppliance());
         return "stringprinter";
+    }
+
+    @GetMapping("/CreateReportStudent")
+    public String showReport(Model model) {
+        var students= new StudentDAO().getAllStudents();
+        model.addAttribute("studentModel", new SelectStudentModel());
+        model.addAttribute("students", students);
+        return "CreateReportStudent";
+    }
+
+
+    @PostMapping("/CreateReportStudent")
+    public String giveReport(@ModelAttribute SelectStudentModel selectStudentModel){
+
+        var student=new StudentDAO().getStudent(selectStudentModel.getStudentemail());
+
+        return "redirect:/ReportStudent?studentemail="+ selectStudentModel.getStudentemail();
+    }
+
+    @GetMapping("/ReportStudent")
+    public String showEndReport(@RequestParam String studentemail, Model model) {
+        var student= new StudentDAO().getStudent(studentemail);
+        model.addAttribute("message", student.getReport());
+        return "ReportStudent";
+    }
+
+    @GetMapping("/CreateReportLandlord")
+    public String showReportLandlord(Model model) {
+        var landlords= new LandlordDAO().getAllLandlords();
+        model.addAttribute("landlordModel", new SelectLandlordModel());
+        model.addAttribute("landlords", landlords);
+        return "CreateReportLandlord";
+    }
+
+
+    @PostMapping("/CreateReportLandlord")
+    public String giveReportLandlord(@ModelAttribute SelectLandlordModel selectLandlordModel){
+
+        var landlord=new LandlordDAO().getLandlord(selectLandlordModel.getLandlordemail());
+
+        return "redirect:/ReportLandlord?landlordemail="+ selectLandlordModel.getLandlordemail();
+    }
+
+    @GetMapping("/ReportLandlord")
+    public String showEndReportLandlord(@RequestParam String landlordemail, Model model) {
+        var landlord= new LandlordDAO().getLandlord(landlordemail);
+        model.addAttribute("message", landlord.getReport());
+        return "ReportLandlord";
     }
 
 

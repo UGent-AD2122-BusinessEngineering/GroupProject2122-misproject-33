@@ -156,50 +156,58 @@
 <form action="#" th:action="@{/Appliances}" method="post" th:object="${appliance}" >
 
         <h1>Register an Appliance</h1>
-
     <div class="question">
+
+
+        <select class="form-control" th:field="*{roomid}">
+            <option value="0">Select rooms</option>
+            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="|${room.location} ${room.roomnumber}|"></option>
+        </select>
+
+        <br><br><br>
+
         <label for="energy_EfficiencyClass" class="form-label">Energy Efficiency Class:</label>
         <input th:field="*{energyEfficiencyClass}" type="text" required id="energy_EfficiencyClass">
-    </div>
 
-    <div class="question">
+
+        <br><br>
         <label for="model_Identifier" class="form-label">Model Identifier:</label>
         <input th:field="*{modelIdentifier}" type="text" required  id="model_Identifier">
-    </div>
 
-    <div class="question">
+
+        <br><br>
         <label for="annual_Energy_Consumption" class="form-label">Annual Energy Consumption:</label>
         <input th:field="*{annualEnergyConsumption}" type="text" required id="annual_Energy_Consumption">
-    </div>
 
-    <div class="question">
+        <br><br>
+
         <label for="supplier_Name" class="form-label">Supplier Name:</label>
         <input th:field="*{supplierName}" type="text" required id="supplier_Name">
-    </div>
 
-    <div class="question">
+        <br><br>
+
         <label for="Name" class="form-label">Name:</label>
         <input th:field="*{name}" type="text" required id="Name">
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input th:field="*{isTempProportionate}" type="checkbox" class="custom-control-input" id="checkisTempProportionate">
-        <label class="custom-control-label" for="checkisTempProportionate">Check this box if the temperature is proportionate)</label>
+        <input th:field="*{isTempProportionate}" type="checkbox" class="custom-control-input" id="checkTempProportionate">
+        <label class="custom-control-label" for="checkTempProportionate">Check this box if the temperature is proportionate)</label>
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input th:field="*{isTempDisproportionate}" type="checkbox" class="custom-control-input" id="checkisTempDisproportionate">
-        <label class="custom-control-label" for="checkisTempDisproportionate">Check this box if the temperature is disproportionate</label>
+        <input th:field="*{isTempDisproportionate}" type="checkbox" class="custom-control-input" id="checkTempDisproportionate">
+        <label class="custom-control-label" for="checkTempDisproportionate">Check this box if the temperature is disproportionate</label>
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input th:field="*{isEnergyConservationMode}" type="checkbox" class="custom-control-input" id="checkisEnergyConservationMode">
-        <label class="custom-control-label" for="checkisEnergyConservationMode">Check this box if your appliance has a conservation mode</label>
+        <input th:field="*{isEnergyConservationMode}" type="checkbox" class="custom-control-input" id="checkEnergyConservationMode">
+        <label class="custom-control-label" for="checkEnergyConservationMode">Check this box if your appliance has a conservation mode</label>
     </div>
 
 
 
-        <button type="submit" >Create profile</button>
+        <button type="submit" >Create Appliance</button>
 
     </div>
 

@@ -4,6 +4,8 @@ import application.*;
 
 import db.LandlordDAO;
 import db.LocationDAO;
+import db.RoomDAO;
+import models.AddApplianceModel;
 import models.AddRoomModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -139,35 +141,33 @@ public class EnergyConservationApplication {
     }
 
 
-/*
-    @RequestMapping(value = "/Location", method = RequestMethod.GET)
-    public String page1( @ModelAttribute Location location, ModelMap model ) {
-        model.addAttribute("givelocation", location);
-        return "Location";
-    }
 
-    // Now you model is having myObject, so it has to be used in jsp. You can add ModelMap parameter to this method and check what contains model in debug mode.
-    @RequestMapping(value = "/Room", method = RequestMethod.GET)
-    public String page(ModelMap model) {
-        model.get("location").setaddRoom();
-        return "Room";
-    }
-
-*/
 
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
-        model.addAttribute("appliance", new Appliance());
+        var rooms= new RoomDAO().getAllRooms();
+
+        model.addAttribute("appliance", new AddApplianceModel());
+        model.addAttribute("rooms",rooms);
+
         return "Appliances";
     }
+
     @PostMapping("/Appliances")
-    public String addAppliance(@ModelAttribute String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
-                               boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode){
-        Room room= new Room();
-        room.addAppliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name,
-                isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
-        return "/test2";
+    public String addAppliance(@ModelAttribute AddApplianceModel appModel){
+
+        var room=new RoomDAO().getRoom(appModel.getRoomid());
+
+        room.addAppliance(appModel.getEnergyEfficiencyClass(),appModel.getModelIdentifier(), appModel.getAnnualEnergyConsumption(), appModel.getSupplierName(), appModel.getName(),
+                appModel.getIsTempProportionate(), appModel.getIsTempDisproportionate(), appModel.getIsEnergyConservationMode());
+
+        return"FunctionScreenLandlord";
     }
+
+
+
+
+
 
     @GetMapping("/MonthlyEnergyConsumption")
     public String MonthlyEnergyCons(Model model) {
@@ -191,38 +191,5 @@ public class EnergyConservationApplication {
 
 
 
-    /*@Autowired
-    private UserRepository userRepo;
-
-    @GetMapping("")
-    public String viewHomePage() {
-        return "index";
-    }
-
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new Landlord());
-
-        return "signup_form";
-    }
-
-    @PostMapping("/process_register")
-    public String processRegister(Landlord landlord) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(landlord.getPassword());
-        landlord.setPassword(encodedPassword);
-
-        userRepo.save(landlord);
-
-        return "register_success";
-    }
-
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<Landlord> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
-
-        return "users";
-    }*/
 
 }

@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/"> -->
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -25,6 +33,35 @@
             text-decoration: none;
             color: white;
         }
+
+        button1 {
+            background-color: white;
+            border: 1px solid #3c3b52;
+
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+            width: 38%;
+            text-align: center;
+        }
+        button1:hover, form button:focus {
+            color: #fefefe;
+            background-color: lightgray;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
@@ -40,47 +77,37 @@
         </ul>
     </nav>
 </div>
-<br><br><br><br><br>
-<div class="row">
+<br><br><br>
+<form action=# th:action="@{/FunctionscreenLandlord}" method="post" th:object="${room}" >
+<h1>Rooms</h1>
 
-    <a href="Location">
-        <div class="Card card5" >
-            <h2>Add Student Room</h2>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Name</th>
+        <th scope="col">Fulltime</th>
+        <th scope="col">Graduate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.}"></td>
+        <td th:text="${student.name}">
+        <td th:text="${student.fullTime}"></td>
+        <td th:text="${student.graduate}"></td>
+    </tr>
+    </tbody>
+</table>
 
-        </div>
-    </a>
-    <a href="DeleteRoom">
-        <div class="Card card5" >
-            <h2>Delete Student Room</h2>
+    <button1><a href="Location">Add Student Room</a></button1>
+    <button1><a href="DeleteRoom">Delete Student Room</a></button1>
+    <button1><a href="Appliances">Add Appliance</a></button1>
+    <button1><a href="DeleteAppliance">Delete Appliance</a></button1>
+    <button1><a href="Actions">Add Action</a></button1>
+    <button1><a href="MonthlyEnergyConsumption">Register Energy Consumption</a></button1>
 
-        </div>
-    </a>
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Register Appliance</h2>
 
-        </div>
-    </a>
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Delete Appliance</h2>
-
-        </div>
-    </a>
-    <a href="Actions">
-        <div class="Card card7">
-            <h2>Register Energy Conservation Action</h2>
-
-        </div>
-    </a>
-    <a href="MonthlyEnergyConsumption">
-        <div class="Card card8">
-            <h2>Register Monthly Energy Consumption</h2>
-
-        </div>
-    </a>
-
-</div>
 
 
 

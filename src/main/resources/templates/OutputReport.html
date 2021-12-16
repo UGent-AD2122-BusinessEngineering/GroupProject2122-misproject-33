@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>String Printer</title>
+    <title>Report</title>
     <style>
 
 
@@ -146,10 +146,10 @@
 </head>
 
 <body style="background-color:darkgray;">
-<form action="#" th:action="@{/stringprinter}" method="post" th:object="${appliance}">
-<div>
-    <p th:text="${appliance.tipsAppliance}"></p>
-</div>
+<form action="#" th:action="@{/stringprinter}" method="post">
+    <div>
+        <p th:each="landlord" th:text="${landlord.toreport()}"></p>
+    </div>
 </form>
 </body>
 </html>

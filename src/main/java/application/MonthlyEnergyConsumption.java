@@ -29,8 +29,6 @@ public class MonthlyEnergyConsumption {
         this.monthlyEnergyConsumptionId = monthlyEnergyConsumptionId;
     }
 
-
-
     public double getElectricity() {
         return electricity;
     }

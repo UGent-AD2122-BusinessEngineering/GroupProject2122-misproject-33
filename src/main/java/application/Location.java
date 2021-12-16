@@ -1,10 +1,6 @@
 package application;
 
-import db.LocationDAO;
-
-import java.util.ArrayList;
 import java.util.Objects;
-import db.RoomDAO;
 
 public class Location {
     private int ID;
@@ -43,10 +39,6 @@ public class Location {
         this.characteristics = characteristics;
     }
 
-
-
-
-
     public int getID() {return ID;}
     public String getCountry() {return country;}
     public String getCity() {return city;}
@@ -65,14 +57,10 @@ public class Location {
         this.ID = ID;
     }
 
-
-
-    //wanneer alle kamers van een locatie verwijderd zijn wordt de locatie vanzelf verwijderd
     public String toString(){
         String message = "Country: " + country + "\n" + "City: " + city;
         return message;
     }
-
 
     @Override
     public boolean equals(Object o) {

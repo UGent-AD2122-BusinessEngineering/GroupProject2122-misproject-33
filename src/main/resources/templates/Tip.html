@@ -1,14 +1,11 @@
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Appliance</title>
-    <link rel="stylesheet" href="../folder%20css/Style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Tip</title>
     <style>
+
+
 
         nav{
             margin-left:10px;
@@ -29,6 +26,7 @@
 
         * {
             font-family: Helvetica, sans-serif;
+            font-weight: lighter;
         }
 
 
@@ -138,6 +136,14 @@
         }
     </style>
 </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actions</title>
+    <link rel="stylesheet" href="../folder%20css/Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 <body style="background-color:darkgray;">
 <div class="container-fluid">
@@ -151,29 +157,22 @@
     </nav>
 </div>
 
+<form action="#" th:action="@{/Tip}" method="post" th:object="${appliances}">
 
-<form action=# th:action="@{/DeleteAppliance}" method="post" th:object="${appliance}" >
+    <h1>Discover a Tip</h1>
 
-    <h1>Delete a Appliance</h1>
     <div class="question">
-        <select class="form-control" th:field="*{locationID}">
-            <option value="0">Select Location</option>
-            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.city} ${location.ZIP} ${location.street} ${location.number}|"></option>
-        </select>
-        <br><br><br>
-        <select class="form-control" th:field="*{roomid}">
-            <option value="0">Select Room</option>
-            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="${room.roomnumber}"></option>
-        </select>
-        <br><br><br>
-        <select class="form-control" th:field="*{applianceid}">
+
+        <select class="form-control">
             <option value="0">Select Appliance</option>
             <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
         </select>
-    </div>
-    <button type="submit" >Delete Appliance</button>
-</form>
 
+        <br><br><br>
+
+
+        <button type="submit" width="40%">Discover a Tip</button>
+</form>
 
 
 <!-- Optional JavaScript -->

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -25,6 +26,55 @@
             text-decoration: none;
             color: white;
         }
+
+        button1 {
+            background-color: white;
+            border: 1px solid #3c3b52;
+
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+            width: 250px;
+            text-align: center;
+        }
+        button1:hover, form button:focus {
+            color: #fefefe;
+            background-color: lightgray;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
+         table {
+             font-family: arial, sans-serif;
+             border-collapse: collapse;
+             width: 100%;
+             background-color: #FFFFFF;
+             border: 1px solid #000000;
+
+         }
+
+        td, th {
+            border: 1px solid #000000;
+
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
     </style>
 </head>
 
@@ -36,52 +86,29 @@
         <ul>
             <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
             <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
-            <li><a href="Login"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
         </ul>
     </nav>
 </div>
-<br><br><br><br><br>
-<div class="row">
+<br><br><br>
 
-    <a href="Location">
-        <div class="Card card5" >
-            <h2>Add Student Room</h2>
+<br><br>
+    <button1><a href="Location">Add Student Room</a></button1>
+    <button1><a href="DeleteRoom">Delete Student Room</a></button1>
+    <br><br>
 
-        </div>
-    </a>
-    <a href="DeleteRoom">
-        <div class="Card card5" >
-            <h2>Delete Student Room</h2>
+    <br><br>
+    <button1><a href="Appliances">Add Appliance</a></button1>
+    <button1><a href="DeleteAppliance">Delete Appliance</a></button1>
+    <br><br>
 
-        </div>
-    </a>
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Register Appliance</h2>
+    <br><br>
+    <button1><a href="Actions">Add Action</a></button1>
+    <br><br>
 
-        </div>
-    </a>
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Delete Appliance</h2>
 
-        </div>
-    </a>
-    <a href="Actions">
-        <div class="Card card7">
-            <h2>Register Energy Conservation Action</h2>
+    <button1><a href="MonthlyEnergyConsumption">Add Energy Consumption</a></button1>
 
-        </div>
-    </a>
-    <a href="MonthlyEnergyConsumption">
-        <div class="Card card8">
-            <h2>Register Monthly Energy Consumption</h2>
-
-        </div>
-    </a>
-
-</div>
-
+</form>
 
 
 </body>

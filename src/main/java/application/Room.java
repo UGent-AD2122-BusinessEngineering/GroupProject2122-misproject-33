@@ -13,6 +13,7 @@ public class Room {
     private ArrayList<Student> studentsPerRoom;
     private ArrayList<Appliance> appliancesInTheRoom;
     public int roomID;
+
     public Room() {
     }
 
@@ -51,8 +52,6 @@ public class Room {
         monthlyEnergyConsumptionsPerRoom = monthlyEnergyConsumptionDAO.getAllMonthlyEnergyConsumptions(roomID);
         return monthlyEnergyConsumptionsPerRoom;
     }
-
-
 
     public int getRoomnumber() {
         return roomnumber;
@@ -119,7 +118,6 @@ public class Room {
         monthlyEnergyConsumptionDAO.deleteMonthlyEnergyConsumption(monthlyEnergyConsumption.getMonthlyEnergyConsumptionId());
         return "MonthlyEnergyConsumption was successfully deleted.";
     }
-
 
 }
 

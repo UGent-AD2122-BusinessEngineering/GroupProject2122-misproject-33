@@ -41,7 +41,7 @@ public class EnergyConservationApplication {
 
     @GetMapping("/teruggaveFout")
     public String showFout() {
-        return "teruggaveFout";
+        return "errorContainsEmail";
     }
 
     @GetMapping("/Login")
@@ -65,12 +65,12 @@ public class EnergyConservationApplication {
     public String registerNewStudent(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Student student = new Student();
         if(!(email.contains("@"))) {
-            return "/teruggaveFout";
+            return "/errorContainsEmail";
         }
         ArrayList<Student> allStudents = student.getAllStudents();
         for (Student item : allStudents) {
             if (item.getEmail().equals(email)) {
-                return "/teruggaveFout";
+                return "/errorContainsEmail";
             }
         }
         student.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
@@ -87,13 +87,13 @@ public class EnergyConservationApplication {
     public String registerNewLandlord(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
         if(!(email.contains("@"))) {
-            return "/teruggaveFout";
+            return "errorContainsEmail";
         }
         ArrayList<Landlord> allLandlords= new ArrayList<>();
         allLandlords = landlord.allLandlords();
         for(Landlord item : allLandlords){
             if(item.getEmail().equals(email))
-                return "/teruggaveFout";
+                return "errorContainsEmail";
         }
         landlord.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
         return "FunctionScreenLandlord";
@@ -145,6 +145,7 @@ public class EnergyConservationApplication {
 
         return"FunctionScreenLandlord";
     }
+
 
     @GetMapping("/DeleteRoom")
     public String showDeleteRoom(Model model) {
@@ -259,6 +260,23 @@ public class EnergyConservationApplication {
         return "/test2";
     }
 
+
+
+    @GetMapping("/Tip")
+    public String showTip(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("appliances", appliances);
+        return "Tip";
+    }
+
+
+    @PostMapping("/Tip")
+    public String addTip(@ModelAttribute AddApplianceModel applianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(applianceModel.getApplianceid());
+        return"stringprinter";
+    }
+
     @GetMapping("/stringprinter")
     public String showSP(Model model) {
         model.addAttribute("appliance", new Appliance());
@@ -267,8 +285,23 @@ public class EnergyConservationApplication {
 
     @PostMapping("/stringprinter")
     public String postSP(){
-        Appliance appliance = new Appliance();
+        Appliance appliance= new Appliance();
         appliance.tipsAppliance();
         return"FunctionScreenLandlord";
     }
+
+    @GetMapping("/OutputReport")
+    public String showReport(Model model) {
+        model.addAttribute("landlord", new Landlord());
+        return "stringprinter";
+    }
+
+    @PostMapping("/OutputReport")
+    public String postReport(){
+        Landlord landlord= new Landlord();
+        landlord.getReport();
+
+        return"OutputReport";
+    }
+
 }

@@ -142,7 +142,7 @@ public class RoomDAO {
             int room_id = 0;
             if(srs1.next()) {
                 room_id = srs1.getInt("Room_room_id");
-                System.out.println(room_id);
+                //System.out.println(room_id);
             }
             Room room = getRoom(room_id);
             return room;
@@ -157,17 +157,31 @@ public class RoomDAO {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-            String sql = "DELETE FROM room "
+
+            String sql = "SELECT * FROM room "
                     + "WHERE room_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);
-            stmt.executeUpdate();
+            ResultSet srs = stmt.executeQuery();
+            int locationID = 0;
+            if(srs.next()) {
+                locationID = srs.getInt("Location_location_id");
+                //System.out.println(locationID);
+            }
+
+            String sql1 = "DELETE FROM room "
+                    + "WHERE room_id = ?";
+            PreparedStatement stmt1 = con.prepareStatement(sql1);
+            stmt1.setInt(1, room_id);
+            stmt1.executeUpdate();
 
             String sql2 = "DELETE FROM location L " +
                     "WHERE NOT EXISTS(SELECT room_id " +
                     "FROM room R " +
-                    "WHERE R.Location_location_id = L.location_id)"; // en R.Location_location_id = location id
+                    "WHERE R.Location_location_id = L.location_id) " + // en R.Location_location_id = location id
+                    "AND L.location_id = ?";
             PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setInt(1, locationID);
             stmt2.executeUpdate();
         } catch (Exception dbe) {
             dbe.printStackTrace();
@@ -208,11 +222,11 @@ public class RoomDAO {
 
     public static void main(String[] args) {
         RoomDAO roomDAO = new RoomDAO();
-        LocationDAO locationDAO = new LocationDAO();
+        //LocationDAO locationDAO = new LocationDAO();
         //Room room = new Room(1, locationDAO.getLocation(5));
         //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
         //System.out.println(roomDAO.getAllRooms());
         //test
-        roomDAO.deleteRoom(2);
+        //roomDAO.deleteRoom(33);
     }
 }

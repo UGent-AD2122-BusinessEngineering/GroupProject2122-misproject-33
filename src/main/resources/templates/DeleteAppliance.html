@@ -4,12 +4,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Location</title>
-
+    <title>Delete Appliance</title>
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <style>
 
         nav{
@@ -33,7 +31,6 @@
             font-family: Helvetica, sans-serif;
             font-weight: lighter;
         }
-
 
 
         body{
@@ -131,59 +128,17 @@
             color: white;
 
         }
+        form .question input:valid {
 
+        }
 
         form .question input:valid + label {
             text-transform: uppercase;
             font-style: italic;
 
         }
-
-
-
-        /*BUTTON 1*/
-        form button1 {
-            background-color: white;
-            border: 1px solid #3c3b52;
-            line-height: 0;
-            font-size: 17px;
-            display: inline-block;
-            box-sizing: border-box;
-            padding: 20px 15px;
-            border-radius: 60px;
-            color: #3c3b52;
-            font-weight: 100;
-            letter-spacing: 0.01em;
-            position: relative;
-            z-index: 1;
-            cursor:pointer;
-
-            text-align: center;
-
-
-        }
-
-        .registerbuttons{
-            background-color: #fefefe;
-            color: black;
-            margin: 5% auto 5% auto;
-            width: 92.5%;
-            text-decoration: none;
-        }
-
-        .secondButton{
-            color: black;
-            width: 92.5%;
-            text-decoration: none;
-        }
-
-        form button1:hover, form button:focus {
-            color: #fefefe;
-            background-color: #3c3b52
-        }
-
     </style>
-</head> <!--css import-->
+</head>
 
 <body style="background-color:darkgray;">
 <div class="container-fluid">
@@ -197,64 +152,28 @@
     </nav>
 </div>
 
-<form>
-    <h1>Use Existing Location</h1>
+
+<form action=# th:action="@{/DeleteAppliance}" method="post" th:object="${appliance}" >
+
+    <h1>Delete a Appliance</h1>
     <div class="question">
-
-        <div class="registerbuttons">
-            <button1> <a href="Room" class="secondButton">Continue</a></button1>
-        </div>
+        <select class="form-control" th:field="*{locationID}">
+            <option value="0">Select Location</option>
+            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.city} ${location.ZIP} ${location.street} ${location.number}|"></option>
+        </select>
+        <br><br><br>
+        <select class="form-control" th:field="*{roomid}">
+            <option value="0">Select Room</option>
+            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="${room.roomnumber}"></option>
+        </select>
+        <br><br><br>
+        <select class="form-control" th:field="*{applianceid}">
+            <option value="0">Select Appliance</option>
+            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
+        </select>
     </div>
+    <button type="submit" >Delete Appliance</button>
 </form>
-
-<form action=# th:action="@{/Location}" method="post" th:object="${location}" >
-
-        <h1>Add New Location</h1>
-        <div class="question">
-        <label for="Country" class="form-label">Country:</label>
-        <input th:field="*{country}" id="Country" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="City" class="form-label">City:</label>
-        <input th:field="*{city}" id="City" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="zip" class="form-label">ZIP:</label>
-        <input th:field="*{ZIP}"id="zip" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Street" class="form-label">Street:</label>
-        <input th:field="*{street}" id="Street" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Number" class="form-label">Number:</label>
-        <input th:field="*{number}" id="Number" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Area" class="form-label">Area:</label>
-        <input th:field="*{area}" id="Area" type="text" required/>
-        </div>
-
-        <div class="question">
-        <label for="Characteristics" class="form-label">Characteristics:</label>
-        <input th:field="*{characteristics}" id="Characteristics" type="text" required/>
-        </div>
-
-
-        <div class="custom-control custom-checkbox">
-            <input th:field="*{insulated}" type="checkbox" class="custom-control-input" id="checkInsulation">
-            <label class="custom-control-label" for="checkInsulation">Insulated (Check the box if insulated)</label>
-        </div>
-
-
-        <button type="submit" >Create location</button>
-</form>
-
 
 
 

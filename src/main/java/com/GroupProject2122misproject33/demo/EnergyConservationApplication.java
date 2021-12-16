@@ -64,6 +64,9 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsStudent")
     public String registerNewStudent(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Student student = new Student();
+        if(!(email.contains("@"))) {
+            return "/teruggaveFout";
+        }
         ArrayList<Student> allStudents = student.getAllStudents();
         for (Student item : allStudents) {
             if (item.getEmail().equals(email)) {
@@ -83,6 +86,9 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsLandlord")
     public String registerNewLandlord(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
+        if(!(email.contains("@"))) {
+            return "/teruggaveFout";
+        }
         ArrayList<Landlord> allLandlords= new ArrayList<>();
         allLandlords = landlord.allLandlords();
         for(Landlord item : allLandlords){
@@ -121,8 +127,6 @@ public class EnergyConservationApplication {
     public String showRoom(Model model) {
 
         var landlords= new LandlordDAO().getAllLandlords();
-
-
         var locations= new LocationDAO().getAllLocations();
         model.addAttribute("room", new AddRoomModel());
         model.addAttribute("locations",locations);
@@ -169,15 +173,13 @@ public class EnergyConservationApplication {
 
 
 
-
-
-
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         var rooms= new RoomDAO().getAllRooms();
-
+        var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("appliance", new AddApplianceModel());
         model.addAttribute("rooms",rooms);
+        model.addAttribute("appliances", appliances);
 
         return "Appliances";
     }
@@ -195,7 +197,6 @@ public class EnergyConservationApplication {
 
 
 
-
     @GetMapping("/Actions")
     public String showActions(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
@@ -205,7 +206,7 @@ public class EnergyConservationApplication {
 
         return "Actions";
     }
-/*
+
     @PostMapping("/Actions")
     public String addAction(@ModelAttribute AddActionModel actionModel){
 
@@ -215,7 +216,31 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
-*/
+    @GetMapping("/DeleteAppliance")
+    public String showDeleteAppliance(Model model) {
+
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("appliance", new AddApplianceModel());
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("appliances",appliances);
+
+        return "DeleteAppliance";
+    }
+
+    @PostMapping("/DeleteAppliance")
+    public String deleteAppliance(@ModelAttribute AddApplianceModel appModel){
+        var location=new LocationDAO().getLocation(appModel.getLocationID());
+        var room=new RoomDAO().getRoom(appModel.getRoomid());
+        var appliance= new ApplianceDAO().getAppliance(appModel.getApplianceid());
+        room.deleteAppliance(appliance);
+
+        return"FunctionScreenLandlord";
+    }
+
 
 
 
@@ -234,9 +259,16 @@ public class EnergyConservationApplication {
         return "/test2";
     }
 
+    @GetMapping("/stringprinter")
+    public String showSP(Model model) {
+        model.addAttribute("appliance", new Appliance());
+        return "stringprinter";
+    }
 
-
-
-
-
+    @PostMapping("/stringprinter")
+    public String postSP(){
+        Appliance appliance = new Appliance();
+        appliance.tipsAppliance();
+        return"FunctionScreenLandlord";
+    }
 }

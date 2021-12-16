@@ -117,7 +117,7 @@ public class Appliance {
             return message += "Is not possible for this appliance.";
         }
         else {
-            Action actie = new Action(date1, "energy conservation mode activated"); //dit is de naam die zou verschijnen wanneer een gebruiker de actie kan aanklikken? -Simon
+            Action actie = new Action(date1, "energy conservation mode activated");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered the energy conservation method.";
@@ -136,7 +136,7 @@ public class Appliance {
     }
 
     public String tipsAppliance(){
-        String message = "";
+        String message = "test";
         if(this.getIsEnergyConservationMode()) {
             message += "You could put the energy conservation mode on.";
         }
@@ -252,12 +252,4 @@ public class Appliance {
         return Objects.hash(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name);
     }
 
-    /*public void setOperationDays ()
-    {
-        for (int i = 0; i < getMonthlyOperation().size(); i++) {
-            boolean function = false;
-                monthlyOperation.get(i);
-            operationDays.add(function);
-        }
-    }*/
 }

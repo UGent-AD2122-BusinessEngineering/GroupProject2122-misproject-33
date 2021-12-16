@@ -4,18 +4,18 @@ public class AddApplianceModel {
 
     private int roomid;
 
-    private String energyEfficiencyClass; //energy label of the appliance {A, B, C, D, E, F, G}
+    private String energyEfficiencyClass;
     private String modelIdentifier;
     private int annualEnergyConsumption;
     private String supplierName;
     private String name;
 
-
     private boolean isTempProportionate;
     private boolean isTempDisproportionate;
     private boolean isEnergyConservationMode;
-
-
+    private int applianceID;
+    private int applianceid;
+    private int locationID;
 
     public int getRoomid() {
         return roomid;
@@ -95,5 +95,27 @@ public class AddApplianceModel {
         this.isEnergyConservationMode = isEnergyConservationMode;
     }
 
+    public int getApplianceid() {
+        return applianceid;
+    }
 
+    public void setApplianceid(int applianceid) {
+        this.applianceid = applianceid;
+    }
+
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+
+    public int getApplianceID() {
+        return applianceID;
+    }
+
+    public void setApplianceID(int applianceID) {
+        this.applianceID = applianceID;
+    }
 }

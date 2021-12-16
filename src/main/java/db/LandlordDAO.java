@@ -179,12 +179,10 @@ public class LandlordDAO {
                     + "WHERE email = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
-
             stmt.executeUpdate();
-        } catch (DBException dbe) {
+        } catch (Exception dbe) {
             dbe.printStackTrace();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            DBHandler.closeConnection(con);
         }
     }
 

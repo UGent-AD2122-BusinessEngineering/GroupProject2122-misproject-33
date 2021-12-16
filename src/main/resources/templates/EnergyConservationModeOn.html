@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Energyconservationmode</title>
+    <style>
+
+
+
+        nav{
+            margin-left:10px;
+
+
+        }
+
+        nav ul li{
+            display: inline-block;
+            list-style: none;
+            margin: 20px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+        }
+
+        * {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+
+        body{
+            min-width:600px;
+        }
+
+        form {
+            position: relative;
+            display: inline-block;
+            max-width: 700px;
+            min-width: 500px;
+            box-sizing: border-box;
+            padding: 30px 25px;
+            background-color: white;
+            border-radius: 40px;
+            margin: 40px 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        form h1 {
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            margin-left: 15px;
+            margin-bottom: 35px;
+
+        }
+        form button {
+            margin-top: 35px;
+            background-color: white;
+            border: 1px solid #3c3b52;
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+        }
+
+        form button:hover, form button:focus {
+            color: white;
+            background-color: #3c3b52;
+        }
+        form .question {
+            position: relative;
+            padding: 10px 0;
+        }
+        form .question:first-of-type {
+            padding-top: 0;
+        }
+        form .question:last-of-type {
+            padding-bottom: 0;
+        }
+        form .question label {
+            transform-origin: left center;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            font-size: 17px;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            display: block;
+            position: absolute;
+            margin-top: -30px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        form .question input {
+            appearance: none;
+            background-color: white;
+            border: 1px solid #3c3b52;
+            line-height: 0;
+            font-size: 17px;
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            border-radius: 60px;
+
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+        }
+        form .question input:focus {
+            outline: none;
+            background: #3c3b52;
+            color: white;
+
+        }
+        form .question input:valid {
+
+        }
+
+        form .question input:valid + label {
+            text-transform: uppercase;
+            font-style: italic;
+
+        }
+    </style>
+</head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actions</title>
+    <link rel="stylesheet" href="../folder%20css/Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color:darkgray;">
+<div class="container-fluid">
+
+    <nav>
+        <ul>
+            <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
+            <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
+            <li><a href="FunctionScreenStudent"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Student</b></a></li>
+            <li><a href="FunctionScreenLandlord"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Landlord</b></a></li>
+        </ul>
+    </nav>
+</div>
+
+<form action="#" th:action="@{/RandomTip}" method="post" th:object="${ApplianceModel}">
+
+    <h1>Discover a Tip</h1>
+
+    <div class="question">
+
+        <select th:field="*{applianceid}" class="form-control">
+            <option value="0">Select Appliance</option>
+            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
+        </select>
+
+        <br><br><br>
+        <label for="actionDate" class="form-label">Date:</label>
+        <input th:field="*{date}" id="actionDate" type="text" required/>
+
+        <button type="submit" width="40%">Discover a Tip</button>
+    </div>
+</form>
+
+
+</body>
+</html>

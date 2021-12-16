@@ -147,5 +147,4 @@ public class Landlord extends Person {
         return message;
     }
 
-
 }

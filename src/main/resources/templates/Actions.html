@@ -4,35 +4,20 @@
     <meta charset="UTF-8">
     <title>Conservation Actions</title>
     <style>
-
-
-
-        nav{
-            margin-left:10px;
-
-
-        }
-
+        nav{margin-left:10px;}
         nav ul li{
             display: inline-block;
             list-style: none;
             margin: 20px;
         }
-
         nav ul li a{
             text-decoration: none;
             color: white;
         }
 
-        * {
-            font-family: Helvetica, sans-serif;
-            font-weight: lighter;
-        }
+        * {font-family: Helvetica, sans-serif;}
 
-
-        body{
-            min-width:600px;
-        }
+        body{min-width:600px;}
 
         form {
             position: relative;
@@ -53,7 +38,6 @@
             letter-spacing: 0.01em;
             margin-left: 15px;
             margin-bottom: 35px;
-
         }
         form button {
             margin-top: 35px;
@@ -72,7 +56,6 @@
             z-index: 1;
             cursor:pointer;
         }
-
         form button:hover, form button:focus {
             color: white;
             background-color: #3c3b52;
@@ -101,7 +84,6 @@
             z-index: 2;
             pointer-events: none;
         }
-
         form .question input {
             appearance: none;
             background-color: white;
@@ -113,7 +95,6 @@
             box-sizing: border-box;
             padding: 10px 15px;
             border-radius: 60px;
-
             font-weight: 100;
             letter-spacing: 0.01em;
             position: relative;
@@ -123,16 +104,10 @@
             outline: none;
             background: #3c3b52;
             color: white;
-
         }
-        form .question input:valid {
-
-        }
-
         form .question input:valid + label {
             text-transform: uppercase;
             font-style: italic;
-
         }
     </style>
 </head>
@@ -163,7 +138,6 @@
 
     <div class="question">
 
-
         <select class="form-control" th:field="*{applianceid}">
             <option value="0">Select Appliance</option>
             <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
@@ -179,6 +153,7 @@
         <input th:field="*{date}" id="actionDate" type="text" required/>
 
     <button type="submit" width="40%">Submit new Action</button>
+    </div>
 </form>
 
 

@@ -48,12 +48,9 @@
             position: relative;
         }
 
-
-
         .container {
-            padding: 16px;
+            padding: 4px;
         }
-
 
         /* Modal Content/Box */
         .modal-content {
@@ -82,13 +79,7 @@
         }
 
 
-        /* Register */
 
-        .RegisterBox{
-            color: white;
-            margin-left:70px;
-            width: 25%; /* Could be more or less, depending on screen size */
-        }
 
         .registerbuttons{
             background-color: #fefefe;
@@ -266,22 +257,22 @@
 
 <form class="modal-content animate" th:action="@{/Login}" th:object="${login}" method="post">
     <div class="imgcontainer">
-        <i class="fa fa-fw fa-lock" ></i>
-
+        <i class="fa fa-fw fa-lock" style="font-size: 400%" ></i>
     </div>
 
     <div class="container">
+        <p style="text-align: center; color: #888888">Login System not active.</p>
+        <p style="text-align: center; color: #888888">Please pick a Function Option at the top or Register below.</p>
         <div class="question">
-        <input th:field="*{username}" id="uname" type="text" placeholder="Enter Email Address" name="uname"required/>
-        </div>
-        <div class="question">
-        <input th:field="*{password}" id="psw" type="text" placeholder="Enter Password" name="psw" required/>
-        </div>
+            <input th:field="*{username}" id="uname" type="text" placeholder="Enter Email Address" name="uname"required/>
 
-        <button type="submit">Login</button>
+            <input th:field="*{password}" id="psw" type="text" placeholder="Enter Password" name="psw" required/>
+        </div>
+            <button type="submit">Login</button>
     </div>
 
     <div class="registerbuttons">
+        <p style="text-align: center; color: #888888">Don't have an account?</p>
         <button1> <a href="RegisterAsStudent" class="secondButton">Register As Student</a></button1>
     </div><div class="registerbuttons">
         <button1> <a href="RegisterAsLandlord" class="secondButton">Register As Landlord</a></button1>

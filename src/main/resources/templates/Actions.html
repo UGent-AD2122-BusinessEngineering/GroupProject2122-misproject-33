@@ -157,23 +157,26 @@
     </nav>
 </div>
 
-<form action="#" th:action="@{/Actions}" method="post" th:object="${actions}">
+<form action="#" th:action="@{/Actions}" method="post" th:object="${action}">
 
     <h1>Register Energy Conservation Action</h1>
 
     <div class="question">
 
+
+        <select class="form-control" th:field="*{applianceid}">
+            <option value="0">Select Appliance</option>
+            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
+        </select>
+
+        <br><br><br>
+
         <label for="actionName" class="form-label">Name of the Action:</label>
         <input th:field="*{name}" id="actionName" type="text" required/>
-    </div>
-
-
-
-    <div class="question">
+        <br><br><br>
 
         <label for="actionDate" class="form-label">Date:</label>
-        <input th:field="*{date}" id="actionDate" type="date" required/>
-    </div>
+        <input th:field="*{date}" id="actionDate" type="text" required/>
 
     <button type="submit" width="40%">Submit new Action</button>
 </form>

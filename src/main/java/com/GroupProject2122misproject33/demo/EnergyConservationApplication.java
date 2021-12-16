@@ -2,9 +2,11 @@ package com.GroupProject2122misproject33.demo;
 
 import application.*;
 
+import db.ApplianceDAO;
 import db.LandlordDAO;
 import db.LocationDAO;
 import db.RoomDAO;
+import models.AddActionModel;
 import models.AddApplianceModel;
 import models.AddRoomModel;
 import org.springframework.boot.SpringApplication;
@@ -140,6 +142,33 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
+    @GetMapping("/DeleteRoom")
+    public String showDeleteRoom(Model model) {
+
+        var landlords= new LandlordDAO().getAllLandlords();
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        model.addAttribute("room", new AddRoomModel());
+
+        model.addAttribute("locations",locations);
+
+        model.addAttribute("landlords", landlords);
+        model.addAttribute("rooms", rooms);
+
+        return "DeleteRoom";
+    }
+
+    @PostMapping("/DeleteRoom")
+    public String deleteRoom(@ModelAttribute AddRoomModel roomModel){
+        var landlord=new LandlordDAO().getLandlord(roomModel.getLandlordEmail());
+        var room= new RoomDAO().getRoom(roomModel.getRoomid());
+        landlord.deleteRoom(room);
+
+        return"FunctionScreenLandlord";
+    }
+
+
+
 
 
 
@@ -167,6 +196,29 @@ public class EnergyConservationApplication {
 
 
 
+    @GetMapping("/Actions")
+    public String showActions(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+
+        model.addAttribute("action", new AddActionModel());
+        model.addAttribute("appliances",appliances);
+
+        return "Actions";
+    }
+/*
+    @PostMapping("/Actions")
+    public String addAction(@ModelAttribute AddActionModel actionModel){
+
+        var appliance=new ApplianceDAO().getAppliance(actionModel.getApplianceid());
+
+        appliance.customizedEnergyConservationAction(actionModel.getDate(), actionModel.getName());
+        return"FunctionScreenLandlord";
+    }
+
+*/
+
+
+
 
 
     @GetMapping("/MonthlyEnergyConsumption")
@@ -182,11 +234,6 @@ public class EnergyConservationApplication {
         return "/test2";
     }
 
-    @GetMapping("/Actions")
-    public String givesActions(Model model) {
-        model.addAttribute("actions", new Action());
-        return "Actions";
-    }
 
 
 

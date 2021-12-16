@@ -160,7 +160,7 @@
 
 
         <select class="form-control" th:field="*{roomid}">
-            <option value="0">Select rooms</option>
+            <option value="0">Select Room</option>
             <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="|${room.location} ${room.roomnumber}|"></option>
         </select>
 

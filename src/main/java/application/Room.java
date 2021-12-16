@@ -2,7 +2,6 @@ package application;
 
 import db.ApplianceDAO;
 import db.MonthlyEnergyConsumptionDAO;
-import db.RoomDAO;
 import db.StudentDAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,23 +84,21 @@ public class Room {
         student.setContactPerson(contactPersoon);
         studentDAO.save(student);
         studentDAO.update(student, roomID);
-        return "the student " + student.firstname + " " + student.lastname + " was succesfully added to the room.";
+        return "the student " + student.firstname + " " + student.lastname + " was successfully added to the room.";
     }
 
     public String deleteStudent(Student student){
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.deleteStudentFromRoom(student);
-        return "the student " + student.getFirstname() + " " + student.getLastname() + " was succesfully deleted.";
+        return "the student " + student.getFirstname() + " " + student.getLastname() + " was successfully deleted.";
     }
-
-    //String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name, boolean isTempProportionate, boolean isTempDisproportionate, boolean getIsEnergyConservationMode, Room room
 
     public String addAppliance(String energyEfficiencyClass, String modelIdentifier, int annualEnergyConsumption, String supplierName, String name,
                                boolean isTempProportionate, boolean isTempDisproportionate, boolean isEnergyConservationMode){
         Appliance appliance = new Appliance(energyEfficiencyClass, modelIdentifier, annualEnergyConsumption, supplierName, name, isTempProportionate, isTempDisproportionate, isEnergyConservationMode);
         ApplianceDAO applianceDAO = new ApplianceDAO();
         appliance.setApplianceID(applianceDAO.save(appliance, this.roomID));
-        return "The appliance has been succesfully added.";
+        return "The appliance has been successfully added.";
     }
 
     public String deleteAppliance(Appliance appliance){

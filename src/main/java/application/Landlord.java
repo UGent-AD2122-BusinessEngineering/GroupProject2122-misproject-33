@@ -75,7 +75,7 @@ public class Landlord extends Person {
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
         room.roomID = roomDAO.save(room, this.email); //setRoomId
-        return message += "The room has been succesfully added.";
+        return message += "The room has been successfully added.";
     }
 
 
@@ -84,14 +84,14 @@ public class Landlord extends Person {
         Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
         LocationDAO locationDAO = new LocationDAO();
         location.setID(locationDAO.saveLocation(location));
-        return "The location has been succesfully added.";
+        return "The location has been successfully added.";
     }
 
     public String deleteRoom(Room room) {
         String message = "";
         RoomDAO roomDAO = new RoomDAO();
         roomDAO.deleteRoom(room.roomID);
-        return message += "The room has been succesfully deleted.";
+        return message += "The room has been successfully deleted.";
     }
 
     public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
@@ -104,7 +104,7 @@ public class Landlord extends Person {
             }
             Landlord landlord = new Landlord(email, firstname, lastname, PasswordHashing.doHashing(password), telephone_number, date_of_birth);
             landlordDAO.save(landlord);
-        return "Your registration has been succesfull.";
+        return "Your registration has been successful.";
 }
 
     public static Object login(String email, String password) {
@@ -130,15 +130,16 @@ public class Landlord extends Person {
         }
         else{
             for (Room item : roomsOfTheLandlord){
-            ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumpionsRoom = new ArrayList<>();
-            monthlyEnergyConsumpionsRoom = item.getMonthlyEnergyConsumptionPerRoom(item.roomID);
-            message = "\nRoom " + monthlyEnergyConsumpionsRoom.indexOf(item) + 1 + ": ";
-                if(monthlyEnergyConsumpionsRoom.isEmpty()){
+            ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptionsRoom = new ArrayList<>();
+            monthlyEnergyConsumptionsRoom = item.getMonthlyEnergyConsumptionPerRoom(item.roomID);
+            message = "\nRoom " + monthlyEnergyConsumptionsRoom.indexOf(item) + 1 + ": ";
+                if(monthlyEnergyConsumptionsRoom.isEmpty()){
                 message += "\nThis room does not have any monthly energy consumption reports.";
                 }
                 else{
-                    for(MonthlyEnergyConsumption item2 : monthlyEnergyConsumpionsRoom){
-                        message += "\n" + "Water: " + item2.getWater() + "m^3" + "\nElectricity: " + item2.getElectricity() + " kWh" + "\nGas: " + item2.getGas() + " kWh";
+                    for(MonthlyEnergyConsumption item2 : monthlyEnergyConsumptionsRoom){
+                        message += "\n" + "Water: " + item2.getWater() + "m^3" + "\nElectricity: " + item2.getElectricity()
+                                + " kWh" + "\nGas: " + item2.getGas() + " kWh";
                     }
                 }
             }

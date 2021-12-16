@@ -64,6 +64,9 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsStudent")
     public String registerNewStudent(@ModelAttribute String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Student student = new Student();
+        if(!(email.contains("@"))) {
+            return "/teruggaveFout";
+        }
         ArrayList<Student> allStudents = student.getAllStudents();
         for (Student item : allStudents) {
             if (item.getEmail().equals(email)) {
@@ -83,6 +86,9 @@ public class EnergyConservationApplication {
     @PostMapping("/RegisterAsLandlord")
     public String registerNewLandlord(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth){
         Landlord landlord = new Landlord();
+        if(!(email.contains("@"))) {
+            return "/teruggaveFout";
+        }
         ArrayList<Landlord> allLandlords= new ArrayList<>();
         allLandlords = landlord.allLandlords();
         for(Landlord item : allLandlords){

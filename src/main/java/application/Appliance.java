@@ -1,8 +1,10 @@
 package application;
 
 import db.ActionDAO;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -123,8 +125,10 @@ public class Appliance {
     }
 
 
-    public String customizedEnergyConservationAction(LocalDate date, String name){
-        Action actie = new Action(date, name);
+    public String customizedEnergyConservationAction(String date, String name){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate date1 = LocalDate.parse(date, formatter);
+        Action actie = new Action(date1, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, this.getApplianceID());
         return "Thank you, we have registered your energy conservation method: " + name;

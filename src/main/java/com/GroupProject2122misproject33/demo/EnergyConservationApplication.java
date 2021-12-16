@@ -127,8 +127,6 @@ public class EnergyConservationApplication {
     public String showRoom(Model model) {
 
         var landlords= new LandlordDAO().getAllLandlords();
-
-
         var locations= new LocationDAO().getAllLocations();
         model.addAttribute("room", new AddRoomModel());
         model.addAttribute("locations",locations);
@@ -175,15 +173,13 @@ public class EnergyConservationApplication {
 
 
 
-
-
-
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         var rooms= new RoomDAO().getAllRooms();
-
+        var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("appliance", new AddApplianceModel());
         model.addAttribute("rooms",rooms);
+        model.addAttribute("appliances", appliances);
 
         return "Appliances";
     }
@@ -201,7 +197,6 @@ public class EnergyConservationApplication {
 
 
 
-
     @GetMapping("/Actions")
     public String showActions(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
@@ -211,7 +206,7 @@ public class EnergyConservationApplication {
 
         return "Actions";
     }
-/*
+
     @PostMapping("/Actions")
     public String addAction(@ModelAttribute AddActionModel actionModel){
 
@@ -221,7 +216,31 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
-*/
+    @GetMapping("/DeleteAppliance")
+    public String showDeleteAppliance(Model model) {
+
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("appliance", new AddApplianceModel());
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("appliances",appliances);
+
+        return "DeleteAppliance";
+    }
+
+    @PostMapping("/DeleteAppliance")
+    public String deleteAppliance(@ModelAttribute AddApplianceModel appModel){
+        var location=new LocationDAO().getLocation(appModel.getLocationID());
+        var room=new RoomDAO().getRoom(appModel.getRoomid());
+        var appliance= new ApplianceDAO().getAppliance(appModel.getApplianceid());
+        room.deleteAppliance(appliance);
+
+        return"FunctionScreenLandlord";
+    }
+
 
 
 

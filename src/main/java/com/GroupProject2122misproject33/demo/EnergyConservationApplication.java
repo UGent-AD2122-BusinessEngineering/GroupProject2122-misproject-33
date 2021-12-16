@@ -253,9 +253,16 @@ public class EnergyConservationApplication {
         return "/test2";
     }
 
+    @GetMapping("/stringprinter")
+    public String showSP(Model model) {
+        model.addAttribute("appliance", new Appliance());
+        return "stringprinter";
+    }
 
-
-
-
-
+    @PostMapping("/stringprinter")
+    public String postSP(){
+        Appliance appliance = new Appliance();
+        appliance.tipsAppliance();
+        return"FunctionScreenLandlord";
+    }
 }

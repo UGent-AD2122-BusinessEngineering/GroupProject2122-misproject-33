@@ -136,7 +136,7 @@ public class Appliance {
     }
 
     public String tipsAppliance(){
-        String message = "";
+        String message = "test";
         if(this.getIsEnergyConservationMode()) {
             message += "You could put the energy conservation mode on.";
         }

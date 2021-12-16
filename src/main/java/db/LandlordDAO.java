@@ -52,7 +52,7 @@ public class LandlordDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM landlord ";
+                    + "FROM landlord";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             String email;
@@ -112,7 +112,7 @@ public class LandlordDAO {
 
             String sqlSelect = "SELECT email "
                     + "FROM landlord "
-                    + "WHERE email = ? ";
+                    + "WHERE email = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setString(1, l.getEmail());
@@ -120,11 +120,6 @@ public class LandlordDAO {
             if (srs.next()) {
 
                 // UPDATE
-
-
-                //deze geeft nog een error, weet niet of dit bij StudentDAO ook het geval is
-
-
                 String sqlUpdate = "UPDATE landlord " +
                         "SET first_name = ?, " +
                         "last_name = ?, " +
@@ -158,19 +153,14 @@ public class LandlordDAO {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-
+            DBHandler.closeConnection(con);
         }
     }
 
     public void deleteLandlord(String email){
 
-        /*als landlord wordt verwijderd worden ook alle rooms in bezit verwijderd en ik zal nog es kijken voor die
-        trigger te maken die eventueel een location verwijdert als er zich daar geen rooms meer bevinden
-
-        Misschien kunnen business logic en presentation ervoor zorgen dat er hier een waarschuwing komt "zeker dat u uw account
-        Wilt verwijderen? Al uw kamers gaan hierdoor verloren..."
-        */
-
+        /*Misschien kunnen business logic en presentation ervoor zorgen dat er hier een waarschuwing komt "zeker dat u uw account
+        wilt verwijderen? Al uw kamers gaan hierdoor verloren..."*/
 
         Connection con = null;
         try {

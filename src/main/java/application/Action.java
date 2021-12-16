@@ -1,13 +1,6 @@
 package application;
 
 import java.time.LocalDate;
-/*
-Mogelijke energy conservation acties die we kunnen implementeren
-- Ledlampen gebruiken /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
-- Temperatuur graad lager /Done
-- Toestellen met energiezuiniger label /Done
-- Zet beeldscherm volledig uit /niet haalbaar (of ik weet op zijn minst toch niet hoe, kunnen we wel gebruiken voor tips mss)
-*/
 
 public class Action {
     private LocalDate date;
@@ -71,7 +64,7 @@ public class Action {
     }
 
     public static void main(String[] args) {
-        //Location l = new Location("Belgie", "gent", "9000", "volmolen", "20", 200, false, "wide", 10);
+        //Location l = new Location("België", "gent", "9000", "volmolen", "20", 200, false, "wide", 10);
         //Room r = new Room(1, l, 8);
         //Landlord la = new Landlord("y.z@gmail.com", "mathias", "brabants", "ikbenmathias123", "0479052433", "02.11.2001");
         //Student st = new Student("r.b@gmail.com", "r", "b", "rb", "041", "02", true);

@@ -20,7 +20,6 @@ public class StudentDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             ResultSet srs = stmt.executeQuery();
-            String email1;
             String first_name;
             String last_name;
             String password;
@@ -29,7 +28,6 @@ public class StudentDAO {
             boolean is_contact_person;
 
             if (srs.next()) {
-                email1 = srs.getString("email");
                 first_name = srs.getString("first_name");
                 last_name = srs.getString("last_name");
                 password = srs.getString("password");
@@ -41,7 +39,6 @@ public class StudentDAO {
             }
             Student student = new Student(email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person);
             return student;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -49,7 +46,6 @@ public class StudentDAO {
         }
     }
 
-    //returns ArrayList<Student> met alle studenten die in de gegeven kamer wonen
     public ArrayList<Student> getStudents(int room_id) {
         ArrayList<Student> students = new ArrayList<Student>();
         Connection con = null;
@@ -81,13 +77,11 @@ public class StudentDAO {
                 students.add(student);
             }
             return students;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-
     }
 
     public ArrayList<Student> getAllStudents() {
@@ -96,7 +90,7 @@ public class StudentDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM student ";
+                    + "FROM student";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             String email;
@@ -119,17 +113,14 @@ public class StudentDAO {
                 students.add(student);
             }
             return students;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-
     }
 
-    //throws SQLIntegrityConstraintViolationException indien we proberen een Student toe te voegen aan een niet bestaande room
-    //save wordt ook gebruikt bij setIsContactPerson
+    //save also used for setIsContactPerson & general updates
     public void save(Student s) {
         Connection con = null;
         try {
@@ -163,11 +154,9 @@ public class StudentDAO {
                 stmt2.executeUpdate();
             } else {
                 // INSERT
-
                 String sqlInsert = "INSERT into student "
                         + "(email, first_name, last_name, password, telephone_number, date_of_birth, is_contact_person) "
                         + "VALUES (?,?,?,?,?,?,?)";
-                //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert);
                 insertStm.setString(1, s.getEmail());
                 insertStm.setString(2, s.getFirstname());
@@ -184,6 +173,7 @@ public class StudentDAO {
         }
     }
 
+    //used for adding a student to a room
     public void update(Student s, int room_id) {
         Connection con = null;
         try {
@@ -191,13 +181,11 @@ public class StudentDAO {
 
             String sqlSelect = "SELECT email "
                     + "FROM student "
-                    + "WHERE email = ? ";
-
+                    + "WHERE email = ?";
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setString(1, s.getEmail());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-
                 // UPDATE
                 String sqlUpdate = "UPDATE student " +
                         "SET first_name = ?, " +
@@ -236,13 +224,11 @@ public class StudentDAO {
 
             String sqlSelect = "SELECT email "
                     + "FROM student "
-                    + "WHERE email = ? ";
-
+                    + "WHERE email = ?";
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setString(1, s.getEmail());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-
                 // UPDATE
                 String sqlUpdate = "UPDATE student " +
                         "SET Room_room_id = null " +
@@ -253,7 +239,6 @@ public class StudentDAO {
             } else {
                 System.out.println("Student not found");
                 DBHandler.closeConnection(con);
-                return;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -277,7 +262,7 @@ public class StudentDAO {
     }
 
     public static void main(String[] args) {
-        StudentDAO studentDAO = new StudentDAO();
+        //StudentDAO studentDAO = new StudentDAO();
         //System.out.println(studentDAO.getStudent("mbtopper@gmail.com").getFirstname());
         //Student a = new Student("mathibrab@gm.co", "mathi", "brab", "test1", "0479052448", "02.11.2001");
         //Student b = new Student("bob", "simon", "ffg", "IKBsdfENDIK", "fgh", "bert");
@@ -289,11 +274,10 @@ public class StudentDAO {
         //studentDAO.save(b);
         //studentDAO.save(c);
         //studentDAO.save(d);
-        studentDAO.deleteStudentFromRoom(studentDAO.getStudent("s"));
+        //studentDAO.deleteStudentFromRoom(studentDAO.getStudent("s"));
         //studentDAO.update(studentDAO.getStudent("vic.werk@gmeil.com"), 4);
         //ArrayList<Student> students = studentDAO.getAllStudents();
         //for(Student student : students) {
-            //System.out.println(student.getPassword());
-       // }
+        //System.out.println(student.getPassword());
     }
 }

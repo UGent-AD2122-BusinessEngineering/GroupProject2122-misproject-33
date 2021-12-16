@@ -25,8 +25,6 @@ public class RoomDAO {
                 room_number = srs.getInt("room_number");
                 Location_location_id = srs.getInt("Location_location_id");
                 room_id1 = srs.getInt("room_id");
-                //System.out
-
             }
             else {
                 return null;
@@ -38,14 +36,12 @@ public class RoomDAO {
             DBHandler.closeConnection(con);
             return null;
         }
-
     }
 
-    public int save(Room room, String Landlord_email) { //moet wss nog een methode aan toegevoegd worden die een room toewijst aan een student.
+    public int save(Room room, String Landlord_email) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
-//if room id != null
             String sqlSelect = "SELECT room_id "
                     + "FROM room "
                     + "WHERE room_id = ?";
@@ -54,7 +50,6 @@ public class RoomDAO {
             stmt.setInt(1, room.getRoomID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-
                 // UPDATE
                 String sqlUpdate = "UPDATE room " +
                         "SET room_id = ?, " +
@@ -72,11 +67,9 @@ public class RoomDAO {
                 return room.getRoomID();
             } else {
                 // INSERT
-
                 String sqlInsert = "INSERT into room "
                         + "(room_number, Location_location_id, Landlord_email) "
                         + "VALUES (?,?,?)";
-                //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setInt(1, room.getRoomnumber());
                 insertStm.setInt(2, room.getLocation().getID());
@@ -120,17 +113,14 @@ public class RoomDAO {
                 rooms.add(room);
             }
             return rooms;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
             return null;
         }
-
     }
 
     public Room getRoom(String studentEmail) {
-
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -142,7 +132,6 @@ public class RoomDAO {
             int room_id = 0;
             if(srs1.next()) {
                 room_id = srs1.getInt("Room_room_id");
-                //System.out.println(room_id);
             }
             Room room = getRoom(room_id);
             return room;
@@ -153,11 +142,12 @@ public class RoomDAO {
         }
     }
 
-    public void deleteRoom(int room_id) { //location id opvragen van room net voor die verwijderd wordt
+    public void deleteRoom(int room_id) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
 
+            //obtain location_id from room
             String sql = "SELECT * FROM room "
                     + "WHERE room_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -166,19 +156,20 @@ public class RoomDAO {
             int locationID = 0;
             if(srs.next()) {
                 locationID = srs.getInt("Location_location_id");
-                //System.out.println(locationID);
             }
 
+            //delete room
             String sql1 = "DELETE FROM room "
                     + "WHERE room_id = ?";
             PreparedStatement stmt1 = con.prepareStatement(sql1);
             stmt1.setInt(1, room_id);
             stmt1.executeUpdate();
 
+            //delete location if there aren't any rooms left on that location
             String sql2 = "DELETE FROM location L " +
                     "WHERE NOT EXISTS(SELECT room_id " +
                     "FROM room R " +
-                    "WHERE R.Location_location_id = L.location_id) " + // en R.Location_location_id = location id
+                    "WHERE R.Location_location_id = L.location_id) " +
                     "AND L.location_id = ?";
             PreparedStatement stmt2 = con.prepareStatement(sql2);
             stmt2.setInt(1, locationID);
@@ -195,7 +186,7 @@ public class RoomDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM room ";
+                    + "FROM room";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             int room_id;
@@ -212,7 +203,6 @@ public class RoomDAO {
                 rooms.add(room);
             }
             return rooms;
-
         } catch (DBException | SQLException e) {
             e.printStackTrace();
             DBHandler.closeConnection(con);
@@ -222,9 +212,9 @@ public class RoomDAO {
 
     public static void main(String[] args) {
         RoomDAO roomDAO = new RoomDAO();
-        //LocationDAO locationDAO = new LocationDAO();
-        //Room room = new Room(1, locationDAO.getLocation(5));
-        //System.out.println(roomDAO.save(room, room.getLocation().getID(), "c.d@gmail.com"));
+        LocationDAO locationDAO = new LocationDAO();
+        Room room = new Room(69, locationDAO.getLocation(25));
+        System.out.println(roomDAO.save(room, "s.delange@gmail.be"));
         //System.out.println(roomDAO.getAllRooms());
         //test
         //roomDAO.deleteRoom(33);

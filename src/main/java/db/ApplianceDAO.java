@@ -16,7 +16,6 @@ public class ApplianceDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appliance_id);
             ResultSet srs = stmt.executeQuery();
-            int appliance_id1;
             String name;
             String supplier_name;
             String model_identifier;
@@ -27,7 +26,6 @@ public class ApplianceDAO {
             Boolean is_energy_conservation_mode;
 
             if (srs.next()) {
-                appliance_id1 = srs.getInt("appliance_id");
                 name = srs.getString("name");
                 supplier_name = srs.getString("supplier_name");
                 model_identifier = srs.getString("model_identifier");
@@ -80,7 +78,7 @@ public class ApplianceDAO {
                 is_temp_proportionate = srs.getBoolean("is_temp_proportionate");
                 is_temp_disproportionate = srs.getBoolean("is_temp_disproportionate");
                 is_energy_conservation_mode = srs.getBoolean("is_energy_conservation_mode");
-                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode);
+                Appliance appliance = new Appliance(energy_efficiency_class, model_identifier, annual_energy_consumption, supplier_name, name, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode, appliance_id);
                 appliances.add(appliance);
             }
             return appliances;
@@ -98,7 +96,7 @@ public class ApplianceDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM appliance ";
+                    + "FROM appliance";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             int appliance_id;
@@ -140,7 +138,7 @@ public class ApplianceDAO {
 
             String sqlSelect = "SELECT appliance_id "
                     + "FROM appliance "
-                    + "WHERE appliance_id = ? ";
+                    + "WHERE appliance_id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setInt(1, a.getApplianceID());
@@ -176,20 +174,19 @@ public class ApplianceDAO {
                 // INSERT
 
                 String sqlInsert = "INSERT into appliance "
-                        + "(appliance_id, name, supplier_name, model_identifier, energy_efficiency_class, annual_energy_consumption, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode, Room_room_id) "
-                        + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                        + "(name, supplier_name, model_identifier, energy_efficiency_class, annual_energy_consumption, is_temp_proportionate, is_temp_disproportionate, is_energy_conservation_mode, Room_room_id) "
+                        + "VALUES (?,?,?,?,?,?,?,?,?)";
                 //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-                insertStm.setInt(1, a.getApplianceID());
-                insertStm.setString(2, a.getName());
-                insertStm.setString(3, a.getSupplierName());
-                insertStm.setString(4, a.getModelIdentifier());
-                insertStm.setString(5, a.getEnergyEfficiencyClass());
-                insertStm.setInt(6, a.getAnnualEnergyConsumption());
-                insertStm.setBoolean(7, a.getIsTempProportionate());
-                insertStm.setBoolean(8, a.getIsTempDisproportionate());
-                insertStm.setBoolean(9, a.getIsEnergyConservationMode() );
-                insertStm.setInt(10, room_id);
+                insertStm.setString(1, a.getName());
+                insertStm.setString(2, a.getSupplierName());
+                insertStm.setString(3, a.getModelIdentifier());
+                insertStm.setString(4, a.getEnergyEfficiencyClass());
+                insertStm.setInt(5, a.getAnnualEnergyConsumption());
+                insertStm.setBoolean(6, a.getIsTempProportionate());
+                insertStm.setBoolean(7, a.getIsTempDisproportionate());
+                insertStm.setBoolean(8, a.getIsEnergyConservationMode() );
+                insertStm.setInt(9, room_id);
                 insertStm.executeUpdate();
                 ResultSet generatedKeys = insertStm.getGeneratedKeys();
                 if (generatedKeys.next()) {
@@ -212,21 +209,17 @@ public class ApplianceDAO {
                     + "WHERE appliance_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appliance_id);
-
             stmt.executeUpdate();
         } catch (Exception dbe) {
             dbe.printStackTrace();
             DBHandler.closeConnection(con);
-
         }
-
-
     }
 
     public static void main(String[] args) {
         ApplianceDAO applianceDAO = new ApplianceDAO();
-        //Appliance appliance = new Appliance("B", "modelnr", 550, "zanussi", "koelkast", true, false, false, 3);
-        //System.out.println(applianceDAO.getAllAppliances());
-        applianceDAO.deleteAppliance(4);
+        Appliance appliance = new Appliance("B", "modelnr", 550, "zanussi", "koelkast", true, false, false);
+        System.out.println(applianceDAO.save(appliance, 35));
+        System.out.println(applianceDAO.getAppliances(35));
     }
 }

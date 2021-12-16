@@ -12,12 +12,10 @@ public class LocationDAO {
             String sqlSelect = "SELECT location_id "
                     + "FROM location "
                     + "WHERE location_id = ?";
-
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setInt(1, location.getID());
             ResultSet srs = stmt.executeQuery();
             if (srs.next()) {
-
                 // UPDATE
                 String sqlUpdate = "UPDATE location " +
                         "SET location_id = ?, " +
@@ -45,11 +43,9 @@ public class LocationDAO {
                 return location.getID();
             } else {
                 // INSERT
-
                 String sqlInsert = "INSERT into location "
                         + "(country, city, ZIP, street, number, area, insulated, characteristics) "
                         + "VALUES (?,?,?,?,?,?,?,?)";
-                //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, location.getCountry());
                 insertStm.setString(2, location.getCity());
@@ -111,7 +107,7 @@ public class LocationDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * "
-                    + "FROM location ";
+                    + "FROM location";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
 
@@ -140,5 +136,4 @@ public class LocationDAO {
         Location location = new Location("France", "Paris", "baguette", "fromage", "69", 420, false, "EKIP");
         System.out.println(locationDAO.getAllLocations());
     }
-
 }

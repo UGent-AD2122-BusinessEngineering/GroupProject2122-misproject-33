@@ -57,11 +57,6 @@ public class Location {
         this.ID = ID;
     }
 
-    public String toString(){
-        String message = "Country: " + country + "\n" + "City: " + city;
-        return message;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

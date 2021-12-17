@@ -1,6 +1,5 @@
 package application;
 
-
 import java.util.Objects;
 
 public class Person {

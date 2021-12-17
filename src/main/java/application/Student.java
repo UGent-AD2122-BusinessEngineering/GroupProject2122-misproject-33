@@ -1,9 +1,7 @@
 package application;
+
 import db.RoomDAO;
 import db.StudentDAO;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -35,7 +33,6 @@ public class Student extends Person {
         return isContactPerson;
     }
 
-    //get student with given room_id (db)
     public ArrayList<Student> getStudents(int room_id) {
         StudentDAO studentDAO = new StudentDAO();
         return studentDAO.getStudents(room_id);
@@ -48,11 +45,10 @@ public class Student extends Person {
         return allStudents;
     }
 
-    public static String toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
+    public static void toRegister(String email, String firstname, String lastname, String password, String telephoneNumber, String dateOfBirth) {
         StudentDAO studentDAO = new StudentDAO();
         Student student1 = new Student(email, firstname, lastname, PasswordHashing.doHashing(password), telephoneNumber, dateOfBirth);
         studentDAO.save(student1);
-        return "Your registration has been successful.";
     }
 
     public Object login(String email, String password) {
@@ -80,12 +76,6 @@ public class Student extends Person {
             }
         }
         return false;
-    }
-
-    public String test()
-    {
-        String message = "test";
-        return message;
     }
 
     public String getReport() {
@@ -132,5 +122,4 @@ public class Student extends Person {
         }
         return message;
     }
-
 }

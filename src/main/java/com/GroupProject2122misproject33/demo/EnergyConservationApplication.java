@@ -447,6 +447,29 @@ public class EnergyConservationApplication {
         return "OutputIncreaseDegree";
     }
 
+    @GetMapping("/AverageTemperature")
+    public String showAverageTemperature(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+        return "AverageTemperature";
+    }
+
+    @PostMapping("/AverageTemperature")
+    public String selectAverageTemperature(@ModelAttribute SelectApplianceModel selectApplianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/OutputAverageTemperature?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputAverageTemperature")
+    public String showAverageTemperature(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.averageTemperature());
+        return "OutputAverageTemperature";
+    }
+
 
 
 

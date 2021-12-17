@@ -158,11 +158,8 @@
 
     <div class="question">
 
-        <select th:field="*{applianceid}" class="form-control">
-            <option value="0">Select Appliance</option>
-            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
-        </select>
-        <br><br><br>
+
+
         <button type="submit" width="40%">Discover a Tip</button>
     </div>
 </form>

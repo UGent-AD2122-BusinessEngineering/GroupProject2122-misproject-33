@@ -1,6 +1,5 @@
 package application;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class MonthlyEnergyConsumption {
@@ -66,14 +65,4 @@ public class MonthlyEnergyConsumption {
         return Objects.hash(electricity, gas, water, month/*, monthlyEnergyConsumptionId*/);
     }
 
-    @Override
-    public String toString() {
-        return "MonthlyEnergyConsumption{" +
-                "electricity=" + electricity +
-                ", gas=" + gas +
-                ", water=" + water +
-                ", month=" + month /*+
-                ", monthlyEnergyConsumptionId=" + monthlyEnergyConsumptionId */+
-                '}';
-    }
 }

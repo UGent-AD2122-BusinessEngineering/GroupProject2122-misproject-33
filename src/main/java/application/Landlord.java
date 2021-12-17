@@ -4,9 +4,6 @@ import db.LocationDAO;
 import db.RoomDAO;
 import db.StudentDAO;
 import db.LandlordDAO;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,41 +70,30 @@ public class Landlord extends Person {
         return maandVhJaar;
     }
 
-    public String addRoom(Location location, int roomnumber) {
-        String message = "";
+    public void addRoom(Location location, int roomnumber) {
         Room room = new Room(roomnumber, location);
         RoomDAO roomDAO = new RoomDAO();
         room.roomID = roomDAO.save(room, this.email); //setRoomId
-        return message += "The room has been successfully added.";
     }
 
 
 
-    public String addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
+    public void addLocation(String country, String city, String ZIP, String street, String number, double area, boolean insulated, String characteristics){
         Location location = new Location(country, city, ZIP, street, number, area, insulated, characteristics);
         LocationDAO locationDAO = new LocationDAO();
         location.setID(locationDAO.saveLocation(location));
-        return "The location has been successfully added.";
     }
 
-    public String deleteRoom(Room room) {
-        String message = "";
+    public void deleteRoom(Room room) {
         RoomDAO roomDAO = new RoomDAO();
         roomDAO.deleteRoom(room.roomID);
-        return message += "The room has been successfully deleted.";
     }
 
-    public String toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
+    public void toRegister(String email, String firstname, String lastname, String password, String telephone_number, String date_of_birth) {
             LandlordDAO landlordDAO = new LandlordDAO();
             ArrayList<Landlord> allLandlords = landlordDAO.getAllLandlords();
-            for (Landlord item : allLandlords) {
-                if (item.getEmail().equals(email)) {
-                    return "An account already exists with this email address.";
-                }
-            }
             Landlord landlord = new Landlord(email, firstname, lastname, PasswordHashing.doHashing(password), telephone_number, date_of_birth);
             landlordDAO.save(landlord);
-        return "Your registration has been successful.";
 }
 
     public static Object login(String email, String password) {
@@ -149,5 +135,4 @@ public class Landlord extends Person {
         }
         return message;
     }
-
 }

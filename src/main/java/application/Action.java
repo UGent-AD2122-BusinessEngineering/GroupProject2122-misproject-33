@@ -1,7 +1,5 @@
 package application;
 
-import java.time.LocalDate;
-
 public class Action {
     private String date;
     private String name;

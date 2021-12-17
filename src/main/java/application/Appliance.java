@@ -1,9 +1,6 @@
 package application;
 
 import db.ActionDAO;
-import org.apache.tomcat.jni.Local;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -125,8 +122,6 @@ public class Appliance {
 
 
     public String customizedEnergyConservationAction(String date, String name){
-        //"2018-05-05"
-
         Action actie = new Action(date, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, this.getApplianceID());
@@ -185,23 +180,6 @@ public class Appliance {
             actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered your energy conservation method.";
         }
-        return message;
-    }
-
-    public String averageTemperature() {
-        String message = "";
-        double[] temp = new double[7];
-        double total = 0;
-        System.out.println("Please enter your temperatures from last week: ");
-        for (int i = 0; i < temp.length; ) {
-                total = total + temp[i];
-                i++;
-        }
-        double average = total / temp.length;
-        java.util.Arrays.sort(temp);
-        message += "\n Your lowest temperature = " + temp[0];
-        message += "\n Your highest temperature = " + temp[temp.length - 1];
-        message += "\n The average temperature of this week was: " + average;
         return message;
     }
 

@@ -397,6 +397,35 @@ public class EnergyConservationApplication {
         return "OutputCustomizedEnergyConservationAction";
     }
 
+    @GetMapping("/DegreaseDegree")
+    public String showDegreaseDegree(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "DegreaseDegree";
+    }
+
+    @PostMapping("/DegreaseDegree")
+    public String selectDegreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.decreaseDegree(date);
+        return "redirect:/OutputDegreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputDegreaseDegree")
+    public String showDegreaseDegree(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.decreaseDegree(date));
+        return "OutputDegreaseDegree";
+    }
+
+
+
+
+
     @GetMapping("/CreateReportStudent")
     public String showReport(Model model) {
         var students= new StudentDAO().getAllStudents();

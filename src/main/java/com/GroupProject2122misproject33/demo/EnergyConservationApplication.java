@@ -397,7 +397,7 @@ public class EnergyConservationApplication {
         return "OutputCustomizedEnergyConservationAction";
     }
 
-    @GetMapping("/DegreaseDegree")
+    @GetMapping("/DecreaseDegree")
     public String showDegreaseDegree(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("ApplianceModel", new SelectApplianceModel());
@@ -406,16 +406,16 @@ public class EnergyConservationApplication {
         return "DecreaseDegree";
     }
 
-    @PostMapping("/DegreaseDegree")
-    public String selectDegreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+    @PostMapping("/DecreaseDegree")
+    public String selectDecreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
 
         var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
         appliance.decreaseDegree(date);
-        return "redirect:/OutputDegreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+        return "redirect:/OutputDecreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
     }
 
-    @GetMapping("/OutputDegreaseDegree")
-    public String showDegreaseDegree(@RequestParam String applianceid, Model model, String date) {
+    @GetMapping("/OutputDecreaseDegree")
+    public String showDecreaseDegree(@RequestParam String applianceid, Model model, String date) {
         var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
 
         model.addAttribute("message", appliance.decreaseDegree(date));

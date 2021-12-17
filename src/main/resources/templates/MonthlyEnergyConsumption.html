@@ -149,6 +149,18 @@
 
         <h1>Register Monthly Energy Consumption</h1>
     <div class="question">
+        <select class="form-control" th:field="*{locationID}">
+            <option value="0">Select Location</option>
+            <option th:each="location : ${locations}" th:value="${location.ID}" th:text="|${location.city} ${location.street} ${location.number}|"></option>
+        </select>
+        <br><br>
+        <select class="form-control" th:field="*{roomid}">
+            <option value="0">Select Room</option>
+            <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="${room.roomnumber}"></option>
+        </select>
+        <br><br><br>
+
+    <div class="question">
         <label for="electricityUsage" class="form-label">Electricity:</label>
         <input th:field="*{electricity}"  class="form-control" id="electricityUsage" type="text" required/>
     </div>

@@ -172,8 +172,10 @@ public class EnergyConservationApplication {
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         var rooms= new RoomDAO().getAllRooms();
+        var locations= new LocationDAO().getAllLocations();
         var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("appliance", new AddApplianceModel());
+        model.addAttribute("locations",locations);
         model.addAttribute("rooms",rooms);
         model.addAttribute("appliances", appliances);
 
@@ -188,7 +190,7 @@ public class EnergyConservationApplication {
         room.addAppliance(appModel.getEnergyEfficiencyClass(),appModel.getModelIdentifier(), appModel.getAnnualEnergyConsumption(), appModel.getSupplierName(), appModel.getName(),
                 appModel.getIsTempProportionate(), appModel.getIsTempDisproportionate(), appModel.getIsEnergyConservationMode());
 
-        return"FunctionScreenLandlord";
+        return"FunctionScreenStudent";
     }
 
 
@@ -234,7 +236,7 @@ public class EnergyConservationApplication {
         var appliance= new ApplianceDAO().getAppliance(appModel.getApplianceid());
         room.deleteAppliance(appliance);
 
-        return"FunctionScreenLandlord";
+        return"FunctionScreenStudent";
     }
 
     @GetMapping("/AddStudentToRoom")
@@ -284,29 +286,38 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
-
-
-
     @GetMapping("/MonthlyEnergyConsumption")
-    public String MonthlyEnergyCons(Model model) {
-        model.addAttribute("monthlyenergyconsumption", new MonthlyEnergyConsumption());
+    public String ShowMonthlyEnergyConsumption(Model model) {
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+
+        model.addAttribute("monthlyenergyconsumption",new AddMonthlyEnergyConsumption());
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms",rooms);
+
+
         return "MonthlyEnergyConsumption";
     }
 
     @PostMapping("/MonthlyEnergyConsumption")
-    public String addAppliance(@ModelAttribute double electricity, double gas, double water, String month){
-        Room room= new Room();
-        room.addMonthlyEnergyConsumption(electricity, gas, water, month);
-        return "/FunctionScreenLandlord";
+    public String addMonthlyEnergyConsumption(@ModelAttribute AddMonthlyEnergyConsumption addMonthlyEnergyConsumption){
+
+        var room=new RoomDAO().getRoom(addMonthlyEnergyConsumption.getRoomid());
+
+        room.addMonthlyEnergyConsumption(addMonthlyEnergyConsumption.getElectricity(), addMonthlyEnergyConsumption.getGas(),addMonthlyEnergyConsumption.getWater(),addMonthlyEnergyConsumption.getMonth());
+        return"FunctionScreenLandlord";
     }
+
 
 
 
     @GetMapping("/Tip")
     public String showTip(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
+        var locations= new LocationDAO().getAllLocations();
         model.addAttribute("applianceModel", new SelectApplianceModel());
         model.addAttribute("appliances", appliances);
+        model.addAttribute("locations", appliances);
         return "Tip";
     }
 

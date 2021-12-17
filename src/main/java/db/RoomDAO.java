@@ -209,14 +209,4 @@ public class RoomDAO {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        RoomDAO roomDAO = new RoomDAO();
-        LocationDAO locationDAO = new LocationDAO();
-        Room room = new Room(69, locationDAO.getLocation(25));
-        System.out.println(roomDAO.save(room, "s.delange@gmail.be"));
-        //System.out.println(roomDAO.getAllRooms());
-        //test
-        //roomDAO.deleteRoom(33);
-    }
 }

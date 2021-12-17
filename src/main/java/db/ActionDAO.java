@@ -161,12 +161,4 @@ public class ActionDAO {
             DBHandler.closeConnection(con);
         }
     }
-
-    public static void main(String[] args) {
-        ActionDAO actionDAO = new ActionDAO();
-        //LocalDate localDate = LocalDate.parse("2021-12-22");
-        //Action action = new Action(localDate,"test");
-        //System.out.println(actionDAO.getAllActions());
-        actionDAO.deleteAction(9);
-    }
 }

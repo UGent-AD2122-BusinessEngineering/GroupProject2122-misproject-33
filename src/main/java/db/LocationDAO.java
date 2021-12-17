@@ -130,10 +130,4 @@ public class LocationDAO {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        LocationDAO locationDAO = new LocationDAO();
-        Location location = new Location("France", "Paris", "baguette", "fromage", "69", 420, false, "EKIP");
-        System.out.println(locationDAO.getAllLocations());
-    }
 }

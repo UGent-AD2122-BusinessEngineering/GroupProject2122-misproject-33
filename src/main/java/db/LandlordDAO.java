@@ -175,15 +175,4 @@ public class LandlordDAO {
             DBHandler.closeConnection(con);
         }
     }
-
-    public static void main(String[] args) {
-        LandlordDAO landlordDAO = new LandlordDAO();
-        //System.out.println(landlordDAO.getLandlord("a.b@gmail.com").getFirstname());
-        //Landlord l = new Landlord("s.delange@gmail.be", "simon", "delange", "IKBENDIK", "0479052422", "04.12.1985");
-        //System.out.println(l.getFirstname());
-        //landlordDAO.save(l);
-        //landlordDAO.deleteLandlord(l);
-        System.out.println(landlordDAO.getAllLandlords());
-        //.deleteLandlord("c.d@gmail.com");
-    }
 }

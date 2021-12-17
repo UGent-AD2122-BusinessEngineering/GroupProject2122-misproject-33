@@ -260,24 +260,4 @@ public class StudentDAO {
             DBHandler.closeConnection(con);
         }
     }
-
-    public static void main(String[] args) {
-        //StudentDAO studentDAO = new StudentDAO();
-        //System.out.println(studentDAO.getStudent("mbtopper@gmail.com").getFirstname());
-        //Student a = new Student("mathibrab@gm.co", "mathi", "brab", "test1", "0479052448", "02.11.2001");
-        //Student b = new Student("bob", "simon", "ffg", "IKBsdfENDIK", "fgh", "bert");
-        //Student c = new Student("tyhd", "sisdfgsdmon", "delange", "IKBENDyjjIK", "0479052422", "04.12.1985");
-        //Student d = new Student("rhdfgs", "sdftgtr", "ffdth", "ttsrs", "erhed", "04.12.1985");
-
-
-        //studentDAO.save(a);
-        //studentDAO.save(b);
-        //studentDAO.save(c);
-        //studentDAO.save(d);
-        //studentDAO.deleteStudentFromRoom(studentDAO.getStudent("s"));
-        //studentDAO.update(studentDAO.getStudent("vic.werk@gmeil.com"), 4);
-        //ArrayList<Student> students = studentDAO.getAllStudents();
-        //for(Student student : students) {
-        //System.out.println(student.getPassword());
-    }
 }

@@ -17,12 +17,12 @@ public class ActionDAO {
             ResultSet srs = stmt.executeQuery();
             int action_id1;
             String name;
-            LocalDate date;
+            String date;
 
             if (srs.next()) {
                 action_id1 = srs.getInt("action_id");
                 name = srs.getString("name");
-                date = srs.getDate("date").toLocalDate();
+                date = srs.getString("date");
             } else {
                 return null;
             }
@@ -49,12 +49,12 @@ public class ActionDAO {
             ResultSet srs = stmt.executeQuery();
             int action_id;
             String name;
-            LocalDate date;
+            String date;
 
             while (srs.next()) {
                 action_id = srs.getInt("action_id");
                 name = srs.getString("name");
-                date = srs.getDate("date").toLocalDate();
+                date = srs.getString("date");
 
                 Action action = new Action(date, name, action_id);
                 actions.add(action);
@@ -73,17 +73,17 @@ public class ActionDAO {
         try {
             con = DBHandler.getConnection();
             String sql = "SELECT * " +
-                    "FROM action ";
+                    "FROM action";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet srs = stmt.executeQuery();
             int action_id;
             String name;
-            LocalDate date;
+            String date;
 
             while (srs.next()) {
                 action_id = srs.getInt("action_id");
                 name = srs.getString("name");
-                date = srs.getDate("date").toLocalDate();
+                date = srs.getString("date");
                 Action action = new Action(date, name, action_id);
                 actions.add(action);
             }
@@ -104,7 +104,7 @@ public class ActionDAO {
 
             String sqlSelect = "SELECT action_id "
                     + "FROM action "
-                    + "WHERE action_id = ? ";
+                    + "WHERE action_id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sqlSelect);
             stmt.setInt(1, action.getId());
@@ -113,7 +113,7 @@ public class ActionDAO {
 
                 // UPDATE
                 String sqlUpdate = "UPDATE action " +
-                        "SET name = ?, " +
+                        "SET name = ? " +
                         "WHERE action_id = ?";
 
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
@@ -127,10 +127,9 @@ public class ActionDAO {
                 String sqlInsert = "INSERT into action "
                         + "(name, date, Appliance_appliance_id) "
                         + "VALUES (?,?,?)";
-                //System.out.println(sql);
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
                 insertStm.setString(1, action.getName());
-                insertStm.setDate(2, java.sql.Date.valueOf(action.getDate()) );
+                insertStm.setString(2, action.getDate());
                 insertStm.setInt(3, appliance_id);
 
                 insertStm.executeUpdate();

@@ -295,7 +295,7 @@ public class EnergyConservationApplication {
     public String addAppliance(@ModelAttribute double electricity, double gas, double water, LocalDate month){
         Room room= new Room();
         room.addMonthlyEnergyConsumption(electricity, gas, water, month);
-        return "/test2";
+        return "/FunctionScreenLandlord";
     }
 
 
@@ -521,8 +521,6 @@ public class EnergyConservationApplication {
         model.addAttribute("message", landlord.getReport());
         return "ReportLandlord";
     }
-
-
 
 
 }

@@ -70,7 +70,7 @@ public class EnergyConservationApplication {
         }
         student.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
 
-        return "/FunctionScreenStudent";
+        return "FunctionScreenStudent";
     }
 
     @GetMapping("/RegisterAsLandlord")
@@ -115,7 +115,7 @@ public class EnergyConservationApplication {
         Landlord landlord= new Landlord();
         landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
 
-        return"FunctionScreenLandlord";
+        return "/Room";
     }
 
     @GetMapping("/Room")
@@ -172,8 +172,10 @@ public class EnergyConservationApplication {
     @GetMapping("/Appliances")
     public String showAppliances(Model model) {
         var rooms= new RoomDAO().getAllRooms();
+        var locations= new LocationDAO().getAllLocations();
         var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("appliance", new AddApplianceModel());
+        model.addAttribute("locations",locations);
         model.addAttribute("rooms",rooms);
         model.addAttribute("appliances", appliances);
 
@@ -188,11 +190,11 @@ public class EnergyConservationApplication {
         room.addAppliance(appModel.getEnergyEfficiencyClass(),appModel.getModelIdentifier(), appModel.getAnnualEnergyConsumption(), appModel.getSupplierName(), appModel.getName(),
                 appModel.getIsTempProportionate(), appModel.getIsTempDisproportionate(), appModel.getIsEnergyConservationMode());
 
-        return"FunctionScreenLandlord";
+        return"FunctionScreenStudent";
     }
 
 
-
+/*
     @GetMapping("/Actions")
     public String showActions(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
@@ -211,7 +213,7 @@ public class EnergyConservationApplication {
         appliance.customizedEnergyConservationAction(actionModel.getDate(), actionModel.getName());
         return"FunctionScreenLandlord";
     }
-
+*/
     @GetMapping("/DeleteAppliance")
     public String showDeleteAppliance(Model model) {
 
@@ -234,16 +236,18 @@ public class EnergyConservationApplication {
         var appliance= new ApplianceDAO().getAppliance(appModel.getApplianceid());
         room.deleteAppliance(appliance);
 
-        return"FunctionScreenLandlord";
+        return"FunctionScreenStudent";
     }
 
     @GetMapping("/AddStudentToRoom")
     public String ShowAddStudentToRoom(Model model) {
+        var locations= new LocationDAO().getAllLocations();
         var rooms= new RoomDAO().getAllRooms();
         var students= new StudentDAO().getAllStudents();
         model.addAttribute("student",new AddStudentModel());
         model.addAttribute("rooms",rooms);
         model.addAttribute("students", students);
+        model.addAttribute("locations", locations);
 
         return "AddStudentToRoom";
     }
@@ -282,29 +286,38 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
-
-
-
     @GetMapping("/MonthlyEnergyConsumption")
-    public String MonthlyEnergyCons(Model model) {
-        model.addAttribute("monthlyenergyconsumption", new MonthlyEnergyConsumption());
+    public String ShowMonthlyEnergyConsumption(Model model) {
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+
+        model.addAttribute("monthlyenergyconsumption",new AddMonthlyEnergyConsumption());
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms",rooms);
+
+
         return "MonthlyEnergyConsumption";
     }
 
     @PostMapping("/MonthlyEnergyConsumption")
-    public String addAppliance(@ModelAttribute double electricity, double gas, double water, LocalDate month){
-        Room room= new Room();
-        room.addMonthlyEnergyConsumption(electricity, gas, water, month);
-        return "/FunctionScreenLandlord";
+    public String addMonthlyEnergyConsumption(@ModelAttribute AddMonthlyEnergyConsumption addMonthlyEnergyConsumption){
+
+        var room=new RoomDAO().getRoom(addMonthlyEnergyConsumption.getRoomid());
+
+        room.addMonthlyEnergyConsumption(addMonthlyEnergyConsumption.getElectricity(), addMonthlyEnergyConsumption.getGas(),addMonthlyEnergyConsumption.getWater(),addMonthlyEnergyConsumption.getMonth());
+        return"FunctionScreenLandlord";
     }
+
 
 
 
     @GetMapping("/Tip")
     public String showTip(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
+        var locations= new LocationDAO().getAllLocations();
         model.addAttribute("applianceModel", new SelectApplianceModel());
         model.addAttribute("appliances", appliances);
+        model.addAttribute("locations", appliances);
         return "Tip";
     }
 
@@ -360,7 +373,7 @@ public class EnergyConservationApplication {
     public String selectEnergyConservationModeOn(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
 
         var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
-        appliance.energyConservationModeOn(date);
+        appliance.energyConservationModeOn(selectApplianceModel.getDate());
         return "redirect:/OutputEnergyConservationModeOn?applianceid="+ selectApplianceModel.getApplianceid();
     }
 
@@ -397,7 +410,7 @@ public class EnergyConservationApplication {
         return "OutputCustomizedEnergyConservationAction";
     }
 
-    @GetMapping("/DegreaseDegree")
+    @GetMapping("/DecreaseDegree")
     public String showDegreaseDegree(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
         model.addAttribute("ApplianceModel", new SelectApplianceModel());
@@ -406,16 +419,16 @@ public class EnergyConservationApplication {
         return "DecreaseDegree";
     }
 
-    @PostMapping("/DegreaseDegree")
-    public String selectDegreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+    @PostMapping("/DecreaseDegree")
+    public String selectDecreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
 
         var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
         appliance.decreaseDegree(date);
-        return "redirect:/OutputDegreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+        return "redirect:/OutputDecreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
     }
 
-    @GetMapping("/OutputDegreaseDegree")
-    public String showDegreaseDegree(@RequestParam String applianceid, Model model, String date) {
+    @GetMapping("/OutputDecreaseDegree")
+    public String showDecreaseDegree(@RequestParam String applianceid, Model model, String date) {
         var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
 
         model.addAttribute("message", appliance.decreaseDegree(date));

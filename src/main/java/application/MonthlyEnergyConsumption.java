@@ -7,21 +7,21 @@ public class MonthlyEnergyConsumption {
     private double electricity;
     private double gas;
     private double water;
-    private LocalDate month;
+    private String month;
     private int monthlyEnergyConsumptionId;
 
     public MonthlyEnergyConsumption() {
 
     }
 
-    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month) {
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, String month) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;
         this.month = month;
     }
 
-    public MonthlyEnergyConsumption(double electricity, double gas, double water, LocalDate month, int monthlyEnergyConsumptionId) {
+    public MonthlyEnergyConsumption(double electricity, double gas, double water, String month, int monthlyEnergyConsumptionId) {
         this.electricity = electricity;
         this.gas = gas;
         this.water = water;
@@ -41,7 +41,7 @@ public class MonthlyEnergyConsumption {
         return water;
     }
 
-    public LocalDate getMonth() {
+    public String getMonth() {
         return month;
     }
 

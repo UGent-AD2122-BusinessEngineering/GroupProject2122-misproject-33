@@ -110,14 +110,13 @@ public class Appliance {
     }
 
     public String energyConservationModeOn (String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date1 = LocalDate.parse(date, formatter);
+
         String message = "";
         if(!(this.getIsEnergyConservationMode())) {
             return message += "Is not possible for this appliance.";
         }
         else {
-            Action actie = new Action(date1, "energy conservation mode activated");
+            Action actie = new Action(date, "energy conservation mode activated");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered the energy conservation method.";
@@ -127,9 +126,9 @@ public class Appliance {
 
 
     public String customizedEnergyConservationAction(String date, String name){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate date1 = LocalDate.parse(date, formatter);
-        Action actie = new Action(date1, name);
+        //"2018-05-05"
+
+        Action actie = new Action(date, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, this.getApplianceID());
         return "Thank you, we have registered your energy conservation method: " + name;
@@ -153,8 +152,7 @@ public class Appliance {
     }
 
     public String decreaseDegree(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate date1 = LocalDate.parse(date, formatter);
+
         String message = "";
         if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())){
             message += "Is not possible for this appliance.";
@@ -164,7 +162,7 @@ public class Appliance {
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }
         else{
-            Action actie = new Action(date1, "decrease a degree");
+            Action actie = new Action(date, "decrease a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered your energy conservation method.";
@@ -173,8 +171,7 @@ public class Appliance {
     }
 
     public String increaseDegree(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate date1 = LocalDate.parse(date, formatter);
+
         String message = "";
         if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())) {
             message += "Is not possible for this appliance.";
@@ -184,7 +181,7 @@ public class Appliance {
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }
         else{
-            Action actie = new Action(date1, "increase a degree");
+            Action actie = new Action(date, "increase a degree");
             ActionDAO actionDAO = new ActionDAO();
             actionDAO.saveAction(actie, this.getApplianceID());
             message += "Thank you, we have registered your energy conservation method.";

@@ -17,6 +17,8 @@ public class AddApplianceModel {
     private int applianceid;
     private int locationID;
 
+
+
     public int getRoomid() {
         return roomid;
     }

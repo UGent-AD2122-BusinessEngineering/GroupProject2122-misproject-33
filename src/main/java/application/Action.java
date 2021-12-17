@@ -3,26 +3,26 @@ package application;
 import java.time.LocalDate;
 
 public class Action {
-    private LocalDate date;
+    private String date;
     private String name;
     private int Id;
 
     public Action() {
     }
 
-    public Action(LocalDate date, String name) {
+    public Action(String date, String name) {
         this.date = date;
         this.name = name;
     }
 
-    public Action(LocalDate date, String name, int id) {
+    public Action(String date, String name, int id) {
         this.date = date;
         this.name = name;
         this.Id = id;
     }
 
-    public int getMonth(){
-        return date.getMonthValue();
+    public String getMonth(){
+        return date;
     }
 
 
@@ -30,7 +30,7 @@ public class Action {
         return Id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 

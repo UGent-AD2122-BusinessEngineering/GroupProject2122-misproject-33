@@ -3,7 +3,6 @@ package application;
 import db.ApplianceDAO;
 import db.MonthlyEnergyConsumptionDAO;
 import db.StudentDAO;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Room {

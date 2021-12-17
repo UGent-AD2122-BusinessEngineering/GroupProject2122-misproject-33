@@ -1,9 +1,7 @@
 package application;
+
 import db.RoomDAO;
 import db.StudentDAO;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Student extends Person {

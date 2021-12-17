@@ -72,8 +72,7 @@ public class MonthlyEnergyConsumption {
                 "electricity=" + electricity +
                 ", gas=" + gas +
                 ", water=" + water +
-                ", month=" + month /*+
-                ", monthlyEnergyConsumptionId=" + monthlyEnergyConsumptionId */+
+                ", month=" + month +
                 '}';
     }
 }

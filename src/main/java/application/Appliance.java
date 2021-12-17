@@ -2,7 +2,6 @@ package application;
 
 import db.ActionDAO;
 import org.apache.tomcat.jni.Local;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

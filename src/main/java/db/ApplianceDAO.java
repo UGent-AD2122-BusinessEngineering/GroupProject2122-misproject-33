@@ -215,11 +215,4 @@ public class ApplianceDAO {
             DBHandler.closeConnection(con);
         }
     }
-
-    public static void main(String[] args) {
-        ApplianceDAO applianceDAO = new ApplianceDAO();
-        Appliance appliance = new Appliance("B", "modelnr", 550, "zanussi", "koelkast", true, false, false);
-        System.out.println(applianceDAO.save(appliance, 35));
-        System.out.println(applianceDAO.getAppliances(35));
-    }
 }

@@ -121,12 +121,13 @@ public class Landlord extends Person {
             for (Room item : roomsOfTheLandlord){
             ArrayList<MonthlyEnergyConsumption> monthlyEnergyConsumptionsRoom = new ArrayList<>();
             monthlyEnergyConsumptionsRoom = item.getMonthlyEnergyConsumptionPerRoom(item.roomID);
-            message = "\nRoom " + monthlyEnergyConsumptionsRoom.indexOf(item) + 1 + ": ";
+            message += "\nRoom " + item.getRoomnumber() + ": ";
                 if(monthlyEnergyConsumptionsRoom.isEmpty()){
                 message += "\nThis room does not have any monthly energy consumption reports.";
                 }
                 else{
                     for(MonthlyEnergyConsumption item2 : monthlyEnergyConsumptionsRoom){
+                        message += " ("+item2.getMonth()+") ";
                         message += "\n" + "Water: " + item2.getWater() + "m^3" + "\nElectricity: " + item2.getElectricity()
                                 + " kWh" + "\nGas: " + item2.getGas() + " kWh";
                     }

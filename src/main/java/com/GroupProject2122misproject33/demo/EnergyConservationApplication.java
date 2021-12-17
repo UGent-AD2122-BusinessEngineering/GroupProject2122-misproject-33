@@ -110,7 +110,7 @@ public class EnergyConservationApplication {
         Landlord landlord= new Landlord();
         landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
 
-        return "/Room";
+        return "FunctionScreenLandlord";
     }
 
     @GetMapping("/Room")

@@ -148,10 +148,7 @@ public class Appliance {
     public String decreaseDegree(String date) {
 
         String message = "";
-        if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())){
-            message += "Is not possible for this appliance.";
-            return message;
-        }
+
         if (this.getIsTempDisproportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }
@@ -167,10 +164,6 @@ public class Appliance {
     public String increaseDegree(String date) {
 
         String message = "";
-        if (!(this.getIsTempProportionate() && this.getIsTempDisproportionate())) {
-            message += "Is not possible for this appliance.";
-            return message;
-        }
         if (this.getIsTempProportionate()){
             message += "this is not an energy-saving measure and therefore will not help you reduce your energy consumption.";
         }

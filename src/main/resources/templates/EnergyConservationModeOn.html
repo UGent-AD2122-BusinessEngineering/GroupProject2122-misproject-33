@@ -160,7 +160,7 @@
 
 <form action="#" th:action="@{/RandomTip}" method="post" th:object="${ApplianceModel}">
 
-    <h1>Discover a Tip</h1>
+    <h1>Energy Conservation Mode</h1>
 
     <div class="question">
 
@@ -170,10 +170,10 @@
         </select>
 
         <br><br><br>
-        <label for="actionDate" class="form-label">Date:</label>
+        <label for="actionDate" class="form-label">Date: (DD/MM/YYYY)</label>
         <input th:field="*{date}" id="actionDate" type="text" required/>
 
-        <button type="submit" width="40%">Discover a Tip</button>
+        <button type="submit" width="40%">Continue</button>
     </div>
 </form>
 

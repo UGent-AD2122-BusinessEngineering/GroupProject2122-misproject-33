@@ -403,7 +403,7 @@ public class EnergyConservationApplication {
         model.addAttribute("ApplianceModel", new SelectApplianceModel());
         model.addAttribute("appliances", appliances);
 
-        return "DegreaseDegree";
+        return "DecreaseDegree";
     }
 
     @PostMapping("/DegreaseDegree")
@@ -419,7 +419,32 @@ public class EnergyConservationApplication {
         var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
 
         model.addAttribute("message", appliance.decreaseDegree(date));
-        return "OutputDegreaseDegree";
+        return "OutputDecreaseDegree";
+    }
+
+    @GetMapping("/IncreaseDegree")
+    public String showIncreaseDegree(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "IncreaseDegree";
+    }
+
+    @PostMapping("/IncreaseDegree")
+    public String selectIncreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.increaseDegree(date);
+        return "redirect:/OutputIncreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputIncreaseDegree")
+    public String showIncreaseDegree(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.increaseDegree(date));
+        return "OutputIncreaseDegree";
     }
 
 

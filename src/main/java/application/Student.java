@@ -121,11 +121,11 @@ public class Student extends Person {
             message += "\n" + "There were no monthly energy consumptions found.";
         } else {
             for (MonthlyEnergyConsumption item : mecOfTheRoom) {
-                message += "\nMonth " + mecOfTheRoom.indexOf(item) + 1 + ":" + "\nElectricity: " + item.getElectricity() + " kWh" + "\nGas: " + item.getGas() + " kWh" + "\nWater: " + item.getWater() + " m^3" + "\n";
+                message += "\n" + "\nMonth " + mecOfTheRoom.indexOf(item) + 1 + ":" + "\nElectricity: " + item.getElectricity() + " kWh" + "\nGas: " + item.getGas() + " kWh" + "\nWater: " + item.getWater() + " m^3" + "\n";
                 if(!((mecOfTheRoom.indexOf(item)) == 0)){
                     if(((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getElectricity()) > item.getElectricity()) && ((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getGas()) < item.getGas())
                             && ((mecOfTheRoom.get(mecOfTheRoom.indexOf(item) - 1).getWater()) < item.getWater())){
-                        message += "\nThe electricity, gas and water consumption are all decreased!";
+                        message += "\nThe electricity, gas and water consumption are all decreased compared to last month!";
                     }
                 }
             }

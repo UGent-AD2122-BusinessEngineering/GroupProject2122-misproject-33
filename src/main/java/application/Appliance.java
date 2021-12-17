@@ -127,8 +127,8 @@ public class Appliance {
 
 
     public String customizedEnergyConservationAction(String date, String name){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate date1 = LocalDate.parse(date, formatter);
+        //"2018-05-05"
+        LocalDate date1 = LocalDate.parse(date);
         Action actie = new Action(date1, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, this.getApplianceID());

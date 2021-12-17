@@ -70,7 +70,7 @@ public class EnergyConservationApplication {
         }
         student.toRegister(email, firstname, lastname, password, telephoneNumber, dateOfBirth);
 
-        return "/FunctionScreenStudent";
+        return "FunctionScreenStudent";
     }
 
     @GetMapping("/RegisterAsLandlord")
@@ -115,7 +115,7 @@ public class EnergyConservationApplication {
         Landlord landlord= new Landlord();
         landlord.addLocation(country, city, ZIP, street, number, area,insulated,characteristics);
 
-        return"FunctionScreenLandlord";
+        return "/Room";
     }
 
     @GetMapping("/Room")
@@ -239,11 +239,13 @@ public class EnergyConservationApplication {
 
     @GetMapping("/AddStudentToRoom")
     public String ShowAddStudentToRoom(Model model) {
+        var locations= new LocationDAO().getAllLocations();
         var rooms= new RoomDAO().getAllRooms();
         var students= new StudentDAO().getAllStudents();
         model.addAttribute("student",new AddStudentModel());
         model.addAttribute("rooms",rooms);
         model.addAttribute("students", students);
+        model.addAttribute("locations", locations);
 
         return "AddStudentToRoom";
     }
@@ -292,7 +294,7 @@ public class EnergyConservationApplication {
     }
 
     @PostMapping("/MonthlyEnergyConsumption")
-    public String addAppliance(@ModelAttribute double electricity, double gas, double water, LocalDate month){
+    public String addAppliance(@ModelAttribute double electricity, double gas, double water, String month){
         Room room= new Room();
         room.addMonthlyEnergyConsumption(electricity, gas, water, month);
         return "/FunctionScreenLandlord";
@@ -360,7 +362,7 @@ public class EnergyConservationApplication {
     public String selectEnergyConservationModeOn(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
 
         var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
-        appliance.energyConservationModeOn(date);
+        appliance.energyConservationModeOn(selectApplianceModel.getDate());
         return "redirect:/OutputEnergyConservationModeOn?applianceid="+ selectApplianceModel.getApplianceid();
     }
 

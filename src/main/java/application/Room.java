@@ -106,7 +106,7 @@ public class Room {
         return "The appliance has been successfully deleted.";
     }
 
-    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, LocalDate month) {
+    public String addMonthlyEnergyConsumption (double electricity, double gas, double water, String month) {
         MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity,gas,water,month);
         MonthlyEnergyConsumptionDAO monthlyEnergyConsumptionDAO = new MonthlyEnergyConsumptionDAO();
         monthlyEnergyConsumptionDAO.save(monthlyEnergyConsumption, this.roomID);

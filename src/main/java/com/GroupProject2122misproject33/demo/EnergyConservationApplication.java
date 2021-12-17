@@ -192,7 +192,7 @@ public class EnergyConservationApplication {
     }
 
 
-
+/*
     @GetMapping("/Actions")
     public String showActions(Model model) {
         var appliances= new ApplianceDAO().getAllAppliances();
@@ -211,7 +211,7 @@ public class EnergyConservationApplication {
         appliance.customizedEnergyConservationAction(actionModel.getDate(), actionModel.getName());
         return"FunctionScreenLandlord";
     }
-
+*/
     @GetMapping("/DeleteAppliance")
     public String showDeleteAppliance(Model model) {
 

@@ -8,35 +8,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-
-
-
-        nav{
-            margin-left:10px;
-
-
-        }
-
+        nav{margin-left:10px;}
         nav ul li{
             display: inline-block;
             list-style: none;
-            margin: 20px;
-        }
-
+            margin: 20px;}
         nav ul li a{
             text-decoration: none;
-            color: white;
+            color: white;}
+        * {font-family: Helvetica, sans-serif;}
+        body{min-width:600px;}
+        .myVideo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
         }
-
-
+        .col{
+            flex-basis: 50%;
+        }
+        .row{
+            display: flex;
+            height: 88%;
+            align-items: center;
+        }
+        .Card{
+            color: white;
+            width:300px;
+            height:230px;
+            display: inline-block;
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-sizing: border-box;
+            margin: 10px 10px 10px 10px;
+            background-position:center;
+            background-size: cover;
+        }
+        .card1{
+            background-image: url(http://drive.google.com/uc?export=view&id=1zn4K2ARscqKRv0_diOOgNYpoSi-ZEREd);
+        }
+        .card2{
+            background-image: url(http://drive.google.com/uc?export=view&id=15bFsnVfns5CieL_vhEHAGsjz79yGTgMT);
+        }
+        .card3{
+            background-image: url(http://drive.google.com/uc?export=view&id=1XTa4L6F1eFEmpLbnCGa18JpgiX3S4KMH);
+        }
+        .card4{
+            background-image: url(http://drive.google.com/uc?export=view&id=1M3-IebHzS6CbKHlUXh1GJohQt2rPkQoB);
+        }
     </style>
+    <video class="myVideo" muted autoplay loop>
+        <source src="http://drive.google.com/uc?export=view&id=1zZbrlVjozrTWaKag5y1MAitWR-2y1_vz" />
+    </video>
 </head>
 
-<body style="background-color:darkgray;">
+<body>
 
  <div class="container-fluid">
-
         <nav>
             <ul>
                 <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
@@ -46,18 +79,17 @@
                 <li><a href="Login"><i class="fa fa-fw fa-user"></i><b>Login</b></a></li>
             </ul>
         </nav>
-    </div>
-    <br><br><br><br><br>
-    <div class="row">
-        <div class="col">
+ </div>
 
+ <div class="row">
+     <div class="col">
         <h1 style="color: white; font-size:300%;">Student Energy Conservation</h1>
-        <p style="color: Antiquewhite;">With energy prices rising dramatically, the overall concern and attention regarding electricity usage is high.
+        <p style="color: #fefefe;">With energy prices rising dramatically, the overall concern and attention regarding electricity usage is high.
         This tool will assist you in analyzing and optimizing the energy consumption for your student room(s).</p>
     </div>
 
     <div class="col">
-
+        <br><br><br><br><br>
         <div class="Card card1">
             <h2>Analyse your electricity usage</h2>
 

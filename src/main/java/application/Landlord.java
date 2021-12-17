@@ -150,15 +150,4 @@ public class Landlord extends Person {
         return message;
     }
 
-    //makes a text file from the report, don't know if this works with Spring
-    public void downloadLandlordReport() {
-        String message = this.getReport();
-        try {
-            PrintWriter output = new PrintWriter("Report.txt");
-            output.println(message);
-            output.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }

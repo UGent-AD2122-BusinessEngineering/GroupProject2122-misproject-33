@@ -7,62 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-
-        nav{
-            margin-left:10px;
-
-
-        }
-
+        nav{margin-left:10px;}
         nav ul li{
             display: inline-block;
             list-style: none;
-            margin: 20px;
-        }
-
+            margin: 20px;}
         nav ul li a{
             text-decoration: none;
-            color: white;
+            color: white;}
+        * {font-family: Helvetica, sans-serif;}
+        body{min-width:600px;}
+        button1 {
+            background-color: white;
+            border: 1px solid #3c3b52;
+
+            line-height: 0;
+            font-size: 17px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 60px;
+            color: #3c3b52;
+            font-weight: 100;
+            letter-spacing: 0.01em;
+            position: relative;
+            z-index: 1;
+            cursor:pointer;
+            width: 290px;
+            text-align: center;
         }
+        button1:hover, form button:focus {
+            color: #fefefe;
+            background-color: lightgray;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
 <body style="background-color:darkgray;">
 
 <div class="container-fluid">
-
     <nav>
         <ul>
             <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
             <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
+
         </ul>
     </nav>
 </div>
 <br><br><br><br><br>
-<div class="row">
 
-    <a href="Appliances">
-        <div class="Card card6">
-            <h2>Register Appliance</h2>
 
-        </div>
-    </a>
+    <button1><a href="Appliances">Add Appliance</a></button1>
+    <button1><a href="DeleteAppliance">Delete Appliance</a></button1>
 
-    <a href="Actions">
-        <div class="Card card7">
-            <h2>Register Energy Conservation Action</h2>
+<br><br>
+<button1><a href="Actions">Add Action</a></button1>
 
-        </div>
-    </a>
-    <a href="MonthlyEnergyConsumption">
-        <div class="Card card8">
-            <h2>Register Monthly Energy Consumption</h2>
-
-        </div>
-    </a>
-
-</div>
 
 
 

@@ -110,7 +110,7 @@ public class Appliance {
     }
 
     public String energyConservationModeOn (String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date1 = LocalDate.parse(date, formatter);
         String message = "";
         if(!(this.getIsEnergyConservationMode())) {

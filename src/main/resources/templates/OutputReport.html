@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Report</title>
     <style>
-
-
-
-        nav{
-            margin-left:10px;
-
-
-        }
-
+        nav{margin-left:10px;}
         nav ul li{
             display: inline-block;
             list-style: none;
-            margin: 20px;
-        }
-
+            margin: 20px;}
         nav ul li a{
             text-decoration: none;
-            color: white;
-        }
-
-        * {
-            font-family: Helvetica, sans-serif;
-            font-weight: lighter;
-        }
-
-
-        body{
-            min-width:600px;
-        }
-
+            color: white;}
+        * {font-family: Helvetica, sans-serif;}
+        body{min-width:600px;}
         form {
             position: relative;
             display: inline-block;
@@ -53,7 +34,6 @@
             letter-spacing: 0.01em;
             margin-left: 15px;
             margin-bottom: 35px;
-
         }
         form button {
             margin-top: 35px;
@@ -146,6 +126,15 @@
 </head>
 
 <body style="background-color:darkgray;">
+<div class="container-fluid">
+    <nav>
+        <ul>
+            <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
+            <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
+            <li><a href="FunctionScreenLandlord"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Landlord</b></a></li>
+        </ul>
+    </nav>
+</div>
 <form action="#" th:action="@{/stringprinter}" method="post">
     <div>
         <p th:each="landlord" th:text="${landlord.toreport()}"></p>

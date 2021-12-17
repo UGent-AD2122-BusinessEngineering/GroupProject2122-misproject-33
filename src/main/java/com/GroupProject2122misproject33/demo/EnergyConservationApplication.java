@@ -257,6 +257,31 @@ public class EnergyConservationApplication {
         return"FunctionScreenLandlord";
     }
 
+    @GetMapping("/RemoveStudentFromRoom")
+    public String showDeleteStudent(Model model) {
+
+        var locations= new LocationDAO().getAllLocations();
+        var rooms= new RoomDAO().getAllRooms();
+        var students= new StudentDAO().getAllStudents();
+        model.addAttribute("student", new AddStudentModel());
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("students",students);
+
+        return "RemoveStudentFromRoom";
+    }
+
+    @PostMapping("/RemoveStudentFromRoom")
+    public String deleteStudent(@ModelAttribute AddStudentModel studentModel){
+        var location=new LocationDAO().getLocation(studentModel.getLocationID());
+        var room=new RoomDAO().getRoom(studentModel.getRoomid());
+        var student= new StudentDAO().getStudent(studentModel.getStudentemail());
+        room.deleteStudent(student);
+
+        return"FunctionScreenLandlord";
+    }
+
 
 
 
@@ -270,7 +295,7 @@ public class EnergyConservationApplication {
     public String addAppliance(@ModelAttribute double electricity, double gas, double water, LocalDate month){
         Room room= new Room();
         room.addMonthlyEnergyConsumption(electricity, gas, water, month);
-        return "/test2";
+        return "/FunctionScreenLandlord";
     }
 
 
@@ -299,7 +324,203 @@ public class EnergyConservationApplication {
         return "stringprinter";
     }
 
+    @GetMapping("/RandomTip")
+    public String showRandomTip(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+        return "RandomTip";
+    }
 
+    @PostMapping("/RandomTip")
+    public String selectRandomTip(@ModelAttribute SelectApplianceModel selectApplianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/OutputRandomTip?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputRandomTip")
+    public String showRandomTip(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.getRandomTip());
+        return "OutputRandomTip";
+    }
+
+    @GetMapping("/EnergyConservationModeOn")
+    public String showEnergyConservationModeOn(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "EnergyConservationModeOn";
+    }
+
+    @PostMapping("/EnergyConservationModeOn")
+    public String selectEnergyConservationModeOn(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.energyConservationModeOn(date);
+        return "redirect:/OutputEnergyConservationModeOn?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputEnergyConservationModeOn")
+    public String showEnergyConservationModeOn(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.energyConservationModeOn(date));
+        return "OutputEnergyConservationModeOn";
+    }
+
+    @GetMapping("/CustomizedEnergyConservationAction")
+    public String showCustomizedEnergyConservationAction(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "CustomizedEnergyConservationAction";
+    }
+
+    @PostMapping("/CustomizedEnergyConservationAction")
+    public String selectCustomizedEnergyConservationAction(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.customizedEnergyConservationAction(date, name);
+        return "redirect:/OutputCustomizedEnergyConservationAction?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputCustomizedEnergyConservationAction")
+    public String showCustomizedEnergyConservationAction(@RequestParam String applianceid, Model model, String date, String name) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.customizedEnergyConservationAction(date, name));
+        return "OutputCustomizedEnergyConservationAction";
+    }
+
+    @GetMapping("/DegreaseDegree")
+    public String showDegreaseDegree(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "DecreaseDegree";
+    }
+
+    @PostMapping("/DegreaseDegree")
+    public String selectDegreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.decreaseDegree(date);
+        return "redirect:/OutputDegreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputDegreaseDegree")
+    public String showDegreaseDegree(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.decreaseDegree(date));
+        return "OutputDecreaseDegree";
+    }
+
+    @GetMapping("/IncreaseDegree")
+    public String showIncreaseDegree(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "IncreaseDegree";
+    }
+
+    @PostMapping("/IncreaseDegree")
+    public String selectIncreaseDegree(@ModelAttribute SelectApplianceModel selectApplianceModel, String date){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.increaseDegree(date);
+        return "redirect:/OutputIncreaseDegree?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputIncreaseDegree")
+    public String showIncreaseDegree(@RequestParam String applianceid, Model model, String date) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.increaseDegree(date));
+        return "OutputIncreaseDegree";
+    }
+
+    @GetMapping("/AverageTemperature")
+    public String showAverageTemperature(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+        return "AverageTemperature";
+    }
+
+    @PostMapping("/AverageTemperature")
+    public String selectAverageTemperature(@ModelAttribute SelectApplianceModel selectApplianceModel){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+
+        return "redirect:/OutputAverageTemperature?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputAverageTemperature")
+    public String showAverageTemperature(@RequestParam String applianceid, Model model) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+        model.addAttribute("message", appliance.averageTemperature());
+        return "OutputAverageTemperature";
+    }
+
+
+
+
+
+    @GetMapping("/CreateReportStudent")
+    public String showReport(Model model) {
+        var students= new StudentDAO().getAllStudents();
+        model.addAttribute("studentModel", new SelectStudentModel());
+        model.addAttribute("students", students);
+        return "CreateReportStudent";
+    }
+
+
+    @PostMapping("/CreateReportStudent")
+    public String giveReport(@ModelAttribute SelectStudentModel selectStudentModel){
+
+        var student=new StudentDAO().getStudent(selectStudentModel.getStudentemail());
+
+        return "redirect:/ReportStudent?studentemail="+ selectStudentModel.getStudentemail();
+    }
+
+    @GetMapping("/ReportStudent")
+    public String showEndReport(@RequestParam String studentemail, Model model) {
+        var student= new StudentDAO().getStudent(studentemail);
+        model.addAttribute("message", student.getReport());
+        return "ReportStudent";
+    }
+
+    @GetMapping("/CreateReportLandlord")
+    public String showReportLandlord(Model model) {
+        var landlords= new LandlordDAO().getAllLandlords();
+        model.addAttribute("landlordModel", new SelectLandlordModel());
+        model.addAttribute("landlords", landlords);
+        return "CreateReportLandlord";
+    }
+
+
+    @PostMapping("/CreateReportLandlord")
+    public String giveReportLandlord(@ModelAttribute SelectLandlordModel selectLandlordModel){
+
+        var landlord=new LandlordDAO().getLandlord(selectLandlordModel.getLandlordemail());
+
+        return "redirect:/ReportLandlord?landlordemail="+ selectLandlordModel.getLandlordemail();
+    }
+
+    @GetMapping("/ReportLandlord")
+    public String showEndReportLandlord(@RequestParam String landlordemail, Model model) {
+        var landlord= new LandlordDAO().getLandlord(landlordemail);
+        model.addAttribute("message", landlord.getReport());
+        return "ReportLandlord";
+    }
 
 
 }

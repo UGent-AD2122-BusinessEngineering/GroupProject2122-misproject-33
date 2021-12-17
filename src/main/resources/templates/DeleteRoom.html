@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete Room</title>
-
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <style>
         nav{margin-left:10px;}
         nav ul li{
@@ -119,10 +117,25 @@
             font-style: italic;
 
         }
-    </style>
-</head> <!--css import-->
+        .myVideo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
 
-<body style="background-color:darkgray;">
+    </style>
+    <video class="myVideo" muted autoplay loop>
+        <source src="http://drive.google.com/uc?export=view&id=1zZbrlVjozrTWaKag5y1MAitWR-2y1_vz" />
+    </video>
+</head>
+
+<body>
 <div class="container-fluid">
     <nav>
         <ul>

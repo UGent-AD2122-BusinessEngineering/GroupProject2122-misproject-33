@@ -45,15 +45,26 @@
             color: black;
             text-decoration: none;
         }
-
+        .myVideo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
 
     </style>
+    <video class="myVideo" muted autoplay loop>
+        <source src="http://drive.google.com/uc?export=view&id=1zZbrlVjozrTWaKag5y1MAitWR-2y1_vz" />
+    </video>
 </head>
 
-<body style="background-color:darkgray;">
-
+<body>
 <div class="container-fluid">
-
     <nav>
         <ul>
             <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
@@ -62,25 +73,17 @@
         </ul>
     </nav>
 </div>
-<br><br><br>
-
-<br><br>
+<br><br><br><br><br>
     <button1><a href="Location">Add Room</a></button1>
     <button1><a href="DeleteRoom">Delete Room</a></button1>
     <br><br>
     <button1><a href="AddStudentToRoom">Add Student to a Room</a></button1>
     <button1><a href="RemoveStudentFromRoom">Remove Student from a Room</a></button1>
     <br><br>
-
-
     <button1><a href="MonthlyEnergyConsumption">Add Energy Consumption</a></button1>
     <br><br>
     <button1><a href="CreateReportLandlord">Discover your Report</a></button1>
-
-<br><br>
-
+    <br><br>
 </form>
-
-
 </body>
 </html>

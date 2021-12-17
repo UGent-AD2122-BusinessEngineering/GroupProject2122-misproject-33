@@ -372,6 +372,31 @@ public class EnergyConservationApplication {
         return "OutputEnergyConservationModeOn";
     }
 
+    @GetMapping("/CustomizedEnergyConservationAction")
+    public String showCustomizedEnergyConservationAction(Model model) {
+        var appliances= new ApplianceDAO().getAllAppliances();
+        model.addAttribute("ApplianceModel", new SelectApplianceModel());
+        model.addAttribute("appliances", appliances);
+
+        return "CustomizedEnergyConservationAction";
+    }
+
+    @PostMapping("/CustomizedEnergyConservationAction")
+    public String selectCustomizedEnergyConservationAction(@ModelAttribute SelectApplianceModel selectApplianceModel, String date, String name){
+
+        var appliance=new ApplianceDAO().getAppliance(selectApplianceModel.getApplianceid());
+        appliance.customizedEnergyConservationAction(date, name);
+        return "redirect:/OutputCustomizedEnergyConservationAction?applianceid="+ selectApplianceModel.getApplianceid();
+    }
+
+    @GetMapping("/OutputCustomizedEnergyConservationAction")
+    public String showCustomizedEnergyConservationAction(@RequestParam String applianceid, Model model, String date, String name) {
+        var appliance= new ApplianceDAO().getAppliance((Integer.parseInt(applianceid)));
+
+        model.addAttribute("message", appliance.customizedEnergyConservationAction(date, name));
+        return "OutputCustomizedEnergyConservationAction";
+    }
+
     @GetMapping("/CreateReportStudent")
     public String showReport(Model model) {
         var students= new StudentDAO().getAllStudents();

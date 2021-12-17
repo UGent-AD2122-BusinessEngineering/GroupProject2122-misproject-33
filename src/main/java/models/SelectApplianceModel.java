@@ -3,6 +3,7 @@ package models;
 public class SelectApplianceModel {
     private int applianceid;
     private String date;
+    private String name;
 
     public int getApplianceid() {
         return applianceid;
@@ -18,5 +19,13 @@ public class SelectApplianceModel {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

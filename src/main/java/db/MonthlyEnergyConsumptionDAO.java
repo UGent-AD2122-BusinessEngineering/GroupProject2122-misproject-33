@@ -23,7 +23,7 @@ public class MonthlyEnergyConsumptionDAO {
                 double electricity = srs.getDouble("electricity_consumption");
                 double gas = srs.getDouble("gas_consumption");
                 int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
-                LocalDate month = srs.getDate("month").toLocalDate();
+                String month = srs.getString("month");
                 return new MonthlyEnergyConsumption(electricity, gas, water, month, monthlyEnergyConsumptionId);
             } else {
                 return null;
@@ -35,7 +35,7 @@ public class MonthlyEnergyConsumptionDAO {
         }
     }
 
-    public MonthlyEnergyConsumption getMonthlyEnergyConsumption(int room_id, LocalDate date) {
+    public MonthlyEnergyConsumption getMonthlyEnergyConsumption(int room_id, String date) {
         Connection con = null;
         try {
             con = DBHandler.getConnection();
@@ -45,8 +45,7 @@ public class MonthlyEnergyConsumptionDAO {
                     "AND month = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, room_id);
-            stmt.setDate(2, java.sql.Date.valueOf(date));
-            System.out.println(java.sql.Date.valueOf(date));
+            stmt.setString(2, date);
             ResultSet srs = stmt.executeQuery();
 
             if (srs.next()) {
@@ -88,7 +87,7 @@ public class MonthlyEnergyConsumptionDAO {
                         "WHERE monthly_energy_consumption_id = ?";
                 PreparedStatement stmt2 = con.prepareStatement(sqlUpdate);
                 stmt2.setInt(6, m.getMonthlyEnergyConsumptionId());
-                stmt2.setDate(1, java.sql.Date.valueOf(m.getMonth()));
+                stmt2.setString(1, m.getMonth());
                 stmt2.setDouble(2, m.getWater());
                 stmt2.setDouble(3, m.getElectricity());
                 stmt2.setDouble(4, m.getGas());
@@ -101,7 +100,7 @@ public class MonthlyEnergyConsumptionDAO {
                         + "(month, water_consumption, electricity_consumption, gas_consumption, Room_room_id) "
                         + "VALUES (?,?,?,?,?)";
                 PreparedStatement insertStm = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-                insertStm.setDate(1, java.sql.Date.valueOf(m.getMonth()));
+                insertStm.setString(1, m.getMonth());
                 insertStm.setDouble(2, m.getWater());
                 insertStm.setDouble(3, m.getElectricity());
                 insertStm.setDouble(4, m.getGas());
@@ -149,7 +148,7 @@ public class MonthlyEnergyConsumptionDAO {
                 double water = srs.getDouble("water_consumption");
                 double electricity = srs.getDouble("electricity_consumption");
                 double gas = srs.getDouble("gas_consumption");
-                LocalDate month = srs.getDate("month").toLocalDate();
+                String month = srs.getString("month");
                 int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
                 MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month, monthlyEnergyConsumptionId);
                 monthlyEnergyConsumptions.add(monthlyEnergyConsumption);
@@ -178,7 +177,7 @@ public class MonthlyEnergyConsumptionDAO {
                 double water = srs.getDouble("water_consumption");
                 double electricity = srs.getDouble("electricity_consumption");
                 double gas = srs.getDouble("gas_consumption");
-                LocalDate month = srs.getDate("month").toLocalDate();
+                String month = srs.getString("month");
                 int monthlyEnergyConsumptionId = srs.getInt("monthly_energy_consumption_id");
                 MonthlyEnergyConsumption monthlyEnergyConsumption = new MonthlyEnergyConsumption(electricity, gas, water, month, monthlyEnergyConsumptionId);
                 monthlyEnergyConsumptions.add(monthlyEnergyConsumption);

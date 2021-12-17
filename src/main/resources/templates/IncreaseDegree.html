@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Energyconservationmode</title>
+    <title>Increase Degree</title>
     <style>
 
 
@@ -158,9 +158,9 @@
     </nav>
 </div>
 
-<form action="#" th:action="@{/CustomizedEnergyConservationAction}" method="post" th:object="${ApplianceModel}">
+<form action="#" th:action="@{/IncreaseDegree}" method="post" th:object="${ApplianceModel}">
 
-    <h1>Customizing</h1>
+    <h1>Increase Degree</h1>
 
     <div class="question">
 
@@ -172,9 +172,6 @@
         <br><br><br>
         <label for="actionDate" class="form-label">Date: (DD/MM/YYYY)</label>
         <input th:field="*{date}" id="actionDate" type="text" required/>
-        <br><br>
-        <label for="actionName" class="form-label">Name</label>
-        <input th:field="*{name}" id="actionName" type="text" required/>
 
         <button type="submit" width="40%">Continue</button>
     </div>

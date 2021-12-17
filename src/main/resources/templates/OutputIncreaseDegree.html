@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Report</title>
+    <title>Increase Degree</title>
     <style>
-        nav{margin-left:10px;}
+
+
+
+        nav{
+            margin-left:10px;
+
+
+        }
+
         nav ul li{
             display: inline-block;
             list-style: none;
-            margin: 20px;}
+            margin: 20px;
+        }
+
         nav ul li a{
             text-decoration: none;
-            color: white;}
-        * {font-family: Helvetica, sans-serif;}
-        body{min-width:600px;}
+            color: white;
+        }
+
+        * {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+
+        body{
+            min-width:600px;
+        }
+
         form {
             position: relative;
             display: inline-block;
@@ -119,44 +139,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Actions</title>
+    <title>Energyconservationmode</title>
     <link rel="stylesheet" href="../folder%20css/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body style="background-color:darkgray;">
-<div class="container-fluid">
-
-    <nav>
-        <ul>
-            <li><a href="index"><i class="fa fa-fw fa-home"></i><b>Home</b></a></li>
-            <li><a href="ContactUs"><i class="fa fa-fw fa-envelope"></i> <b>Contact Us</b></a></li>
-            <li><a href="FunctionScreenStudent"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Student</b></a></li>
-            <li><a href="FunctionScreenLandlord"><i class="fa fa-fw fa-wrench"></i><b>Functionalities Landlord</b></a></li>
-        </ul>
-    </nav>
-</div>
-
-<form action="#" th:action="@{/RandomTip}" method="post" th:object="${ApplianceModel}">
-
-    <h1>Energy Conservation Mode</h1>
-
-    <div class="question">
-
-        <select th:field="*{applianceid}" class="form-control">
-            <option value="0">Select Appliance</option>
-            <option th:each="appliance : ${appliances}" th:value="${appliance.applianceID}" th:text="${appliance.name}"></option>
-        </select>
-
-        <br><br><br>
-        <label for="actionDate" class="form-label">Date: (DD/MM/YYYY)</label>
-        <input th:field="*{date}" id="actionDate" type="text" required/>
-
-        <button type="submit" width="40%">Continue</button>
+<form>
+    <div>
+        <p th:text="${message}"></p>
     </div>
 </form>
-
-
 </body>
 </html>

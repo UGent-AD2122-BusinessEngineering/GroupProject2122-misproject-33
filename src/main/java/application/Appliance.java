@@ -131,7 +131,7 @@ public class Appliance {
         Action actie = new Action(date, name);
         ActionDAO actionDAO = new ActionDAO();
         actionDAO.saveAction(actie, this.getApplianceID());
-        return "Thank you, we have registered your energy conservation method: " + name;
+        return "Thank you, we have registered your energy conservation method";
     }
 
     public String tipsAppliance(){
@@ -206,7 +206,7 @@ public class Appliance {
         return message;
     }
 
-    public String getRandomTip() {
+    public static String getRandomTip() {
         ArrayList<String> tips = new ArrayList<String>();
         int randomNum = ThreadLocalRandom.current().nextInt(0, 23);
         tips.add("Utilize natural light.");
